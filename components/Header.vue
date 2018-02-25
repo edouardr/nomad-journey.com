@@ -1,46 +1,32 @@
 <template>
-  <header>
-    <nav class="navbar navbar-expand-xs fixed-top navbar-dark site-header">
-      <nuxt-link to="/" class="navbar-brand">
+  <b-navbar toggleable="xs" type="dark" fixed="top">
+    <b-navbar-brand href="#">
           <h1 class="sr-only">A Nomad Journey</h1>
           <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
-      </nuxt-link>
-      <button class="navbar-toggler" type="button" data-toggle="offcanvas">
+    </b-navbar-brand>
+
+    <b-navbar-toggle target="offcanvas" type="button">
         <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto offcanvas-collapse--links">
-          <li class="nav-item active">
-            <nuxt-link to="/" class="nav-link" >
-              Home
-              <span class="sr-only">(current)</span>
-            </nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link to="/intinerary" class="nav-link">
-              Itinerary
-            </nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link to="/destinations" class="nav-link">
-              Destinations
-            </nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link to="/portraits" class="nav-link">
-              Portaits
-            </nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link to="/about" class="nav-link">
-              About Us
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="offcanvas-collapse--overlay"></div>
-    </nav>
-  </header>
+    </b-navbar-toggle>
+
+    <b-collapse is-nav id="navBar" class="nav_collapse offcanvas-collapse">
+      <b-navbar-nav class="mr-auto offcanvas-collapse--links">
+        <li class="nav-item">
+          <b-link to="/" class="nav-link" exact>
+            Home
+            <span class="sr-only">(current)</span>
+          </b-link>
+        </li>
+        <li class="nav-item" exact>
+          <b-link to="/about" class="nav-link" >
+            About Us
+          </b-link>
+        </li>
+      </b-navbar-nav>
+    </b-collapse>
+
+    <div class="offcanvas-collapse--overlay"></div>
+  </b-navbar>
 </template>
 
 <script lang="ts">
