@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="header">Nuxt TypeScript Starter</h1>
+    <h1 class="header">About Us</h1>
   </section>
 </template>
 
