@@ -9,14 +9,12 @@ import {
   Component,
   Vue,
 } from "nuxt-property-decorator";
-import { State } from "vuex-class";
 
 @Component({
   components: {
   },
 })
 export default class extends Vue {
-  @State public people;
 }
 </script>
 <style scoped>
