@@ -1,19 +1,35 @@
 export const state = () => ({
-  people: [],
+  items: [],
 });
 
 export const mutations = {
   // tslint:disable-next-line:no-shadowed-variable
-  setPeople(state: any, people) {
-    state.people = people;
+  setMenuItems(state: any, menuItems: any[]) {
+    state.items = menuItems;
   },
 };
 
 export const actions = {
   async nuxtServerInit({ commit }, { app }) {
-    const people = await app.$axios.$get(
-      "./random-data.json",
-    );
-    commit("setPeople", people.slice(0, 10));
+    commit("setMenuItems", [{
+      title: "Home",
+      url: "/",
+    },
+    {
+      title: "Itinerary",
+      url: "/itinerary",
+    },
+    {
+      title: "Destinations",
+      url: "/destinations",
+    },
+    {
+      title: "Portraits",
+      url: "/portraits",
+    },
+    {
+      title: "About Us",
+      url: "/about",
+    }]);
   },
 };

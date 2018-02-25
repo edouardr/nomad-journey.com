@@ -5,27 +5,25 @@
           <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
     </b-navbar-brand>
 
-    <b-navbar-toggle target="offcanvas" type="button">
+    <b-btn @click="isOpen = !isOpen"
+           :class="'navbar-toggler ' + (isOpen ? 'active' : '')"
+           aria-controls="offcanvas"
+           :aria-expanded="isOpen ? 'true' : 'false'">
         <span class="icon-bar"></span>
-    </b-navbar-toggle>
+    </b-btn>
 
-    <b-collapse is-nav id="navBar" class="nav_collapse offcanvas-collapse">
+    <b-collapse is-nav id="offcanvas" v-model="isOpen" class="nav_collapse offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
-        <li class="nav-item">
-          <b-link to="/" class="nav-link" exact>
-            Home
+        <li :key="menu.title" class="nav-item" v-for="menu in items">
+          <b-link :to="menu.url" class="nav-link" exact>
+            {{menu.title}}
             <span class="sr-only">(current)</span>
-          </b-link>
-        </li>
-        <li class="nav-item" exact>
-          <b-link to="/about" class="nav-link" >
-            About Us
           </b-link>
         </li>
       </b-navbar-nav>
     </b-collapse>
 
-    <div class="offcanvas-collapse--overlay"></div>
+    <div :class="'offcanvas-collapse--overlay ' + (isOpen ? 'show' : '')"></div>
   </b-navbar>
 </template>
 
@@ -35,10 +33,12 @@ import {
   Prop,
   Vue,
 } from "nuxt-property-decorator";
+import { State } from "vuex-class";
 
 @Component({})
 export default class Header extends Vue {
-  @Prop() public menu;
+  @State public items: any[];
+  public isOpen: boolean = false;
 }
 </script>
 
@@ -153,12 +153,12 @@ export default class Header extends Vue {
   transition: all 0.3s ease-in-out;
 }
 
-.offcanvas-collapse--overlay.open {
+.offcanvas-collapse--overlay.show {
   display: inline-block;
   opacity: 1;
 }
 @media (max-width: 768px) {
-  .offcanvas-collapse.open {
+  .offcanvas-collapse.show {
       -webkit-transform: translateX(30%);
       transform: translateX(30%);
       /* Account for horizontal padding on navbar */
@@ -166,7 +166,7 @@ export default class Header extends Vue {
 }
 
 @media (min-width: 768px) {
-  .offcanvas-collapse.open {
+  .offcanvas-collapse.show {
       -webkit-transform: translateX(70%);
       transform: translateX(70%);
       /* Account for horizontal padding on navbar */

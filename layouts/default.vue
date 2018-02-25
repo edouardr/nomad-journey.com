@@ -12,7 +12,7 @@ import {
   Component,
   Vue,
 } from "nuxt-property-decorator";
-import Header from "~/components/Header.vue";
+import Header from "~/components/header.vue";
 
 @Component({
   components: {
