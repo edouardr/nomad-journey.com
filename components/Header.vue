@@ -26,7 +26,9 @@
       </b-navbar-nav>
     </b-collapse>
 
-    <div :class="'offcanvas-collapse--overlay ' + (isOpen ? 'show' : '')"></div>
+    <div :class="'offcanvas-collapse--overlay ' + (isOpen ? 'show' : '')"
+      v-b-toggle="'offcanvas'"
+      @click="isOpen = false"></div>
   </b-navbar>
 </template>
 
