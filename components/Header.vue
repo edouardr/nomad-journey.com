@@ -5,17 +5,20 @@
           <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
     </b-navbar-brand>
 
-    <b-btn @click="isOpen = !isOpen"
+    <b-btn v-b-toggle.offcanvas
            :class="'navbar-toggler ' + (isOpen ? 'active' : '')"
            aria-controls="offcanvas"
-           :aria-expanded="isOpen ? 'true' : 'false'">
+           :aria-expanded="isOpen ? 'true' : 'false'"
+           @click="isOpen = !isOpen">
         <span class="icon-bar"></span>
     </b-btn>
 
-    <b-collapse is-nav id="offcanvas" v-model="isOpen" class="nav_collapse offcanvas-collapse">
+    <b-collapse is-nav id="offcanvas" class="offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
         <li :key="menu.title" class="nav-item" v-for="menu in items">
-          <b-link :to="menu.url" class="nav-link" exact>
+          <b-link :to="menu.url"
+                  class="nav-link"
+                  @click="isOpen = false">
             {{menu.title}}
             <span class="sr-only">(current)</span>
           </b-link>
@@ -130,6 +133,20 @@ export default class Header extends Vue {
   transform: translateX(100%);
 }
 
+@media (max-width: 768px) {
+  .offcanvas-collapse.show {
+    -webkit-transform: translateX(30%);
+    transform: translateX(30%);
+  }
+}
+
+@media (min-width: 768px) {
+  .offcanvas-collapse.show {
+    -webkit-transform: translateX(70%);
+    transform: translateX(70%);
+  }
+}
+
 .offcanvas-collapse--links {
   position: fixed;
   top: 56px;
@@ -146,30 +163,15 @@ export default class Header extends Vue {
   background-color: rgba(60, 60, 60, 0.85);
   z-index: 800;
 
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .offcanvas-collapse--overlay.show {
   display: inline-block;
   opacity: 1;
-}
-@media (max-width: 768px) {
-  .offcanvas-collapse.show {
-      -webkit-transform: translateX(30%);
-      transform: translateX(30%);
-      /* Account for horizontal padding on navbar */
-  }
-}
-
-@media (min-width: 768px) {
-  .offcanvas-collapse.show {
-      -webkit-transform: translateX(70%);
-      transform: translateX(70%);
-      /* Account for horizontal padding on navbar */
-  }
 }
 </style>
