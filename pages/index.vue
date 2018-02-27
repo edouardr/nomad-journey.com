@@ -3,6 +3,9 @@
     <section>
       <h1 class="header">Nuxt TypeScript Starter</h1>
     </section>
+    <section class="my-5 text-muted">
+        <div class="container" v-html="introText"></div>
+    </section>
     <section>
       <div class="container">
         <h2>Latest Articles</h2>
@@ -27,6 +30,16 @@ import CardGroup from "~/components/card-group.vue";
   },
 })
 export default class extends Vue {
+  public introText: string = `
+    <h2>Welcome!</h2>
+    <p class="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+    ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+    qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+    adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+    voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi
+    ut aliquid ex ea commodi consequatur?</p>`;
+
   public latestArticles: any[] = [{
     date: "2 days ago",
     id: "1234567",
