@@ -1,5 +1,6 @@
 export class Symbols {
   public static MUTATIONS = {
-    SET_HONE: "setPeople",
+    SET_HOME: "setHome",
+    SET_NAVIGATION: "setNavigation",
   };
 }

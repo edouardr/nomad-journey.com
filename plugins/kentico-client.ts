@@ -1,6 +1,6 @@
 import { DeliveryClientConfig, DeliveryNodeClient, TypeResolver } from "kentico-cloud-delivery-node-sdk";
 import { ContentTypes } from "~/content-types";
-import { Home } from "~/models";
+import { Home, NavigationItem } from "~/models";
 
 const deliveryClientFactory = () => {
 
@@ -8,6 +8,7 @@ const deliveryClientFactory = () => {
 
   const typeResolvers: TypeResolver[] = [
     new TypeResolver(ContentTypes.Home.codeName, () => new Home()),
+    new TypeResolver(ContentTypes.NavigationItem.codeName, () => new NavigationItem()),
   ];
 
   return new DeliveryNodeClient(

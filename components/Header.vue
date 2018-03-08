@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable="xs" type="dark" fixed="top">
-    <b-navbar-brand href="#">
+    <b-navbar-brand href="/">
           <h1 class="sr-only">A Nomad Journey</h1>
           <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
     </b-navbar-brand>
@@ -15,12 +15,12 @@
 
     <b-collapse is-nav id="offcanvas" class="offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
-        <li :key="menu.title" class="nav-item" v-for="menu in items">
-          <b-link :to="menu.url"
-                  :exact="menu.url == '/'"
+        <li :key="navItem.id" class="nav-item" v-for="navItem in navigation">
+          <b-link :to="navItem.redirectTo.value"
+                  :exact="navItem.redirectTo.value == '/'"
                   class="nav-link"
                   @click="isOpen = false">
-            {{menu.title}}
+            {{navItem.title.value}}
             <span class="sr-only">(current)</span>
           </b-link>
         </li>
@@ -39,10 +39,11 @@ import {
   Vue,
 } from "nuxt-property-decorator";
 import { State } from "vuex-class";
+import { NavigationItem } from "~/models";
 
 @Component({})
 export default class Header extends Vue {
-  @State public items: any[];
+  @State public navigation: NavigationItem[];
   public isOpen: boolean = false;
 }
 </script>

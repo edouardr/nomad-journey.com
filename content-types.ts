@@ -7,6 +7,17 @@ export class ContentTypes {
     },
   };
 
+  public static NavigationItem = {
+    codeName: "navigation_item",
+    fields: {
+      contentItem: "content_item",
+      order: "order",
+      redirectTo: "redirect_to_url",
+      title: "title",
+      urlSlug: "url_slug",
+    },
+  };
+
   public static SnippetJumbotron = {
     codeName: "jumbotron",
     fields: {

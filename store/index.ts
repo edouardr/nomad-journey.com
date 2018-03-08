@@ -1,12 +1,13 @@
 import Vuex from "vuex";
 import { HomeService } from "~/api/home-service";
-import { Home } from "~/models";
+import { Home, NavigationItem } from "~/models";
 import { actions } from "./actions";
 import { getters } from "./getters";
 import { mutations } from "./mutations";
 
 export interface IState {
   home: Home | undefined;
+  navigation: NavigationItem[];
 }
 
 const createStore = () => {
@@ -16,6 +17,7 @@ const createStore = () => {
     mutations,
     state: {
       home: undefined,
+      navigation: [],
     },
   });
 };
