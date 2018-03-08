@@ -1,8 +1,8 @@
 <template>
   <div>
-      <Jumbotron :title="hero.title" :desc="hero.desc" :isHero="true" :url="hero.url"/>
+      <Jumbotron :title="home.jumbotronTitle.value" :desc="home.jumbotronDesc.value" :isHero="true" :url="home.jumbotronImage.assets[0].url"/>
       <section class="my-5 text-muted">
-          <div class="container" v-html="introText"></div>
+          <div class="container" v-html="home.bodyText.value"></div>
       </section>
       <Slide :url="`/download.jpeg`"/>
       <section>
@@ -22,10 +22,12 @@ import {
   Component,
   Vue,
 } from "nuxt-property-decorator";
+import { State } from "vuex-class";
 import CardGroup from "~/components/card-group.vue";
 import Footer from "~/components/footer.vue";
 import Jumbotron from "~/components/jumbotron.vue";
 import Slide from "~/components/slide.vue";
+import { Home } from "~/models";
 
 @Component({
   components: {
@@ -77,14 +79,19 @@ export default class extends Vue {
     title: "Some Other other Title",
   }];
 
-  public hero: any = {
-      desc : "<p class='lead'>Traveling around the world</p>",
-      title : "A Nomad Journey",
-      url: "https://img.webnots.com/2017/05/parallax1.jpg",
-  };
+  @State public home: Home;
+
+  public head() {
+
+    return {
+      meta: [
+          { hid: "description", name: "description", content: this.home.metaDesc.value },
+          { hid: "keywords", name: "keywords", content: this.home.metaKeywords.value },
+          { hid: "og:title", name: "og:title", content: this.home.ogTitle.value },
+          { hid: "og:description", name: "og:description", content: this.home.ogDescription.value },
+        ],
+      title: this.home.metaTitle.value,
+    };
+  }
 }
 </script>
-
-<style>
-
-</style>

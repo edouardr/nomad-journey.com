@@ -55,11 +55,12 @@ module.exports = {
   ** Build configuration
   */
   css: [],
-  build: {},
+  build: {
+    vendor: ['vuex-class', 'kentico-cloud-delivery-node-sdk']
+  },
   modules: [
-    "@nuxtjs/axios",
     "~/modules/typescript.js",
     "bootstrap-vue/nuxt"
   ],
-  axios: {}
+  plugins: ['~/plugins/kentico-client']
 }
