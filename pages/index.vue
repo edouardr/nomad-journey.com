@@ -1,19 +1,20 @@
 <template>
   <div>
-    <Jumbotron :title="hero.title" :desc="hero.desc" :isHero="true" :url="hero.url"/>
-    <section class="my-5 text-muted">
-        <div class="container" v-html="introText"></div>
-    </section>
-    <Slide :url="`/download.jpeg`"/>
-    <section>
-      <div class="container">
-        <h2>Latest Articles</h2>
-        <div class="row">
-          <CardGroup :cards="latestArticles" />
+      <Jumbotron :title="hero.title" :desc="hero.desc" :isHero="true" :url="hero.url"/>
+      <section class="my-5 text-muted">
+          <div class="container" v-html="introText"></div>
+      </section>
+      <Slide :url="`/download.jpeg`"/>
+      <section>
+        <div class="container">
+          <h2>Latest Articles</h2>
+          <div class="row">
+            <CardGroup :cards="latestArticles" />
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+      <Footer />
+    </div>
 </template>
 
 <script lang="ts">
@@ -22,12 +23,14 @@ import {
   Vue,
 } from "nuxt-property-decorator";
 import CardGroup from "~/components/card-group.vue";
+import Footer from "~/components/footer.vue";
 import Jumbotron from "~/components/jumbotron.vue";
 import Slide from "~/components/slide.vue";
 
 @Component({
   components: {
     CardGroup,
+    Footer,
     Jumbotron,
     Slide,
   },
@@ -82,31 +85,6 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped>
-html {
-  height: 100%;
-  overflow: hidden;
-}
-
-body {
-  margin:0;
-  padding:0;
-	perspective: 1px;
-	transform-style: preserve-3d;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  font-family: Nunito;
-}
-
-h1 {
-   font-size: 250%
-}
-
-p {
-  font-size: 140%;
-  line-height: 150%;
-  color: #333;
-}
+<style>
 
 </style>

@@ -20,7 +20,6 @@ import {
   Prop,
   Vue,
 } from "nuxt-property-decorator";
-import { State } from "vuex-class";
 
 @Component({})
 export default class Jumbotron extends Vue {
@@ -43,16 +42,6 @@ export default class Jumbotron extends Vue {
     box-sizing: border-box;
     box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
     transform-style: inherit;
-  }
-
-  .parallax-slide:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 0 8px 1px rgba(0, 0, 0, .7);
   }
 
   .parallax-slide, .parallax-slide:before {
