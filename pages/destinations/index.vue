@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <h1 class="header">Destinations</h1>
-  </section>
+    <Jumbotron />
 </template>
 
 <script lang="ts">
@@ -10,9 +8,11 @@ import {
   Vue,
 } from "nuxt-property-decorator";
 import { State } from "vuex-class";
+import Jumbotron from "~/components/jumbotron.vue";
 
 @Component({
   components: {
+    Jumbotron,
   },
 })
 export default class extends Vue {

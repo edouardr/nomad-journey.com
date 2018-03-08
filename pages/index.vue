@@ -1,8 +1,6 @@
 <template>
   <div>
-    <section>
-      <h1 class="header">Nuxt TypeScript Starter</h1>
-    </section>
+    <Jumbotron :title="hero.title" :desc="hero.desc" :isHero="true" :url="hero.url"/>
     <section class="my-5 text-muted">
         <div class="container" v-html="introText"></div>
     </section>
@@ -23,10 +21,12 @@ import {
   Vue,
 } from "nuxt-property-decorator";
 import CardGroup from "~/components/card-group.vue";
+import Jumbotron from "~/components/jumbotron.vue";
 
 @Component({
   components: {
     CardGroup,
+    Jumbotron,
   },
 })
 export default class extends Vue {
@@ -45,7 +45,7 @@ export default class extends Vue {
     id: "1234567",
     img: {
       alt: "Some picture",
-      url: "https://lorempixel.com/300/300/",
+      url: "https://lorempixel.com/360/300/",
     },
     text: "Small description of the card1, to give attract readers in reading more about this amazing article",
     title: "Some Title",
@@ -55,7 +55,7 @@ export default class extends Vue {
     id: "987654",
     img: {
       alt: "Some picture 2",
-      url: "https://lorempixel.com/300/300/",
+      url: "https://lorempixel.com/360/300/",
     },
     text: "Small description of the card2, to give attract readers in reading more about this amazing article",
     title: "Some Other Title",
@@ -65,13 +65,45 @@ export default class extends Vue {
     id: "192837",
     img: {
       alt: "Some picture 3",
-      url: "https://lorempixel.com/300/300/",
+      url: "https://lorempixel.com/360/300/",
     },
     text: "Small description of the card2, to give attract readers in reading more about this amazing article",
     title: "Some Other other Title",
   }];
+
+  public hero: any = {
+      desc : "<p class='lead'>Traveling around the world</p>",
+      title : "A Nomad Journey",
+      url: "https://img.webnots.com/2017/05/parallax1.jpg",
+  };
 }
 </script>
 
 <style scoped>
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin:0;
+  padding:0;
+	perspective: 1px;
+	transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: Nunito;
+}
+
+h1 {
+   font-size: 250%
+}
+
+p {
+  font-size: 140%;
+  line-height: 150%;
+  color: #333;
+}
+
 </style>

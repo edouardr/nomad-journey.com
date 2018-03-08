@@ -17,6 +17,7 @@
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
         <li :key="menu.title" class="nav-item" v-for="menu in items">
           <b-link :to="menu.url"
+                  :exact="menu.url == '/'"
                   class="nav-link"
                   @click="isOpen = false">
             {{menu.title}}
@@ -35,7 +36,6 @@
 <script lang="ts">
 import {
   Component,
-  Prop,
   Vue,
 } from "nuxt-property-decorator";
 import { State } from "vuex-class";
