@@ -4,6 +4,7 @@
     <section class="my-5 text-muted">
         <div class="container" v-html="introText"></div>
     </section>
+    <Slide :url="`/download.jpeg`"/>
     <section>
       <div class="container">
         <h2>Latest Articles</h2>
@@ -22,11 +23,13 @@ import {
 } from "nuxt-property-decorator";
 import CardGroup from "~/components/card-group.vue";
 import Jumbotron from "~/components/jumbotron.vue";
+import Slide from "~/components/slide.vue";
 
 @Component({
   components: {
     CardGroup,
     Jumbotron,
+    Slide,
   },
 })
 export default class extends Vue {

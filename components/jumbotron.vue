@@ -1,7 +1,7 @@
 <template>
   <section class="parallax-container">
-    <div class="slide header" :style="`background-image: url('${url}');`">
-      <div class="text">
+    <div class="parallax-slide parallax-header" :style="`background-image: url('${url}');`">
+      <div class="parallax-slide--text">
         <h1>
           {{title}}
         </h1>
@@ -25,12 +25,8 @@ import { State } from "vuex-class";
 @Component({})
 export default class Jumbotron extends Vue {
   @Prop() public desc: string;
-  @Prop() public isHero: boolean;
   @Prop() public title: string;
   @Prop() public url: string;
-
-  private heroClass: string = "large";
-  private defaultClass: string = "regular";
 }
 </script>
 
@@ -39,7 +35,7 @@ export default class Jumbotron extends Vue {
     font-size: 250%
   }
 
-  .slide {
+  .parallax-slide {
     position: relative;
     padding: 25vh 10%;
     min-height: 100vh;
@@ -49,24 +45,7 @@ export default class Jumbotron extends Vue {
     transform-style: inherit;
   }
 
-  img {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    width: 320px;
-    height: 240px;
-    transform: translateZ(.25px) scale(.75) translateX(-94%) translateY(-100%) rotate(2deg);
-    padding: 10px;
-    border-radius: 5px;
-    background: rgba(240,230,220, .7);
-    box-shadow: 0 0 8px rgba(0, 0, 0, .7);
-  }
-
-  img:last-of-type {
-    transform: translateZ(.4px) scale(.6) translateX(-104%) translateY(-40%) rotate(-5deg);
-  }
-
-  .slide:before {
+  .parallax-slide:before {
     content: "";
     position: absolute;
     top: 0;
@@ -76,19 +55,11 @@ export default class Jumbotron extends Vue {
     box-shadow: 0 0 8px 1px rgba(0, 0, 0, .7);
   }
 
-  .title {
-    width: 50%;
-    padding: 5%;
-    border-radius: 5px;
-    background: rgba(240,230,220, .7);
-    box-shadow: 0 0 8px rgba(0, 0, 0, .7);
-  }
-
-  .slide, .slide:before {
+  .parallax-slide, .parallax-slide:before {
     background: 50% 50% / cover;
   }
 
-  .header {
+  .parallax-header {
     text-align: center;
     font-size: 175%;
     color: #fff;
@@ -96,7 +67,7 @@ export default class Jumbotron extends Vue {
     z-index:2;
   }
 
-  .text {
+  .parallax-slide--text {
     transform: translateZ(.25px) scale(.75);
     transform-origin: 50% 100%;
   }
