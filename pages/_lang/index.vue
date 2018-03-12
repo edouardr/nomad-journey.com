@@ -22,11 +22,15 @@ import {
   Component,
   Vue,
 } from "nuxt-property-decorator";
+import { Commit } from "vuex";
 import { State } from "vuex-class";
+import { HomeService } from "~/api/home-service";
+import { NavigationService } from "~/api/navigation-service";
 import CardGroup from "~/components/card-group.vue";
 import Footer from "~/components/footer.vue";
 import Jumbotron from "~/components/jumbotron.vue";
 import Slide from "~/components/slide.vue";
+import { Symbols } from "~/constants";
 import { Home } from "~/models";
 
 @Component({
@@ -92,6 +96,15 @@ export default class extends Vue {
         ],
       title: this.home.metaTitle.value,
     };
+  }
+
+  public async fetch({ store }) {
+    const homeService: HomeService = new HomeService();
+    store.commit(Symbols.MUTATIONS.SET_HOME, await homeService.get(store.state.language));
+
+    const navigationService: NavigationService = new NavigationService();
+    const navResponse = await navigationService.getAll(store.state.language);
+    store.commit(Symbols.MUTATIONS.SET_NAVIGATION, navResponse.items);
   }
 }
 </script>

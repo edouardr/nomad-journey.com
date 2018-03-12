@@ -16,7 +16,7 @@
     <b-collapse is-nav id="offcanvas" class="offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
         <li :key="navItem.id" class="nav-item" v-for="navItem in navigation">
-          <b-link :to="navItem.redirectTo.value"
+          <b-link :to="`/${language}${navItem.redirectTo.value}`"
                   :exact="navItem.redirectTo.value == '/'"
                   class="nav-link"
                   @click="isOpen = false">
@@ -44,6 +44,7 @@ import { NavigationItem } from "~/models";
 @Component({})
 export default class Header extends Vue {
   @State public navigation: NavigationItem[];
+  @State public language: string;
   public isOpen: boolean = false;
 }
 </script>
@@ -176,5 +177,6 @@ export default class Header extends Vue {
 .offcanvas-collapse--overlay.show {
   display: inline-block;
   opacity: 1;
+  position: fixed;
 }
 </style>

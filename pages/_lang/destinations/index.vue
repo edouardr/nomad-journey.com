@@ -1,5 +1,5 @@
 <template>
-    <Jumbotron />
+  <h1>Destinations</h1>
 </template>
 
 <script lang="ts">

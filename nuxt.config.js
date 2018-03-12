@@ -56,11 +56,19 @@ module.exports = {
   */
   css: [],
   build: {
-    vendor: ['vuex-class', 'kentico-cloud-delivery-node-sdk']
+    vendor: [
+      "vuex-class",
+      "kentico-cloud-delivery-typescript-sdk"
+    ]
   },
   modules: [
     "~/modules/typescript.js",
     "bootstrap-vue/nuxt"
   ],
-  plugins: ['~/plugins/kentico-client']
+  plugins: [
+    "~/plugins/kentico-client",
+  ],
+  router: {
+    middleware: 'lang'
+  },
 }

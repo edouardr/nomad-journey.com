@@ -7,8 +7,11 @@ import { mutations } from "./mutations";
 
 export interface IState {
   home: Home | undefined;
+  language: string;
   navigation: NavigationItem[];
 }
+
+export const defaultLang = "en";
 
 const createStore = () => {
   return new Vuex.Store<IState>({
@@ -17,6 +20,7 @@ const createStore = () => {
     mutations,
     state: {
       home: undefined,
+      language: defaultLang,
       navigation: [],
     },
   });

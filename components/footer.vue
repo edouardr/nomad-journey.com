@@ -9,6 +9,8 @@
         <a href="#">insta</a>
       </li>
     </ul>
+
+    <LanguageSelector />
   </footer>
 </template>
 
@@ -17,21 +19,17 @@ import {
   Component,
   Vue,
 } from "nuxt-property-decorator";
+import LanguageSelector from "~/components/language-selector.vue";
 
-@Component({})
+@Component({
+  components: {
+    LanguageSelector,
+  },
+})
 export default class Footer extends Vue {
 }
 </script>
 
 <style scoped>
-  .paral {
-    min-height: 400px;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 50%;
-    box-sizing: border-box;
-    box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
-    border-radius: 0;
-  }
 </style>
 
