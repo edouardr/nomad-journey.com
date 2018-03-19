@@ -1,7 +1,7 @@
 export class ContentTypes {
 
-  public static Home = {
-    codeName: "home",
+  public static LandingPage = {
+    codeName: "landing_page",
     fields: {
       bodyText: "body_text",
     },

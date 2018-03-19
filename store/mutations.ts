@@ -1,11 +1,11 @@
 import { MutationTree } from "vuex";
 import { Symbols } from "~/constants";
-import { Home, NavigationItem } from "~/models";
+import { LandingPage, NavigationItem } from "~/models";
 import { IState } from "./";
 
 export const mutations: MutationTree<IState> = {
-  [Symbols.MUTATIONS.SET_HOME]: (state: IState, home: Home): void => {
-    state.home = home;
+  [Symbols.MUTATIONS.SET_HOME]: (state: IState, landingPage: LandingPage): void => {
+    state.landingPage = landingPage;
   },
   [Symbols.MUTATIONS.SET_LANGUAGE]: (state: IState, language: string): void => {
     state.language = language;

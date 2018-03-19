@@ -1,12 +1,12 @@
-import { ActionContext, ActionTree, Commit } from "vuex";
-import { HomeService } from "~/api/home-service";
-import { NavigationService } from "~/api/navigation-service";
+import { ActionContext, ActionTree, Commit, Dispatch } from "vuex";
 import { Symbols } from "~/constants";
-import { Home } from "~/models";
+import { LandingPage } from "~/models";
+import axios from "~/plugins/axios";
 import { IState } from "./";
 
-const loadNav = async (commit: Commit, language: string): Promise<void> => {
-};
-
 export const actions: ActionTree<IState, IState> = {
+  async getLandingPage({ commit }: ActionContext<IState, IState>) {
+    const response = await axios.get("/api/landing-page/en/home");
+    commit(Symbols.MUTATIONS.SET_HOME, response.data);
+  },
 };

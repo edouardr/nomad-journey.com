@@ -1,9 +1,9 @@
 import { ContentItem, FieldDecorators, Fields } from "kentico-cloud-delivery-node-sdk";
 import { ContentTypes } from "~/content-types";
 
-export class Home extends ContentItem {
+export class LandingPage extends ContentItem {
   public id: string;
-  @FieldDecorators.codename(ContentTypes.Home.fields.bodyText)
+  @FieldDecorators.codename(ContentTypes.LandingPage.fields.bodyText)
   public bodyText: Fields.TextField;
 
   @FieldDecorators.codename(ContentTypes.SnippetJumbotron.fields.title)
