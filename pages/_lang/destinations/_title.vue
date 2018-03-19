@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="header">Destinations</h1>
+    <h1 class="header">Articles</h1>
   </section>
 </template>
 

@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@nuxtjs/axios": "^5.0.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
     "bootstrap-vue": "^2.0.0-rc.1",
+    "express": "^4.16.3",
+    "kentico-cloud-delivery-node-sdk": "^1.1.0",
     "nuxt": "^1.3.0",
     "nuxt-property-decorator": "^1.0.0",
     "vue-class-component": "^6.2.0",

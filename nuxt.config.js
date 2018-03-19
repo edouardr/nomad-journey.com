@@ -1,4 +1,5 @@
 const parseArgs = require("minimist")
+const bodyParser = require('body-parser')
 const argv = parseArgs(process.argv.slice(2), {
   alias: {
     H: "hostname",
@@ -55,11 +56,33 @@ module.exports = {
   ** Build configuration
   */
   css: [],
-  build: {},
+  build: {
+    vendor: [
+      "vuex-class",
+      "kentico-cloud-delivery-node-sdk"
+    ]
+  },
   modules: [
-    "@nuxtjs/axios",
     "~/modules/typescript.js",
     "bootstrap-vue/nuxt"
   ],
-  axios: {}
+  plugins: [
+    "~/plugins/kentico-client",
+    { src: "~/plugins/axios", ssr: false}
+  ],
+  router: {
+    middleware: 'lang'
+  },
+  /*
+  ** Add server middleware
+  ** Nuxt.js uses `connect` module as server
+  ** So most of express middleware works with nuxt.js server middleware
+  */
+  serverMiddleware: [
+    // body-parser middleware
+    bodyParser.json(),
+    // Api middleware
+    // We add /api/login & /api/logout routes
+    '~/api'
+  ]
 }
