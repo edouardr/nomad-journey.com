@@ -15,53 +15,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Vue,
-} from "nuxt-property-decorator";
-import { Commit } from "vuex";
-import { State } from "vuex-class";
-import { NavigationService } from "~/api/navigation-service";
-import CardGroup from "~/components/card-group.vue";
-import Footer from "~/components/footer.vue";
-import Jumbotron from "~/components/jumbotron.vue";
-import Slide from "~/components/slide.vue";
-import { Symbols } from "~/constants";
-import { LandingPage } from "~/models";
+<script>
+import Vue from 'vue'
 
-@Component({
-  components: {
-    Jumbotron,
-  },
-})
-export default class extends Vue {
-  @State public landingPage: LandingPage;
-
-  public head() {
-
+export default new Vue({
+  head () {
     return {
       meta: [
-          { hid: "description", name: "description", content: this.landingPage.metaDesc.value },
-          { hid: "keywords", name: "keywords", content: this.landingPage.metaKeywords.value },
-          { hid: "og:title", name: "og:title", content: this.landingPage.ogTitle.value },
-          { hid: "og:description", name: "og:description", content: this.landingPage.ogDescription.value },
-        ],
-      title: this.landingPage.metaTitle.value,
-    };
-  }
-
-  public async fetch({ store, isServer }) {
-    if (isServer) {
-
-      const navigationService: NavigationService = new NavigationService();
-      const navResponse = await navigationService.getAll(store.state.language);
-      store.commit(Symbols.MUTATIONS.SET_NAVIGATION, navResponse.items);
-    } else {
-      alert("NOT SERVER");
+        { hid: 'description', name: 'description', content: this.landingPage.metaDesc.value },
+        { hid: 'keywords', name: 'keywords', content: this.landingPage.metaKeywords.value },
+        { hid: 'og:title', name: 'og:title', content: this.landingPage.ogTitle.value },
+        { hid: 'og:description', name: 'og:description', content: this.landingPage.ogDescription.value }
+      ],
+      title: this.landingPage.metaTitle.value
     }
   }
-}
+})
 </script>
 <style scoped>
 </style>

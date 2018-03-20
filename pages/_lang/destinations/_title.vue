@@ -4,20 +4,11 @@
   </section>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Vue,
-} from "nuxt-property-decorator";
-import { State } from "vuex-class";
+<script>import Vue from 'vue'
 
-@Component({
-  components: {
-  },
+export default new Vue({
+
 })
-export default class extends Vue {
-  @State public people;
-}
 </script>
 <style scoped>
 </style>

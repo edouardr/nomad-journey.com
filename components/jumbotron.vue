@@ -14,19 +14,16 @@
 
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "nuxt-property-decorator";
+<script>
+import Vue from 'vue'
 
-@Component({})
-export default class Jumbotron extends Vue {
-  @Prop() public desc: string;
-  @Prop() public title: string;
-  @Prop() public url: string;
-}
+export default new Vue({
+  props: [
+    'desc',
+    'title',
+    'url'
+  ]
+})
 </script>
 
 <style scoped>

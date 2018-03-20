@@ -1,25 +1,14 @@
 <template>
   <div>
     <Header />
-    <div class="">
+    <div>
       <nuxt/>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Vue,
-} from "nuxt-property-decorator";
-import Header from "~/components/header.vue";
-
-@Component({
-  components: {
-    Header,
-  },
-})
-export default class extends Vue {
+<script>
+export default {
 }
 </script>
 
