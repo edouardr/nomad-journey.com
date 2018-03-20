@@ -1,8 +1,10 @@
 import { Router } from 'express'
-import landingPage from './landing-page'
+import landingPageRouter from './landing-page'
+import navigationRouter from './navigation'
 
 const router = Router()
 
-router.use(landingPage)
+router.use(landingPageRouter)
+router.use(navigationRouter)
 
 export default router

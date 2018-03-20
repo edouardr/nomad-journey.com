@@ -29,12 +29,9 @@ export const getters = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit, store }) {
-    const landingPageResponse = await axios.get(`api/landing-page/${store.state.language}/home`)
-    commit(Symbols.MUTATIONS.SET_HOME, landingPageResponse.item)
-
-    const navResponse = await axios.get(`api/navigation/${store.state.language}`)
-    commit(Symbols.MUTATIONS.SET_NAVIGATION, navResponse.items)
+  async nuxtServerInit ({ commit, state }) {
+    const {data} = await axios.get(`api/navigation/${state.language}`)
+    commit(Symbols.MUTATIONS.SET_NAVIGATION, data)
   }
 }
 

@@ -16,9 +16,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
-export default new Vue({
+export default {
   head () {
     return {
       meta: [
@@ -30,7 +28,7 @@ export default new Vue({
       title: this.landingPage.metaTitle.value
     }
   }
-})
+}
 </script>
 <style scoped>
 </style>

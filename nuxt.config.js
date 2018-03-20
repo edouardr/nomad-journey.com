@@ -14,7 +14,6 @@ module.exports = {
     ]
   },
   plugins: [
-    '~/plugins/axios'
   ],
   /*
   ** Global CSS

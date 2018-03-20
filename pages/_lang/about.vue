@@ -5,10 +5,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-
-export default new Vue({
-})
+export default {
+}
 </script>
 
 <style scoped>

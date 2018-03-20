@@ -4,11 +4,10 @@
   </section>
 </template>
 
-<script>import Vue from 'vue'
+<script>
+export default {
 
-export default new Vue({
-
-})
+}
 </script>
 <style scoped>
 </style>

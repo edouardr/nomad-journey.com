@@ -8,22 +8,17 @@
         <div v-html="desc"></div>
       </div>
     </div>
-
   </section>
-
-
 </template>
 
 <script>
-import Vue from 'vue'
-
-export default new Vue({
+export default{
   props: [
     'desc',
     'title',
     'url'
   ]
-})
+}
 </script>
 
 <style scoped>

@@ -2,9 +2,9 @@
   <div>
     <Jumbotron
       :title="landingPage.jumbotronTitle.value"
-      :desc="landingPage.jumbotronDesc.value"
+      :desc="landingPage.jumbotronDescription.value"
       :isHero="true"
-      :url="landingPage.jumbotronImage.assets[0].url" />
+      :url="landingPage.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
       <div class="container" v-html="landingPage.bodyText.value"></div>
     </section>
@@ -22,20 +22,19 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { mapState } from 'vuex'
 import Jumbotron from '~/components/Jumbotron'
+import { Symbols } from '~/constants'
+import axios from '~/plugins/axios'
 
-export default new Vue({
+export default {
   components: {
     Jumbotron
   },
-  computed: {
-    ...mapState([
-      'landingPage',
-      'language'
-    ])
-  },
+  computed: mapState([
+    'landingPage',
+    'language'
+  ]),
   latestArticles: [
     {
       date: '2 days ago',
@@ -71,6 +70,13 @@ export default new Vue({
       title: 'Some Other other Title'
     }
   ],
+  async asyncData ({store}) {
+    if (!store.state.language) {
+      return
+    }
+    const {data} = await axios.get(`api/landing-page/${store.state.language}/home`)
+    store.commit(Symbols.MUTATIONS.SET_HOME, data)
+  },
   head () {
     return {
       meta: [
@@ -98,5 +104,5 @@ export default new Vue({
       title: this.landingPage.metaTitle.value
     }
   }
-})
+}
 </script>
