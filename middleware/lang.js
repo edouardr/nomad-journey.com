@@ -7,7 +7,7 @@ export default ({isHMR, app, store, route, params, error, redirect, req}) => {
   } else if (params.lang === 'api') { // ignore if api is called
     return
   } else if (!params.lang) {
-    return redirect(`/${defaultLang}${route.fullPath}`)
+    return redirect(`/${defaultLang}${route.fullPath || ''}`)
   }
 
   const locale = params.lang || defaultLang

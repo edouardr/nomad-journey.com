@@ -19,6 +19,9 @@ module.exports = {
   ** Global CSS
   */
   css: [],
+  modules: [
+    'bootstrap-vue/nuxt'
+  ],
   /*
   ** Add Nuxt.js middleware
   */

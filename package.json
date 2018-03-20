@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap-vue": "^2.0.0-rc.2",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
