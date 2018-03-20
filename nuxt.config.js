@@ -36,9 +36,6 @@ module.exports = {
       'axios',
       'kentico-cloud-delivery-node-sdk'
     ],
-    /*
-    ** Run ESLINT on save
-    */
     extend (config) {
       if (process.client) {
         config.module.rules.push({

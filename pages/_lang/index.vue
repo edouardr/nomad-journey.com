@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Jumbotron :title="landingPage.jumbotronTitle.value" :desc="landingPage.jumbotronDescription.value" :isHero="true" :url="landingPage.jumbotronImage.value[0].url" />
+    <Jumbotron :title="landingPage.jumbotronTitle.value" :desc="landingPage.jumbotronDescription.value" :url="landingPage.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
       <div class="container" v-html="landingPage.bodyText.value"></div>
     </section>
@@ -20,7 +20,6 @@
 <script>
 import { mapState } from "vuex";
 import CardGroup from "~/components/card-group";
-import Footer from "~/components/footer";
 import Jumbotron from "~/components/Jumbotron";
 import { Symbols } from "~/constants";
 import axios from "~/plugins/axios";
@@ -30,42 +29,44 @@ export default {
     Jumbotron
   },
   computed: mapState(["landingPage", "language"]),
-  data: () => {
-    latestArticles: [
-      {
-        date: "2 days ago",
-        id: "1234567",
-        img: {
-          alt: "Some picture",
-          url: "https://lorempixel.com/360/300/"
+  async data () {
+    return {
+      latestArticles: [
+        {
+          date: "2 days ago",
+          id: "1234567",
+          img: {
+            alt: "Some picture",
+            url: "https://lorempixel.com/360/300/"
+          },
+          text:
+            "Small description of the card1, to give attract readers in reading more about this amazing article",
+          title: "Some Title"
         },
-        text:
-          "Small description of the card1, to give attract readers in reading more about this amazing article",
-        title: "Some Title"
-      },
-      {
-        date: "Last month",
-        id: "987654",
-        img: {
-          alt: "Some picture 2",
-          url: "https://lorempixel.com/360/300/"
+        {
+          date: "Last month",
+          id: "987654",
+          img: {
+            alt: "Some picture 2",
+            url: "https://lorempixel.com/360/300/"
+          },
+          text:
+            "Small description of the card2, to give attract readers in reading more about this amazing article",
+          title: "Some Other Title"
         },
-        text:
-          "Small description of the card2, to give attract readers in reading more about this amazing article",
-        title: "Some Other Title"
-      },
-      {
-        date: "Last year",
-        id: "192837",
-        img: {
-          alt: "Some picture 3",
-          url: "https://lorempixel.com/360/300/"
-        },
-        text:
-          "Small description of the card2, to give attract readers in reading more about this amazing article",
-        title: "Some Other other Title"
-      }
-    ]
+        {
+          date: "Last year",
+          id: "192837",
+          img: {
+            alt: "Some picture 3",
+            url: "https://lorempixel.com/360/300/"
+          },
+          text:
+            "Small description of the card2, to give attract readers in reading more about this amazing article",
+          title: "Some Other other Title"
+        }
+      ]
+    };
   },
   async asyncData ({ store }) {
     if (!store.state.language) {

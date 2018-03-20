@@ -4,33 +4,21 @@
     <div>
       <nuxt/>
     </div>
+    <footer />
   </div>
 </template>
 
 <script>
-import Header from '~/components/header.vue'
+import Footer from "~/components/footer";
+import Header from '~/components/header'
 
 export default {
   components: {
-    Header,
+    Footer,
+    Header
   }
 }
 </script>
 
-<style>
-html {
-  height: 100%;
-  overflow: hidden;
-}
-
-body{
-  margin:0;
-  padding:0;
-	perspective: 1px;
-	transform-style: preserve-3d;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-</style>
+<style src="~/assets/css/main.css"/>
 

@@ -1,15 +1,15 @@
 import { Symbols } from '~/constants'
 import { defaultLang } from '~/store'
 
-export default ({isHMR, app, store, route, params, error, redirect, req}) => {
-  if (isHMR) { // ignore if called from hot module replacement
+export default (context) => {
+  if (context.isHMR) { // ignore if called from hot module replacement
     return
-  } else if (params.lang === 'api') { // ignore if api is called
+  } else if (context.route.fullPath.startsWith('api')) { // ignore if api is called
     return
-  } else if (!params.lang) {
-    return redirect(`/${defaultLang}${route.fullPath || ''}`)
+  } else if (!context.params.lang) {
+    return context.redirect(`/${defaultLang}${context.route.fullPath || ''}`)
   }
 
-  const locale = params.lang || defaultLang
-  store.commit(Symbols.MUTATIONS.SET_LANGUAGE, locale)
+  const locale = context.params.lang || defaultLang
+  context.store.commit(Symbols.MUTATIONS.SET_LANGUAGE, locale)
 }

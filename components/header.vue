@@ -1,25 +1,18 @@
 <template>
   <b-navbar toggleable="xs" type="dark" fixed="top">
     <b-navbar-brand href="/">
-          <h1 class="sr-only">A Nomad Journey</h1>
-          <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
+      <h1 class="sr-only">A Nomad Journey</h1>
+      <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
     </b-navbar-brand>
 
-    <b-btn v-b-toggle.offcanvas
-           :class="'navbar-toggler ' + (isOpen ? 'active' : '')"
-           aria-controls="offcanvas"
-           :aria-expanded="isOpen ? 'true' : 'false'"
-           @click="isOpen = !isOpen">
-        <span class="icon-bar"></span>
+    <b-btn v-b-toggle.offcanvas :class="'navbar-toggler ' + (isOpen ? 'active' : '')" aria-controls="offcanvas" :aria-expanded="isOpen ? 'true' : 'false'" @click="isOpen = !isOpen">
+      <span class="icon-bar"></span>
     </b-btn>
 
     <b-collapse is-nav id="offcanvas" class="offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
         <li :key="navItem.id" class="nav-item" v-for="navItem in navigation">
-          <b-link :to="`/${language}${navItem.redirectTo.value}`"
-                  :exact="navItem.redirectTo.value == '/'"
-                  class="nav-link"
-                  @click="isOpen = false">
+          <b-link :to="`/${language}${navItem.redirectTo.value}`" :exact="navItem.redirectTo.value == '/'" class="nav-link" @click="isOpen = false">
             {{navItem.title.value}}
             <span class="sr-only">(current)</span>
           </b-link>
@@ -27,22 +20,19 @@
       </b-navbar-nav>
     </b-collapse>
 
-    <div :class="'offcanvas-collapse--overlay ' + (isOpen ? 'show' : '')"
-      v-b-toggle="'offcanvas'"
-      @click="isOpen = false"></div>
+    <div :class="'offcanvas-collapse--overlay ' + (isOpen ? 'show' : '')" v-b-toggle="'offcanvas'" @click="isOpen = false"></div>
   </b-navbar>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  computed: mapState([
-    'navigation',
-    'language'
-  ]),
-  data:{
-    isOpen: false
+  computed: mapState(["navigation", "language"]),
+  data () {
+    return {
+      isOpen: false
+    }
   }
 }
 </script>
@@ -71,7 +61,7 @@ export default {
   background: white;
   position: absolute;
   display: block;
-  content: '';
+  content: "";
 
   transition: all 500ms ease-in-out;
 }
@@ -102,9 +92,9 @@ export default {
 }
 
 .nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
   color: var(--secondary);
 }
 
@@ -128,9 +118,9 @@ export default {
   background-color: #343a40;
   z-index: 850;
 
-  transition: -webkit-transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
-  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
