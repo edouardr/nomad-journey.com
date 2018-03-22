@@ -1,4 +1,19 @@
 export const ContentTypes = {
+  Article: {
+    codeName: 'article',
+    fields: {
+      bodyText: 'body_text',
+      urlSlug: 'url_slug'
+    }
+  },
+  Destination: {
+    codeName: 'destination',
+    fields: {
+      articles: 'articles',
+      bodyText: 'body_text',
+      urlSlug: 'slug'
+    }
+  },
   LandingPage: {
     codeName: 'landing_page',
     fields: {

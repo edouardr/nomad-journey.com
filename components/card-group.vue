@@ -12,11 +12,11 @@
           <p class="card-text">
             {{card.text}}
           </p>
-        </b-card-body>
-        <div slot="footer">
-          <b-link to="/destinations/surfing-in-bayron-bay">
+          <b-link :to="`/${card.url}`">
             Read more
           </b-link>
+        </b-card-body>
+        <div slot="footer">
         </div>
       </b-card>
     </b-card-group>

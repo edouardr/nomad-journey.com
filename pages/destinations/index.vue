@@ -8,6 +8,7 @@
       <div class="container">
         <h2>List of destinations</h2>
         <div class="row">
+          <CardGroup :cards="destinations" />
         </div>
       </div>
     </section>
@@ -16,16 +17,18 @@
 
 <script>
 import { mapState } from "vuex";
-import Jumbotron from "~/components/Jumbotron";
+import CardGroup from "~/components/card-group";
+import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
 import axios from "~/plugins/axios";
 
 export default {
   components: {
-    Jumbotron
+    Jumbotron,
+    CardGroup
   },
   computed: mapState(["landingPage", "language"]),
-  async asyncData ({ store }) {
+  async fetch ({ store }) {
     if (!store.state.language) {
       return;
     }
@@ -33,6 +36,29 @@ export default {
       `api/landing-page/${store.state.language}/destinations`
     );
     store.commit(Symbols.MUTATIONS.SET_HOME, data);
+  },
+  async asyncData ({ store }) {
+    const { data } = await axios.get(`api/destinations/${store.state.language}`)
+
+    return {
+      destinations: data
+        .filter((destination) => {
+          return destination.jumbotronTitle
+            && destination.jumbotronDescription
+        })
+        .map((destination) => {
+          return {
+            id: destination.id,
+            title: destination.jumbotronTitle.text,
+            text: destination.jumbotronDescription.text,
+            url: `destinations/${destination.urlSlug.value}`,
+            img: {
+              url: destination.jumbotronImage.assets.length ? destination.jumbotronImage.assets[0].url: '',
+              alt: destination.jumbotronImage.assets.length ? destination.jumbotronImage.assets[0].text: '',
+            }
+          }
+        })
+    }
   },
   head () {
     return {

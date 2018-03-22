@@ -4,7 +4,7 @@
     <section class="my-5 text-muted">
       <div class="container" v-html="landingPage.bodyText.value"></div>
     </section>
-    <Slide :url="`/download.jpeg`" />
+    <Slide :url="`https://lorempixel.com/360/300/`" />
     <section>
       <div class="container">
         <h2>Latest Articles</h2>
@@ -20,16 +20,19 @@
 <script>
 import { mapState } from "vuex";
 import CardGroup from "~/components/card-group";
-import Jumbotron from "~/components/Jumbotron";
+import Jumbotron from "~/components/jumbotron";
+import Slide from "~/components/slide";
 import { Symbols } from "~/constants";
 import axios from "~/plugins/axios";
 
 export default {
   components: {
-    Jumbotron
+    CardGroup,
+    Jumbotron,
+    Slide
   },
   computed: mapState(["landingPage", "language"]),
-  async data () {
+  data () {
     return {
       latestArticles: [
         {

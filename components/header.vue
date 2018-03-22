@@ -2,7 +2,7 @@
   <b-navbar toggleable="xs" type="dark" fixed="top">
     <b-navbar-brand href="/">
       <h1 class="sr-only">A Nomad Journey</h1>
-      <img src="http://via.placeholder.com/80x80" alt="A Nomad Journey logo" />
+      <img src="~/assets/img/logo.png" alt="A Nomad Journey logo" />
     </b-navbar-brand>
 
     <b-btn v-b-toggle.offcanvas :class="'navbar-toggler ' + (isOpen ? 'active' : '')" aria-controls="offcanvas" :aria-expanded="isOpen ? 'true' : 'false'" @click="isOpen = !isOpen">
@@ -12,7 +12,7 @@
     <b-collapse is-nav id="offcanvas" class="offcanvas-collapse">
       <b-navbar-nav class="mr-auto offcanvas-collapse--links">
         <li :key="navItem.id" class="nav-item" v-for="navItem in navigation">
-          <b-link :to="`/${language}${navItem.redirectTo.value}`" :exact="navItem.redirectTo.value == '/'" class="nav-link" @click="isOpen = false">
+          <b-link :to="`${navItem.redirectTo.value}`" :exact="navItem.redirectTo.value == '/'" class="nav-link" @click="isOpen = false">
             {{navItem.title.value}}
             <span class="sr-only">(current)</span>
           </b-link>

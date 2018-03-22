@@ -1,4 +1,6 @@
-import { LandingPage } from './home'
+import { Article } from './article'
+import { Destination } from './destination'
+import { LandingPage } from './landing-page'
 import { NavigationItem } from './navigation-item'
 
-export { LandingPage, NavigationItem }
+export { Article, Destination, LandingPage, NavigationItem }
