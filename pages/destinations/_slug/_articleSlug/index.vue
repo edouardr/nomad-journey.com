@@ -11,12 +11,14 @@
 import axios from "~/plugins/axios";
 import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
+import metadata from "~/mixins/metadata";
 
 export default {
   components: {
     Jumbotron,
     CardGroup
   },
+  mixins: [metadata],
   async asyncData ({ store, params }) {
     const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
 
@@ -25,15 +27,7 @@ export default {
     }
   },
   head () {
-    return {
-      meta: [
-        { hid: 'description', name: 'description', content: this.article.metaDescription.value },
-        { hid: 'keywords', name: 'keywords', content: this.article.metaKeywords.value },
-        { hid: 'og:title', name: 'og:title', content: this.article.ogTitle.value },
-        { hid: 'og:description', name: 'og:description', content: this.article.ogDescription.value }
-      ],
-      title: this.article.metaTitle.value
-    }
+    return this.getMetadata(this.article)
   }
 }
 </script>

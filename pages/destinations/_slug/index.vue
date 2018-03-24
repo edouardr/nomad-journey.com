@@ -20,6 +20,7 @@ import { mapState } from "vuex";
 import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
+import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
 
 export default {
@@ -27,6 +28,7 @@ export default {
     Jumbotron,
     CardGroup
   },
+  mixins: [metadata],
   async asyncData ({ store, params }) {
     const { data } = await axios.get(`/api/destinations/${store.state.language}/${params.slug}`)
 
@@ -53,15 +55,7 @@ export default {
     }
   },
   head () {
-    return {
-      meta: [
-        { hid: 'description', name: 'description', content: this.destination.metaDescription.value },
-        { hid: 'keywords', name: 'keywords', content: this.destination.metaKeywords.value },
-        { hid: 'og:title', name: 'og:title', content: this.destination.ogTitle.value },
-        { hid: 'og:description', name: 'og:description', content: this.destination.ogDescription.value }
-      ],
-      title: this.destination.metaTitle.value
-    }
+    return this.getMetadata(this.destination)
   }
 }
 </script>
