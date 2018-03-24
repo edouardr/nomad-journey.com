@@ -8,24 +8,16 @@
         <div v-html="desc"></div>
       </div>
     </div>
-
   </section>
-
-
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "nuxt-property-decorator";
-
-@Component({})
-export default class Jumbotron extends Vue {
-  @Prop() public desc: string;
-  @Prop() public title: string;
-  @Prop() public url: string;
+<script>
+export default {
+  props: [
+    'desc',
+    'title',
+    'url'
+  ]
 }
 </script>
 

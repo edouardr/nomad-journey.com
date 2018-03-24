@@ -7,16 +7,15 @@
   </div>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Vue,
-} from "nuxt-property-decorator";
-import { Action } from "vuex-class";
+<script>
+import { mapActions } from 'vuex'
 
-@Component({})
-export default class LanguageSelector extends Vue {
-  @Action public setLanguage;
+export default {
+  methods: {
+    ...mapActions([
+      'setLanguage'
+    ])
+  }
 }
 </script>
 

@@ -14,19 +14,13 @@
   </footer>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Vue,
-} from "nuxt-property-decorator";
-import LanguageSelector from "~/components/language-selector.vue";
+<script>
+import LanguageSelector from '~/components/language-selector'
 
-@Component({
+export default {
   components: {
     LanguageSelector,
-  },
-})
-export default class Footer extends Vue {
+  }
 }
 </script>
 

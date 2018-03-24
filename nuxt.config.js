@@ -1,88 +1,50 @@
-const parseArgs = require("minimist")
-const bodyParser = require('body-parser')
-const argv = parseArgs(process.argv.slice(2), {
-  alias: {
-    H: "hostname",
-    p: "port"
-  },
-  string: ["H"],
-  unknown: parameter => false
-})
-
-const port =
-  argv.port ||
-  process.env.PORT ||
-  process.env.npm_package_config_nuxt_port ||
-  "3000"
-const host =
-  argv.hostname ||
-  process.env.HOST ||
-  process.env.npm_package_config_nuxt_host ||
-  "localhost"
 module.exports = {
-  env: {
-    baseUrl:
-      process.env.BASE_URL ||
-      `http://${host}:${port}`
-  },
+  /*
+  ** Headers of the page
+  */
   head: {
-    title: "tt1",
+    title: 'A Nomad Journey',
     meta: [
-      { charset: "utf-8" },
-      {
-        name: "viewport",
-        content:
-          "width=device-width, initial-scale=1"
-      },
-      {
-        hid: "description",
-        name: "description",
-        content: "Nuxt.js project"
-      }
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'A Nomad Journey' }
     ],
     link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
-      }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  plugins: [
+  ],
   /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: "#3B8070" },
-  /*
-  ** Build configuration
+  ** Global CSS
   */
   css: [],
-  build: {
-    vendor: [
-      "vuex-class",
-      "kentico-cloud-delivery-node-sdk"
-    ]
-  },
   modules: [
-    "~/modules/typescript.js",
-    "bootstrap-vue/nuxt"
+    'bootstrap-vue/nuxt'
   ],
-  plugins: [
-    "~/plugins/kentico-client",
-    { src: "~/plugins/axios", ssr: false}
-  ],
+  /*
+  ** Add Nuxt.js middleware
+  */
   router: {
     middleware: 'lang'
   },
   /*
-  ** Add server middleware
-  ** Nuxt.js uses `connect` module as server
-  ** So most of express middleware works with nuxt.js server middleware
+  ** Add axios globally
   */
-  serverMiddleware: [
-    // body-parser middleware
-    bodyParser.json(),
-    // Api middleware
-    // We add /api/login & /api/logout routes
-    '~/api'
-  ]
+  build: {
+    vendor: [
+      'axios',
+      'kentico-cloud-delivery-node-sdk'
+    ],
+    extend (config) {
+      if (process.client) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+  }
 }

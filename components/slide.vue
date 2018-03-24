@@ -3,16 +3,9 @@
     </div>
 </template>
 
-<script lang="ts">
-import {
-  Component,
-  Prop,
-  Vue,
-} from "nuxt-property-decorator";
-
-@Component({})
-export default class Slide extends Vue {
-  @Prop() public url: string;
+<script>
+export default {
+  props: ['url']
 }
 </script>
 
