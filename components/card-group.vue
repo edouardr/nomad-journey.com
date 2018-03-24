@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  props: ['cards']
+  props: ['cards'],
 }
 </script>
 

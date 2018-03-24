@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Jumbotron :title="landingPage.jumbotronTitle.value" :desc="landingPage.jumbotronDescription.value" :url="landingPage.jumbotronImage.value[0].url" />
+    <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
-      <div class="container" v-html="landingPage.bodyText.value"></div>
+      <div class="container" v-html="currentPage.bodyText.value"></div>
     </section>
     <section>
       <div class="container">
@@ -16,27 +16,20 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
+import { mapState } from "vuex";
 
 export default {
   components: {
     Jumbotron,
     CardGroup
   },
+  computed: mapState(["currentPage", "language"]),
   mixins: [metadata],
-  computed: mapState(["landingPage", "language"]),
-  async fetch ({ store }) {
-    if (!store.state.language) {
-      return;
-    }
-    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`);
-    store.commit(Symbols.MUTATIONS.SET_HOME, data);
-  },
   async asyncData ({ store }) {
     const { data } = await axios.get(`/api/destinations/${store.state.language}`)
 
@@ -60,8 +53,15 @@ export default {
         })
     }
   },
+  async fetch ({ store }) {
+    if (!store.state.language) {
+      return;
+    }
+    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`);
+    store.commit(Symbols.MUTATIONS.SET_PAGE, data);
+  },
   head () {
-    return this.getMetadata(this.landingPage)
+    return this.getMetadata(this.currentPage)
   }
 }
 </script>

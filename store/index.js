@@ -5,14 +5,26 @@ import { Symbols } from '~/constants'
 export const defaultLang = 'en'
 
 export const state = () => ({
-  landingPage: undefined,
+  articles: [],
+  currentArticle: undefined,
+  currentDestination: undefined,
+  currentPage: undefined,
   language: defaultLang,
   navigation: []
 })
 
 export const mutations = {
-  [Symbols.MUTATIONS.SET_HOME]: (state, landingPage) => {
-    state.landingPage = landingPage
+  [Symbols.MUTATIONS.SET_ARTICLE]: (state, article) => {
+    state.currentArticle = article
+  },
+  [Symbols.MUTATIONS.SET_ARTICLES]: (state, articles) => {
+    state.articles = articles
+  },
+  [Symbols.MUTATIONS.SET_DESTINATION]: (state, currentDestination) => {
+    state.currentDestination = currentDestination
+  },
+  [Symbols.MUTATIONS.SET_PAGE]: (state, currentPage) => {
+    state.currentPage = currentPage
   },
   [Symbols.MUTATIONS.SET_LANGUAGE]: (state, language) => {
     state.language = language
