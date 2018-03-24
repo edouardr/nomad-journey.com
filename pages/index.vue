@@ -23,6 +23,7 @@ import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
 import Slide from "~/components/slide";
 import { Symbols } from "~/constants";
+import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
 
 export default {
@@ -31,6 +32,7 @@ export default {
     Jumbotron,
     Slide
   },
+  mixins: [metadata],
   computed: mapState(["landingPage", "language"]),
   data () {
     return {
@@ -79,31 +81,7 @@ export default {
     store.commit(Symbols.MUTATIONS.SET_HOME, data);
   },
   head () {
-    return {
-      meta: [
-        {
-          hid: "description",
-          name: "description",
-          content: this.landingPage.metaDescription.value
-        },
-        {
-          hid: "keywords",
-          name: "keywords",
-          content: this.landingPage.metaKeywords.value
-        },
-        {
-          hid: "og:title",
-          name: "og:title",
-          content: this.landingPage.ogTitle.value
-        },
-        {
-          hid: "og:description",
-          name: "og:description",
-          content: this.landingPage.ogDescription.value
-        }
-      ],
-      title: this.landingPage.metaTitle.value
-    };
+    return this.getMetadata(this.landingPage)
   }
 };
 </script>
