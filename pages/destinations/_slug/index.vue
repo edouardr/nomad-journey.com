@@ -28,7 +28,7 @@ export default {
     CardGroup
   },
   async asyncData ({ store, params }) {
-    const { data } = await axios.get(`api/destinations/${store.state.language}/${params.slug}`)
+    const { data } = await axios.get(`/api/destinations/${store.state.language}/${params.slug}`)
 
     return {
       destination: data,
@@ -43,7 +43,7 @@ export default {
             id: article.id,
             title: article.jumbotronTitle.text,
             text: article.jumbotronDescription.text,
-            url: `destinations/${data.urlSlug.value}/${article.slug.value}`,
+            url: `destinations/${data.urlSlug.value}/${article.urlSlug.value}`,
             img: {
               url: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].url: '',
               alt: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].text: '',

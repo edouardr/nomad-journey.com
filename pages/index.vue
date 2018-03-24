@@ -75,9 +75,7 @@ export default {
     if (!store.state.language) {
       return;
     }
-    const { data } = await axios.get(
-      `api/landing-page/${store.state.language}/home`
-    );
+    const { data } = await axios.get(`/api/landing-page/${store.state.language}/home`);
     store.commit(Symbols.MUTATIONS.SET_HOME, data);
   },
   head () {

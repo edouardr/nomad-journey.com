@@ -1,7 +1,7 @@
 import { deliveryClient } from '../services/kentico-client'
 import { ContentTypes } from '../../content-types'
 
-export class DestinationsService {
+export class DestinationService {
   getAll (language) {
     return deliveryClient.items()
       .type(ContentTypes.Destination.codeName)

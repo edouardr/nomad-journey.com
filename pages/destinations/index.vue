@@ -32,13 +32,11 @@ export default {
     if (!store.state.language) {
       return;
     }
-    const { data } = await axios.get(
-      `api/landing-page/${store.state.language}/destinations`
-    );
+    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`);
     store.commit(Symbols.MUTATIONS.SET_HOME, data);
   },
   async asyncData ({ store }) {
-    const { data } = await axios.get(`api/destinations/${store.state.language}`)
+    const { data } = await axios.get(`/api/destinations/${store.state.language}`)
 
     return {
       destinations: data

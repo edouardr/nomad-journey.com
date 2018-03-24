@@ -4,23 +4,13 @@
     <section class="my-5 text-muted">
       <div class="container" v-html="article.bodyText.value"></div>
     </section>
-    <section>
-      <div class="container">
-        <h2>List of articles</h2>
-        <div class="row">
-          <CardGroup :cards="articles" />
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
 import axios from "~/plugins/axios";
-import { mapState } from "vuex";
 import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
-import { Symbols } from "~/constants";
 
 export default {
   components: {
@@ -28,7 +18,7 @@ export default {
     CardGroup
   },
   async asyncData ({ store, params }) {
-    const { data } = await axios.get(`api/articles/${store.state.language}/${params.articleSlug}`)
+    const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
 
     return {
       article: data,

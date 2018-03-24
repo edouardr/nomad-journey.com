@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { DestinationsService } from '../services/destinations-service'
+import { DestinationService } from '../services/destination-service'
 
 const router = Router()
-const service = new DestinationsService()
+const service = new DestinationService()
 
 router.get('/destinations/:lang', async (req, res, next) => {
   const response = await service.getAll(req.params.lang)

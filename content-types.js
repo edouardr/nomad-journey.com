@@ -2,8 +2,9 @@ export const ContentTypes = {
   Article: {
     codeName: 'article',
     fields: {
+      posted: 'posted',
       bodyText: 'body_text',
-      urlSlug: 'url_slug'
+      urlSlug: 'slug'
     }
   },
   Destination: {
@@ -27,7 +28,7 @@ export const ContentTypes = {
       order: 'order',
       redirectTo: 'redirect_to_url',
       title: 'title',
-      urlSlug: 'url_slug'
+      urlSlug: 'slug'
     }
   },
   SnippetJumbotron: {
