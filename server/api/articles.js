@@ -5,6 +5,7 @@ const router = Router()
 const service = new ArticleService()
 
 router.get('/articles/:lang/:slug', async (req, res, next) => {
+  console.log('FETCHING ARTICLE')
   const response = await service.get(req.params.lang, req.params.slug)
   var cache = []
   let restoredObject = JSON.stringify(response.firstItem, function (key, value) {
@@ -19,7 +20,6 @@ router.get('/articles/:lang/:slug', async (req, res, next) => {
     return value
   })
   cache = null // Enable garbage collection
-  console.log(restoredObject)
   res.json(JSON.parse(restoredObject))
 })
 

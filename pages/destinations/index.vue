@@ -8,7 +8,7 @@
       <div class="container">
         <h2>List of destinations</h2>
         <div class="row">
-          <CardGroup :cards="destinations" />
+          <DestinationGroup :destinations="destinations" />
         </div>
       </div>
     </section>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import CardGroup from "~/components/card-group";
+import DestinationGroup from "~/components/destination-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
@@ -26,10 +26,11 @@ import { mapState } from "vuex";
 export default {
   components: {
     Jumbotron,
-    CardGroup
+    DestinationGroup
   },
   computed: mapState(["currentPage", "language"]),
   mixins: [metadata],
+  scrollToTop: true,
   async asyncData ({ store }) {
     const { data } = await axios.get(`/api/destinations/${store.state.language}`)
 

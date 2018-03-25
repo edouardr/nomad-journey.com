@@ -8,20 +8,19 @@
 </template>
 
 <script>
-import axios from "~/plugins/axios";
-import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
+import axios from "~/plugins/axios";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    Jumbotron,
-    CardGroup
+    Jumbotron
   },
   computed: mapState(["currentArticle", "language"]),
   mixins: [metadata],
+  scrollToTop: true,
   async fetch ({ store, params }) {
     if (store.state.currentArticle){
       return;
@@ -35,5 +34,6 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 </style>

@@ -8,7 +8,7 @@
       <div class="container">
         <h2>List of articles</h2>
         <div class="row">
-          <CardGroup :cards="articles | cardify(currentPage)" />
+          <ArticleGroup :articles="articles | cardify(currentPage)" />
         </div>
       </div>
     </section>
@@ -16,9 +16,10 @@
 </template>
 
 <script>
-import CardGroup from "~/components/card-group";
+import ArticleGroup from "~/components/article-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
+import { cardify } from "~/filters";
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
@@ -26,32 +27,14 @@ import { mapState } from "vuex";
 export default {
   components: {
     Jumbotron,
-    CardGroup
+    ArticleGroup
   },
   computed: mapState(["articles", "currentPage", "language"]),
   filters: {
-    cardify: function (articles, currentPage) {
-      return articles
-        .filter((article) => {
-          return article
-            && article.jumbotronTitle
-            && article.jumbotronDescription
-        })
-        .map((article) => {
-          return {
-            id: article.id,
-            title: article.jumbotronTitle.text,
-            text: article.jumbotronDescription.text,
-            url: `destinations/${currentPage.urlSlug.value}/${article.urlSlug.value}`,
-            img: {
-              url: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].url: '',
-              alt: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].text: '',
-            }
-          }
-      })
-    }
+    cardify
   },
   mixins: [metadata],
+  scrollToTop: true,
   async fetch ({ store, params }) {
     const { data } = await axios.get(`/api/destinations/${store.state.language}/${params.slug}`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, data);
@@ -68,5 +51,6 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 </style>

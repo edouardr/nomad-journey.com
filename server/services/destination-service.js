@@ -6,6 +6,7 @@ export class DestinationService {
     return deliveryClient.items()
       .type(ContentTypes.Destination.codeName)
       .elementsParameter([
+        ContentTypes.Destination.fields.articles,
         ContentTypes.Destination.fields.urlSlug,
         ContentTypes.Destination.fields.bodyText,
         ContentTypes.SnippetJumbotron.fields.description,
