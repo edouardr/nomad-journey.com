@@ -2,26 +2,21 @@
 @import "node_modules/bulma/sass/utilities/initial-variables";
 @import "node_modules/bulma/sass/utilities/functions";
 
-$primary: $water;
-$primary-invert: $waterdark;
-// Use the existing orange as the danger color
-$danger: $orange;
+$primary:                 $water;
+$primary-invert-invert:   findColorInvert($water);
+$light:	                  $deeplight;
+$light-invert:            findColorInvert($deeplight);
+$dark:                    $deep;
+$dark-invert:             findColorInvert($deep);
+$background:              $deeplight;
+$background-invert:       findColorInvert($deeplight);
+$link:                    $water;
+$link-invert:             findColorInvert($water);
+$link-hover:              $waterdark;
+$link-hover-invert:       findColorInvert($waterdark);
+$link-active:             $water;
 
-// 4. Setup your Custom Colors
-$linkedin: #0077b5;
-$linkedin-invert: findColorInvert($linkedin);
-$twitter: #55acee;
-$twitter-invert: findColorInvert($twitter);
-$github: #333;
-$github-invert: findColorInvert($github);
-
-// 5. Add new color variables to the color map.
 @import "node_modules/bulma/sass/utilities/derived-variables";
-$addColors: (
-  "twitter":($twitter, $twitter-invert),
-  "linkedin": ($linkedin, $linkedin-invert),
-  "github": ($github, $github-invert)
-);
-$colors: map-merge($colors, $addColors);
 
 $footer-background-color: $deep;
+$navbar-item-active-color: $water;

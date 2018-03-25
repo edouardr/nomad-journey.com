@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .overlay .banner-hover {
     opacity: 1;
     background: rgba(0, 0, 0, 0.6);
@@ -55,6 +55,11 @@ export default {
     text-align: center;
     font-size: 16px;
     letter-spacing: 2px;
+
+    &:hover {
+      color: $water;
+      border-color: $water;
+    }
   }
   .col-bg
   {
