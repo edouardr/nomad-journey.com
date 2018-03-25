@@ -25,7 +25,9 @@ module.exports = {
   ** Add Nuxt.js middleware
   */
   router: {
-    middleware: 'lang'
+    middleware: 'lang',
+    linkActiveClass: 'is-active',
+    linkExactActiveClass: 'is-exact-active'
   },
   /*
   ** Add axios globally

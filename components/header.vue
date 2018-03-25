@@ -2,9 +2,11 @@
   <header class="navbar is-transparent is-fixed-top">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item">
+        <router-link class="navbar-item"
+          to="/"
+          :exact="true">
           <img src="~/assets/img/logo.png" alt="Logo">
-        </a>
+        </router-link>
         <span :class="'navbar-burger burger ' + (isOpen ? 'is-active' : '')" data-target="navMenu" @click="isOpen = !isOpen">
           <span></span>
           <span></span>
