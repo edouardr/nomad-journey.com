@@ -1,6 +1,8 @@
 <template>
-  <section>
-    <h1 class="header">About Us</h1>
+  <section class="section">
+    <div class="container">
+      <h1 class="header">About Us</h1>
+    </div>
   </section>
 </template>
 
@@ -8,15 +10,3 @@
 export default {
 }
 </script>
-
-<style scoped>
-.header {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana,
-    sans-serif;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-</style>

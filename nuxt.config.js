@@ -19,8 +19,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/main.scss',
-    'bulma'
+    '~/assets/css/main.scss'
   ],
   /*
   ** Add Nuxt.js middleware

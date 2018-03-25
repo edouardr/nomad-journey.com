@@ -2,11 +2,13 @@
   <div>
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
-      <div class="container" v-html="currentPage.bodyText.value"></div>
+      <div class="content" v-html="currentPage.bodyText.value"></div>
     </section>
-    <section>
-      <div class="container">
-        <h2>List of destinations</h2>
+    <section class="section">
+      <div>
+        <div class="content">
+          <h2>Our Destinations</h2>
+        </div>
         <DestinationGroup :destinations="destinations" />
       </div>
     </section>

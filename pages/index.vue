@@ -1,16 +1,18 @@
 <template>
   <div>
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
-    <section class="my-5 text-muted">
-      <div class="container" v-html="currentPage.bodyText.value"></div>
+    <section class="section">
+      <div class="container">
+        <div class="content" v-html="currentPage.bodyText.value"></div>
+      </div>
     </section>
     <Slide :url="`https://lorempixel.com/360/300/`" />
-    <section>
-      <div class="container">
-        <h2>Latest Articles</h2>
-        <div class="row">
-          <ArticleGroup :articles="articles | cardify(destinations)" />
+    <section class="section">
+      <div>
+        <div class="content">
+          <h2>Latest Articles</h2>
         </div>
+        <ArticleGroup :articles="articles | cardify(destinations)" />
       </div>
     </section>
     <Footer />

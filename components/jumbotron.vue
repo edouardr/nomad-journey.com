@@ -1,11 +1,13 @@
 <template>
-  <section class="parallax-container">
-    <div class="parallax-slide parallax-header" :style="`background-image: url('${url}');`">
-      <div class="parallax-slide--text">
-        <h1>
+  <section class="hero is-large is-bold">
+    <div class="hero-body" :style="`background-image: url('${url}');`">
+    <div class="container has-text-centered">
+        <h1 class="title">
           {{title}}
         </h1>
-        <div v-html="desc"></div>
+        <h2 class="subtitle" v-html="desc">
+          Primary bold subtitle
+        </h2>
       </div>
     </div>
   </section>
