@@ -1,10 +1,12 @@
+import { ContentTypes } from '~/content-types'
+
 export const cardify = (articles, destinations) => {
   return articles
     .filter((article) => {
       return article && article.jumbotronTitle && article.jumbotronDescription
     })
     .map((article) => {
-      const destination = destinations.filter(dest => dest.system.codename === article.system['sitemap_locations'][0])[0]
+      const destination = destinations.filter(dest => dest.system.codename === article.system[ContentTypes.System.fields.sitemapLocations][0])[0]
       return {
         id: article.system.id,
         title: article.jumbotronTitle.text,
