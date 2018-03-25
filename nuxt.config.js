@@ -14,6 +14,7 @@ module.exports = {
     ]
   },
   plugins: [
+    '~/plugins/font-awesome'
   ],
   /*
   ** Global CSS
