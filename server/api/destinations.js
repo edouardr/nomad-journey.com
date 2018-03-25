@@ -22,8 +22,26 @@ router.get('/destinations/:lang', async (req, res, next) => {
   res.json(JSON.parse(restoredObject))
 })
 
-router.get('/destinations/:lang/:slug', async (req, res, next) => {
-  const response = await service.get(req.params.lang, req.params.slug)
+router.get('/destinations/getbyslug/:lang/:slug', async (req, res, next) => {
+  const response = await service.getBySlug(req.params.lang, req.params.slug)
+  var cache = []
+  let restoredObject = JSON.stringify(response.firstItem, function (key, value) {
+    if (typeof value === 'object' && value !== null) {
+      if (cache.indexOf(value) !== -1) {
+        // Circular reference found, discard key
+        return
+      }
+      // Store value in our collection
+      cache.push(value)
+    }
+    return value
+  })
+  cache = null // Enable garbage collection
+  res.json(JSON.parse(restoredObject))
+})
+
+router.get('/destinations/getbycode/:lang/:codename', async (req, res, next) => {
+  const response = await service.getByCodename(req.params.lang, req.params.slug)
   var cache = []
   let restoredObject = JSON.stringify(response.firstItem, function (key, value) {
     if (typeof value === 'object' && value !== null) {

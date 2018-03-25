@@ -1,35 +1,39 @@
 <template>
   <div>
-    <Jumbotron :title="article.jumbotronTitle.value" :desc="article.jumbotronDescription.value" :url="article.jumbotronImage.value[0].url" />
+    <Jumbotron :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
-      <div class="container" v-html="article.bodyText.value"></div>
+      <div class="container" v-html="currentArticle.bodyText.value"></div>
     </section>
   </div>
 </template>
 
 <script>
-import axios from "~/plugins/axios";
-import CardGroup from "~/components/card-group";
 import Jumbotron from "~/components/jumbotron";
+import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
+import axios from "~/plugins/axios";
+import { mapState } from "vuex";
 
 export default {
   components: {
-    Jumbotron,
-    CardGroup
+    Jumbotron
   },
+  computed: mapState(["currentArticle", "language"]),
   mixins: [metadata],
-  async asyncData ({ store, params }) {
-    const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
-
-    return {
-      article: data,
+  scrollToTop: true,
+  async fetch ({ store, params }) {
+    if (store.state.currentArticle){
+      return;
     }
+    const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
+    store.commit(Symbols.MUTATIONS.SET_PAGE, data);
+    store.commit(Symbols.MUTATIONS.SET_ARTICLE, data);
   },
   head () {
-    return this.getMetadata(this.article)
+    return this.getMetadata(this.currentArticle)
   }
 }
 </script>
+
 <style scoped>
 </style>

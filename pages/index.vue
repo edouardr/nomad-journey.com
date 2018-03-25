@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Jumbotron :title="landingPage.jumbotronTitle.value" :desc="landingPage.jumbotronDescription.value" :url="landingPage.jumbotronImage.value[0].url" />
+    <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
     <section class="my-5 text-muted">
-      <div class="container" v-html="landingPage.bodyText.value"></div>
+      <div class="container" v-html="currentPage.bodyText.value"></div>
     </section>
     <Slide :url="`https://lorempixel.com/360/300/`" />
     <section>
       <div class="container">
         <h2>Latest Articles</h2>
         <div class="row">
-          <CardGroup :cards="latestArticles" />
+          <ArticleGroup :articles="articles | cardify(destinations)" />
         </div>
       </div>
     </section>
@@ -18,70 +18,42 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import CardGroup from "~/components/card-group";
-import Jumbotron from "~/components/jumbotron";
-import Slide from "~/components/slide";
-import { Symbols } from "~/constants";
-import metadata from "~/mixins/metadata";
-import axios from "~/plugins/axios";
+import ArticleGroup from '~/components/article-group';
+import Jumbotron from '~/components/jumbotron';
+import Slide from '~/components/slide';
+import { Symbols } from '~/constants';
+import { cardify } from "~/filters";
+import metadata from '~/mixins/metadata';
+import axios from '~/plugins/axios';
+import { mapState } from 'vuex';
 
 export default {
   components: {
-    CardGroup,
+    ArticleGroup,
     Jumbotron,
     Slide
   },
-  mixins: [metadata],
-  computed: mapState(["landingPage", "language"]),
-  data () {
-    return {
-      latestArticles: [
-        {
-          date: "2 days ago",
-          id: "1234567",
-          img: {
-            alt: "Some picture",
-            url: "https://lorempixel.com/360/300/"
-          },
-          text:
-            "Small description of the card1, to give attract readers in reading more about this amazing article",
-          title: "Some Title"
-        },
-        {
-          date: "Last month",
-          id: "987654",
-          img: {
-            alt: "Some picture 2",
-            url: "https://lorempixel.com/360/300/"
-          },
-          text:
-            "Small description of the card2, to give attract readers in reading more about this amazing article",
-          title: "Some Other Title"
-        },
-        {
-          date: "Last year",
-          id: "192837",
-          img: {
-            alt: "Some picture 3",
-            url: "https://lorempixel.com/360/300/"
-          },
-          text:
-            "Small description of the card2, to give attract readers in reading more about this amazing article",
-          title: "Some Other other Title"
-        }
-      ]
-    };
+  computed: mapState(['currentPage', 'language', 'articles']),
+  filters: {
+    cardify
   },
+  mixins: [metadata],
   async asyncData ({ store }) {
-    if (!store.state.language) {
-      return;
+    const { data } = await axios.get(`/api/destinations/${store.state.language}`)
+
+    return {
+      destinations: data
     }
-    const { data } = await axios.get(`/api/landing-page/${store.state.language}/home`);
-    store.commit(Symbols.MUTATIONS.SET_HOME, data);
+  },
+  async fetch ({ store }) {
+    const landingPageResponse = await axios.get(`/api/landing-page/${store.state.language}/home`);
+    store.commit(Symbols.MUTATIONS.SET_PAGE, landingPageResponse.data);
+
+    const latestArticlesResponse = await axios.get(`/api/articles/latest/${store.state.language}/3`);
+    store.commit(Symbols.MUTATIONS.SET_ARTICLES, latestArticlesResponse.data);
   },
   head () {
-    return this.getMetadata(this.landingPage)
+    return this.getMetadata(this.currentPage)
   }
 };
 </script>

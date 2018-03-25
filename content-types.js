@@ -18,7 +18,8 @@ export const ContentTypes = {
   LandingPage: {
     codeName: 'landing_page',
     fields: {
-      bodyText: 'body_text'
+      bodyText: 'body_text',
+      urlSlug: 'slug'
     }
   },
   NavigationItem: {

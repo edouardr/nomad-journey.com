@@ -8,6 +8,9 @@ export class LandingPage extends ContentItem {
         if (fieldName === ContentTypes.LandingPage.fields.bodyText) {
           return 'bodyText'
         }
+        if (fieldName === ContentTypes.LandingPage.fields.urlSlug) {
+          return 'urlSlug'
+        }
         if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
           return 'jumbotronTitle'
         }
