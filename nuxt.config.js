@@ -14,19 +14,25 @@ module.exports = {
     ]
   },
   plugins: [
+    '~/plugins/font-awesome'
   ],
   /*
   ** Global CSS
   */
-  css: [],
+  css: [
+    '~/assets/css/main.scss'
+  ],
   modules: [
-    'bootstrap-vue/nuxt'
+    // provide path to the file with resources
+    ['nuxt-sass-resources-loader', '~/assets/css/_colours.scss']
   ],
   /*
   ** Add Nuxt.js middleware
   */
   router: {
-    middleware: 'lang'
+    middleware: 'lang',
+    linkActiveClass: 'is-active',
+    linkExactActiveClass: 'is-exact-active'
   },
   /*
   ** Add axios globally

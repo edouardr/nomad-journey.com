@@ -1,16 +1,19 @@
 <template>
-  <footer class="bg-dark mt-5 p-5 text-muted text-center text-small">
-    <p class="mb-1">© 2018-2019 A Nomad Journey</p>
-    <ul class="list-inline">
-      <li class="list-inline-item">
-        <a href="#">fb</a>
-      </li>
-      <li class="list-inline-item">
-        <a href="#">insta</a>
-      </li>
-    </ul>
-
-    <LanguageSelector />
+  <footer class="footer">
+    <div class="container has-text-centered">
+      <div class="content">
+        <p>© 2018-2019 A Nomad Journey</p>
+      </div>
+      <div class="columns is-mobile is-multiline is-centered">
+        <div class="column is-half is-narrow">
+          <a href="#"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a>
+        </div>
+        <div class="column is-half is-narrow">
+          <a href="#"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
+        </div>
+      </div>
+      <LanguageSelector />
+    </div>
   </footer>
 </template>
 
@@ -25,5 +28,8 @@ export default {
 </script>
 
 <style scoped>
+  .footer {
+    color: #fff;
+  }
 </style>
 

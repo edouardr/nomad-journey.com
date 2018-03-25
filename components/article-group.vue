@@ -1,25 +1,30 @@
 <template>
-  <div>
-    <b-card-group deck>
-      <b-card v-for="article in articles"
-              :key="article.id"
-              :title="article.title"
-              :img-src="article.img.url"
-              :img-alt="article.img.alt"
-              :sub-title="article.date"
-              img-top>
-        <b-card-body>
-          <p class="card-text">
-            {{article.text}}
-          </p>
-          <b-link @click="select(article.id)" :to="`/${article.url}`">
-            Read more
-          </b-link>
-        </b-card-body>
-        <div slot="footer">
+  <div class="columns">
+    <div class="column"
+      v-for="article in articles"
+      :key="article.id">
+      <router-link :to="article.url">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img :src="article.img.url" :alt="article.img.alt">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{article.title}}</p>
+                <p class="subtitle is-6">{{article.date}}</p>
+              </div>
+            </div>
+
+            <div class="content">
+              {{article.text}}
+            </div>
+          </div>
         </div>
-      </b-card>
-    </b-card-group>
+      </router-link>
+    </div>
   </div>
 </template>
 

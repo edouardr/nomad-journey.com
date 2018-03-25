@@ -4,9 +4,11 @@
     <section class="my-5 text-muted">
       <div class="container" v-html="currentPage.bodyText.value"></div>
     </section>
-    <section>
-      <div class="container">
-        <h2>List of articles</h2>
+    <section class="section">
+      <div>
+        <div class="content">
+          <h2>List Articles</h2>
+        </div>
         <div class="row">
           <ArticleGroup :articles="articles | cardify([currentPage])" />
         </div>

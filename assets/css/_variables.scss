@@ -1,0 +1,22 @@
+@import 'colours';
+@import "node_modules/bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/functions";
+
+$primary:                 $water;
+$primary-invert-invert:   findColorInvert($water);
+$light:	                  $deeplight;
+$light-invert:            findColorInvert($deeplight);
+$dark:                    $deep;
+$dark-invert:             findColorInvert($deep);
+$background:              $deeplight;
+$background-invert:       findColorInvert($deeplight);
+$link:                    $water;
+$link-invert:             findColorInvert($water);
+$link-hover:              $waterdark;
+$link-hover-invert:       findColorInvert($waterdark);
+$link-active:             $water;
+
+@import "node_modules/bulma/sass/utilities/derived-variables";
+
+$footer-background-color: $deep;
+$navbar-item-active-color: $water;
