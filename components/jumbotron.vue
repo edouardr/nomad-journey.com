@@ -1,7 +1,7 @@
 <template>
   <section class="hero is-large is-bold">
     <div class="hero-body" :style="`background-image: url('${url}');`">
-    <div class="container has-text-centered">
+    <div class="has-text-centered">
         <h1 class="title">
           {{title}}
         </h1>
