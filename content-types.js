@@ -49,5 +49,10 @@ export const ContentTypes = {
       ogTitle: 'page_metadata__og_title',
       title: 'page_metadata__meta_title'
     }
+  },
+  System: {
+    fields: {
+      sitemapLocations: 'sitemap_locations'
+    }
   }
 }

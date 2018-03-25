@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
-import axios from '~/plugins/axios'
 import { Symbols } from '~/constants'
+import { ContentTypes } from '~/content-types'
+import axios from '~/plugins/axios'
 
 export const defaultLang = 'en'
 
@@ -50,7 +51,7 @@ export const actions = {
     commit(Symbols.MUTATIONS.SET_ARTICLE, selectedArticle)
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)
 
-    const destination = selectedArticle.system['sitemap_location'][0] === state.currentDestination.system.codename
+    const destination = state.currentDestination && selectedArticle.system[ContentTypes.System.fields.sitemapLocations][0] === state.currentDestination.system.codename
       ? state.currentDestination
       : (await axios.get(`/api/destinations/getbycode/${state.language}/${selectedArticle.system['sitemap_location'][0]}`)).data
 
