@@ -7,8 +7,8 @@ export class DestinationService {
       .type(ContentTypes.Destination.codeName)
       .elementsParameter([
         ContentTypes.Destination.fields.articles,
-        ContentTypes.Destination.fields.urlSlug,
         ContentTypes.Destination.fields.bodyText,
+        ContentTypes.Destination.fields.urlSlug,
         ContentTypes.SnippetJumbotron.fields.description,
         ContentTypes.SnippetJumbotron.fields.image,
         ContentTypes.SnippetJumbotron.fields.title,
@@ -22,8 +22,29 @@ export class DestinationService {
       .getPromise()
   }
 
-  get (language, slug) {
+  getBySlug (language, slug) {
     return deliveryClient.items()
+      .type(ContentTypes.Destination.codeName)
+      .elementsParameter([
+        ContentTypes.Destination.fields.articles,
+        ContentTypes.Destination.fields.urlSlug,
+        ContentTypes.Destination.fields.bodyText,
+        ContentTypes.SnippetJumbotron.fields.description,
+        ContentTypes.SnippetJumbotron.fields.image,
+        ContentTypes.SnippetJumbotron.fields.title,
+        ContentTypes.SnippetPageMetaData.fields.description,
+        ContentTypes.SnippetPageMetaData.fields.keywords,
+        ContentTypes.SnippetPageMetaData.fields.ogDescription,
+        ContentTypes.SnippetPageMetaData.fields.ogTitle,
+        ContentTypes.SnippetPageMetaData.fields.title
+      ])
+      .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
+      .languageParameter(language)
+      .getPromise()
+  }
+
+  getByCodename (language, codename) {
+    return deliveryClient.item(codename)
       .type(ContentTypes.Destination.codeName)
       .elementsParameter([
         ContentTypes.Destination.fields.articles,
@@ -38,7 +59,6 @@ export class DestinationService {
         ContentTypes.SnippetPageMetaData.fields.ogTitle,
         ContentTypes.SnippetPageMetaData.fields.title
       ])
-      .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
       .languageParameter(language)
       .getPromise()
   }

@@ -49,6 +49,12 @@ export const actions = {
     let selectedArticle = state.articles.filter((article) => article.system.id === articleId)[0]
     commit(Symbols.MUTATIONS.SET_ARTICLE, selectedArticle)
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)
+
+    const destination = selectedArticle.system['sitemap_location'][0] === state.currentDestination.system.codename
+      ? state.currentDestination
+      : (await axios.get(`/api/destinations/getbycode/${state.language}/${selectedArticle.system['sitemap_location'][0]}`)).data
+
+    commit(Symbols.MUTATIONS.SET_DESTINATION, destination)
   }
 }
 

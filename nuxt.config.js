@@ -33,7 +33,8 @@ module.exports = {
   */
   build: {
     vendor: [
-      'axios'
+      'axios',
+      'kentico-cloud-delivery-node-sdk'
     ],
     extend (config) {
       if (process.client) {

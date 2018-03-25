@@ -55,9 +55,6 @@ export default {
     }
   },
   async fetch ({ store }) {
-    if (!store.state.language) {
-      return;
-    }
     const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`);
     store.commit(Symbols.MUTATIONS.SET_PAGE, data);
   },

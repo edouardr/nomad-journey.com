@@ -6,6 +6,7 @@ export class LandingPageService {
     return deliveryClient.item(codename)
       .elementsParameter([
         ContentTypes.LandingPage.fields.bodyText,
+        ContentTypes.LandingPage.fields.urlSlug,
         ContentTypes.SnippetJumbotron.fields.description,
         ContentTypes.SnippetJumbotron.fields.image,
         ContentTypes.SnippetJumbotron.fields.title,
