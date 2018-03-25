@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bootstrap-vue": "^2.0.0-rc.2",
+    "bulma": "^0.6.2",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
@@ -31,6 +31,8 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7"
   }
 }

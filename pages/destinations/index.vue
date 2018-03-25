@@ -7,9 +7,7 @@
     <section>
       <div class="container">
         <h2>List of destinations</h2>
-        <div class="row">
-          <DestinationGroup :destinations="destinations" />
-        </div>
+        <DestinationGroup :destinations="destinations" />
       </div>
     </section>
   </div>
