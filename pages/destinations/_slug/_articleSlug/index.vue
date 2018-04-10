@@ -1,14 +1,22 @@
 <template>
   <div>
     <Jumbotron :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
-    <section class="my-5 text-muted">
-      <div class="container" v-html="currentArticle.bodyText.value"></div>
+    <section class="section">
+      <div class="container">
+        <div class="content" v-html="currentArticle.bodyText.value"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <vue-disqus shortname="anomadjourney" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import Jumbotron from "~/components/jumbotron";
+import VueDisqus from "~/components/vue-disqus";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
@@ -16,7 +24,8 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    Jumbotron
+    Jumbotron,
+    VueDisqus
   },
   computed: mapState(["currentArticle", "language"]),
   mixins: [metadata],
