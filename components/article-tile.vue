@@ -2,7 +2,7 @@
   <div class="summary summary--article"
     @mouseover="hovered = !hovered"
     @mouseleave="hovered = !hovered">
-    <router-link :to="url" class="summary__block-link">{{title}}</router-link>
+    <router-link :to="url" @onclick="select(id)" class="summary__block-link">{{title}}</router-link>
     <div class="summary__img">
       <div :class="'ri' + (hovered ? ' hovered': '')">
         <img :src="imgUrl" :alt="imgAlt">
@@ -14,6 +14,8 @@
         </h3>
         <p>
           {{text}}
+                    We uncover some of the stories behind the classic Easter traditions - from the humble hot cross bun to the origins of the Easter Bunny
+
         </p>
     </div>
   </div>
@@ -29,7 +31,7 @@ export default {
       select: Symbols.ACTIONS.SELECT_ARTICLE
     })
   },
-  props: ['imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
+  props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
   data() {
     return {
       hovered: false

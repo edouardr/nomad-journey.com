@@ -4,6 +4,7 @@
       v-for="article in articles"
       :key="article.id">
       <ArticleTile
+        :id="article.id"
         :imgAlt="article.img.alt"
         :imgUrl="article.img.url"
         :posted="article.posted"
