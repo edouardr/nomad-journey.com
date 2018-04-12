@@ -17,6 +17,11 @@
     </section>
     <section class="section">
       <div class="container">
+        <ImageGallery />
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
         <vue-disqus :shortname="shortname" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
       </div>
     </section>
@@ -25,6 +30,7 @@
 
 <script>
 import ArticleHeader from "~/components/article-header";
+import ImageGallery from "~/components/image-gallery";
 import VueDisqus from "~/components/vue-disqus";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
@@ -34,6 +40,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     ArticleHeader,
+    ImageGallery,
     VueDisqus
   },
   computed: mapState(["currentArticle", "language"]),
