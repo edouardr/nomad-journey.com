@@ -1,5 +1,10 @@
 <template>
-  <div id="disqus_thread"></div>
+  <div class="columns">
+    <div class="column is-1"></div>
+    <div class="column is-10">
+      <div id="disqus_thread"></div>
+    </div>
+  </div>
 </template>
 
 <script>

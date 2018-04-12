@@ -8,11 +8,14 @@ export class Article extends ContentItem {
         if (fieldName === ContentTypes.Article.fields.bodyText) {
           return 'bodyText'
         }
-        if (fieldName === ContentTypes.Article.fields.urlSlug) {
-          return 'urlSlug'
+        if (fieldName === ContentTypes.Article.fields.images) {
+          return 'images'
         }
         if (fieldName === ContentTypes.Article.fields.posted) {
           return 'posted'
+        }
+        if (fieldName === ContentTypes.Article.fields.urlSlug) {
+          return 'urlSlug'
         }
         if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
           return 'jumbotronTitle'

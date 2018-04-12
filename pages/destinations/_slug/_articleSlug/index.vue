@@ -17,7 +17,7 @@
     </section>
     <section class="section">
       <div class="container">
-        <ImageGallery />
+        <ImageGallery :images="currentArticle.images" />
       </div>
     </section>
     <section class="section">

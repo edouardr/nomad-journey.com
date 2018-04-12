@@ -7,6 +7,7 @@ export class ArticleService {
       .type(ContentTypes.Article.codeName)
       .elementsParameter([
         ContentTypes.Article.fields.bodyText,
+        ContentTypes.Article.fields.images,
         ContentTypes.Article.fields.posted,
         ContentTypes.Article.fields.urlSlug,
         ContentTypes.SnippetJumbotron.fields.description,
@@ -28,6 +29,7 @@ export class ArticleService {
       .type(ContentTypes.Article.codeName)
       .elementsParameter([
         ContentTypes.Article.fields.bodyText,
+        ContentTypes.Article.fields.images,
         ContentTypes.Article.fields.posted,
         ContentTypes.Article.fields.urlSlug,
         ContentTypes.SnippetJumbotron.fields.description,
