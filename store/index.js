@@ -50,10 +50,12 @@ export const actions = {
     let selectedArticle = state.articles.filter((article) => article.system.id === articleId)[0]
     commit(Symbols.MUTATIONS.SET_ARTICLE, selectedArticle)
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)
+    let sitemapLocation = selectedArticle.system[ContentTypes.System.fields.sitemapLocations][0]
 
-    const destination = state.currentDestination && selectedArticle.system[ContentTypes.System.fields.sitemapLocations][0] === state.currentDestination.system.codename
+    const destination = state.currentDestination === selectedArticle &&
+      sitemapLocation === state.currentDestination.system.codename
       ? state.currentDestination
-      : (await axios.get(`/api/destinations/getbycode/${state.language}/${selectedArticle.system['sitemap_location'][0]}`)).data
+      : (await axios.get(`/api/destinations/getbycode/${state.language}/${sitemapLocation}`)).data
 
     commit(Symbols.MUTATIONS.SET_DESTINATION, destination)
   }

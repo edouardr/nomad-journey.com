@@ -1,14 +1,23 @@
 <template>
-  <div>
-    <Jumbotron :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
-    <section class="my-5 text-muted">
-      <div class="container" v-html="currentArticle.bodyText.value"></div>
+  <article>
+    <ArticleHeader :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
+    <section class="section">
+      <div class="container is-light">
+        <div class="content is-medium">
+          <div class="columns">
+            <div class="column is-1"></div>
+            <div class="column is-10">
+              <div class="content" v-html="currentArticle.bodyText.value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+  </article>
 </template>
 
 <script>
-import Jumbotron from "~/components/jumbotron";
+import ArticleHeader from "~/components/article-header";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
@@ -16,7 +25,7 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    Jumbotron
+    ArticleHeader
   },
   computed: mapState(["currentArticle", "language"]),
   mixins: [metadata],

@@ -20,11 +20,13 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/main.scss'
+    { src: '~/assets/css/main.scss', lang: 'sass' }
   ],
   modules: [
     // provide path to the file with resources
-    ['nuxt-sass-resources-loader', '~/assets/css/_colours.scss']
+    ['nuxt-sass-resources-loader', [
+      '~/assets/css/_colours.scss'
+    ]]
   ],
   /*
   ** Add Nuxt.js middleware
