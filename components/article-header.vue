@@ -1,6 +1,6 @@
 <template>
   <div class="container is-widescreen">
-    <div class="section columns">
+    <div class="columns">
       <div class="column is-1"></div>
       <div class="column is-10">
         <div class="content is-large">
@@ -32,11 +32,11 @@ export default {
 </script>
 
 <style scoped>
-.article-details span {
+  .article-details span {
     display: inline-block;
-}
+  }
 
-.divider {
+  .divider {
     height: 1px;
     width: 14px;
     position: relative;
@@ -44,6 +44,6 @@ export default {
     background: #e1e1e1;
     margin-left: 7px;
     margin-right: 5px;
-}
+  }
 </style>
 

@@ -14,8 +14,6 @@
         </h3>
         <p>
           {{text}}
-                    We uncover some of the stories behind the classic Easter traditions - from the humble hot cross bun to the origins of the Easter Bunny
-
         </p>
     </div>
   </div>

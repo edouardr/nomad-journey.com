@@ -1,16 +1,27 @@
 <template>
-  <div class="container is-widescreen">
+  <!-- <div class="container hero is-info is-large">
     <div class="hero-body" :style="`background-image: url('${url}');`">
-    <div class="has-text-centered">
-        <h1 class="title">
-          {{title}}
-        </h1>
-        <h2 class="subtitle" v-html="desc">
-          Primary bold subtitle
-        </h2>
+      <div class="has-text-centered">
+          <h1 class="title">
+            {{title}}
+          </h1>
+          <h2 class="subtitle" v-html="desc">
+            Primary bold subtitle
+          </h2>
+        </div>
       </div>
+  </div> -->
+  <div class="container is-widescreen">
+    <div class="image">
+        <div class="media-obj">
+            <img :src="url" alt="">
+        </div>
+        <div class="content content-wrap">
+            <h1 class="title has-text-white is-large">{{title}}</h1>
+            <h2 class="subtitle has-text-white is-medium" v-html="desc"></h2>
+        </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -23,7 +34,61 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .media-obj{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 
+    img {
+        width: 100%;
+        height: 100%;
+        min-height: 512px;
+        object-fit: cover;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      background-color: $overlay;
+    }
+  }
+
+  .content-wrap {
+    position: relative;
+    min-height: 512px;
+    padding: 45px percentage(1 / 12);
+    text-align: center;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  @media only screen and (min-width : "992px") {
+    h1 {
+      margin-bottom: 33px;
+    }
+
+    .content-wrap {
+      min-height: 720px;
+      padding: 90px percentage(1 / 12);
+    }
+  }
 </style>
 
