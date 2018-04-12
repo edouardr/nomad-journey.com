@@ -17,8 +17,8 @@
             <img :src="url" alt="">
         </div>
         <div class="content content-wrap">
-            <h1 class="title has-text-white is-large">{{title}}</h1>
-            <h2 class="subtitle has-text-white is-medium" v-html="desc"></h2>
+            <h1 class="title has-text-white is-1 is-spaced">{{title}}</h1>
+            <p class="subtitle has-text-white is-3" v-html="desc"></p>
         </div>
     </div>
 </div>
