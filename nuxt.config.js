@@ -1,4 +1,9 @@
 module.exports = {
+  env: {
+    disqus: {
+      shortname: 'anomadjourney'
+    }
+  },
   /*
   ** Headers of the page
   */

@@ -1,27 +1,15 @@
 <template>
-  <!-- <div class="container hero is-info is-large">
-    <div class="hero-body" :style="`background-image: url('${url}');`">
-      <div class="has-text-centered">
-          <h1 class="title">
-            {{title}}
-          </h1>
-          <h2 class="subtitle" v-html="desc">
-            Primary bold subtitle
-          </h2>
-        </div>
-      </div>
-  </div> -->
   <div class="container is-widescreen">
     <div class="image">
-        <div class="media-obj">
-            <img :src="url" alt="">
-        </div>
-        <div class="content content-wrap">
-            <h1 class="title has-text-white is-1 is-spaced">{{title}}</h1>
-            <p class="subtitle has-text-white is-3" v-html="desc"></p>
-        </div>
+      <div class="media-obj">
+        <img :src="url" alt="">
+      </div>
+      <div class="content content-wrap">
+        <h1 class="title has-text-white is-1 is-spaced">{{title}}</h1>
+        <p class="subtitle has-text-white is-3" v-html="desc"></p>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
