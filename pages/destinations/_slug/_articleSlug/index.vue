@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <Jumbotron :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
+  <article>
+    <ArticleHeader :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
-      <div class="container">
-        <div class="content" v-html="currentArticle.bodyText.value"></div>
+      <div class="container is-light">
+        <div class="content is-medium">
+          <div class="columns">
+            <div class="column is-1"></div>
+            <div class="column is-10">
+              <div class="content" v-html="currentArticle.bodyText.value"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">
@@ -11,11 +18,11 @@
         <vue-disqus shortname="anomadjourney" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
       </div>
     </section>
-  </div>
+  </article>
 </template>
 
 <script>
-import Jumbotron from "~/components/jumbotron";
+import ArticleHeader from "~/components/article-header";
 import VueDisqus from "~/components/vue-disqus";
 import { Symbols } from "~/constants";
 import metadata from "~/mixins/metadata";
@@ -24,7 +31,7 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    Jumbotron,
+    ArticleHeader,
     VueDisqus
   },
   computed: mapState(["currentArticle", "language"]),

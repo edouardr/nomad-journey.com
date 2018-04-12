@@ -12,7 +12,9 @@
         <div class="content">
           <h2>Latest Articles</h2>
         </div>
-        <ArticleGroup :articles="articles | cardify(destinations)" />
+        <div class="container">
+          <ArticleGroup :articles="articles | cardify(destinations)" />
+        </div>
       </div>
     </section>
     <Footer />

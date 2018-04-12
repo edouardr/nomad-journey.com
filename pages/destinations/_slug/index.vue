@@ -9,7 +9,7 @@
         <div class="content">
           <h2>List Articles</h2>
         </div>
-        <div class="row">
+        <div class="container">
           <ArticleGroup :articles="articles | cardify([currentPage])" />
         </div>
       </div>
