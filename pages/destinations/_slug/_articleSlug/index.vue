@@ -1,6 +1,8 @@
 <template>
   <article>
-    <ArticleHeader :title="currentArticle.jumbotronTitle.value" :desc="currentArticle.jumbotronDescription.value" :url="currentArticle.jumbotronImage.value[0].url" />
+    <ArticleHeader :title="currentArticle.jumbotronTitle.value"
+      :desc="currentArticle.jumbotronDescription.value"
+      :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
       <div class="container is-light">
         <div class="content is-medium">
@@ -15,7 +17,7 @@
     </section>
     <section class="section">
       <div class="container">
-        <vue-disqus shortname="anomadjourney" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
+        <vue-disqus :shortname="shortname" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
       </div>
     </section>
   </article>
@@ -37,6 +39,11 @@ export default {
   computed: mapState(["currentArticle", "language"]),
   mixins: [metadata],
   scrollToTop: true,
+  async asyncData() {
+    return {
+      shortname: process.env.disqus.shortname
+    }
+  },
   async fetch ({ store, params }) {
     if (store.state.currentArticle){
       return;
