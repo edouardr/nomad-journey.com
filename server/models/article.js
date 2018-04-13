@@ -26,6 +26,15 @@ export class Article extends ContentItem {
         if (fieldName === ContentTypes.SnippetJumbotron.fields.image) {
           return 'jumbotronImage'
         }
+        if (fieldName === ContentTypes.SnippetListItem.fields.title) {
+          return 'tileTitle'
+        }
+        if (fieldName === ContentTypes.SnippetListItem.fields.description) {
+          return 'tileDescription'
+        }
+        if (fieldName === ContentTypes.SnippetListItem.fields.thumbnail) {
+          return 'tileThumbnail'
+        }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.title) {
           return 'metaTitle'
         }

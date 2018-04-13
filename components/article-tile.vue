@@ -9,7 +9,7 @@
       </figure>
     </div>
     <div class="card-content">
-        <p class="title is-5">
+        <p class="title is-5 is-spaced">
           <router-link :to="url">{{title}}</router-link>
         </p>
         <p class="subtitle is-7">
@@ -51,6 +51,13 @@ export default {
     overflow: hidden;
     cursor: pointer;
     color: $water;
+
+    .card-content {
+      border: 2px solid $water;
+      background: transparent;
+      padding-top: calc(66% + 5px);
+      margin-top: calc(-66% + 3px);
+    }
   }
 
   .card-link {
@@ -98,12 +105,6 @@ export default {
     }
   }
 
-  .card .card-content {
-    border: 2px solid $water;
-    background: transparent;
-    padding-top: calc(66% + 5px);
-    margin-top: calc(-66% + 3px);
-  }
   .card-content {
     position: relative;
     background-color: #fff;

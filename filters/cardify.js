@@ -9,12 +9,12 @@ export const cardify = (articles, destinations) => {
       const destination = destinations.filter(dest => dest.system.codename === article.system[ContentTypes.System.fields.sitemapLocations][0])[0]
       return {
         id: article.system.id,
-        title: article.jumbotronTitle.text,
-        text: article.jumbotronDescription.text,
+        title: article.tileTitle.text,
+        text: article.tileDescription.text,
         url: `/destinations/${destination.urlSlug.value}/${article.urlSlug.value}`,
         img: {
-          url: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].url : '',
-          alt: article.jumbotronImage.assets.length ? article.jumbotronImage.assets[0].text : ''
+          url: article.tileThumbnail.assets.length ? article.tileThumbnail.assets[0].url : '',
+          alt: article.tileThumbnail.assets.length ? article.tileThumbnail.assets[0].text : ''
         }
       }
     })
