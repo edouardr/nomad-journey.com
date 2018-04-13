@@ -1,13 +1,15 @@
 <template>
-  <div class="card">
+  <div class="card"
+    @mouseover="hovered = !hovered"
+    @mouseleave="hovered = !hovered">
     <router-link :to="url" class="card-link"></router-link>
     <div class="card-image">
-      <figure class="image is-16by9">
+      <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
         <img :src="imgUrl" :alt="imgAlt">
       </figure>
     </div>
     <div class="card-content">
-      <p class="title is-1 is-spaced has-text-white">{{title}}</p>
+      <p class="title is-2 is-spaced has-text-white">{{title}}</p>
     </div>
   </div>
 </template>
@@ -79,6 +81,19 @@ export default {
       top: 0;
       left: 0;
       padding-top: 0!important;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      transition: all 1s ease;
+
+      &.hovered {
+        -webkit-transform:scale(1.25);
+        -moz-transform:scale(1.25);
+        -ms-transform:scale(1.25);
+        -o-transform:scale(1.25);
+        transform:scale(1.25);
+      }
 
       img {
         -o-object-fit: cover;
