@@ -4,7 +4,7 @@
     @mouseleave="hovered = !hovered">
     <router-link :to="url" @onclick="select(id)" class="card-link">{{title}}</router-link>
     <div class="card-image ri">
-      <figure :class="'image is-5by3'+ (hovered ? ' hovered': '')">
+      <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
         <img :src="imgUrl" :alt="imgAlt">
       </figure>
     </div>
@@ -55,8 +55,8 @@ export default {
     .card-content {
       border: 2px solid $water;
       background: transparent;
-      padding-top: calc(66% + 5px);
-      margin-top: calc(-66% + 3px);
+      padding-top: calc(55%);
+      margin-top: calc(-55% + 2px);
     }
   }
 
@@ -101,6 +101,18 @@ export default {
         -ms-transform:scale(1.25);
         -o-transform:scale(1.25);
         transform:scale(1.25);
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $overlay;
+        z-index: 2;
       }
     }
   }

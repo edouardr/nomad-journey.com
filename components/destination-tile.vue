@@ -94,7 +94,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(44,22,26,.45);
+        background-color: $overlay;
         z-index: 2;
       }
     }

@@ -5,7 +5,7 @@
         <img :src="url" alt="">
       </div>
       <div class="content content-wrap">
-        <h1 class="title has-text-white is-1 is-spaced">{{title}}</h1>
+        <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
         <p class="subtitle has-text-white is-3" v-html="desc"></p>
       </div>
     </div>

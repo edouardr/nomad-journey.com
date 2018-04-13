@@ -8,13 +8,11 @@
     </section>
     <Slide :url="`https://lorempixel.com/360/300/`" />
     <section class="section">
-      <div>
+      <div class="container">
         <div class="content">
           <h2>Latest Articles</h2>
         </div>
-        <div class="container">
-          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, destinations)" />
-        </div>
+        <ArticleGroup :articles="articles | cardify(resolveListItemUrl, destinations)" />
       </div>
     </section>
     <Footer />
