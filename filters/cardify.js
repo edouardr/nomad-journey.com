@@ -1,20 +1,17 @@
-import { ContentTypes } from '~/content-types'
-
-export const cardify = (articles, destinations) => {
-  return articles
-    .filter((article) => {
-      return article && article.jumbotronTitle && article.jumbotronDescription
+export const cardify = (listItems, resolveListItemUrl) => {
+  return listItems
+    .filter((listItem) => {
+      return listItem && listItem.tileTitle && listItem.tileThumbnail
     })
-    .map((article) => {
-      const destination = destinations.filter(dest => dest.system.codename === article.system[ContentTypes.System.fields.sitemapLocations][0])[0]
+    .map((listItem) => {
       return {
-        id: article.system.id,
-        title: article.tileTitle.text,
-        text: article.tileDescription.text,
-        url: `/destinations/${destination.urlSlug.value}/${article.urlSlug.value}`,
+        id: listItem.system.id,
+        title: listItem.tileTitle.text,
+        text: listItem.tileDescription.text,
+        url: resolveListItemUrl(listItem),
         img: {
-          url: article.tileThumbnail.assets.length ? article.tileThumbnail.assets[0].url : '',
-          alt: article.tileThumbnail.assets.length ? article.tileThumbnail.assets[0].text : ''
+          url: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].url : '',
+          alt: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].text : ''
         }
       }
     })

@@ -8,7 +8,7 @@
           <router-link :to="`/${destination.url}`"></router-link>
           <div class="card-image">
             <figure class="image is-16by9">
-              <img :src="destination.img.url" alt="imgAlt">
+              <img :src="destination.img.url" :alt="destination.img.alt">
             </figure>
           </div>
           <div class="card-content">
