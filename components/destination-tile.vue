@@ -2,19 +2,14 @@
   <div class="card"
     @mouseover="hovered = !hovered"
     @mouseleave="hovered = !hovered">
-    <router-link :to="url" @onclick="select(id)" class="card-link">{{title}}</router-link>
-    <div class="card-image ri">
+    <router-link :to="url" class="card-link"></router-link>
+    <div class="card-image">
       <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
         <img :src="imgUrl" :alt="imgAlt">
       </figure>
     </div>
     <div class="card-content">
-        <p class="title is-5 is-spaced">
-          <router-link :to="url">{{title}}</router-link>
-        </p>
-        <p class="subtitle is-7">
-          {{text}}
-        </p>
+      <p class="title is-2 is-spaced has-text-white">{{title}}</p>
     </div>
   </div>
 </template>
@@ -29,7 +24,7 @@ export default {
       select: Symbols.ACTIONS.SELECT_ARTICLE
     })
   },
-  props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
+  props: ['id', 'imgAlt', 'imgUrl', 'title', 'url'],
   data() {
     return {
       hovered: false
@@ -55,8 +50,6 @@ export default {
     .card-content {
       border: 2px solid $water;
       background: transparent;
-      padding-top: calc(55%);
-      margin-top: calc(-55% + 2px);
     }
   }
 
@@ -71,24 +64,23 @@ export default {
     text-indent: 200%;
     white-space: nowrap;
     overflow: hidden;
-    z-index: 3;
+    z-index: 30;
   }
 
   .card-image {
+    display: block;
     position: relative;
+    padding-top: 50%;
     overflow: hidden;
-    z-index: 1;
+    z-index: 10;
 
-    .ri {
+    .image {
       width: 100%;
-      overflow: hidden;
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-    }
-
-    .image {
+      padding-top: 0!important;
       -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -ms-transition: all 1s ease;
@@ -101,6 +93,12 @@ export default {
         -ms-transform:scale(1.25);
         -o-transform:scale(1.25);
         transform:scale(1.25);
+      }
+
+      img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        font-family: "object-fit: cover;";
       }
 
       &:after {
@@ -118,12 +116,25 @@ export default {
   }
 
   .card-content {
-    position: relative;
-    background-color: #fff;
-    padding: 10px;
-    margin: 0 5px;
-    transition: border-color .5s;
-    z-index: 2;
-    pointer-events: none;
+    display: flex;
+    z-index: 20;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: calc(100% - 24px);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    border-width: 3px;
+    padding: 20px;
+    margin: 0;
   }
 </style>

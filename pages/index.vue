@@ -8,13 +8,11 @@
     </section>
     <Slide :url="`https://lorempixel.com/360/300/`" />
     <section class="section">
-      <div>
+      <div class="container">
         <div class="content">
           <h2>Latest Articles</h2>
         </div>
-        <div class="container">
-          <ArticleGroup :articles="articles | cardify(destinations)" />
-        </div>
+        <ArticleGroup :articles="articles | cardify(resolveListItemUrl, destinations)" />
       </div>
     </section>
     <Footer />
@@ -26,6 +24,7 @@ import ArticleGroup from '~/components/article-group';
 import Jumbotron from '~/components/jumbotron';
 import Slide from '~/components/slide';
 import { Symbols } from '~/constants';
+import { ContentTypes } from '~/content-types';
 import { cardify } from "~/filters";
 import metadata from '~/mixins/metadata';
 import axios from '~/plugins/axios';
@@ -40,6 +39,12 @@ export default {
   computed: mapState(['currentPage', 'language', 'articles']),
   filters: {
     cardify
+  },
+  methods:{
+    resolveListItemUrl: (listItem, destinations) => {
+      const destination = destinations.filter(dest => dest.system.codename === listItem.system[ContentTypes.System.fields.sitemapLocations][0])[0]
+      return `/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`;
+    }
   },
   mixins: [metadata],
   async asyncData ({ store }) {

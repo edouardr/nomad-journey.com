@@ -1,16 +1,24 @@
 <template>
   <div>
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
-    <section class="my-5 text-muted">
-      <div class="container" v-html="currentPage.bodyText.value"></div>
+    <section class="section">
+      <div class="container">
+        <div class="content">
+          <div class="columns">
+            <div class="column">
+              <div class="content" v-html="currentPage.bodyText.value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="section">
-      <div>
+      <div class="container">
         <div class="content">
           <h2>List Articles</h2>
         </div>
         <div class="container">
-          <ArticleGroup :articles="articles | cardify([currentPage])" />
+          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, currentDestination)" />
         </div>
       </div>
     </section>
@@ -34,6 +42,11 @@ export default {
   computed: mapState(['articles', 'currentPage', 'language', 'currentDestination']),
   filters: {
     cardify
+  },
+  methods:{
+    resolveListItemUrl: (listItem, currentDestination) => {
+      return `/destinations/${currentDestination.urlSlug.value}/${listItem.urlSlug.value}`;
+    }
   },
   mixins: [metadata],
   scrollToTop: true,

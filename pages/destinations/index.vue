@@ -1,15 +1,20 @@
 <template>
   <div>
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
-    <section class="my-5 text-muted">
-      <div class="content" v-html="currentPage.bodyText.value"></div>
+    <section class="section">
+      <div class="container">
+        <div class="content">
+          <div class="columns">
+            <div class="column">
+              <div class="content" v-html="currentPage.bodyText.value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="section">
-      <div>
-        <div class="content">
-          <h2>Our Destinations</h2>
-        </div>
-        <DestinationGroup :destinations="destinations" />
+      <div class="container">
+        <DestinationGroup :destinations="destinations | cardify(resolveListItemUrl)" />
       </div>
     </section>
   </div>
@@ -19,6 +24,7 @@
 import DestinationGroup from "~/components/destination-group";
 import Jumbotron from "~/components/jumbotron";
 import { Symbols } from "~/constants";
+import { cardify } from "~/filters";
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
@@ -29,6 +35,14 @@ export default {
     DestinationGroup
   },
   computed: mapState(["currentPage", "language"]),
+  filters: {
+    cardify
+  },
+  methods:{
+    resolveListItemUrl: (listItem) => {
+      return `/destinations/${listItem.urlSlug.value}`;
+    }
+  },
   mixins: [metadata],
   scrollToTop: true,
   async asyncData ({ store }) {
@@ -36,22 +50,6 @@ export default {
 
     return {
       destinations: data
-        .filter((destination) => {
-          return destination.jumbotronTitle
-            && destination.jumbotronDescription
-        })
-        .map((destination) => {
-          return {
-            id: destination.id,
-            title: destination.jumbotronTitle.text,
-            text: destination.jumbotronDescription.text,
-            url: `destinations/${destination.urlSlug.value}`,
-            img: {
-              url: destination.jumbotronImage.assets.length ? destination.jumbotronImage.assets[0].url: '',
-              alt: destination.jumbotronImage.assets.length ? destination.jumbotronImage.assets[0].text: '',
-            }
-          }
-        })
     }
   },
   async fetch ({ store }) {

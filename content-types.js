@@ -41,6 +41,14 @@ export const ContentTypes = {
       title: 'jumbotron__title'
     }
   },
+  SnippetListItem: {
+    codeName: 'list_item',
+    fields: {
+      description: 'list_item__description',
+      thumbnail: 'list_item__thumbnail',
+      title: 'list_item__title'
+    }
+  },
   SnippetPageMetaData: {
     codeName: 'page_metadata',
     fields: {
