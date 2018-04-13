@@ -1,4 +1,4 @@
-export const cardify = (listItems, resolveListItemUrl) => {
+export const cardify = (listItems, resolveListItemUrl, params) => {
   return listItems
     .filter((listItem) => {
       return listItem && listItem.tileTitle && listItem.tileThumbnail
@@ -8,7 +8,7 @@ export const cardify = (listItems, resolveListItemUrl) => {
         id: listItem.system.id,
         title: listItem.tileTitle.text,
         text: listItem.tileDescription.text,
-        url: resolveListItemUrl(listItem),
+        url: resolveListItemUrl(listItem, params),
         img: {
           url: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].url : '',
           alt: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].text : ''

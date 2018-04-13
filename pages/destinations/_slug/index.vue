@@ -10,7 +10,7 @@
           <h2>List Articles</h2>
         </div>
         <div class="container">
-          <ArticleGroup :articles="articles | cardify([currentPage])" />
+          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, currentDestination)" />
         </div>
       </div>
     </section>
@@ -34,6 +34,11 @@ export default {
   computed: mapState(['articles', 'currentPage', 'language', 'currentDestination']),
   filters: {
     cardify
+  },
+  methods:{
+    resolveListItemUrl: (listItem, currentDestination) => {
+      return `/destinations/${currentDestination.urlSlug.value}/${listItem.urlSlug.value}`;
+    }
   },
   mixins: [metadata],
   scrollToTop: true,
