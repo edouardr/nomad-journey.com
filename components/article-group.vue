@@ -1,6 +1,6 @@
 <template>
-  <div class="columns">
-    <div class="column"
+  <div class="columns is-multiline">
+    <div class="column is-one-third"
       v-for="article in articles"
       :key="article.id">
       <ArticleTile
