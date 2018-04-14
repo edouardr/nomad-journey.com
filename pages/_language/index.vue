@@ -12,7 +12,7 @@
         <div class="content">
           <h2>Latest Articles</h2>
         </div>
-        <ArticleGroup :articles="articles | cardify(resolveListItemUrl, destinations)" />
+        <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, destinations)" />
       </div>
     </section>
     <Footer />
@@ -41,9 +41,9 @@ export default {
     cardify
   },
   methods:{
-    resolveListItemUrl: (listItem, destinations) => {
+    resolveListItemUrl: (listItem, language, destinations) => {
       const destination = destinations.filter(dest => dest.system.codename === listItem.system[ContentTypes.System.fields.sitemapLocations][0])[0]
-      return `/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`;
+      return `/${language}/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`;
     }
   },
   mixins: [metadata],
