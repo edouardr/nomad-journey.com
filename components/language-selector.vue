@@ -1,16 +1,23 @@
 <template>
-  <div class="bg-dark mt-5 p-5 text-muted text-center text-small">
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="/">English</a></li>
-      <li class="list-inline-item"><a href="/fr">Français</a></li>
-    </ul>
+  <div class="container content">
+    <a v-show="language == 'fr'" href="/en" title="A Nomad Journey in English">
+      <span class="icon is-small">
+        <font-awesome-icon :icon="['fas', 'globe']" />&nbsp;English
+      </span>
+    </a>
+    <a v-show="language == 'en'" href="/fr" title="A Nomad Journey en Francais">
+      <span class="icon is-small">
+        <font-awesome-icon :icon="['fas', 'globe']" />&nbsp;Français
+      </span>
+    </a>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
+  computed: mapState(["language"]),
   methods: {
     ...mapActions([
       'setLanguage'
