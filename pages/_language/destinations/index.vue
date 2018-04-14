@@ -3,7 +3,7 @@
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
     <section class="section">
       <div class="container">
-        <DestinationGroup :destinations="destinations | cardify(resolveListItemUrl)" />
+        <DestinationGroup :destinations="destinations | cardify(resolveListItemUrl, language)" />
       </div>
     </section>
   </div>
@@ -28,8 +28,8 @@ export default {
     cardify
   },
   methods:{
-    resolveListItemUrl: (listItem) => {
-      return `/destinations/${listItem.urlSlug.value}`;
+    resolveListItemUrl: (listItem, language) => {
+      return `/${language}/destinations/${listItem.urlSlug.value}`;
     }
   },
   mixins: [metadata],

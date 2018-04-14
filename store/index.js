@@ -47,7 +47,6 @@ export const actions = {
     commit(Symbols.MUTATIONS.SET_NAVIGATION, data)
   },
   [Symbols.ACTIONS.SELECT_ARTICLE]: async ({ commit, state, redirect }, articleId) => {
-    console.log('ARTICLE SELECTED')
     let selectedArticle = state.articles.filter((article) => article.system.id === articleId)[0]
     commit(Symbols.MUTATIONS.SET_ARTICLE, selectedArticle)
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)

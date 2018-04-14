@@ -18,7 +18,7 @@
           <h2>List Articles</h2>
         </div>
         <div class="container">
-          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, currentDestination)" />
+          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, currentDestination)" />
         </div>
       </div>
     </section>
@@ -44,8 +44,8 @@ export default {
     cardify
   },
   methods:{
-    resolveListItemUrl: (listItem, currentDestination) => {
-      return `/destinations/${currentDestination.urlSlug.value}/${listItem.urlSlug.value}`;
+    resolveListItemUrl: (listItem, language, currentDestination) => {
+      return `/${language}/destinations/${currentDestination.urlSlug.value}/${listItem.urlSlug.value}`;
     }
   },
   mixins: [metadata],
