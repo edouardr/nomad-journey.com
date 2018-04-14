@@ -19,7 +19,8 @@ module.exports = {
     ]
   },
   plugins: [
-    '~/plugins/font-awesome'
+    '~/plugins/font-awesome',
+    '~/plugins/lazy-load'
   ],
   /*
   ** Global CSS
