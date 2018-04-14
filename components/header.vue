@@ -18,7 +18,7 @@
           <router-link class="navbar-item"
             v-for="navItem in navigation"
             :key="navItem.id"
-            :to="`${navItem.redirectTo.value}`"
+            :to="`${language}/${navItem.redirectTo.value}`"
             :exact="navItem.redirectTo.value == '/'" >{{navItem.title.value}}
             </router-link>
         </div>
