@@ -5,7 +5,7 @@
     <router-link :to="url" @onclick="select(id)" class="card-link">{{title}}</router-link>
     <div class="card-image ri">
       <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
-        <img :src="imgUrl" :alt="imgAlt">
+        <img v-lazy="imgUrl" :alt="imgAlt">
       </figure>
     </div>
     <div class="card-content">

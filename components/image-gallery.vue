@@ -1,8 +1,10 @@
 <template>
   <div class="gallery">
-    <div class="gallery-item" v-for="image in images.assets"
+    <div class="gallery-item"
+      v-lazy-container="{ selector: 'img' }"
+      v-for="image in images.assets"
       :key="image.id">
-      <img class="gallery-image" :src="image.url" alt="image.description">
+      <img class="gallery-image" :data-src="image.url" :alt="image.description">
     </div>
   </div>
 </template>

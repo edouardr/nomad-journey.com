@@ -3,17 +3,6 @@
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
     <section class="section">
       <div class="container">
-        <div class="content">
-          <div class="columns">
-            <div class="column">
-              <div class="content" v-html="currentPage.bodyText.value"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
         <DestinationGroup :destinations="destinations | cardify(resolveListItemUrl)" />
       </div>
     </section>
