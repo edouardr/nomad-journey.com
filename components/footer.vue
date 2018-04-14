@@ -1,18 +1,25 @@
 <template>
   <footer class="footer">
-    <div class="container has-text-centered">
-      <div class="content">
-        <p>© 2018-2019 A Nomad Journey</p>
-      </div>
-      <div class="columns is-mobile is-multiline is-centered">
-        <div class="column is-half is-narrow">
-          <a href="#"><font-awesome-icon :icon="['fab', 'facebook-f']" /></a>
+    <div class="container">
+      <div class="has-text-centered is-white">
+        <div class="content social-buttons">
+          <a class="is-size-1" href="https://facebook.com/anomadjourney" title="Facebook A Nomad Journey">
+            <span class="icon is-medium">
+              <font-awesome-icon :icon="['fab', 'facebook-f']" />
+            </span>
+          </a>
+
+          <a class="is-size-1" href="https://instagram.com/anna04" title="Instagram A Nomad Journey">
+            <span class="icon is-medium">
+              <font-awesome-icon :icon="['fab', 'instagram']" />
+            </span>
+          </a>
         </div>
-        <div class="column is-half is-narrow">
-          <a href="#"><font-awesome-icon :icon="['fab', 'instagram']" /></a>
-        </div>
+        <p class="has-text-white">
+          <small>© 2018 A Nomad Journey</small>
+        </p>
+        <LanguageSelector />
       </div>
-      <LanguageSelector />
     </div>
   </footer>
 </template>
@@ -27,9 +34,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .footer {
-    color: #fff;
+    a {
+      margin-right: 2rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 </style>
 
