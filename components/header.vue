@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar is-transparent is-fixed-top">
+  <header class="navbar is-fixed-top">
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item brand"
@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .brand:hover {
     background-color: inherit;
   }
