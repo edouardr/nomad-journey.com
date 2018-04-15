@@ -4,8 +4,6 @@
 
 $primary:                 $water;
 $primary-invert-invert:   findColorInvert($water);
-$light:	                  $deeplight;
-$light-invert:            findColorInvert($deeplight);
 $dark:                    $deep;
 $dark-invert:             findColorInvert($deep);
 $background:              $deeplight;
@@ -15,7 +13,7 @@ $link-invert:             findColorInvert($water);
 $link-hover:              $waterdark;
 $link-hover-invert:       findColorInvert($waterdark);
 $link-active:             $water;
-
+$family-sans-serif: "Open Sans", sans-serif;
 @import "node_modules/bulma/sass/utilities/derived-variables";
 
 $footer-background-color: $deep;

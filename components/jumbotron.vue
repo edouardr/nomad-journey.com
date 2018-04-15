@@ -1,5 +1,5 @@
 <template>
-  <div class="container is-widescreen">
+  <div>
     <div class="image">
       <div class="media-obj">
         <img :src="url" alt="">
