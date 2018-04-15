@@ -4,7 +4,6 @@
     :center="getCenter(lat, long)"
     :options="options"
     :zoom="7"
-    :style="styles"
     style="width: 100%; height: 400px" >
     <gmap-marker
       :key="index"
