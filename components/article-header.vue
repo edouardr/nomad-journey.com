@@ -1,18 +1,15 @@
 <template>
   <div class="container is-widescreen">
-    <div class="columns">
-      <div class="column is-1"></div>
-      <div class="column is-10">
-        <div class="content is-large">
-          <h1>{{title}}</h1>
-        </div>
-        <div class="article-details">
-          <p class="font-secondary xs">
-            <span class="publish-date">06 June 2017</span>
-            <span class="divider"></span>
-            <span class="author">Annabelle</span>
-          </p>
-        </div>
+    <div class="article-header">
+      <div class="content is-large">
+        <h1>{{title}}</h1>
+      </div>
+      <div class="article-details">
+        <p class="font-secondary xs">
+          <span class="publish-date">06 June 2017</span>
+          <span class="divider"></span>
+          <span class="author">Annabelle</span>
+        </p>
       </div>
     </div>
     <figure class="image is-5by3">
@@ -31,7 +28,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .article-header {
+    padding: 1.5rem;
+  }
+
   .article-details span {
     display: inline-block;
   }

@@ -1,6 +1,7 @@
 @import 'colours';
 @import "node_modules/bulma/sass/utilities/initial-variables";
 @import "node_modules/bulma/sass/utilities/functions";
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 $primary:                 $water;
 $primary-invert-invert:   findColorInvert($water);
@@ -13,7 +14,9 @@ $link-invert:             findColorInvert($water);
 $link-hover:              $waterdark;
 $link-hover-invert:       findColorInvert($waterdark);
 $link-active:             $water;
-$family-sans-serif: "Open Sans", sans-serif;
+
+$family-primary: "Lato", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+
 @import "node_modules/bulma/sass/utilities/derived-variables";
 
 $footer-background-color: $deep;
