@@ -51,7 +51,6 @@ export class DestinationService {
 
   getByCodename (language, codename) {
     return deliveryClient.item(codename)
-      .type(ContentTypes.Destination.codeName)
       .elementsParameter([
         ContentTypes.Destination.fields.articles,
         ContentTypes.Destination.fields.bodyText,

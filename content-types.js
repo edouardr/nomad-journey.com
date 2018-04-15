@@ -23,6 +23,14 @@ export const ContentTypes = {
       urlSlug: 'slug'
     }
   },
+  Location: {
+    codeName: 'location',
+    fields: {
+      latitude: 'latitude',
+      longitude: 'longitude',
+      name: 'name'
+    }
+  },
   NavigationItem: {
     codeName: 'navigation_item',
     fields: {

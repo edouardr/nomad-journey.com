@@ -6,7 +6,10 @@ export class NavigationService {
   getAll (language) {
     return deliveryClient.items()
       .type(ContentTypes.NavigationItem.codeName)
-      .elementsParameter(['redirect_to_url', 'order', 'title'])
+      .elementsParameter([
+        ContentTypes.NavigationItem.fields.redirectTo,
+        ContentTypes.NavigationItem.fields.order,
+        ContentTypes.NavigationItem.fields.title])
       .orderParameter(`elements.${ContentTypes.NavigationItem.fields.order}`, SortOrder.asc)
       .languageParameter(language)
       .getPromise()
