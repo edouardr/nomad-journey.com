@@ -6,7 +6,6 @@
         <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
       </div>
     </section>
-    <Slide :url="`https://lorempixel.com/360/300/`" />
     <section class="section">
       <div class="container">
         <div class="content">
@@ -15,12 +14,14 @@
         <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, destinations)" />
       </div>
     </section>
+    <GoogleMaps :lat="currentLocation.latitude.value" :long="currentLocation.longitude.value"/>
     <Footer />
   </div>
 </template>
 
 <script>
 import ArticleGroup from '~/components/article-group';
+import GoogleMaps from '~/components/google-maps-section';
 import Jumbotron from '~/components/jumbotron';
 import Slide from '~/components/slide';
 import { Symbols } from '~/constants';
@@ -33,10 +34,11 @@ import { mapState } from 'vuex';
 export default {
   components: {
     ArticleGroup,
+    GoogleMaps,
     Jumbotron,
     Slide
   },
-  computed: mapState(['currentPage', 'language', 'articles']),
+  computed: mapState(['currentPage', 'language', 'articles', 'currentLocation']),
   filters: {
     cardify
   },
@@ -55,11 +57,14 @@ export default {
     }
   },
   async fetch ({ store }) {
-    const landingPageResponse = await axios.get(`/api/landing-page/${store.state.language}/home`);
-    store.commit(Symbols.MUTATIONS.SET_PAGE, landingPageResponse.data);
+    const landingPageResponse = await axios.get(`/api/landing-page/${store.state.language}/home`)
+    store.commit(Symbols.MUTATIONS.SET_PAGE, landingPageResponse.data)
 
-    const latestArticlesResponse = await axios.get(`/api/articles/latest/${store.state.language}/3`);
-    store.commit(Symbols.MUTATIONS.SET_ARTICLES, latestArticlesResponse.data);
+    const latestArticlesResponse = await axios.get(`/api/articles/latest/${store.state.language}/3`)
+    store.commit(Symbols.MUTATIONS.SET_ARTICLES, latestArticlesResponse.data)
+
+    const currentLocationResponse = await axios.get(`/api/location/current`)
+    store.commit(Symbols.MUTATIONS.SET_CURRENT_LOCATION, currentLocationResponse.data)
   },
   head () {
     return this.getMetadata(this.currentPage)

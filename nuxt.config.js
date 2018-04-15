@@ -2,6 +2,9 @@ module.exports = {
   env: {
     disqus: {
       shortname: 'anomadjourney'
+    },
+    maps: {
+      apiKey: ''
     }
   },
   /*
@@ -20,6 +23,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/font-awesome',
+    '~/plugins/google-maps',
     '~/plugins/lazy-load'
   ],
   /*

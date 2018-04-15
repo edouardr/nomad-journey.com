@@ -2,6 +2,7 @@ export const Symbols = {
   MUTATIONS: {
     SET_ARTICLE: 'setArticle',
     SET_ARTICLES: 'setArticles',
+    SET_CURRENT_LOCATION: 'setCurrentLocation',
     SET_DESTINATION: 'setDestination',
     SET_PAGE: 'setPage',
     SET_LANGUAGE: 'setLanguage',

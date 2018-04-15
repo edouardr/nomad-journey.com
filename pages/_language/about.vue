@@ -1,7 +1,9 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <h1 class="header">About Us</h1>
+    <section class="section has-background-light">
+      <div class="container is-light">
+        <div class="content is-medium">
+        <h1 class="header">About Us</h1>
+      </div>
     </div>
   </section>
 </template>

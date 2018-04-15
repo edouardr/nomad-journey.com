@@ -9,6 +9,7 @@ export const state = () => ({
   articles: [],
   currentArticle: undefined,
   currentDestination: undefined,
+  currentLocation: undefined,
   currentPage: undefined,
   language: defaultLang,
   navigation: []
@@ -20,6 +21,9 @@ export const mutations = {
   },
   [Symbols.MUTATIONS.SET_ARTICLES]: (state, articles) => {
     state.articles = articles
+  },
+  [Symbols.MUTATIONS.SET_CURRENT_LOCATION]: (state, location) => {
+    state.currentLocation = location
   },
   [Symbols.MUTATIONS.SET_DESTINATION]: (state, currentDestination) => {
     state.currentDestination = currentDestination
