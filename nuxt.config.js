@@ -1,4 +1,8 @@
 module.exports = {
+  loading: {
+    color: '#43a9b6',
+    height: '3px'
+  },
   env: {
     disqus: {
       shortname: 'anomadjourney'
