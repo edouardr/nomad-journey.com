@@ -22,14 +22,11 @@ export default {
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    /* Compensate for excess margin on outer gallery flex items */
     margin: -1rem -1rem;
   }
 
   .gallery-item {
-    /* Minimum width of 24rem and grow to fit available space */
     flex: 1 0 24rem;
-    /* Margin value should be half of grid-gap value as margins on flex items don't collapse */
     margin: 1rem;
     overflow: hidden;
   }
@@ -50,12 +47,38 @@ export default {
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
-      grid-gap: 1rem;
+      grid-gap: 0.5rem;
     }
 
     .gallery,
     .gallery-item {
       margin: 0;
+    }
+
+    @media (max-width: 575.98px) {
+      .gallery {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    @media (max-width: 768.98px) and (min-width: 576px) {
+      .gallery {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+    @media (max-width: 1199.98px) and (min-width: 992px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <div class="paral">
   <gmap-map
     :center="getCenter(lat, long)"
     :options="options"
@@ -13,7 +12,6 @@
       :draggable="false"
       @click="center=m.position"></gmap-marker>
     </gmap-map>
-  </div>
 </template>
 
 <script>
@@ -50,10 +48,6 @@ export default {
 </script>
 
 <style scoped>
-  .paral {
-    min-height: 400px;
-    box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
-    border-radius: 0;
-  }
+
 </style>
 
