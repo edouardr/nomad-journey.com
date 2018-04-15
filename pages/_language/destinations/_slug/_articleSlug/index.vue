@@ -4,7 +4,7 @@
       :desc="currentArticle.jumbotronDescription.value"
       :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
-      <Breadcrumb />
+      <Breadcrumb :links="getBreadcrumbLinks"/>
     </section>
     <section class="section">
       <div class="container is-light">
@@ -30,6 +30,7 @@ import Breadcrumb from "~/components/breadcrumb";
 import ImageGallery from "~/components/image-gallery";
 import VueDisqus from "~/components/vue-disqus";
 import { Symbols } from "~/constants";
+import { ContentTypes } from '~/content-types';
 import metadata from "~/mixins/metadata";
 import axios from "~/plugins/axios";
 import { mapState } from "vuex";
@@ -41,7 +42,41 @@ export default {
     ImageGallery,
     VueDisqus
   },
-  computed: mapState(["currentArticle", "language"]),
+  computed: {
+    ...mapState({
+      currentArticle: "currentArticle",
+      currentDestination: "currentDestination",
+      language: "language",
+      getBreadcrumbLinks: (state) => {
+        return [
+          {
+            id: '1',
+            isActive: false,
+            redirectTo: `/${state.language}`,
+            title: 'home'
+          },
+          {
+            id: '2',
+            isActive: false,
+            redirectTo: `/${state.language}/destinations`,
+            title: 'Destinations'
+          },
+          {
+            id: '3',
+            isActive: false,
+            redirectTo: `/${state.language}/${state.currentDestination.urlSlug.value}`,
+            title: state.currentDestination.jumbotronTitle.value
+          },
+          {
+            id: '4',
+            isActive: false,
+            redirectTo: '',
+            title: state.currentArticle.jumbotronTitle.value
+          },
+        ]
+      }
+    })
+  },
   mixins: [metadata],
   scrollToTop: true,
   async asyncData() {
@@ -56,6 +91,12 @@ export default {
     const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, data);
     store.commit(Symbols.MUTATIONS.SET_ARTICLE, data);
+
+    if(!store.state.currentDestination) {
+      const destinationCodename = store.state.currentArticle.system[ContentTypes.System.fields.sitemapLocations][0]
+      const { data } = await axios.get(`/api/destinations/getbycode/${store.state.language}/${destinationCodename}`)
+      store.commit(Symbols.MUTATIONS.SET_DESTINATION, data);
+    }
   },
   head () {
     return this.getMetadata(this.currentArticle)

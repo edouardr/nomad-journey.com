@@ -2,24 +2,11 @@
       <div class="container">
         <nav class="breadcrumb is-small" aria-label="breadcrumbs">
           <ul>
-            <li>
+            <li v-for="navItem in links"
+              :key="navItem.id"
+              :class="navItem.isActive ? 'is-active':''">
               <router-link class="navbar-item"
-                :to="`/${language}`">Home
-              </router-link>
-            </li>
-            <li>
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations`">Destinations
-              </router-link>
-            </li>
-            <li>
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations/australia`">Australia
-              </router-link>
-            </li>
-            <li class="is-active">
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations/australia/surf-lesson`">Surf Lesson
+                :to="navItem.redirectTo">{{navItem.title}}
               </router-link>
             </li>
           </ul>
@@ -32,6 +19,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: mapState(["navigation", "language"]),
+  props: ['links']
 }
 </script>
 

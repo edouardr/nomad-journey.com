@@ -43,7 +43,7 @@ router.get('/destinations/getbyslug/:lang/:slug', async (req, res, next) => {
 router.get('/destinations/getbycode/:lang/:codename', async (req, res, next) => {
   const response = await service.getByCodename(req.params.lang, req.params.slug)
   var cache = []
-  let restoredObject = JSON.stringify(response.firstItem, function (key, value) {
+  let restoredObject = JSON.stringify(response.item, function (key, value) {
     if (typeof value === 'object' && value !== null) {
       if (cache.indexOf(value) !== -1) {
         // Circular reference found, discard key
