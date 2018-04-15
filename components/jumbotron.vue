@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="image">
-      <div class="media-obj">
-        <img :src="url" alt="">
-      </div>
-      <div class="content content-wrap">
-        <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
-        <p class="subtitle has-text-white is-3" v-html="desc"></p>
-      </div>
+  <div class="image">
+    <div class="media-obj">
+      <img :src="imgUrl" :alt="imgAlt">
+    </div>
+    <div class="content content-wrap">
+      <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
+      <div class="subtitle has-text-white is-3" v-html="desc"></div>
     </div>
   </div>
 </template>
@@ -17,7 +15,8 @@ export default {
   props: [
     'desc',
     'title',
-    'url'
+    'imgAlt',
+    'imgUrl'
   ]
 }
 </script>

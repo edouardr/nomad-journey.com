@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
+    <Jumbotron :title="currentPage.jumbotronTitle.value"
+      :desc="currentPage.jumbotronDescription.value"
+      :imgAlt="currentPage.jumbotronImage.value[0].text"
+      :imgUrl="currentPage.jumbotronImage.value[0].url" />
     <section class="section has-background-light">
       <div class="container is-light">
         <div class="content is-medium" v-html="currentPage.bodyText.value">

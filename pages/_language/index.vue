@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
+    <Jumbotron
+      :title="currentPage.jumbotronTitle.value"
+      :desc="currentPage.jumbotronDescription.value"
+      :imgUrl="currentPage.jumbotronImage.value[0].url"
+      :imgAlt="currentPage.jumbotronImage.value[0].text" />
     <section class="section has-background-light">
       <div class="container is-light">
         <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
@@ -15,7 +19,6 @@
       </div>
     </section>
     <GoogleMaps :lat="currentLocation.latitude.value" :long="currentLocation.longitude.value"/>
-    <Footer />
   </div>
 </template>
 
