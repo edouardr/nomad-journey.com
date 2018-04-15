@@ -6,17 +6,24 @@ export default function ({ route, store, redirect, isHMR }) {
     return
   }
 
-  let language = route.params.language || defaultLang
-
-  if (route.params.language && store.state.language === language) {
+  if (isLanguageDefineInRoute(route) && store.state.language === route.params.language) {
     return
   }
 
+  let language = route.params.language || defaultLang
   store.commit(Symbols.MUTATIONS.SET_LANGUAGE, language)
 
-  if (route.fullPath.startsWith('api')) {
+  if (isLanguageDefineInRoute(route) || isRouteExluded(route)) {
     return
   }
 
   redirect(`/${language}`)
+}
+
+const isLanguageDefineInRoute = (route) => {
+  return route.params.language
+}
+
+const isRouteExluded = (route) => {
+  return route.fullPath.startsWith('api')
 }
