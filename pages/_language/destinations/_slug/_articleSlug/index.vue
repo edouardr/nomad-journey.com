@@ -5,14 +5,7 @@
       :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
       <div class="container is-light">
-        <div class="content is-medium">
-          <div class="columns">
-            <div class="column is-1"></div>
-            <div class="column is-10">
-              <div class="content" v-html="currentArticle.bodyText.value"></div>
-            </div>
-          </div>
-        </div>
+        <div class="content is-medium" v-html="currentArticle.bodyText.value"></div>
       </div>
     </section>
     <section class="section">

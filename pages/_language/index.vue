@@ -6,7 +6,6 @@
         <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
       </div>
     </section>
-    <Slide :url="`https://lorempixel.com/360/300/`" />
     <section class="section">
       <div class="container">
         <div class="content">
@@ -15,12 +14,14 @@
         <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, destinations)" />
       </div>
     </section>
+    <GoogleMaps />
     <Footer />
   </div>
 </template>
 
 <script>
 import ArticleGroup from '~/components/article-group';
+import GoogleMaps from '~/components/google-maps-section';
 import Jumbotron from '~/components/jumbotron';
 import Slide from '~/components/slide';
 import { Symbols } from '~/constants';
@@ -33,6 +34,7 @@ import { mapState } from 'vuex';
 export default {
   components: {
     ArticleGroup,
+    GoogleMaps,
     Jumbotron,
     Slide
   },

@@ -1,14 +1,9 @@
 <template>
   <div>
     <Jumbotron :title="currentPage.jumbotronTitle.value" :desc="currentPage.jumbotronDescription.value" :url="currentPage.jumbotronImage.value[0].url" />
-    <section class="section">
-      <div class="container">
-        <div class="content">
-          <div class="columns">
-            <div class="column">
-              <div class="content" v-html="currentPage.bodyText.value"></div>
-            </div>
-          </div>
+    <section class="section has-background-light">
+      <div class="container is-light">
+        <div class="content is-medium" v-html="currentPage.bodyText.value">
         </div>
       </div>
     </section>
