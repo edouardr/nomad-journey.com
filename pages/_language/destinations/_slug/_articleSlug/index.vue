@@ -4,32 +4,7 @@
       :desc="currentArticle.jumbotronDescription.value"
       :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
-      <div class="container">
-        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
-          <ul>
-            <li>
-              <router-link class="navbar-item"
-                :to="`/${language}`">Home
-              </router-link>
-            </li>
-            <li>
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations`">Destinations
-              </router-link>
-            </li>
-            <li>
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations/australia`">Australia
-              </router-link>
-            </li>
-            <li class="is-active">
-              <router-link class="navbar-item"
-                :to="`/${language}/destinations/australia/surf-lesson`">Surf Lesson
-              </router-link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <Breadcrumb />
     </section>
     <section class="section">
       <div class="container is-light">
@@ -51,6 +26,7 @@
 
 <script>
 import ArticleHeader from "~/components/article-header";
+import Breadcrumb from "~/components/breadcrumb";
 import ImageGallery from "~/components/image-gallery";
 import VueDisqus from "~/components/vue-disqus";
 import { Symbols } from "~/constants";
@@ -61,6 +37,7 @@ import { mapState } from "vuex";
 export default {
   components: {
     ArticleHeader,
+    Breadcrumb,
     ImageGallery,
     VueDisqus
   },
