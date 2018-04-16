@@ -65,7 +65,7 @@ export default {
         {
           id: '3',
           isActive: false,
-          redirectTo: `/${this.language}/${this.currentDestination.urlSlug.value}`,
+          redirectTo: `/${this.language}${this.navDest.redirectTo}/${this.currentDestination.urlSlug.value}`,
           title: this.currentDestination.jumbotronTitle.value
         },
         {
