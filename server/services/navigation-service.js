@@ -14,4 +14,14 @@ export class NavigationService {
       .languageParameter(language)
       .getPromise()
   }
+
+  getNavItem (language, codename) {
+    return deliveryClient.item(codename)
+      .elementsParameter([
+        ContentTypes.NavigationItem.fields.redirectTo,
+        ContentTypes.NavigationItem.fields.order,
+        ContentTypes.NavigationItem.fields.title])
+      .languageParameter(language)
+      .getPromise()
+  }
 }

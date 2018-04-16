@@ -10,5 +10,9 @@ export const Symbols = {
   },
   ACTIONS: {
     SELECT_ARTICLE: 'selectArticle'
+  },
+  NAVIGATION: {
+    HOME: 'nav_home',
+    DESTINATIONS: 'nav_destinations'
   }
 }

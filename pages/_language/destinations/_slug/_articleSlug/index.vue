@@ -46,41 +46,54 @@ export default {
     ...mapState({
       currentArticle: "currentArticle",
       currentDestination: "currentDestination",
-      language: "language",
-      getBreadcrumbLinks: (state) => {
-        return [
-          {
-            id: '1',
-            isActive: false,
-            redirectTo: `/${state.language}`,
-            title: 'home'
-          },
-          {
-            id: '2',
-            isActive: false,
-            redirectTo: `/${state.language}/destinations`,
-            title: 'Destinations'
-          },
-          {
-            id: '3',
-            isActive: false,
-            redirectTo: `/${state.language}/${state.currentDestination.urlSlug.value}`,
-            title: state.currentDestination.jumbotronTitle.value
-          },
-          {
-            id: '4',
-            isActive: false,
-            redirectTo: '',
-            title: state.currentArticle.jumbotronTitle.value
-          },
-        ]
-      }
-    })
+      language: "language"
+    }),
+    getBreadcrumbLinks() {
+      return [
+        {
+          id: '1',
+          isActive: false,
+          redirectTo: `/${this.language}`,
+          title: this.navHome.title
+        },
+        {
+          id: '2',
+          isActive: false,
+          redirectTo: `/${this.language}${this.navDest.redirectTo}`,
+          title: this.navDest.title
+        },
+        {
+          id: '3',
+          isActive: false,
+          redirectTo: `/${this.language}/${this.currentDestination.urlSlug.value}`,
+          title: this.currentDestination.jumbotronTitle.value
+        },
+        {
+          id: '4',
+          isActive: true,
+          redirectTo: '',
+          title: this.currentArticle.jumbotronTitle.value
+        },
+      ]
+    }
+  },
+  methods: {
+
   },
   mixins: [metadata],
   scrollToTop: true,
-  async asyncData() {
+  async asyncData({ store }) {
+    const homeNavItemResponse = await axios.get(`/api/navigation/item/${store.state.language}/${Symbols.NAVIGATION.HOME}`)
+    const destinationsNavItemResponse = await axios.get(`/api/navigation/item/${store.state.language}/${Symbols.NAVIGATION.DESTINATIONS}`)
+
     return {
+      navDest: {
+        redirectTo: destinationsNavItemResponse.data.redirectTo.text,
+        title: destinationsNavItemResponse.data.title.text,
+      },
+      navHome: {
+        title: homeNavItemResponse.data.title.text,
+      },
       shortname: process.env.disqus.shortname
     }
   },

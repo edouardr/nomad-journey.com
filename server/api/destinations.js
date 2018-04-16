@@ -41,7 +41,7 @@ router.get('/destinations/getbyslug/:lang/:slug', async (req, res, next) => {
 })
 
 router.get('/destinations/getbycode/:lang/:codename', async (req, res, next) => {
-  const response = await service.getByCodename(req.params.lang, req.params.slug)
+  const response = await service.getByCodename(req.params.lang, req.params.codename)
   var cache = []
   let restoredObject = JSON.stringify(response.item, function (key, value) {
     if (typeof value === 'object' && value !== null) {
