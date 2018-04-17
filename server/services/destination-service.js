@@ -29,6 +29,7 @@ export class DestinationService {
     return deliveryClient.items()
       .type(ContentTypes.Destination.codeName)
       .elementsParameter([
+        ContentTypes.Article.fields.images,
         ContentTypes.Destination.fields.articles,
         ContentTypes.Destination.fields.urlSlug,
         ContentTypes.Destination.fields.bodyText,
@@ -52,6 +53,7 @@ export class DestinationService {
   getByCodename (language, codename) {
     return deliveryClient.item(codename)
       .elementsParameter([
+        ContentTypes.Article.fields.images,
         ContentTypes.Destination.fields.articles,
         ContentTypes.Destination.fields.bodyText,
         ContentTypes.Destination.fields.urlSlug,
