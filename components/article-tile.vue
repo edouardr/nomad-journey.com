@@ -2,7 +2,7 @@
   <div class="card"
     @mouseover="hovered = !hovered"
     @mouseleave="hovered = !hovered">
-    <router-link :to="url" @onclick="select(id)" class="card-link">{{title}}</router-link>
+    <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
     <div class="card-image ri">
       <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
         <img v-lazy="imgUrl" :alt="imgAlt">
