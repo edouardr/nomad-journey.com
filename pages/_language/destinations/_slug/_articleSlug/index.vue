@@ -98,17 +98,17 @@ export default {
     }
   },
   async fetch ({ store, params }) {
-    if (store.state.currentArticle){
-      return;
+    if (!store.state.currentArticle){
+      const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
+      store.commit(Symbols.MUTATIONS.SET_PAGE, data);
+      store.commit(Symbols.MUTATIONS.SET_ARTICLE, data);
     }
-    const { data } = await axios.get(`/api/articles/${store.state.language}/${params.articleSlug}`)
-    store.commit(Symbols.MUTATIONS.SET_PAGE, data);
-    store.commit(Symbols.MUTATIONS.SET_ARTICLE, data);
 
     if(!store.state.currentDestination) {
       const destinationCodename = store.state.currentArticle.system[ContentTypes.System.fields.sitemapLocations][0]
       const { data } = await axios.get(`/api/destinations/getbycode/${store.state.language}/${destinationCodename}`)
       store.commit(Symbols.MUTATIONS.SET_DESTINATION, data);
+      store.commit(Symbols.MUTATIONS.SET_ARTICLES, data.articles);
     }
   },
   head () {
