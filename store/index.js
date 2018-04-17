@@ -56,12 +56,10 @@ export const actions = {
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)
     let sitemapLocation = selectedArticle.system[ContentTypes.System.fields.sitemapLocations][0]
 
-    const destination = state.currentDestination === selectedArticle &&
-      sitemapLocation === state.currentDestination.system.codename
-      ? state.currentDestination
-      : (await axios.get(`/api/destinations/getbycode/${state.language}/${sitemapLocation}`)).data
-
-    commit(Symbols.MUTATIONS.SET_DESTINATION, destination)
+    if (sitemapLocation !== state.currentDestination.system.codename) {
+      const destinationResponse = await axios.get(`/api/destinations/getbycode/${state.language}/${sitemapLocation}`)
+      commit(Symbols.MUTATIONS.SET_DESTINATION, destinationResponse.data)
+    }
   }
 }
 

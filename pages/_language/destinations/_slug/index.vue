@@ -49,6 +49,12 @@ export default {
   mixins: [metadata],
   scrollToTop: true,
   async fetch ({ store, params }) {
+    if (store.state.currentDestination && params.slug === store.state.currentDestination.urlSlug.value) {
+      store.commit(Symbols.MUTATIONS.SET_PAGE, store.state.currentDestination);
+      store.commit(Symbols.MUTATIONS.SET_ARTICLES, store.state.currentDestination.articles);
+      return
+    }
+
     const { data } = await axios.get(`/api/destinations/getbyslug/${store.state.language}/${params.slug}`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, data);
     store.commit(Symbols.MUTATIONS.SET_DESTINATION, data);
