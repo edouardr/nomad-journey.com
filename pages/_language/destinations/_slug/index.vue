@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Jumbotron :title="currentPage.jumbotronTitle.value"
+    <Jumbotron v-if="currentPage.jumbotronImage"
+      :title="currentPage.jumbotronTitle.value"
       :desc="currentPage.jumbotronDescription.value"
       :imgAlt="currentPage.jumbotronImage.value[0].text"
       :imgUrl="currentPage.jumbotronImage.value[0].url" />
