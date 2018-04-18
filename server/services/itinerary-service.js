@@ -9,6 +9,7 @@ export class ItineraryService {
         ContentTypes.Itinerary.fields.mapId,
         ContentTypes.Itinerary.fields.keyFacts,
         ContentTypes.KeyFact.fields.icon,
+        ContentTypes.KeyFact.fields.iconGroup,
         ContentTypes.KeyFact.fields.title,
         ContentTypes.KeyFact.fields.unit,
         ContentTypes.KeyFact.fields.value,

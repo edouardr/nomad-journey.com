@@ -20,6 +20,7 @@ export const ContentTypes = {
     codeName: 'key_fact',
     fields: {
       icon: 'icon',
+      iconGroup: 'icon_group',
       title: 'title',
       value: 'value',
       unit: 'unit'

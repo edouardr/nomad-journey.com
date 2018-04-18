@@ -8,6 +8,9 @@ export class KeyFact extends ContentItem {
         if (fieldName === ContentTypes.KeyFact.fields.icon) {
           return 'icon'
         }
+        if (fieldName === ContentTypes.KeyFact.fields.iconGroup) {
+          return 'iconGroup'
+        }
         if (fieldName === ContentTypes.KeyFact.fields.title) {
           return 'title'
         }
