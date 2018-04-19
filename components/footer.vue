@@ -9,7 +9,7 @@
             </span>
           </a>
 
-          <a class="is-size-1" href="https://instagram.com/anna04" title="Instagram A Nomad Journey">
+          <a class="is-size-1" href="https://instagram.com/anomadjourney" title="Instagram A Nomad Journey">
             <span class="icon is-medium">
               <font-awesome-icon :icon="['fab', 'instagram']" />
             </span>

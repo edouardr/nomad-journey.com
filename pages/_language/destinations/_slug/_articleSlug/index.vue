@@ -1,6 +1,6 @@
 <template>
   <article>
-    <ArticleHeader v-if="currentPage.jumbotronImage"
+    <ArticleHeader v-if="currentArticle.jumbotronImage"
       :title="currentArticle.jumbotronTitle.value"
       :desc="currentArticle.jumbotronDescription.value"
       :url="currentArticle.jumbotronImage.value[0].url" />
