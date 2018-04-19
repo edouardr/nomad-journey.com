@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-multiline">
-    <div class="column is-one-third"
+    <div class="column is-one-quarter"
           v-for="keyFact in keyFacts"
           :key="keyFact.id"
           img-top>

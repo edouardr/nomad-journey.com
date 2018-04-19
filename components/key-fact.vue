@@ -1,19 +1,17 @@
 <template>
-  <div class="card">
-    <div class="card-image">
-        <font-awesome-icon :icon="[model.iconGroup.text, model.icon.text]" />
-    </div>
-    <div class="card-content">
-      <p class="title is-2 is-spaced has-text-white">{{model.title.text}}</p>
-    </div>
+  <div class="has-text-centered features">
+    <span class="icon is-size-3">
+      <font-awesome-icon :icon="[model.iconGroup.text, model.icon.text]" />
+    </span>
+    <p class="title is-2"><strong>{{model.value.text}}</strong></p>
+    <p class="subtitle">{{model.title.text}}</p>
   </div>
 </template>
 
 <script>
-
-export default {
-  props: ['model'],
-}
+  export default {
+    props: ['model'],
+  }
 </script>
 
 <style lang="scss" scoped>

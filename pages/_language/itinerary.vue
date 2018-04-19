@@ -7,7 +7,11 @@
         <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
       </div>
     </section>
-    <KeyFactGroup :keyFacts="currentPage.keyFacts" />
+    <section class="section">
+      <div class="container is-light">
+        <KeyFactGroup :keyFacts="currentPage.keyFacts" />
+      </div>
+    </section>
   </div>
 </template>
 
