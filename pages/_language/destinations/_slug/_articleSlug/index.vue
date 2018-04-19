@@ -1,6 +1,7 @@
 <template>
   <article>
-    <ArticleHeader :title="currentArticle.jumbotronTitle.value"
+    <ArticleHeader v-if="currentPage.jumbotronImage"
+      :title="currentArticle.jumbotronTitle.value"
       :desc="currentArticle.jumbotronDescription.value"
       :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">

@@ -14,5 +14,8 @@ export const Symbols = {
   NAVIGATION: {
     HOME: 'nav_home',
     DESTINATIONS: 'nav_destinations'
+  },
+  CODENAMES: {
+    ITINERARY: 'itinerary'
   }
 }

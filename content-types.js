@@ -16,6 +16,24 @@ export const ContentTypes = {
       urlSlug: 'slug'
     }
   },
+  KeyFact: {
+    codeName: 'key_fact',
+    fields: {
+      icon: 'icon',
+      iconGroup: 'icon_group',
+      title: 'title',
+      value: 'value',
+      unit: 'unit'
+    }
+  },
+  Itinerary: {
+    codeName: 'itinerary',
+    fields: {
+      bodyText: 'body_text',
+      mapId: 'map_id',
+      keyFacts: 'key_facts'
+    }
+  },
   LandingPage: {
     codeName: 'landing_page',
     fields: {
