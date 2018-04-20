@@ -1,9 +1,16 @@
 import { deliveryClient } from '../services/kentico-client'
+import { redisClient, getAsync } from '../services/redis-client'
 import { ContentTypes } from '../../content-types'
 
 export class ArticleService {
-  get (language, slug) {
-    return deliveryClient.items()
+  async get (language, slug) {
+    const key = `article-${language}-${slug}`
+    let cachedValue = await getAsync(key)
+    if (cachedValue) {
+      return cachedValue
+    }
+
+    let valueToBeCached = await deliveryClient.items()
       .type(ContentTypes.Article.codeName)
       .elementsParameter([
         ContentTypes.Article.fields.bodyText,
@@ -25,10 +32,21 @@ export class ArticleService {
       .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
       .languageParameter(language)
       .getPromise()
+
+    redisClient.set(key, valueToBeCached)
+
+    return valueToBeCached
   }
 
-  getLatest (language, limit) {
-    return deliveryClient.items()
+  async getLatest (language, limit) {
+    const key = `articles-latest-${language}-${limit}`
+    let cachedValue = await getAsync(key)
+    if (cachedValue) {
+      console.log('GOT FROM CACHE')
+      return cachedValue
+    }
+
+    let valueToBeCached = await deliveryClient.items()
       .type(ContentTypes.Article.codeName)
       .elementsParameter([
         ContentTypes.Article.fields.bodyText,
@@ -51,5 +69,10 @@ export class ArticleService {
       .languageParameter(language)
       .limitParameter(limit)
       .getPromise()
+
+    redisClient.set(key, valueToBeCached)
+
+    console.log('GOT FROM KENTICO')
+    return valueToBeCached
   }
 }
