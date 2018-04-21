@@ -13,7 +13,7 @@
     <section class="section">
       <div class="container">
         <div class="content">
-          <h2>Latest Articles</h2>
+          <h2>{{resources[language].home.latest_articles}}</h2>
         </div>
         <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, destinations)" />
       </div>
@@ -41,7 +41,7 @@ export default {
     Jumbotron,
     Slide
   },
-  computed: mapState(['currentPage', 'language', 'articles', 'currentLocation']),
+  computed: mapState(['currentPage', 'language', 'articles', 'currentLocation', 'resources']),
   filters: {
     cardify
   },

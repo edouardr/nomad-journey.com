@@ -1,7 +1,8 @@
-import Vuex from 'vuex'
 import { Symbols } from '~/constants'
 import { ContentTypes } from '~/content-types'
 import axios from '~/plugins/axios'
+import resources from '~/resources.json'
+import Vuex from 'vuex'
 
 export const defaultLang = 'en'
 
@@ -12,7 +13,8 @@ export const state = () => ({
   currentLocation: undefined,
   currentPage: undefined,
   language: defaultLang,
-  navigation: []
+  navigation: [],
+  resources: resources
 })
 
 export const mutations = {
