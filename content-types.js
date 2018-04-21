@@ -3,6 +3,7 @@ export const ContentTypes = {
     codeName: 'article',
     fields: {
       bodyText: 'body_text',
+      location: 'location',
       images: 'images',
       posted: 'posted',
       urlSlug: 'slug'
