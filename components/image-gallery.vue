@@ -6,7 +6,9 @@
         v-for="image in orderImages(images.assets)"
         :key="image.id">
         <img :data-src="image.url" :alt="image.description">
-
+        <div class="item__details" v-show="image.description">
+          {{image.description}}
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +42,7 @@ export default {
 
   .grid {
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
     grid-auto-flow: row dense;
 
@@ -62,22 +64,26 @@ export default {
   }
 
   .item {
+    position: relative;
     display: flex;
     flex-direction: column;
+    grid-row-end: span 2;
     justify-self: stretch;
     box-sizing: border-box;
-    grid-row-end: span 2;
-    color: #fff;
+    box-shadow: -2px 2px 10px 0px rgba(#444, 0.4);
 
     &__details {
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left:0;
+      right:0;
       z-index: 1;
-      padding: 15px;
-      color: #444;
-      background: #fff;
+      padding: 3px 3px 3px 15px;
+      background: rgba(75,75,75, 0.8);
       text-transform: lowercase;
       letter-spacing: 1px;
-      color: #828282;
+      color: #fff;
+      text-shadow: 1px 1px #000;
     }
   }
 </style>
