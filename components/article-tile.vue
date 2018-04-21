@@ -111,7 +111,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: $overlay;
+        // background-color: $overlay;
         z-index: 2;
       }
     }

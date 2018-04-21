@@ -4,11 +4,13 @@
       <div class="content is-large">
         <h1>{{title}}</h1>
       </div>
-      <div class="article-details">
-        <p class="font-secondary xs">
-          <span class="publish-date">06 June 2017</span>
+      <div class="article-details content">
+        <p>
+          <span class="publish-date">in <i>Kangaroo Island</i></span>
           <span class="divider"></span>
-          <span class="author">Annabelle</span>
+          <span class="publish-date">on 06 June 2017</span>
+          <span class="divider"></span>
+          <font-awesome-icon :icon="['fab', 'facebook-f']" />
         </p>
       </div>
     </div>
