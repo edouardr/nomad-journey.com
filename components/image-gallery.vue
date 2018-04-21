@@ -1,9 +1,20 @@
 <template>
-  <div class="grid-container">
-    <div class="grid">
+  <div class="grid">
+    <div class="grid__group">
       <div class="item"
         v-lazy-container="{ selector: 'img' }"
-        v-for="image in orderImages(images.assets)"
+        v-for="image in rightColumnImages"
+        :key="image.id">
+        <img :data-src="image.url" :alt="image.description">
+        <div class="item__details" v-show="image.description">
+          {{image.description}}
+        </div>
+      </div>
+    </div>
+    <div class="grid__group">
+      <div class="item"
+        v-lazy-container="{ selector: 'img' }"
+        v-for="image in leftColumnImages"
         :key="image.id">
         <img :data-src="image.url" :alt="image.description">
         <div class="item__details" v-show="image.description">
@@ -16,12 +27,21 @@
 
 <script>
 export default {
+  computed: {
+    leftColumnImages() {
+      return this.orderImages().filter((value, index) => index%2 !== 0)
+    },
+    rightColumnImages() {
+      return this.orderImages().filter((value, index) => index%2 === 0)
+    }
+  },
   methods: {
+    orderImages() {
+      // const sorted = this.images.assets.sort((a, b) => this.stringCompare(a.name, b.name))
+      return this.images.assets
+    },
     stringCompare(str1, str2) {
       return (str1 > str2) - (str1 < str2)
-    },
-    orderImages(images){
-      return images.sort((a, b) => this.stringCompare(a.name, b.name))
     }
   },
   props: [
@@ -32,45 +52,35 @@ export default {
 
 
 <style lang="scss" scoped>
-  .grid-container {
-    display: none;
-
-    @supports(display: grid) {
-      display: block;
-    }
-  }
-
   .grid {
-    display: grid;
-    grid-gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
-    grid-auto-flow: row dense;
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
 
-    @media (max-width: 575.98px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @media (max-width: 768.98px) and (min-width: 576px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @media (max-width: 991.98px) and (min-width: 768px) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @media (max-width: 1199.98px) and (min-width: 992px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media (min-width: 1200px) {
-      grid-template-columns: repeat(2, 1fr);
+    &__group {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+      padding: 0 5px;
+
+      @media screen and (max-width: 600px) {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+      }
     }
   }
 
   .item {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    grid-row-end: span 2;
-    justify-self: stretch;
     box-sizing: border-box;
-    box-shadow: -2px 2px 10px 0px rgba(#444, 0.4);
+    margin-bottom: 10px;
+
+    img {
+      vertical-align: middle;
+    }
 
     &__details {
       position: absolute;
@@ -80,7 +90,6 @@ export default {
       z-index: 1;
       padding: 3px 3px 3px 15px;
       background: rgba(75,75,75, 0.8);
-      text-transform: lowercase;
       letter-spacing: 1px;
       color: #fff;
       text-shadow: 1px 1px #000;
