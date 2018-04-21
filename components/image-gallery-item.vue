@@ -17,6 +17,7 @@ export default {
   .item {
     position: relative;
     box-sizing: border-box;
+    box-shadow: -2px 2px 10px 0px rgba(#444, 0.4);
     margin-bottom: 10px;
 
     img {
