@@ -2,7 +2,7 @@
   <div class="gallery">
     <div class="gallery-item"
       v-lazy-container="{ selector: 'img' }"
-      v-for="image in images.assets"
+      v-for="image in orderImages(images.assets)"
       :key="image.id">
       <img class="gallery-image" :data-src="image.url" :alt="image.description">
     </div>
@@ -11,6 +11,14 @@
 
 <script>
 export default {
+  methods: {
+    stringCompare(str1, str2) {
+      return (str1 > str2) - (str1 < str2)
+    },
+    orderImages(images){
+      return images.sort((a, b) => this.stringCompare(a.name, b.name))
+    }
+  },
   props: [
     'images'
   ]
