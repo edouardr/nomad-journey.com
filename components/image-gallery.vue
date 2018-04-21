@@ -1,45 +1,39 @@
 <template>
   <div class="grid">
     <div class="grid__group">
-      <div class="item"
-        v-lazy-container="{ selector: 'img' }"
+      <ImageGalleryItem
         v-for="image in rightColumnImages"
-        :key="image.id">
-        <img :data-src="image.url" :alt="image.description">
-        <div class="item__details" v-show="image.description">
-          {{image.description}}
-        </div>
-      </div>
+        :key="image.id" :image="image"/>
     </div>
     <div class="grid__group">
-      <div class="item"
-        v-lazy-container="{ selector: 'img' }"
+      <ImageGalleryItem
         v-for="image in leftColumnImages"
-        :key="image.id">
-        <img :data-src="image.url" :alt="image.description">
-        <div class="item__details" v-show="image.description">
-          {{image.description}}
-        </div>
-      </div>
+        :key="image.id" :image="image"/>
     </div>
   </div>
 </template>
 
 <script>
+import ImageGalleryItem from "~/components/image-gallery-item";
+
 export default {
+  components: {
+    ImageGalleryItem
+  },
   computed: {
     leftColumnImages() {
-      return this.orderImages().filter((value, index) => index%2 !== 0)
+      return this.orderedImages.filter((value, index) => index%2 !== 0)
     },
     rightColumnImages() {
-      return this.orderImages().filter((value, index) => index%2 === 0)
+      return this.orderedImages.filter((value, index) => index%2 === 0)
+    }
+  },
+  data() {
+    return {
+      orderedImages: this.images.assets.sort((a, b) => this.stringCompare(a.name, b.name))
     }
   },
   methods: {
-    orderImages() {
-      // const sorted = this.images.assets.sort((a, b) => this.stringCompare(a.name, b.name))
-      return this.images.assets
-    },
     stringCompare(str1, str2) {
       return (str1 > str2) - (str1 < str2)
     }
@@ -70,29 +64,6 @@ export default {
         flex: 100%;
         max-width: 100%;
       }
-    }
-  }
-
-  .item {
-    position: relative;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-
-    img {
-      vertical-align: middle;
-    }
-
-    &__details {
-      position: absolute;
-      bottom: 0;
-      left:0;
-      right:0;
-      z-index: 1;
-      padding: 3px 3px 3px 15px;
-      background: rgba(75,75,75, 0.8);
-      letter-spacing: 1px;
-      color: #fff;
-      text-shadow: 1px 1px #000;
     }
   }
 </style>
