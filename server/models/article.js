@@ -8,6 +8,9 @@ export class Article extends ContentItem {
         if (fieldName === ContentTypes.Article.fields.bodyText) {
           return 'bodyText'
         }
+        if (fieldName === ContentTypes.Article.fields.location) {
+          return 'location'
+        }
         if (fieldName === ContentTypes.Article.fields.images) {
           return 'images'
         }

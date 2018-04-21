@@ -6,11 +6,11 @@
       </div>
       <div class="article-details content">
         <p>
-          <span class="publish-date">in <i>Kangaroo Island</i></span>
+          <span>{{resources[language].article.in}} <i>{{location}}</i></span>
           <span class="divider"></span>
-          <span class="publish-date">on 06 June 2017</span>
+          <span>{{resources[language].article.on}} {{posted}}</span>
           <span class="divider"></span>
-          <font-awesome-icon :icon="['fab', 'facebook-f']" />
+          <span>{{resources[language].article.share}} <font-awesome-icon :icon="['fab', 'facebook-f']" /></span>
         </p>
       </div>
     </div>
@@ -21,9 +21,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
+  computed: mapState(['language', 'resources']),
   props: [
     'desc',
+    'location',
+    'posted',
     'title',
     'url'
   ]
