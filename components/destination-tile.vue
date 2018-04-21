@@ -19,11 +19,6 @@ import { Symbols } from "~/constants";
 import { mapActions } from 'vuex'
 
 export default {
-  methods: {
-    ...mapActions({
-      select: Symbols.ACTIONS.SELECT_ARTICLE
-    })
-  },
   props: ['id', 'imgAlt', 'imgUrl', 'title', 'url'],
   data() {
     return {
