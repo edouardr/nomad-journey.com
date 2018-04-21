@@ -1,0 +1,20 @@
+{
+    "en": {
+        "home": {
+            "latest_articles": "Latest Articles"
+        },
+        "article": {
+            "in": "in",
+            "on": "on"
+        }
+    },
+    "fr": {
+        "home": {
+            "latest_articles": "Derniers Articles"
+        },
+        "article": {
+            "in": "a",
+            "on": "le"
+        }
+    }
+}
