@@ -29,7 +29,7 @@ import LanguageSelector from '~/components/language-selector'
 
 export default {
   components: {
-    LanguageSelector,
+    LanguageSelector
   }
 }
 </script>

@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(["currentLocation"]),
+  computed: mapState(['currentLocation']),
   methods: {
     getCenter: (lat, long) => ({
       lat: lat,

@@ -15,12 +15,9 @@
 </template>
 
 <script>
-import { Symbols } from "~/constants";
-import { mapActions } from 'vuex'
-
 export default {
   props: ['id', 'imgAlt', 'imgUrl', 'title', 'url'],
-  data() {
+  data () {
     return {
       hovered: false
     }

@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import IntroText from '~/components/intro-text';
-import Jumbotron from '~/components/jumbotron';
-import PersonTile from '~/components/person-tile';
-import { Symbols } from '~/constants';
-import metadata from '~/mixins/metadata';
-import axios from '~/plugins/axios';
-import { mapState } from 'vuex';
+import IntroText from '~/components/intro-text'
+import Jumbotron from '~/components/jumbotron'
+import PersonTile from '~/components/person-tile'
+import { Symbols } from '~/constants'
+import metadata from '~/mixins/metadata'
+import axios from '~/plugins/axios'
+import { mapState } from 'vuex'
 
 export default {
   components: {

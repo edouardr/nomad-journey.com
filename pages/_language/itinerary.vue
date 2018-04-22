@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import IntroText from '~/components/intro-text';
-import ItineraryMap from '~/components/itinerary-map';
-import KeyFactGroup from '~/components/key-fact-group';
-import { Symbols } from '~/constants';
-import metadata from '~/mixins/metadata';
-import axios from '~/plugins/axios';
-import { mapState } from 'vuex';
+import IntroText from '~/components/intro-text'
+import ItineraryMap from '~/components/itinerary-map'
+import KeyFactGroup from '~/components/key-fact-group'
+import { Symbols } from '~/constants'
+import metadata from '~/mixins/metadata'
+import axios from '~/plugins/axios'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
   head () {
     return this.getMetadata(this.currentPage)
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

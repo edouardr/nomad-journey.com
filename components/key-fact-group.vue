@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import KeyFact from "~/components/key-fact";
+import KeyFact from '~/components/key-fact'
 
 export default {
   components: {
     KeyFact
   },
-  props: ['keyFacts'],
+  props: ['keyFacts']
 }
 </script>
 

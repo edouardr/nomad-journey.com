@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ArticleTile from "~/components/article-tile";
+import ArticleTile from '~/components/article-tile'
 
 export default {
   components: {

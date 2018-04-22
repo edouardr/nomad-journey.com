@@ -14,27 +14,27 @@
 </template>
 
 <script>
-import ImageGalleryItem from "~/components/image-gallery-item";
+import ImageGalleryItem from '~/components/image-gallery-item'
 
 export default {
   components: {
     ImageGalleryItem
   },
   computed: {
-    leftColumnImages() {
-      return this.orderedImages.filter((value, index) => index%2 !== 0)
+    leftColumnImages () {
+      return this.orderedImages.filter((value, index) => index % 2 !== 0)
     },
-    rightColumnImages() {
-      return this.orderedImages.filter((value, index) => index%2 === 0)
+    rightColumnImages () {
+      return this.orderedImages.filter((value, index) => index % 2 === 0)
     }
   },
-  data() {
+  data () {
     return {
       orderedImages: this.images.assets.sort((a, b) => this.stringCompare(a.name, b.name))
     }
   },
   methods: {
-    stringCompare(str1, str2) {
+    stringCompare (str1, str2) {
       return (str1 > str2) - (str1 < str2)
     }
   },

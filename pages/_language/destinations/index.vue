@@ -14,26 +14,26 @@
 </template>
 
 <script>
-import DestinationGroup from "~/components/destination-group";
-import Jumbotron from "~/components/jumbotron";
-import { Symbols } from "~/constants";
-import { cardify } from "~/filters";
-import metadata from "~/mixins/metadata";
-import axios from "~/plugins/axios";
-import { mapState } from "vuex";
+import DestinationGroup from '~/components/destination-group'
+import Jumbotron from '~/components/jumbotron'
+import { Symbols } from '~/constants'
+import { cardify } from '~/filters'
+import metadata from '~/mixins/metadata'
+import axios from '~/plugins/axios'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     Jumbotron,
     DestinationGroup
   },
-  computed: mapState(["currentPage", "language"]),
+  computed: mapState(['currentPage', 'language']),
   filters: {
     cardify
   },
-  methods:{
-    resolveListItemUrl: (listItem, language) => {
-      return `/${language}/destinations/${listItem.urlSlug.value}`;
+  methods: {
+    resolveListItemUrl (listItem, language) {
+      return `/${language}/destinations/${listItem.urlSlug.value}`
     }
   },
   mixins: [metadata],
@@ -46,8 +46,8 @@ export default {
     }
   },
   async fetch ({ store }) {
-    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`);
-    store.commit(Symbols.MUTATIONS.SET_PAGE, data);
+    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`)
+    store.commit(Symbols.MUTATIONS.SET_PAGE, data)
   },
   head () {
     return this.getMetadata(this.currentPage)
