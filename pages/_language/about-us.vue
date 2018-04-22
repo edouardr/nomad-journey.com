@@ -9,49 +9,26 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-half">
+          <div class="column is-half"
+            v-for="person in currentPage.persons"
+            :key="person.id">
             <div class="card">
               <div class="card-image ri">
                 <figure class="image is-16by9">
-                  <img v-lazy="currentPage.jumbotronImage.value[0].url" :alt="currentPage.jumbotronImage.value[0].text">
+                  <img v-lazy="person.image.value[0].url" :alt="person.image.value[0].text">
                 </figure>
               </div>
-              <div class="card-content content">
-                  <p class="title is-5 is-spaced">
-                    A super duper very very long question about your life?
-                  </p>
-                  <p class="has-text-black is-5">
-                    Well that's my answer
-                  </p>
-                  <p class="title is-5 is-spaced">
-                    A super duper very very long question about your life?
-                  </p>
-                  <p class="has-text-black is-5">
-                    Well that's my answer
-                  </p>
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="card">
-              <div class="card-image ri">
-                <figure class="image is-16by9">
-                  <img v-lazy="currentPage.jumbotronImage.value[0].url" :alt="currentPage.jumbotronImage.value[0].text">
-                </figure>
-              </div>
-              <div class="card-content content">
-                  <p class="title is-5 is-spaced">
-                    A super duper very very long question about your life?
-                  </p>
-                  <p class="has-text-black is-5">
-                    Well that's my answer
-                  </p>
-                  <p class="title is-5 is-spaced">
-                    A super duper very very long question about your life?
-                  </p>
-                  <p class="has-text-black is-5">
-                    Well that's my answer
-                  </p>
+              <div class="card-content">
+                <div class="content"
+                  v-for="questionAnswer in person.interview"
+                  :key="questionAnswer.id">
+                    <p class="title is-5">
+                      {{questionAnswer.question.text}}
+                    </p>
+                    <p class="has-text-black is-5">
+                      {{questionAnswer.answer.text}}
+                    </p>
+                </div>
               </div>
             </div>
           </div>
@@ -64,6 +41,9 @@
 <script>
 import IntroText from '~/components/intro-text';
 import Jumbotron from '~/components/jumbotron';
+import { Symbols } from '~/constants';
+import metadata from '~/mixins/metadata';
+import axios from '~/plugins/axios';
 import { mapState } from 'vuex';
 
 export default {
@@ -71,7 +51,15 @@ export default {
     IntroText,
     Jumbotron
   },
-  computed: mapState(['currentPage', 'language', 'resources'])
+  computed: mapState(['currentPage']),
+  mixins: [metadata],
+  async fetch ({ store }) {
+    const aboutResponse = await axios.get(`/api/about-us/${store.state.language}`)
+    store.commit(Symbols.MUTATIONS.SET_PAGE, aboutResponse.data)
+  },
+  head () {
+    return this.getMetadata(this.currentPage)
+  }
 }
 </script>
 
@@ -99,6 +87,15 @@ export default {
     position: relative;
     overflow: hidden;
     z-index: 1;
+
+    .ri {
+      width: 100%;
+      overflow: hidden;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   .card-content {
