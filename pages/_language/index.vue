@@ -19,25 +19,23 @@
 </template>
 
 <script>
-import ArticleGroup from '~/components/article-group';
-import GoogleMaps from '~/components/google-maps-section';
-import IntroText from '~/components/intro-text';
-import Jumbotron from '~/components/jumbotron';
-import Slide from '~/components/slide';
-import { Symbols } from '~/constants';
-import { ContentTypes } from '~/content-types';
-import { cardify } from "~/filters";
-import metadata from '~/mixins/metadata';
-import axios from '~/plugins/axios';
-import { mapState } from 'vuex';
+import ArticleGroup from '~/components/article-group'
+import GoogleMaps from '~/components/google-maps-section'
+import IntroText from '~/components/intro-text'
+import Jumbotron from '~/components/jumbotron'
+import { Symbols } from '~/constants'
+import { ContentTypes } from '~/content-types'
+import { cardify } from "~/filters"
+import metadata from '~/mixins/metadata'
+import axios from '~/plugins/axios'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     ArticleGroup,
     GoogleMaps,
     IntroText,
-    Jumbotron,
-    Slide
+    Jumbotron
   },
   computed: mapState(['currentPage', 'language', 'articles', 'currentLocation', 'resources']),
   filters: {
