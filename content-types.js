@@ -1,4 +1,11 @@
 export const ContentTypes = {
+  About_Us: {
+    codeName: 'about_us',
+    fields: {
+      bodyText: 'body_text',
+      persons: 'persons'
+    }
+  },
   Article: {
     codeName: 'article',
     fields: {
@@ -17,6 +24,14 @@ export const ContentTypes = {
       urlSlug: 'slug'
     }
   },
+  Itinerary: {
+    codeName: 'itinerary',
+    fields: {
+      bodyText: 'body_text',
+      mapId: 'map_id',
+      keyFacts: 'key_facts'
+    }
+  },
   KeyFact: {
     codeName: 'key_fact',
     fields: {
@@ -25,14 +40,6 @@ export const ContentTypes = {
       title: 'title',
       value: 'value',
       unit: 'unit'
-    }
-  },
-  Itinerary: {
-    codeName: 'itinerary',
-    fields: {
-      bodyText: 'body_text',
-      mapId: 'map_id',
-      keyFacts: 'key_facts'
     }
   },
   LandingPage: {
@@ -58,6 +65,20 @@ export const ContentTypes = {
       redirectTo: 'redirect_to_url',
       title: 'title',
       urlSlug: 'slug'
+    }
+  },
+  Person: {
+    codeName: 'person',
+    fields: {
+      image: 'image',
+      interview: 'interview'
+    }
+  },
+  QuestionAnswer: {
+    codeName: 'question_answer',
+    fields: {
+      question: 'question',
+      answer: 'answer'
     }
   },
   SnippetJumbotron: {
