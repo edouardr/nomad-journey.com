@@ -19,7 +19,3 @@ export default {
   props: ['keyFacts']
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

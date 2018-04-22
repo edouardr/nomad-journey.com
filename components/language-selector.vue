@@ -20,4 +20,3 @@ export default {
   computed: mapState(['language'])
 }
 </script>
-

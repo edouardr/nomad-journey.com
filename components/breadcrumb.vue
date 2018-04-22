@@ -22,7 +22,3 @@ export default {
   props: ['links']
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
