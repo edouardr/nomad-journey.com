@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "backpack dev",
-    "build": "nuxt build",
+    "build": "nuxt build && backpack build",
     "heroku-postbuild": "npm run build",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
