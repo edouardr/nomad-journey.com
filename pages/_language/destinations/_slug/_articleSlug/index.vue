@@ -80,9 +80,6 @@ export default {
       ]
     }
   },
-  methods: {
-
-  },
   mixins: [metadata],
   scrollToTop: true,
   async asyncData({ store }) {
@@ -97,7 +94,7 @@ export default {
       navHome: {
         title: homeNavItemResponse.data.title.text,
       },
-      shortname: process.env.disqus.shortname
+      shortname: process.env.DISQUS_SHORTNAME
     }
   },
   async fetch ({ store, params }) {

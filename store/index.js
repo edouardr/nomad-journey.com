@@ -64,7 +64,6 @@ export const actions = {
     }
   },
   [Symbols.ACTIONS.SET_LANGUAGE]: async ({ commit, state, redirect }, language) => {
-    console.log(language)
     commit(Symbols.MUTATIONS.SET_LANGUAGE, language)
 
     const {data} = await axios.get(`api/navigation/${state.language}`)
