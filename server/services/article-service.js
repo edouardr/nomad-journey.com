@@ -1,6 +1,6 @@
 import { deliveryClient } from '../services/kentico-client'
 import { ContentTypes } from '../../content-types'
-import { SortOrder } from 'kentico-cloud-delivery-node-sdk';
+import { SortOrder } from 'kentico-cloud-delivery-node-sdk'
 
 const fields = [
   ContentTypes.Article.fields.bodyText,

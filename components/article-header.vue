@@ -1,13 +1,12 @@
 <template>
   <div class="container is-widescreen">
     <div class="article-header">
-      <div class="content is-large">
-        <h1>{{title}}</h1>
+      <div class="content">
+        <p class="subtitle location">{{location}}</p>
+        <h1 class="title is-spaced">{{title}}</h1>
       </div>
-      <div class="article-details content">
+      <div class="article-details">
         <p>
-          <span>{{resources[language].article.in}} <i>{{location}}</i></span>
-          <span class="divider"></span>
           <span>{{resources[language].article.on}} {{posted}}</span>
           <span class="divider"></span>
           <span>{{resources[language].article.share}} <font-awesome-icon :icon="['fab', 'facebook-f']" /></span>
@@ -37,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
   .article-header {
-    padding: 1.5rem;
+    padding: 3rem 1.5rem;
   }
 
   .article-details span {
@@ -52,6 +51,14 @@ export default {
     background: #e1e1e1;
     margin-left: 7px;
     margin-right: 5px;
+  }
+
+  .location {
+    text-decoration: underline;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    display: inline-block;
+    padding-bottom: 4px;
   }
 </style>
 
