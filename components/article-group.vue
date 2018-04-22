@@ -25,6 +25,3 @@ export default {
   props: ['articles']
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

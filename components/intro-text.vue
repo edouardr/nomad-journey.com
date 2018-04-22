@@ -11,7 +11,3 @@ export default {
   props: ['text']
 }
 </script>
-
-<style scoped>
-</style>
-

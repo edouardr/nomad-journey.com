@@ -28,9 +28,6 @@ export default {
   },
   computed: mapState(['currentPage']),
   mixins: [metadata],
-  async asyncData ({ store }) {
-
-  },
   async fetch ({ store }) {
     const itineraryResponse = await axios.get(`/api/itinerary/${store.state.language}`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, itineraryResponse.data)
@@ -40,7 +37,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
