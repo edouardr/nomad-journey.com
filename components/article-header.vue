@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import { momentify } from "~/filters"
-import { mapState } from 'vuex';
+import { momentify } from '~/filters'
+import { mapState } from 'vuex'
 
 export default {
   computed: mapState(['language', 'resources']),

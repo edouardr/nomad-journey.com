@@ -25,7 +25,7 @@ import IntroText from '~/components/intro-text'
 import Jumbotron from '~/components/jumbotron'
 import { Symbols } from '~/constants'
 import { ContentTypes } from '~/content-types'
-import { cardify } from "~/filters"
+import { cardify } from '~/filters'
 import metadata from '~/mixins/metadata'
 import axios from '~/plugins/axios'
 import { mapState } from 'vuex'
@@ -41,10 +41,10 @@ export default {
   filters: {
     cardify
   },
-  methods:{
-    resolveListItemUrl: (listItem, language, destinations) => {
+  methods: {
+    resolveListItemUrl (listItem, language, destinations) {
       const destination = destinations.filter(dest => dest.system.codename === listItem.system[ContentTypes.System.fields.sitemapLocations][0])[0]
-      return `/${language}/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`;
+      return `/${language}/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`
     }
   },
   mixins: [metadata],
@@ -68,5 +68,5 @@ export default {
   head () {
     return this.getMetadata(this.currentPage)
   }
-};
+}
 </script>

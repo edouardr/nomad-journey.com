@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(["navigation", "language"]),
+  computed: mapState(['navigation', 'language']),
   data () {
     return {
       isOpen: false

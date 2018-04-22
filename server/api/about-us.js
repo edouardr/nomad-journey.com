@@ -6,7 +6,7 @@ const router = Router()
 const service = new AboutService()
 
 router.get('/about-us/:lang', async (req, res, next) => {
-  const {item} = await service.get(req.params.lang, Symbols.CODENAMES.ABOUT_US)
+  const { item } = await service.get(req.params.lang, Symbols.CODENAMES.ABOUT_US)
   var cache = []
   let restoredObject = JSON.stringify(item, function (key, value) {
     if (typeof value === 'object' && value !== null) {
