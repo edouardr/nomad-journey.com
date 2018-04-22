@@ -7,9 +7,14 @@
       </div>
       <div class="article-details">
         <p>
-          <span>{{resources[language].article.on}} {{posted}}</span>
+          <span>{{posted | momentify('DD MMMM YYYY', language)}}</span>
           <span class="divider"></span>
-          <span>{{resources[language].article.share}} <font-awesome-icon :icon="['fab', 'facebook-f']" /></span>
+          <span>{{resources[language].article.share}}
+            <a href="javascript:onclick=window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;quote=' + encodeURIComponent(document.URL))" target="">
+              <font-awesome-icon :icon="['fab', 'facebook-f']" />
+              <span class="sr-only">Share on Facebook</span>
+            </a>
+          </span>
         </p>
       </div>
     </div>
@@ -20,10 +25,14 @@
 </template>
 
 <script>
+import { momentify } from "~/filters"
 import { mapState } from 'vuex';
 
 export default {
   computed: mapState(['language', 'resources']),
+  filters: {
+    momentify
+  },
   props: [
     'desc',
     'location',

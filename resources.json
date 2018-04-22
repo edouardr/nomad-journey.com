@@ -4,8 +4,7 @@
             "latest_articles": "Latest Articles"
         },
         "article": {
-            "in": "in",
-            "on": "on"
+            "share": "share "
         }
     },
     "fr": {
@@ -13,8 +12,7 @@
             "latest_articles": "Derniers Articles"
         },
         "article": {
-            "in": "a",
-            "on": "le"
+            "share": "partager"
         }
     }
 }
