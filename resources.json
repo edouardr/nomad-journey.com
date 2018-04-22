@@ -1,0 +1,18 @@
+{
+    "en": {
+        "home": {
+            "latest_articles": "Latest Articles"
+        },
+        "article": {
+            "share": "share "
+        }
+    },
+    "fr": {
+        "home": {
+            "latest_articles": "Derniers Articles"
+        },
+        "article": {
+            "share": "partager"
+        }
+    }
+}
