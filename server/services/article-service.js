@@ -1,5 +1,6 @@
 import { deliveryClient } from '../services/kentico-client'
 import { ContentTypes } from '../../content-types'
+import { SortOrder } from 'kentico-cloud-delivery-node-sdk';
 
 const fields = [
   ContentTypes.Article.fields.bodyText,
@@ -34,7 +35,7 @@ export class ArticleService {
     return deliveryClient.items()
       .type(ContentTypes.Article.codeName)
       .elementsParameter(fields)
-      .orderParameter(`elements.${ContentTypes.Article.fields.posted}`)
+      .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
       .languageParameter(language)
       .limitParameter(limit)
       .getPromise()
