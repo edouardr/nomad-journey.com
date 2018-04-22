@@ -1,27 +1,15 @@
 import { ContentItem } from 'kentico-cloud-delivery-node-sdk'
 import { ContentTypes } from '../../content-types'
 
-export class Destination extends ContentItem {
+export class AboutUs extends ContentItem {
   constructor () {
     super({
       propertyResolver: fieldName => {
-        if (fieldName === ContentTypes.Destination.fields.articles) {
-          return 'articles'
-        }
-        if (fieldName === ContentTypes.Destination.fields.bodyText) {
+        if (fieldName === ContentTypes.About_Us.fields.bodyText) {
           return 'bodyText'
         }
-        if (fieldName === ContentTypes.Destination.fields.urlSlug) {
-          return 'urlSlug'
-        }
-        if (fieldName === ContentTypes.SnippetListItem.fields.title) {
-          return 'tileTitle'
-        }
-        if (fieldName === ContentTypes.SnippetListItem.fields.description) {
-          return 'tileDescription'
-        }
-        if (fieldName === ContentTypes.SnippetListItem.fields.thumbnail) {
-          return 'tileThumbnail'
+        if (fieldName === ContentTypes.About_Us.fields.persons) {
+          return 'persons'
         }
         if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
           return 'jumbotronTitle'

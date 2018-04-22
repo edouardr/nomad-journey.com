@@ -16,6 +16,8 @@ export const Symbols = {
     DESTINATIONS: 'nav_destinations'
   },
   CODENAMES: {
+    ABOUT_US: 'about_us',
+    CURRENT_LOCATION: 'current_location',
     ITINERARY: 'itinerary'
   }
 }
