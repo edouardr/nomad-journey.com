@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { Symbols } from "~/constants";
+import { Symbols } from '~/constants'
 import { mapActions } from 'vuex'
 
 export default {
@@ -30,7 +30,7 @@ export default {
     })
   },
   props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
-  data() {
+  data () {
     return {
       hovered: false
     }
