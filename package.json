@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "backpack dev",
-    "build": "nuxt build && backpack build",
-    "start": "npm run build && cross-env NODE_ENV=production node build/main.js",
+    "build": "nuxt build",
+    "start": "npm run build && node build/main.js",
     "precommit": "npm run lint",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
@@ -18,7 +18,6 @@
     "@fortawesome/vue-fontawesome": "0.0.22",
     "axios": "^0.16.2",
     "bulma": "^0.7.0",
-    "cross-env": "^5.0.1",
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
     "moment": "^2.22.1",

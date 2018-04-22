@@ -24,7 +24,3 @@ export default {
   props: ['destinations']
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

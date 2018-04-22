@@ -70,4 +70,3 @@ export default {
     padding-bottom: 4px;
   }
 </style>
-
