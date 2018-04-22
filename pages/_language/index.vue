@@ -5,11 +5,7 @@
       :desc="currentPage.jumbotronDescription.value"
       :imgUrl="currentPage.jumbotronImage.value[0].url"
       :imgAlt="currentPage.jumbotronImage.value[0].text" />
-    <section class="section has-background-light">
-      <div class="container is-light">
-        <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
-      </div>
-    </section>
+    <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
       <div class="container">
         <div class="content">
@@ -25,6 +21,7 @@
 <script>
 import ArticleGroup from '~/components/article-group';
 import GoogleMaps from '~/components/google-maps-section';
+import IntroText from '~/components/intro-text';
 import Jumbotron from '~/components/jumbotron';
 import Slide from '~/components/slide';
 import { Symbols } from '~/constants';
@@ -38,6 +35,7 @@ export default {
   components: {
     ArticleGroup,
     GoogleMaps,
+    IntroText,
     Jumbotron,
     Slide
   },

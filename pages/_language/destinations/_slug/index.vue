@@ -5,12 +5,7 @@
       :desc="currentPage.jumbotronDescription.value"
       :imgAlt="currentPage.jumbotronImage.value[0].text"
       :imgUrl="currentPage.jumbotronImage.value[0].url" />
-    <section class="section has-background-light">
-      <div class="container is-light">
-        <div class="content is-medium" v-html="currentPage.bodyText.value">
-        </div>
-      </div>
-    </section>
+    <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
       <div class="container">
         <div class="content">
@@ -26,6 +21,7 @@
 
 <script>
 import ArticleGroup from '~/components/article-group';
+import IntroText from '~/components/intro-text';
 import Jumbotron from '~/components/jumbotron';
 import { Symbols } from '~/constants';
 import { cardify } from '~/filters';
@@ -35,6 +31,7 @@ import { mapState } from 'vuex';
 
 export default {
   components: {
+    IntroText,
     Jumbotron,
     ArticleGroup
   },
