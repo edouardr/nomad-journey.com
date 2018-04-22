@@ -1,6 +1,8 @@
 <template>
   <article>
     <ArticleHeader v-if="currentArticle.jumbotronImage"
+      :posted="currentArticle.posted.value"
+      :location="currentArticle.location.value"
       :title="currentArticle.jumbotronTitle.value"
       :desc="currentArticle.jumbotronDescription.value"
       :url="currentArticle.jumbotronImage.value[0].url" />

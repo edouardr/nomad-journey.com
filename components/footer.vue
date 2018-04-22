@@ -3,13 +3,13 @@
     <div class="container">
       <div class="has-text-centered is-white">
         <div class="content social-buttons">
-          <a class="is-size-1" href="https://facebook.com/anomadjourney" title="Facebook A Nomad Journey">
+          <a class="is-size-1" href="https://facebook.com/anomadjourney" title="Facebook A Nomad Journey" target="_blank">
             <span class="icon is-medium">
               <font-awesome-icon :icon="['fab', 'facebook-f']" />
             </span>
           </a>
 
-          <a class="is-size-1" href="https://instagram.com/anomadjourney" title="Instagram A Nomad Journey">
+          <a class="is-size-1" href="https://instagram.com/anomadjourney" title="Instagram A Nomad Journey" target="_blank">
             <span class="icon is-medium">
               <font-awesome-icon :icon="['fab', 'instagram']" />
             </span>

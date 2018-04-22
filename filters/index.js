@@ -1,3 +1,4 @@
-import {cardify} from './cardify'
+import { cardify } from './cardify'
+import { momentify } from './momentify'
 
-export {cardify}
+export { cardify, momentify }
