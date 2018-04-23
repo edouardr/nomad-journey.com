@@ -23,6 +23,9 @@ export class Itinerary extends ContentItem {
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.keywords) {
           return 'metaKeywords'
         }
+        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogImage) {
+          return 'ogImage'
+        }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogTitle) {
           return 'ogTitle'
         }

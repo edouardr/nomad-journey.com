@@ -16,6 +16,7 @@ export class ItineraryService {
         ContentTypes.SnippetPageMetaData.fields.description,
         ContentTypes.SnippetPageMetaData.fields.keywords,
         ContentTypes.SnippetPageMetaData.fields.ogDescription,
+        ContentTypes.SnippetPageMetaData.fields.ogImage,
         ContentTypes.SnippetPageMetaData.fields.ogTitle,
         ContentTypes.SnippetPageMetaData.fields.title
       ])
