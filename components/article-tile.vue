@@ -12,7 +12,7 @@
         <p class="title is-5 is-spaced">
           <router-link :to="url">{{title}}</router-link>
         </p>
-        <p class="subtitle is-7">
+        <p class="subtitle is-6">
           {{text}}
         </p>
     </div>
