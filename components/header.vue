@@ -19,7 +19,8 @@
             v-for="navItem in navigation"
             :key="navItem.id"
             :to="`/${language}${navItem.redirectTo.value}`"
-            :exact="navItem.redirectTo.value == '/'" >{{navItem.title.value}}
+            :exact="navItem.redirectTo.value == '/'"
+            v-on:click.native="isOpen = false">{{navItem.title.value}}
             </router-link>
         </div>
       </div>
