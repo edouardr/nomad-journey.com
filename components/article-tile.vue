@@ -55,8 +55,7 @@ export default {
     .card-content {
       border: 2px solid $water;
       background: transparent;
-      padding-top: calc(55%);
-      margin-top: calc(-55% + 2px);
+      margin-top: 4%;
     }
   }
 
@@ -120,7 +119,6 @@ export default {
     position: relative;
     background-color: #fff;
     padding: 10px;
-    margin: 0 5px;
     transition: border-color .5s;
     z-index: 2;
     pointer-events: none;
