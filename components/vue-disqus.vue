@@ -50,9 +50,9 @@ export default {
     }
   },
   methods: {
-    resetc (dsq) {
+    reset (disqus) {
       const self = this
-      dsq.reset({
+      disqus.reset({
         reload: true,
         config: () => {
           self.setBaseConfig(this)
