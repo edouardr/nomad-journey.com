@@ -103,6 +103,7 @@ export const ContentTypes = {
       description: 'page_metadata__meta_description',
       keywords: 'page_metadata__meta_keywords',
       ogDescription: 'page_metadata__og_description',
+      ogImage: 'page_metadata__og_image',
       ogTitle: 'page_metadata__og_title',
       title: 'page_metadata__meta_title'
     }
