@@ -29,11 +29,14 @@ export class LandingPage extends ContentItem {
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.keywords) {
           return 'metaKeywords'
         }
-        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogTitle) {
-          return 'ogTitle'
-        }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogDescription) {
           return 'ogDescription'
+        }
+        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogImage) {
+          return 'ogImage'
+        }
+        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogTitle) {
+          return 'ogTitle'
         }
         return fieldName
       }
