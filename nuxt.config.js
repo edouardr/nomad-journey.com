@@ -4,7 +4,8 @@ module.exports = {
     height: '3px'
   },
   env: {
-    DISQUS_SHORTNAME: 'anomadjourney'
+    DISQUS_SHORTNAME: 'anomadjourney',
+    MAPS_API_KEY: ''
   },
   /*
   ** Headers of the page
