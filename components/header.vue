@@ -42,7 +42,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .brand:hover {
-    background-color: inherit;
+  .navbar-item {
+    img {
+      max-height: 4rem;
+    }
+
+    .brand {
+      &:hover {
+        background-color: inherit;
+      }
+    }
   }
 </style>
