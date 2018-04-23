@@ -1,7 +1,7 @@
 @import 'colours';
 @import "node_modules/bulma/sass/utilities/initial-variables";
 @import "node_modules/bulma/sass/utilities/functions";
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 $primary:                 $water;
 $primary-invert-invert:   findColorInvert($water);
