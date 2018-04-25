@@ -1,3 +1,4 @@
+import { CacheService } from './cache-service'
 import { SortOrder } from 'kentico-cloud-delivery-node-sdk'
 import { deliveryClient } from '../services/kentico-client'
 import { ContentTypes } from '../../content-types'
@@ -7,21 +8,28 @@ const fields = [
   ContentTypes.NavigationItem.fields.order,
   ContentTypes.NavigationItem.fields.title
 ]
+const cacheService = new CacheService()
 
 export class NavigationService {
   getAll (language) {
-    return deliveryClient.items()
-      .type(ContentTypes.NavigationItem.codeName)
-      .elementsParameter(fields)
-      .orderParameter(`elements.${ContentTypes.NavigationItem.fields.order}`, SortOrder.asc)
-      .languageParameter(language)
-      .getPromise()
+    const key = `navigation-${language}`
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.items()
+        .type(ContentTypes.NavigationItem.codeName)
+        .elementsParameter(fields)
+        .orderParameter(`elements.${ContentTypes.NavigationItem.fields.order}`, SortOrder.asc)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 
   getNavItem (language, codename) {
-    return deliveryClient.item(codename)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .getPromise()
+    const key = `navigation-${language}-${codename}`
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 }

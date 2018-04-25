@@ -1,5 +1,5 @@
-import { deliveryClient } from '../services/kentico-client'
-import { redisClient, getAsync } from '../services/redis-client'
+import { CacheService } from './cache-service'
+import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 import { SortOrder } from 'kentico-cloud-delivery-node-sdk'
 
@@ -22,46 +22,31 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
+const cacheService = new CacheService()
 
 export class ArticleService {
   async get (language, slug) {
     const key = `article-${language}-${slug}`
-    let cachedValue = await getAsync(key)
-    if (cachedValue) {
-      return cachedValue
-    }
-
-    let valueToBeCached = await deliveryClient.items()
-      .type(ContentTypes.Article.codeName)
-      .elementsParameter(fields)
-      .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
-      .languageParameter(language)
-      .getPromise()
-
-    redisClient.set(key, valueToBeCached)
-
-    return valueToBeCached
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.items()
+        .type(ContentTypes.Article.codeName)
+        .elementsParameter(fields)
+        .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 
   async getLatest (language, limit) {
     const key = `articles-latest-${language}-${limit}`
-    let cachedValue = await getAsync(key)
-    if (cachedValue) {
-      console.log('GOT FROM CACHE')
-      return cachedValue
-    }
 
-    let valueToBeCached = await deliveryClient.items()
+    return cacheService.getOrCreate(key, async () => (deliveryClient.items()
       .type(ContentTypes.Article.codeName)
       .elementsParameter(fields)
       .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
       .languageParameter(language)
       .limitParameter(limit)
       .getPromise()
-
-    redisClient.set(key, valueToBeCached)
-
-    console.log('GOT FROM KENTICO')
-    return valueToBeCached
+    ))
   }
 }

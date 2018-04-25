@@ -1,4 +1,5 @@
-import { deliveryClient } from '../services/kentico-client'
+import { CacheService } from './cache-service'
+import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 
 const fields = [
@@ -18,13 +19,16 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
+const cacheService = new CacheService()
 
 export class AboutService {
   get (language, codename) {
-    return deliveryClient.item(codename)
+    const key = `about-${language}`
+    return cacheService.getOrCreate(key, () => (deliveryClient.item(codename)
       .elementsParameter(fields)
       .languageParameter(language)
       .depthParameter(3)
       .getPromise()
+    ))
   }
 }

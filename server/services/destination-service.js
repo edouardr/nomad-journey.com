@@ -1,4 +1,5 @@
-import { deliveryClient } from '../services/kentico-client'
+import { CacheService } from './cache-service'
+import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 
 const fields = [
@@ -21,29 +22,39 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
+const cacheService = new CacheService()
 
 export class DestinationService {
   getAll (language) {
-    return deliveryClient.items()
-      .type(ContentTypes.Destination.codeName)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .getPromise()
+    const key = `destinations-${language}`
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.items()
+        .type(ContentTypes.Destination.codeName)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 
   getBySlug (language, slug) {
-    return deliveryClient.items()
-      .type(ContentTypes.Destination.codeName)
-      .elementsParameter(fields)
-      .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
-      .languageParameter(language)
-      .getPromise()
+    const key = `destinations-${language}-${slug}`
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.items()
+        .type(ContentTypes.Destination.codeName)
+        .elementsParameter(fields)
+        .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 
   getByCodename (language, codename) {
-    return deliveryClient.item(codename)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .getPromise()
+    const key = `destinations-${language}-${codename}`
+    return cacheService.getOrCreate(key, () => (
+      deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+    ))
   }
 }
