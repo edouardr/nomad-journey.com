@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss" scoped>
   .article-header {
-    padding: 3rem 1.5rem;
+    padding: 4.5rem 1.5rem 3rem 1.5rem;
   }
 
   .article-details span {

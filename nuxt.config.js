@@ -1,6 +1,6 @@
 module.exports = {
   loading: {
-    color: '#ff0069',
+    color: '#1ad2eb',
     height: '3px'
   },
   env: {

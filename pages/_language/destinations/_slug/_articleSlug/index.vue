@@ -8,8 +8,6 @@
       :url="currentArticle.jumbotronImage.value[0].url" />
     <section class="section">
       <Breadcrumb :links="getBreadcrumbLinks"/>
-    </section>
-    <section class="section">
       <div class="container is-light">
         <div class="content is-medium" v-html="currentArticle.bodyText.value"></div>
       </div>
