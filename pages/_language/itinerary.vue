@@ -2,11 +2,7 @@
   <div>
     <ItineraryMap v-if="currentPage.mapId"
       :mapid="currentPage.mapId.value" />
-    <section class="section has-background-light">
-      <div class="container is-light">
-        <div class="content is-medium" v-html="currentPage.bodyText.value"></div>
-      </div>
-    </section>
+    <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
       <div class="container is-light">
         <KeyFactGroup :keyFacts="currentPage.keyFacts" />
@@ -16,23 +12,22 @@
 </template>
 
 <script>
-import ItineraryMap from '~/components/itinerary-map';
-import KeyFactGroup from '~/components/key-fact-group';
-import { Symbols } from '~/constants';
-import metadata from '~/mixins/metadata';
-import axios from '~/plugins/axios';
-import { mapState } from 'vuex';
+import IntroText from '~/components/intro-text'
+import ItineraryMap from '~/components/itinerary-map'
+import KeyFactGroup from '~/components/key-fact-group'
+import { Symbols } from '~/constants'
+import metadata from '~/mixins/metadata'
+import axios from '~/plugins/axios'
+import { mapState } from 'vuex'
 
 export default {
   components: {
+    IntroText,
     ItineraryMap,
     KeyFactGroup
   },
   computed: mapState(['currentPage']),
   mixins: [metadata],
-  async asyncData ({ store }) {
-
-  },
   async fetch ({ store }) {
     const itineraryResponse = await axios.get(`/api/itinerary/${store.state.language}`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, itineraryResponse.data)
@@ -40,9 +35,5 @@ export default {
   head () {
     return this.getMetadata(this.currentPage)
   }
-};
+}
 </script>
-
-<style lang="scss" scoped>
-
-</style>

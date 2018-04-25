@@ -5,49 +5,41 @@
       :desc="currentPage.jumbotronDescription.value"
       :imgAlt="currentPage.jumbotronImage.value[0].text"
       :imgUrl="currentPage.jumbotronImage.value[0].url" />
+    <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
       <div class="container">
-        <DestinationGroup :destinations="destinations | cardify(resolveListItemUrl, language)" />
+        <div class="columns">
+          <div class="column is-half"
+            v-for="person in currentPage.persons"
+            :key="person.id">
+            <PersonTile :person="person" />
+          </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import DestinationGroup from '~/components/destination-group'
+import IntroText from '~/components/intro-text'
 import Jumbotron from '~/components/jumbotron'
+import PersonTile from '~/components/person-tile'
 import { Symbols } from '~/constants'
-import { cardify } from '~/filters'
 import metadata from '~/mixins/metadata'
 import axios from '~/plugins/axios'
 import { mapState } from 'vuex'
 
 export default {
   components: {
+    IntroText,
     Jumbotron,
-    DestinationGroup
+    PersonTile
   },
-  computed: mapState(['currentPage', 'language']),
-  filters: {
-    cardify
-  },
-  methods: {
-    resolveListItemUrl (listItem, language) {
-      return `/${language}/destinations/${listItem.urlSlug.value}`
-    }
-  },
+  computed: mapState(['currentPage']),
   mixins: [metadata],
-  scrollToTop: true,
-  async asyncData ({ store }) {
-    const { data } = await axios.get(`/api/destinations/${store.state.language}`)
-
-    return {
-      destinations: data
-    }
-  },
   async fetch ({ store }) {
-    const { data } = await axios.get(`/api/landing-page/${store.state.language}/destinations`)
-    store.commit(Symbols.MUTATIONS.SET_PAGE, data)
+    const aboutResponse = await axios.get(`/api/about-us/${store.state.language}`)
+    store.commit(Symbols.MUTATIONS.SET_PAGE, aboutResponse.data)
   },
   head () {
     return this.getMetadata(this.currentPage)

@@ -11,7 +11,7 @@ export default function ({ route, store, redirect, isHMR }) {
   }
 
   let language = route.params.language || defaultLang
-  store.commit(Symbols.MUTATIONS.SET_LANGUAGE, language)
+  store.dispatch(Symbols.ACTIONS.SET_LANGUAGE, language)
 
   if (isLanguageDefineInRoute(route) || isRouteExluded(route)) {
     return

@@ -8,6 +8,9 @@ export class Article extends ContentItem {
         if (fieldName === ContentTypes.Article.fields.bodyText) {
           return 'bodyText'
         }
+        if (fieldName === ContentTypes.Article.fields.location) {
+          return 'location'
+        }
         if (fieldName === ContentTypes.Article.fields.images) {
           return 'images'
         }
@@ -16,15 +19,6 @@ export class Article extends ContentItem {
         }
         if (fieldName === ContentTypes.Article.fields.urlSlug) {
           return 'urlSlug'
-        }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
-          return 'jumbotronTitle'
-        }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.description) {
-          return 'jumbotronDescription'
-        }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.image) {
-          return 'jumbotronImage'
         }
         if (fieldName === ContentTypes.SnippetListItem.fields.title) {
           return 'tileTitle'
@@ -35,6 +29,15 @@ export class Article extends ContentItem {
         if (fieldName === ContentTypes.SnippetListItem.fields.thumbnail) {
           return 'tileThumbnail'
         }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
+          return 'jumbotronTitle'
+        }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.description) {
+          return 'jumbotronDescription'
+        }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.image) {
+          return 'jumbotronImage'
+        }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.title) {
           return 'metaTitle'
         }
@@ -43,6 +46,9 @@ export class Article extends ContentItem {
         }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.keywords) {
           return 'metaKeywords'
+        }
+        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogImage) {
+          return 'ogImage'
         }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogTitle) {
           return 'ogTitle'

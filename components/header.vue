@@ -19,7 +19,8 @@
             v-for="navItem in navigation"
             :key="navItem.id"
             :to="`/${language}${navItem.redirectTo.value}`"
-            :exact="navItem.redirectTo.value == '/'" >{{navItem.title.value}}
+            :exact="navItem.redirectTo.value == '/'"
+            v-on:click.native="isOpen = false">{{navItem.title.value}}
             </router-link>
         </div>
       </div>
@@ -28,10 +29,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(["navigation", "language"]),
+  computed: mapState(['navigation', 'language']),
   data () {
     return {
       isOpen: false
@@ -41,7 +42,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .brand:hover {
-    background-color: inherit;
+  .navbar-item {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    img {
+      max-height: 4rem;
+    }
+
+    .brand {
+      &:hover {
+        background-color: inherit;
+      }
+    }
   }
 </style>

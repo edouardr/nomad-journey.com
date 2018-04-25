@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ArticleTile from "~/components/article-tile";
+import ArticleTile from '~/components/article-tile'
 
 export default {
   components: {
@@ -25,6 +25,3 @@ export default {
   props: ['articles']
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

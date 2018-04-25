@@ -7,9 +7,10 @@
   "scripts": {
     "dev": "backpack dev",
     "build": "nuxt build && backpack build",
-    "start": "nuxt build && nuxt start",
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+    "start": "node build/main.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
@@ -18,9 +19,9 @@
     "@fortawesome/vue-fontawesome": "0.0.22",
     "axios": "^0.16.2",
     "bulma": "^0.7.0",
-    "cross-env": "^5.0.1",
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
+    "moment": "^2.22.1",
     "nuxt": "latest",
     "redis": "^2.8.0",
     "vue-lazyload": "^1.2.3",

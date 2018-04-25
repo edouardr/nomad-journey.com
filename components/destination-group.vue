@@ -15,16 +15,12 @@
 </template>
 
 <script>
-import DestinationTile from "~/components/destination-tile";
+import DestinationTile from '~/components/destination-tile'
 
 export default {
   components: {
     DestinationTile
   },
-  props: ['destinations'],
+  props: ['destinations']
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

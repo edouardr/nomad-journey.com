@@ -1,14 +1,13 @@
 <template>
     <section class="section has-background-light">
       <div class="container is-light">
-        <div class="content is-medium">
-        <h1 class="header">About Us</h1>
+        <div class="content is-medium" v-html="text"></div>
       </div>
-    </div>
-  </section>
+    </section>
 </template>
 
 <script>
 export default {
+  props: ['text']
 }
 </script>

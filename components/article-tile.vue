@@ -12,7 +12,7 @@
         <p class="title is-5 is-spaced">
           <router-link :to="url">{{title}}</router-link>
         </p>
-        <p class="subtitle is-7">
+        <p class="subtitle is-6">
           {{text}}
         </p>
     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { Symbols } from "~/constants";
+import { Symbols } from '~/constants'
 import { mapActions } from 'vuex'
 
 export default {
@@ -30,7 +30,7 @@ export default {
     })
   },
   props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
-  data() {
+  data () {
     return {
       hovered: false
     }
@@ -55,8 +55,7 @@ export default {
     .card-content {
       border: 2px solid $water;
       background: transparent;
-      padding-top: calc(55%);
-      margin-top: calc(-55% + 2px);
+      margin-top: 4%;
     }
   }
 
@@ -111,7 +110,6 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: $overlay;
         z-index: 2;
       }
     }
@@ -121,7 +119,6 @@ export default {
     position: relative;
     background-color: #fff;
     padding: 10px;
-    margin: 0 5px;
     transition: border-color .5s;
     z-index: 2;
     pointer-events: none;

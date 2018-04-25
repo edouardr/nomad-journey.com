@@ -1,8 +1,16 @@
 export const ContentTypes = {
+  About_Us: {
+    codeName: 'about_us',
+    fields: {
+      bodyText: 'body_text',
+      persons: 'persons'
+    }
+  },
   Article: {
     codeName: 'article',
     fields: {
       bodyText: 'body_text',
+      location: 'location',
       images: 'images',
       posted: 'posted',
       urlSlug: 'slug'
@@ -16,6 +24,14 @@ export const ContentTypes = {
       urlSlug: 'slug'
     }
   },
+  Itinerary: {
+    codeName: 'itinerary',
+    fields: {
+      bodyText: 'body_text',
+      mapId: 'map_id',
+      keyFacts: 'key_facts'
+    }
+  },
   KeyFact: {
     codeName: 'key_fact',
     fields: {
@@ -24,14 +40,6 @@ export const ContentTypes = {
       title: 'title',
       value: 'value',
       unit: 'unit'
-    }
-  },
-  Itinerary: {
-    codeName: 'itinerary',
-    fields: {
-      bodyText: 'body_text',
-      mapId: 'map_id',
-      keyFacts: 'key_facts'
     }
   },
   LandingPage: {
@@ -59,6 +67,20 @@ export const ContentTypes = {
       urlSlug: 'slug'
     }
   },
+  Person: {
+    codeName: 'person',
+    fields: {
+      image: 'image',
+      interview: 'interview'
+    }
+  },
+  QuestionAnswer: {
+    codeName: 'question_answer',
+    fields: {
+      question: 'question',
+      answer: 'answer'
+    }
+  },
   SnippetJumbotron: {
     codeName: 'jumbotron',
     fields: {
@@ -81,6 +103,7 @@ export const ContentTypes = {
       description: 'page_metadata__meta_description',
       keywords: 'page_metadata__meta_keywords',
       ogDescription: 'page_metadata__og_description',
+      ogImage: 'page_metadata__og_image',
       ogTitle: 'page_metadata__og_title',
       title: 'page_metadata__meta_title'
     }

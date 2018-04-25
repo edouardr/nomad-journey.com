@@ -14,15 +14,6 @@ export class Destination extends ContentItem {
         if (fieldName === ContentTypes.Destination.fields.urlSlug) {
           return 'urlSlug'
         }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
-          return 'jumbotronTitle'
-        }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.description) {
-          return 'jumbotronDescription'
-        }
-        if (fieldName === ContentTypes.SnippetJumbotron.fields.image) {
-          return 'jumbotronImage'
-        }
         if (fieldName === ContentTypes.SnippetListItem.fields.title) {
           return 'tileTitle'
         }
@@ -32,6 +23,15 @@ export class Destination extends ContentItem {
         if (fieldName === ContentTypes.SnippetListItem.fields.thumbnail) {
           return 'tileThumbnail'
         }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.title) {
+          return 'jumbotronTitle'
+        }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.description) {
+          return 'jumbotronDescription'
+        }
+        if (fieldName === ContentTypes.SnippetJumbotron.fields.image) {
+          return 'jumbotronImage'
+        }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.title) {
           return 'metaTitle'
         }
@@ -40,6 +40,9 @@ export class Destination extends ContentItem {
         }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.keywords) {
           return 'metaKeywords'
+        }
+        if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogImage) {
+          return 'ogImage'
         }
         if (fieldName === ContentTypes.SnippetPageMetaData.fields.ogTitle) {
           return 'ogTitle'

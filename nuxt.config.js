@@ -1,15 +1,11 @@
 module.exports = {
   loading: {
-    color: '#43a9b6',
+    color: '#ff0069',
     height: '3px'
   },
   env: {
-    disqus: {
-      shortname: 'anomadjourney'
-    },
-    maps: {
-      apiKey: ''
-    }
+    DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME || 'anomadjourney',
+    MAPS_API_KEY: process.env.MAPS_API_KEY || ''
   },
   /*
   ** Headers of the page
@@ -22,7 +18,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'A Nomad Journey' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
     ]
   },
   plugins: [

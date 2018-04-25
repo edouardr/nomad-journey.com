@@ -1,14 +1,20 @@
 <template>
   <div class="container is-widescreen">
     <div class="article-header">
-      <div class="content is-large">
-        <h1>{{title}}</h1>
+      <div class="content">
+        <p class="subtitle location">{{location}}</p>
+        <h1 class="title is-spaced">{{title}}</h1>
       </div>
       <div class="article-details">
-        <p class="font-secondary xs">
-          <span class="publish-date">06 June 2017</span>
+        <p>
+          <span>{{posted | momentify('DD MMMM YYYY', language)}}</span>
           <span class="divider"></span>
-          <span class="author">Annabelle</span>
+          <span>{{resources[language].article.share}}
+            <a href="javascript:onclick=window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;quote=' + encodeURIComponent(document.URL))" target="">
+              <font-awesome-icon :icon="['fab', 'facebook-f']" />
+              <span class="sr-only">Share on Facebook</span>
+            </a>
+          </span>
         </p>
       </div>
     </div>
@@ -19,9 +25,18 @@
 </template>
 
 <script>
+import { momentify } from '~/filters'
+import { mapState } from 'vuex'
+
 export default {
+  computed: mapState(['language', 'resources']),
+  filters: {
+    momentify
+  },
   props: [
     'desc',
+    'location',
+    'posted',
     'title',
     'url'
   ]
@@ -30,7 +45,7 @@ export default {
 
 <style lang="scss" scoped>
   .article-header {
-    padding: 1.5rem;
+    padding: 3rem 1.5rem;
   }
 
   .article-details span {
@@ -46,5 +61,12 @@ export default {
     margin-left: 7px;
     margin-right: 5px;
   }
-</style>
 
+  .location {
+    text-decoration: underline;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+</style>

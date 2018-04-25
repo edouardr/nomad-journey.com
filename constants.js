@@ -9,13 +9,16 @@ export const Symbols = {
     SET_NAVIGATION: 'setNavigation'
   },
   ACTIONS: {
-    SELECT_ARTICLE: 'selectArticle'
+    SELECT_ARTICLE: 'selectArticle',
+    SET_LANGUAGE: 'setLanguage'
   },
   NAVIGATION: {
     HOME: 'nav_home',
     DESTINATIONS: 'nav_destinations'
   },
   CODENAMES: {
+    ABOUT_US: 'about_us',
+    CURRENT_LOCATION: 'current_location',
     ITINERARY: 'itinerary'
   }
 }
