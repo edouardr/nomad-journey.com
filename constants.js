@@ -1,4 +1,16 @@
 export const Symbols = {
+  ACTIONS: {
+    SELECT_ARTICLE: 'selectArticle',
+    SET_LANGUAGE: 'setLanguage'
+  },
+  CODENAMES: {
+    ABOUT_US: 'about_us',
+    CURRENT_LOCATION: 'current_location',
+    ITINERARY: 'itinerary'
+  },
+  DATA: {
+    HOME_ARTICLES_LIMIT: 3
+  },
   MUTATIONS: {
     SET_ARTICLE: 'setArticle',
     SET_ARTICLES: 'setArticles',
@@ -8,17 +20,20 @@ export const Symbols = {
     SET_LANGUAGE: 'setLanguage',
     SET_NAVIGATION: 'setNavigation'
   },
-  ACTIONS: {
-    SELECT_ARTICLE: 'selectArticle',
-    SET_LANGUAGE: 'setLanguage'
-  },
   NAVIGATION: {
     HOME: 'nav_home',
     DESTINATIONS: 'nav_destinations'
   },
-  CODENAMES: {
-    ABOUT_US: 'about_us',
-    CURRENT_LOCATION: 'current_location',
-    ITINERARY: 'itinerary'
+  WEBHOOK: {
+    OPERATIONS: {
+      ARCHIVE: 'archive',
+      PUBLISH: 'publish',
+      UNPUBLISH: 'unpublish',
+      UPSERT: 'upsert'
+    },
+    TYPES: {
+      CONTENT_ITEM: 'content_item',
+      CONTENT_ITEM_VARIANT: 'content_item_variant'
+    }
   }
 }
