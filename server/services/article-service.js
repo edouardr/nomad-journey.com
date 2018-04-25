@@ -1,4 +1,5 @@
-import { deliveryClient } from '../services/kentico-client'
+import { CacheService } from './cache-service'
+import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 import { SortOrder } from 'kentico-cloud-delivery-node-sdk'
 
@@ -21,24 +22,48 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
+const cacheService = new CacheService()
 
 export class ArticleService {
-  get (language, slug) {
-    return deliveryClient.items()
-      .type(ContentTypes.Article.codeName)
-      .elementsParameter(fields)
-      .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
-      .languageParameter(language)
-      .getPromise()
+  async get (language, slug) {
+    const key = `${ContentTypes.Article.codeName}-${language}-${slug}`
+    return cacheService.getOrCreate(key, async () => {
+      const { firstItem } = await deliveryClient.items()
+        .type(ContentTypes.Article.codeName)
+        .elementsParameter(fields)
+        .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
+        .languageParameter(language)
+        .getPromise()
+
+      return firstItem
+    })
   }
 
-  getLatest (language, limit) {
-    return deliveryClient.items()
-      .type(ContentTypes.Article.codeName)
-      .elementsParameter(fields)
-      .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
-      .languageParameter(language)
-      .limitParameter(limit)
-      .getPromise()
+  async getByCodename (language, codename) {
+    const key = `${ContentTypes.Article.codeName}-${language}-${codename}`
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+
+      return item
+    })
+  }
+
+  async getLatest (language, limit) {
+    const key = `${ContentTypes.Article.codeName}-${language}-latest-${limit}`
+
+    return cacheService.getOrCreate(key, async () => {
+      const { items } = await deliveryClient.items()
+        .type(ContentTypes.Article.codeName)
+        .elementsParameter(fields)
+        .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
+        .languageParameter(language)
+        .limitParameter(limit)
+        .getPromise()
+
+      return items
+    })
   }
 }

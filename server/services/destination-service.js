@@ -1,4 +1,5 @@
-import { deliveryClient } from '../services/kentico-client'
+import { CacheService } from './cache-service'
+import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 
 const fields = [
@@ -21,29 +22,45 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
+const cacheService = new CacheService()
 
 export class DestinationService {
   getAll (language) {
-    return deliveryClient.items()
-      .type(ContentTypes.Destination.codeName)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .getPromise()
+    const key = `${ContentTypes.Destination.codeName}-${language}`
+    return cacheService.getOrCreate(key, async () => {
+      const { items } = await deliveryClient.items()
+        .type(ContentTypes.Destination.codeName)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+
+      return items
+    })
   }
 
   getBySlug (language, slug) {
-    return deliveryClient.items()
-      .type(ContentTypes.Destination.codeName)
-      .elementsParameter(fields)
-      .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
-      .languageParameter(language)
-      .getPromise()
+    const key = `${ContentTypes.Destination.codeName}-${language}-${slug}`
+    return cacheService.getOrCreate(key, async () => {
+      const { firstItem } = await deliveryClient.items()
+        .type(ContentTypes.Destination.codeName)
+        .elementsParameter(fields)
+        .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
+        .languageParameter(language)
+        .getPromise()
+
+      return firstItem
+    })
   }
 
   getByCodename (language, codename) {
-    return deliveryClient.item(codename)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .getPromise()
+    const key = `${ContentTypes.Destination.codeName}-${language}-${codename}`
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+
+      return item
+    })
   }
 }
