@@ -19,7 +19,7 @@ const cacheService = new CacheService()
 
 export class LandingPageService {
   get (language, codename) {
-    const key = `landing-page-${language}-${codename}`
+    const key = `${ContentTypes.LandingPage.codeName}-${language}-${codename}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.item(codename)
         .elementsParameter(fields)

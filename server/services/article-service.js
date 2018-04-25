@@ -26,7 +26,7 @@ const cacheService = new CacheService()
 
 export class ArticleService {
   async get (language, slug) {
-    const key = `article-${language}-${slug}`
+    const key = `${ContentTypes.Article.codeName}-${language}-${slug}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.items()
         .type(ContentTypes.Article.codeName)
@@ -38,7 +38,7 @@ export class ArticleService {
   }
 
   async getLatest (language, limit) {
-    const key = `articles-latest-${language}-${limit}`
+    const key = `${ContentTypes.Article.codeName}-latest-${language}-${limit}`
 
     return cacheService.getOrCreate(key, async () => (deliveryClient.items()
       .type(ContentTypes.Article.codeName)

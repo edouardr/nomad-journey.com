@@ -13,7 +13,7 @@ export class CacheService {
     return cachedValue
   }
 
-  async invalidate () {
+  async invalidate (entry) {
     console.log('invalidate')
   }
 }

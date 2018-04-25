@@ -23,7 +23,7 @@ const cacheService = new CacheService()
 
 export class AboutService {
   get (language, codename) {
-    const key = `about-${language}`
+    const key = `${ContentTypes.About_Us.codeName}-${language}`
     return cacheService.getOrCreate(key, () => (deliveryClient.item(codename)
       .elementsParameter(fields)
       .languageParameter(language)

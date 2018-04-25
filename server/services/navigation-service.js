@@ -12,7 +12,7 @@ const cacheService = new CacheService()
 
 export class NavigationService {
   getAll (language) {
-    const key = `navigation-${language}`
+    const key = `${ContentTypes.NavigationItem.codeName}-${language}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.items()
         .type(ContentTypes.NavigationItem.codeName)
@@ -24,7 +24,7 @@ export class NavigationService {
   }
 
   getNavItem (language, codename) {
-    const key = `navigation-${language}-${codename}`
+    const key = `${ContentTypes.NavigationItem.codeName}-${language}-${codename}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.item(codename)
         .elementsParameter(fields)

@@ -20,5 +20,17 @@ export const Symbols = {
     ABOUT_US: 'about_us',
     CURRENT_LOCATION: 'current_location',
     ITINERARY: 'itinerary'
+  },
+  WEBHOOK: {
+    OPERATIONS: {
+      ARCHIVE: 'archive',
+      PUBLISH: 'publish',
+      UNPUBLISH: 'unpublish',
+      UPSERT: 'upsert'
+    },
+    TYPES: {
+      CONTENT_ITEM: 'content_item',
+      CONTENT_ITEM_VARIANT: 'content_item_variant'
+    }
   }
 }

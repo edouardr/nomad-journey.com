@@ -18,6 +18,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.8",
     "@fortawesome/vue-fontawesome": "0.0.22",
     "axios": "^0.16.2",
+    "body-parser": "^1.18.2",
     "bulma": "^0.7.0",
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",

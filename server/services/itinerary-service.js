@@ -22,7 +22,7 @@ const cacheService = new CacheService()
 
 export class ItineraryService {
   get (language, codename) {
-    const key = `itinerary-${language}-${codename}`
+    const key = `${ContentTypes.Itinerary.codeName}-${language}-${codename}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.item(codename)
         .elementsParameter(fields)

@@ -12,7 +12,7 @@ const cacheService = new CacheService()
 
 export class LocationService {
   getCurrentLocation () {
-    const key = `location`
+    const key = `${ContentTypes.Location.codeName}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.item(Symbols.CODENAMES.CURRENT_LOCATION)
         .elementsParameter(fields)

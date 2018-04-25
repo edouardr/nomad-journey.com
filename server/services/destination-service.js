@@ -26,7 +26,7 @@ const cacheService = new CacheService()
 
 export class DestinationService {
   getAll (language) {
-    const key = `destinations-${language}`
+    const key = `${ContentTypes.Destination.codeName}-${language}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.items()
         .type(ContentTypes.Destination.codeName)
@@ -37,7 +37,7 @@ export class DestinationService {
   }
 
   getBySlug (language, slug) {
-    const key = `destinations-${language}-${slug}`
+    const key = `${ContentTypes.Destination.codeName}-${language}-${slug}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.items()
         .type(ContentTypes.Destination.codeName)
@@ -49,7 +49,7 @@ export class DestinationService {
   }
 
   getByCodename (language, codename) {
-    const key = `destinations-${language}-${codename}`
+    const key = `${ContentTypes.Destination.codeName}-${language}-${codename}`
     return cacheService.getOrCreate(key, () => (
       deliveryClient.item(codename)
         .elementsParameter(fields)
