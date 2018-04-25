@@ -59,7 +59,7 @@ export default {
     const landingPageResponse = await axios.get(`/api/landing-page/${store.state.language}/home`)
     store.commit(Symbols.MUTATIONS.SET_PAGE, landingPageResponse.data)
 
-    const latestArticlesResponse = await axios.get(`/api/articles/latest/${store.state.language}/3`)
+    const latestArticlesResponse = await axios.get(`/api/articles/latest/${store.state.language}/${Symbols.DATA.HOME_ARTICLES_LIMIT}`)
     store.commit(Symbols.MUTATIONS.SET_ARTICLES, latestArticlesResponse.data)
 
     const currentLocationResponse = await axios.get(`/api/location/current`)
