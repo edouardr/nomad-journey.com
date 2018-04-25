@@ -1,16 +1,25 @@
 import { redisClient, getAsync } from './redis-client'
+import { JsonHelper } from '../helpers/json-helper'
+
+const jsonHelper = new JsonHelper()
 
 export class CacheService {
   async getOrCreate (key, valueFactory) {
+    console.log(`CACHE::${key}:: Retrieving from cache`)
     let cachedValue = await getAsync(key)
     if (cachedValue) {
-      return cachedValue
+      console.log(`CACHE::${key}:: Value retrieved from cache`)
+      return JSON.parse(cachedValue)
     }
 
-    cachedValue = valueFactory()
-    redisClient.set(key, cachedValue)
+    console.log(`CACHE::${key}:: Querying value`)
+    cachedValue = await valueFactory()
+    let cleanedValue = jsonHelper.removeCircularReferences(cachedValue)
+    console.log(`CACHE::${key}:: Putting value to cache`)
+    redisClient.set(key, cleanedValue)
 
-    return cachedValue
+    console.log(`CACHE::${key}:: Return cachedValue`)
+    return JSON.parse(cleanedValue)
   }
 
   async invalidate (entry) {

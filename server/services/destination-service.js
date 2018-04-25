@@ -27,34 +27,40 @@ const cacheService = new CacheService()
 export class DestinationService {
   getAll (language) {
     const key = `${ContentTypes.Destination.codeName}-${language}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.items()
+    return cacheService.getOrCreate(key, async () => {
+      const { items } = await deliveryClient.items()
         .type(ContentTypes.Destination.codeName)
         .elementsParameter(fields)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return items
+    })
   }
 
   getBySlug (language, slug) {
     const key = `${ContentTypes.Destination.codeName}-${language}-${slug}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.items()
+    return cacheService.getOrCreate(key, async () => {
+      const { firstItem } = await deliveryClient.items()
         .type(ContentTypes.Destination.codeName)
         .elementsParameter(fields)
         .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return firstItem
+    })
   }
 
   getByCodename (language, codename) {
     const key = `${ContentTypes.Destination.codeName}-${language}-${codename}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.item(codename)
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return item
+    })
   }
 }

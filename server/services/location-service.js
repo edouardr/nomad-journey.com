@@ -13,10 +13,12 @@ const cacheService = new CacheService()
 export class LocationService {
   getCurrentLocation () {
     const key = `${ContentTypes.Location.codeName}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.item(Symbols.CODENAMES.CURRENT_LOCATION)
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(Symbols.CODENAMES.CURRENT_LOCATION)
         .elementsParameter(fields)
         .getPromise()
-    ))
+
+      return item
+    })
   }
 }

@@ -27,26 +27,31 @@ const cacheService = new CacheService()
 export class ArticleService {
   async get (language, slug) {
     const key = `${ContentTypes.Article.codeName}-${language}-${slug}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.items()
+    return cacheService.getOrCreate(key, async () => {
+      const { firstItem } = await deliveryClient.items()
         .type(ContentTypes.Article.codeName)
         .elementsParameter(fields)
         .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return firstItem
+    })
   }
 
   async getLatest (language, limit) {
     const key = `${ContentTypes.Article.codeName}-latest-${language}-${limit}`
 
-    return cacheService.getOrCreate(key, async () => (deliveryClient.items()
-      .type(ContentTypes.Article.codeName)
-      .elementsParameter(fields)
-      .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
-      .languageParameter(language)
-      .limitParameter(limit)
-      .getPromise()
-    ))
+    return cacheService.getOrCreate(key, async () => {
+      const { items } = await deliveryClient.items()
+        .type(ContentTypes.Article.codeName)
+        .elementsParameter(fields)
+        .orderParameter(`elements.${ContentTypes.Article.fields.posted}`, SortOrder.desc)
+        .languageParameter(language)
+        .limitParameter(limit)
+        .getPromise()
+
+      return items
+    })
   }
 }

@@ -24,11 +24,14 @@ const cacheService = new CacheService()
 export class AboutService {
   get (language, codename) {
     const key = `${ContentTypes.About_Us.codeName}-${language}`
-    return cacheService.getOrCreate(key, () => (deliveryClient.item(codename)
-      .elementsParameter(fields)
-      .languageParameter(language)
-      .depthParameter(3)
-      .getPromise()
-    ))
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .depthParameter(3)
+        .getPromise()
+
+      return item
+    })
   }
 }

@@ -13,23 +13,27 @@ const cacheService = new CacheService()
 export class NavigationService {
   getAll (language) {
     const key = `${ContentTypes.NavigationItem.codeName}-${language}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.items()
+    return cacheService.getOrCreate(key, async () => {
+      const { items } = await deliveryClient.items()
         .type(ContentTypes.NavigationItem.codeName)
         .elementsParameter(fields)
         .orderParameter(`elements.${ContentTypes.NavigationItem.fields.order}`, SortOrder.asc)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return items
+    })
   }
 
   getNavItem (language, codename) {
     const key = `${ContentTypes.NavigationItem.codeName}-${language}-${codename}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.item(codename)
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return item
+    })
   }
 }

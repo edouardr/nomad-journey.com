@@ -20,11 +20,13 @@ const cacheService = new CacheService()
 export class LandingPageService {
   get (language, codename) {
     const key = `${ContentTypes.LandingPage.codeName}-${language}-${codename}`
-    return cacheService.getOrCreate(key, () => (
-      deliveryClient.item(codename)
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
         .getPromise()
-    ))
+
+      return item
+    })
   }
 }
