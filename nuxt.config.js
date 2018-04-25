@@ -4,6 +4,7 @@ module.exports = {
     height: '3px'
   },
   env: {
+    REDISTOGO_URL: process.env.REDISTOGO_URL || 'redis:6379',
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME || 'anomadjourney',
     MAPS_API_KEY: process.env.MAPS_API_KEY || ''
   },
