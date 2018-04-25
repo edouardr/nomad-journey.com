@@ -8,7 +8,7 @@ const cacheClientFactory = () => {
   if (process.env.REDISTOGO_URL) {
     let redisUrl = url.parse(process.env.REDISTOGO_URL)
     client = redis.createClient(redisUrl.port, redisUrl.hostname)
-    redis.auth(redisUrl.auth.split(':')[1])
+    client.auth(redisUrl.auth.split(':')[1])
   } else {
     client = redis.createClient()
   }
