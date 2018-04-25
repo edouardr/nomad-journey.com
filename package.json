@@ -23,7 +23,7 @@
     "express": "^4.15.3",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
     "moment": "^2.22.1",
-    "nuxt": "latest",
+    "nuxt": "^1.4.0",
     "redis": "^2.8.0",
     "vue-lazyload": "^1.2.3",
     "vue2-google-maps": "^0.8.12",
