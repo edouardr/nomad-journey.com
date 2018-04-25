@@ -1,9 +1,8 @@
 import { Symbols } from '../../constants'
 import { Router } from 'express'
-import { CacheService } from '../services/cache-service'
+import { run as cleanEntry } from '../rules/cache/cache-cleaner-manager'
 
 const router = Router()
-const cacheService = new CacheService()
 
 router.post('/webhook', async (req, res, next) => {
   const model = req.body
@@ -16,10 +15,7 @@ router.post('/webhook', async (req, res, next) => {
         case Symbols.WEBHOOK.OPERATIONS.UNPUBLISH:
         case Symbols.WEBHOOK.OPERATIONS.UPSERT:
           for (let item of model.data.items) {
-            cacheService.invalidate({
-              type: model.Message.Type,
-              item: item
-            })
+            cleanEntry(item)
           }
           break
         default:

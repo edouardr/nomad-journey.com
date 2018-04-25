@@ -39,8 +39,20 @@ export class ArticleService {
     })
   }
 
+  async getByCodename (language, codename) {
+    const key = `${ContentTypes.Article.codeName}-${language}-${codename}`
+    return cacheService.getOrCreate(key, async () => {
+      const { item } = await deliveryClient.item(codename)
+        .elementsParameter(fields)
+        .languageParameter(language)
+        .getPromise()
+
+      return item
+    })
+  }
+
   async getLatest (language, limit) {
-    const key = `${ContentTypes.Article.codeName}-latest-${language}-${limit}`
+    const key = `${ContentTypes.Article.codeName}-${language}-latest-${limit}`
 
     return cacheService.getOrCreate(key, async () => {
       const { items } = await deliveryClient.items()

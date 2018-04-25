@@ -22,7 +22,18 @@ export class CacheService {
     return JSON.parse(cleanedValue)
   }
 
-  async invalidate (entry) {
-    console.log('invalidate')
+  async invalidate (key) {
+    console.log(`CACHE::${key}:: Deleting key`)
+    redisClient.del(key)
+    console.log(`CACHE::${key}:: Key deleted`)
+  }
+
+  async invalidateByPattern (keysPattern) {
+    console.log(`CACHE::${keysPattern}:: Deleting keys for pattern`)
+    redisClient.keys(keysPattern, (keys) => {
+      for (let key of keys) {
+        this.invalidate(key)
+      }
+    })
   }
 }
