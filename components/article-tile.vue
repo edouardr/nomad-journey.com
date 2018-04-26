@@ -1,22 +1,22 @@
 <template>
-  <div class="card"
-    @mouseover="hovered = !hovered"
-    @mouseleave="hovered = !hovered">
-    <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
-    <div class="card-image ri">
-      <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
-        <img v-lazy="imgUrl" :alt="imgAlt">
-      </figure>
+    <div class="card"
+        @mouseover="hovered = !hovered"
+        @mouseleave="hovered = !hovered">
+      <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
+        <div class="card-image ri">
+          <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
+            <img v-lazy="imgUrl" :alt="imgAlt">
+          </figure>
+        </div>
+      <div class="card-content draw meet">
+          <p class="title is-5 is-spaced">
+            <router-link :to="url">{{title}}</router-link>
+          </p>
+          <p class="subtitle is-6">
+            {{text}}
+          </p>
+      </div>
     </div>
-    <div class="card-content">
-        <p class="title is-5 is-spaced">
-          <router-link :to="url">{{title}}</router-link>
-        </p>
-        <p class="subtitle is-6">
-          {{text}}
-        </p>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -53,9 +53,14 @@ export default {
     color: $water;
 
     .card-content {
+      position: relative;
+      vertical-align: middle;
+      padding: 10px;
+      z-index: 2;
+      pointer-events: none;
+      margin-top: 4%;
       border: 2px solid $water;
       background: transparent;
-      margin-top: 4%;
     }
   }
 
@@ -113,14 +118,5 @@ export default {
         z-index: 2;
       }
     }
-  }
-
-  .card-content {
-    position: relative;
-    background-color: #fff;
-    padding: 10px;
-    transition: border-color .5s;
-    z-index: 2;
-    pointer-events: none;
   }
 </style>

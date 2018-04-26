@@ -42,6 +42,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .navbar-burger {
+    height: 5.25rem;
+    width: 4.25rem;
+  }
   .navbar-item {
     font-size: 1.5rem;
     font-weight: bold;

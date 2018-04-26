@@ -12,13 +12,13 @@
           <font-awesome-icon :icon="['fab', 'instagram']" />
         </span>
       </a>
-      <LanguageSelector />
     </div>
     <div class="footer-legal">
       <div class="has-text-centered">
         <p class="has-text-white">
           <small>© 2018 A Nomad Journey</small>
         </p>
+        <LanguageSelector />
       </div>
     </div>
   </footer>

@@ -1,6 +1,6 @@
 <template>
       <div class="container">
-        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <nav class="breadcrumb is-small has-succeeds-separator" aria-label="breadcrumbs">
           <ul>
             <li v-for="navItem in links"
               :key="navItem.id"
@@ -22,3 +22,10 @@ export default {
   props: ['links']
 }
 </script>
+
+<style lang="scss" scoped>
+  .breadcrumb {
+    font-size: 1.1rem;
+    padding-bottom: 2rem;
+  }
+</style>
