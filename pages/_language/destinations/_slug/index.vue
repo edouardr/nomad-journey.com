@@ -8,9 +8,7 @@
     <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
       <div class="container">
-        <div class="container">
-          <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, currentDestination)" />
-        </div>
+        <ArticleGroup :articles="articles | cardify(resolveListItemUrl, language, currentDestination)" />
       </div>
     </section>
   </div>
