@@ -48,7 +48,6 @@ export default {
   }
   .navbar-item {
     font-size: 1.5rem;
-    font-weight: bold;
 
     img {
       max-height: 4rem;
