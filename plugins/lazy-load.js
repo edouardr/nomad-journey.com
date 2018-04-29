@@ -3,7 +3,7 @@ import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: '/_nuxt/img/logo.a04e995.png',
-  loading: '/_nuxt/img/logo.a04e995.png',
+  error: '/logo-simple-grey.png',
+  loading: '/logo-simple-grey.png',
   attempt: 1
 })

@@ -33,10 +33,15 @@ export default {
     overflow: hidden;
 
     img {
-        width: 100%;
-        height: 100%;
-        min-height: 512px;
-        object-fit: cover;
+      animation: zoomImage infinite;
+      animation-delay: .3s;
+      animation-fill-mode: both;
+      animation-duration: 80s;
+      backface-visibility: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 512px;
+      object-fit: cover;
     }
 
     &:after {
@@ -76,6 +81,22 @@ export default {
       min-height: 720px;
       padding: 90px percentage(1 / 12);
     }
+  }
+
+  @keyframes zoomImage {
+    0% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale3d(1.4,1.4,1.4);
+    }
+    100% {
+      opacity: 1;
+      transform: scale3d(1.1,1.1,1.1);
+    }
+
   }
 </style>
 

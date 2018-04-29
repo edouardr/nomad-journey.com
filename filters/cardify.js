@@ -6,13 +6,14 @@ export const cardify = (listItems, resolveListItemUrl, language, params) => {
     .map((listItem) => {
       return {
         id: listItem.system.id,
-        title: listItem.tileTitle.text,
-        text: listItem.tileDescription.text,
-        url: resolveListItemUrl(listItem, language, params),
         img: {
           url: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].url : '',
           alt: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].text : ''
-        }
+        },
+        location: listItem.location ? listItem.location.text : '',
+        text: listItem.tileDescription.text,
+        title: listItem.tileTitle.text,
+        url: resolveListItemUrl(listItem, language, params)
       }
     })
 }

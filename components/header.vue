@@ -5,7 +5,7 @@
         <router-link class="navbar-item brand"
           :to="`/${language}`"
           active-class="undefined">
-          <img src="~/assets/img/logo.png" alt="Logo">
+          <img src="/logo-transp.png" alt="Logo">
         </router-link>
         <span :class="'navbar-burger burger ' + (isOpen ? 'is-active' : '')" data-target="navMenu" @click="isOpen = !isOpen">
           <span></span>
@@ -48,7 +48,6 @@ export default {
   }
   .navbar-item {
     font-size: 1.5rem;
-    font-weight: bold;
 
     img {
       max-height: 4rem;
