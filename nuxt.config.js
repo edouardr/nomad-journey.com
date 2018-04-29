@@ -19,7 +19,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'A Nomad Journey' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   plugins: [
