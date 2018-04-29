@@ -1,16 +1,22 @@
 <template>
-    <div class="card"
+    <div :class="{
+          card: true,
+          hovered: hovered
+        }"
         @mouseover="hovered = !hovered"
         @mouseleave="hovered = !hovered">
       <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
-        <div class="card-image ri">
+        <div class="card-image">
           <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
             <img v-lazy="imgUrl" :alt="imgAlt">
           </figure>
         </div>
-      <div class="card-content draw meet">
+      <div :class="'card-content'+ (hovered ? ' hovered': '')">
+          <p class="subtitle is-7">
+            {{location}}
+          </p>
           <p class="title is-5 is-spaced">
-            <router-link :to="url">{{title}}</router-link>
+            {{title}}
           </p>
           <p class="subtitle is-6">
             {{text}}
@@ -29,7 +35,7 @@ export default {
       select: Symbols.ACTIONS.SELECT_ARTICLE
     })
   },
-  props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
+  props: ['id', 'imgAlt', 'imgUrl', 'location', 'posted', 'text', 'title', 'url'],
   data () {
     return {
       hovered: false
@@ -42,25 +48,32 @@ export default {
   .card {
     background-color: transparent;
     -webkit-box-shadow: none;
-    box-shadow: none;
-    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 3px hsla(0,0%,0%,.1), 0 0 0 1px hsla(187,84%,51%,.1);
+    max-width: 100%;
     position: relative;
-    text-align: left;
     padding-bottom: 5px;
-    transition: background-color .5s;
     overflow: hidden;
     cursor: pointer;
-    color: $water;
 
-    .card-content {
-      position: relative;
-      vertical-align: middle;
-      padding: 10px;
-      z-index: 2;
-      pointer-events: none;
-      margin-top: 4%;
-      border: 2px solid $water;
-      background: transparent;
+    &.hovered {
+      box-shadow: 0 2px 6px 0 hsla(0,0%,0%,.4);
+    }
+  }
+
+  .card-content {
+    position: relative;
+    vertical-align: middle;
+    padding: 10px;
+    z-index: 2;
+    pointer-events: none;
+    margin-top: 4%;
+    background: transparent;
+
+    &.hovered {
+      .title {
+        color: $water;
+      }
     }
   }
 
@@ -82,15 +95,6 @@ export default {
     position: relative;
     overflow: hidden;
     z-index: 1;
-
-    .ri {
-      width: 100%;
-      overflow: hidden;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
 
     .image {
       -webkit-transition: all 1s ease;
