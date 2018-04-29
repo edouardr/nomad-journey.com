@@ -10,6 +10,7 @@
         :posted="article.posted"
         :text="article.text"
         :title="article.title"
+        :location="article.location"
         :url="article.url"/>
     </div>
   </div>

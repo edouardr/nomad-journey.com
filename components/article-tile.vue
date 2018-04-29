@@ -13,7 +13,7 @@
         </div>
       <div :class="'card-content'+ (hovered ? ' hovered': '')">
           <p class="subtitle is-7">
-            Tasmania
+            {{location}}
           </p>
           <p class="title is-5 is-spaced">
             {{title}}
@@ -35,7 +35,7 @@ export default {
       select: Symbols.ACTIONS.SELECT_ARTICLE
     })
   },
-  props: ['id', 'imgAlt', 'imgUrl', 'posted', 'text', 'title', 'url'],
+  props: ['id', 'imgAlt', 'imgUrl', 'location', 'posted', 'text', 'title', 'url'],
   data () {
     return {
       hovered: false
