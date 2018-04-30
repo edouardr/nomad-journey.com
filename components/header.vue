@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .navbar {
+    box-shadow: 0 2px 0 0 rgba(128,128,128,.1);
+  }
   .navbar-burger {
     height: 5.25rem;
     width: 4.25rem;

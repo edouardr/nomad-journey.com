@@ -1,17 +1,31 @@
 <template>
-  <div class="image">
-    <div class="media-obj">
-      <img :src="imgUrl" :alt="imgAlt">
-    </div>
-    <div class="content content-wrap">
-      <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
-      <div class="subtitle has-text-white is-3" v-html="desc"></div>
+<section class="hero is-medium">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <TransparentHeader />
+  </div>
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="image">
+      <div class="media-obj">
+        <img :src="imgUrl" :alt="imgAlt">
+      </div>
+      <div class="content content-wrap">
+        <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
+        <div class="subtitle has-text-white is-3" v-html="desc"></div>
+      </div>
     </div>
   </div>
+</section>
 </template>
 
 <script>
+import TransparentHeader from '~/components/transparent-header'
+
 export default {
+  components: {
+    TransparentHeader
+  },
   props: [
     'desc',
     'title',
@@ -22,6 +36,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .hero {
+    position: relative;
+    min-height: 512px;
+    .hero-body {
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
   .media-obj{
     position: absolute;
     left: 0;
@@ -76,7 +101,9 @@ export default {
     h1 {
       margin-bottom: 33px;
     }
-
+    .hero {
+      min-height: 720px;
+    }
     .content-wrap {
       min-height: 720px;
       padding: 90px percentage(1 / 12);

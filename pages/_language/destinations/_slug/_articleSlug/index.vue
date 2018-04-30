@@ -1,5 +1,6 @@
 <template>
-  <article>
+  <article class="article-container">
+    <Header />
     <ArticleHeader v-if="currentArticle.jumbotronImage"
       :posted="currentArticle.posted.value"
       :location="currentArticle.location.value"
@@ -28,6 +29,7 @@
 <script>
 import ArticleHeader from '~/components/article-header'
 import Breadcrumb from '~/components/breadcrumb'
+import Header from '~/components/header'
 import ImageGallery from '~/components/image-gallery'
 import VueDisqus from '~/components/vue-disqus'
 import { Symbols } from '~/constants'
@@ -40,6 +42,7 @@ export default {
   components: {
     ArticleHeader,
     Breadcrumb,
+    Header,
     ImageGallery,
     VueDisqus
   },
@@ -114,3 +117,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .article-container {
+    padding-top: 3.25rem;
+  }
+</style>
+

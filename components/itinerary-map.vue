@@ -1,6 +1,6 @@
 <template>
+  <section class="hero is-large">
     <div class="map-container">
-      <div class="content-wrap">
       <iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;"
         :src="`https://planificateur.a-contresens.net/embed-itineraire/${mapid}-carte?flag=0&style=classic&climate=0&itinerary=0&co2=0&budget=0&centercurrentstep=0&stepnumber=0&futurstep=no`"
         frameborder="0"
@@ -9,12 +9,17 @@
         mozallowfullscreen="true"
         oallowfullscreen="true"
         msallowfullscreen="true"></iframe>
-      </div>
     </div>
+  </section>
 </template>
 
 <script>
+import Header from '~/components/header'
+
 export default {
+  components: {
+    Header
+  },
   props: ['mapid']
 }
 </script>
@@ -22,9 +27,6 @@ export default {
 <style scoped>
   .map-container {
     display: block;
-    position: relative;
-  }
-  .content-wrap {
     position: relative;
     min-height: 512px;
     padding: 45px percentage(1 / 12);
