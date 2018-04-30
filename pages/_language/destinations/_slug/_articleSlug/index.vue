@@ -1,5 +1,5 @@
 <template>
-  <article class="article-container">
+  <article>
     <Header />
     <ArticleHeader v-if="currentArticle.jumbotronImage"
       :posted="currentArticle.posted.value"
@@ -23,11 +23,13 @@
         <vue-disqus :shortname="shortname" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
       </div>
     </section>
+    <BackToTop />
   </article>
 </template>
 
 <script>
 import ArticleHeader from '~/components/article-header'
+import BackToTop from '~/components/back-to-top'
 import Breadcrumb from '~/components/breadcrumb'
 import Header from '~/components/header'
 import ImageGallery from '~/components/image-gallery'
@@ -41,6 +43,7 @@ import { mapState } from 'vuex'
 export default {
   components: {
     ArticleHeader,
+    BackToTop,
     Breadcrumb,
     Header,
     ImageGallery,
@@ -119,8 +122,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .article-container {
-    padding-top: 3.25rem;
-  }
+
 </style>
 

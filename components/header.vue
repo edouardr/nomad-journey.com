@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar is-fixed-top">
+  <header class="navbar">
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item brand"

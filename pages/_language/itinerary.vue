@@ -1,10 +1,10 @@
 <template>
-  <div class="itinerary-container">
+  <div>
     <Header />
     <ItineraryMap v-if="currentPage.mapId"
       :mapid="currentPage.mapId.value" />
     <IntroText :text="currentPage.bodyText.value" />
-    <section class="section key-fact-group">
+    <section class="section">
       <div class="container">
         <KeyFactGroup :keyFacts="currentPage.keyFacts" />
       </div>
@@ -42,11 +42,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .itinerary-container {
-    padding-top: 5rem;
-  }
-  .key-fact-group {
-    // background-color: #3b1E5E;
-  }
+
 </style>
 
