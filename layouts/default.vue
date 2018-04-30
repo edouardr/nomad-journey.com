@@ -7,12 +7,10 @@
 
 <script>
 import Footer from '~/components/footer'
-import Header from '~/components/header'
 
 export default {
   components: {
-    Footer,
-    Header
+    Footer
   }
 }
 </script>

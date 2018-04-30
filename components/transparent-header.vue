@@ -51,9 +51,15 @@ export default {
     box-shadow: none;
 
     .navbar-burger {
-      height: 5.25rem;
-      width: 4.25rem;
       color: white;
+    }
+
+    .navbar-brand {
+      .navbar-item {
+        img {
+          max-height: 2.5rem;
+        }
+      }
     }
 
     &.is-active {
@@ -89,7 +95,6 @@ export default {
       color: white;
 
       img {
-        max-height: 4rem;
         filter: brightness(0) invert(1);
       }
 
@@ -105,6 +110,23 @@ export default {
         &:hover {
           color: $water;
         }
+      }
+    }
+  }
+
+  @media only screen and (min-width : "992px") {
+    .navbar {
+      .navbar-brand {
+        .navbar-item {
+          img {
+            max-height: 4rem;
+          }
+        }
+      }
+
+      .navbar-burger {
+        height: 5.25rem;
+        width: 4.25rem;
       }
     }
   }

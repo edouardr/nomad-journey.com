@@ -49,17 +49,37 @@ export default {
     height: 5.25rem;
     width: 4.25rem;
   }
+
+  .navbar-brand {
+    .navbar-item {
+      img {
+        max-height: 2.5rem;
+      }
+    }
+  }
+
   .navbar-item {
     font-size: 1.5rem;
-
-    img {
-      max-height: 4rem;
-    }
 
     .brand {
       &:hover {
         background-color: inherit;
       }
+    }
+  }
+
+  @media only screen and (min-width : "992px") {
+    .navbar-brand {
+      .navbar-item {
+        img {
+          max-height: 4rem;
+        }
+      }
+    }
+
+    .navbar-burger {
+      height: 5.25rem;
+      width: 4.25rem;
     }
   }
 </style>
