@@ -4,8 +4,8 @@
     <ItineraryMap v-if="currentPage.mapId"
       :mapid="currentPage.mapId.value" />
     <IntroText :text="currentPage.bodyText.value" />
-    <section class="section">
-      <div class="container is-light">
+    <section class="section key-fact-group">
+      <div class="container">
         <KeyFactGroup :keyFacts="currentPage.keyFacts" />
       </div>
     </section>
@@ -44,6 +44,9 @@ export default {
 <style lang="scss" scoped>
   .itinerary-container {
     padding-top: 5rem;
+  }
+  .key-fact-group {
+    // background-color: #3b1E5E;
   }
 </style>
 

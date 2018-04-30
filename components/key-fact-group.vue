@@ -1,6 +1,6 @@
 <template>
-  <div class="columns is-multiline">
-    <div class="column is-one-quarter"
+  <div class="columns is-multiline key-fact-group">
+    <div class="column is-one-third key-fact"
           v-for="keyFact in keyFacts"
           :key="keyFact.id"
           img-top>
@@ -19,3 +19,10 @@ export default {
   props: ['keyFacts']
 }
 </script>
+
+<style lang="scss" scoped>
+  .key-fact {
+    padding: 2rem;
+  }
+</style>
+
