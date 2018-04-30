@@ -20,7 +20,7 @@
     </section>
     <section class="section">
       <div class="container">
-        <vue-disqus :shortname="shortname" :id="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
+        <vue-disqus :shortname="shortname" :identifier="currentArticle.id" :title="currentArticle.jumbotronTitle.value"></vue-disqus>
       </div>
     </section>
     <BackToTop />
