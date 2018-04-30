@@ -1,10 +1,11 @@
 <template>
   <div>
+    <Header />
     <ItineraryMap v-if="currentPage.mapId"
       :mapid="currentPage.mapId.value" />
     <IntroText :text="currentPage.bodyText.value" />
     <section class="section">
-      <div class="container is-light">
+      <div class="container">
         <KeyFactGroup :keyFacts="currentPage.keyFacts" />
       </div>
     </section>
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import Header from '~/components/header'
 import IntroText from '~/components/intro-text'
 import ItineraryMap from '~/components/itinerary-map'
 import KeyFactGroup from '~/components/key-fact-group'
@@ -22,6 +24,7 @@ import { mapState } from 'vuex'
 
 export default {
   components: {
+    Header,
     IntroText,
     ItineraryMap,
     KeyFactGroup
@@ -37,3 +40,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>
+
