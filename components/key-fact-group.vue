@@ -2,7 +2,7 @@
   <div class="columns is-multiline key-fact-group">
     <div class="column is-one-third key-fact"
           v-for="keyFact in keyFacts"
-          :key="keyFact.id"
+          :key="keyFact.system.id"
           img-top>
       <KeyFact :model="keyFact" />
     </div>
