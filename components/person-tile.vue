@@ -8,7 +8,7 @@
     <div class="card-content">
       <div class="content"
         v-for="questionAnswer in person.interview"
-        :key="questionAnswer.id">
+        :key="questionAnswer.system.id">
           <p class="title is-5">
             {{questionAnswer.question.text}}
           </p>

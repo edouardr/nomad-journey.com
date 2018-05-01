@@ -17,7 +17,7 @@
         <div class="navbar-end">
           <router-link class="navbar-item"
             v-for="navItem in navigation"
-            :key="navItem.id"
+            :key="navItem.system.id"
             :to="`/${language}${navItem.redirectTo.value}`"
             :exact="navItem.redirectTo.value == '/'"
             v-on:click.native="isOpen = false">
