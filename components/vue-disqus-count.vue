@@ -1,7 +1,7 @@
 <template>
   <span class="fa-stack fa-3x">
     <font-awesome-icon :icon="['fas', 'comment']" class="fa-stack-2x"/>
-    <strong class="fa-stack-1x counter disqus-comment-count" :data-disqus-identifier="identifier">0</strong>
+    <strong class="fa-stack-1x fa-stack-text fa-inverse counter disqus-comment-count" :data-disqus-identifier="identifier">0</strong>
   </span>
 </template>
 
@@ -36,7 +36,6 @@ export default {
       const self = this
       window.disqus_config = function() {
         self.setBaseConfig(this)
-        console.log(this)
       }
       setTimeout(() => {
         const scriptTagId = 'dsq-count-scr';
