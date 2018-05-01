@@ -61,8 +61,9 @@ export default {
     },
     init () {
       const self = this
-      window.disqus_config = () => {
+      window.disqus_config = function() {
         self.setBaseConfig(this)
+        console.log(this)
       }
       setTimeout(() => {
         let scriptTag = document.createElement('script')
@@ -91,9 +92,6 @@ export default {
       if (this.sso_config) {
         disqusConfig.sso = this.sso_config
       }
-      disqusConfig.callbacks.onReady = [() => {
-        this.$emit('ready')
-      }]
     }
   }
 }
