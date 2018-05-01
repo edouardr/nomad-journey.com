@@ -28,15 +28,14 @@ export default {
   },
   mounted () {
     if (process.browser) {
+      if (DISQUSWIDGETS) {
+        DISQUSWIDGETS.getCount({reset: true});
+      }
       this.init()
     }
   },
   methods: {
     init () {
-      const self = this
-      window.disqus_config = function() {
-        self.setBaseConfig(this)
-      }
       setTimeout(() => {
         const scriptTagId = 'dsq-count-scr';
         let scriptTag = document.getElementById(scriptTagId)
