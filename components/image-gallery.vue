@@ -8,7 +8,7 @@
     <div class="grid__group">
       <ImageGalleryItem
         v-for="image in leftColumnImages"
-        :key="image.id" :image="image"/>
+        :key="image.name" :image="image"/>
     </div>
   </div>
 </template>
