@@ -8,7 +8,7 @@ module.exports = {
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME || 'anomadjourney',
     MAPS_API_KEY: process.env.MAPS_API_KEY || '',
     FB_USERNAME: process.env.FB_USERNAME || 'anomadjourney',
-    INSTA_USERNAME: process.env.MAPS_API_KEY || 'nomad.journey'
+    INSTA_USERNAME: process.env.INSTA_USERNAME || 'nomad.journey'
   },
   /*
   ** Headers of the page
