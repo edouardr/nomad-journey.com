@@ -1,7 +1,9 @@
 <template>
-  <span class="fa-stack fa-3x">
-    <font-awesome-icon :icon="['fas', 'comment']" class="fa-stack-2x"/>
-    <strong class="fa-stack-1x fa-stack-text fa-inverse counter disqus-comment-count" :data-disqus-identifier="identifier">0</strong>
+  <span class="fa-stack fa-2x icon-count">
+    <span class="fa-layers fa-fw">
+      <font-awesome-icon :icon="['fas', 'comment-alt']" class="fa-stack-1x"/>
+      <span class="fa-layers-text fa-inverse icon-count__value disqus-comment-count" :data-disqus-identifier="identifier">0</span>
+    </span>
   </span>
 </template>
 
@@ -28,8 +30,8 @@ export default {
   },
   mounted () {
     if (process.browser) {
-      if (DISQUSWIDGETS) {
-        DISQUSWIDGETS.getCount({reset: true});
+      if (window.DISQUSWIDGETS) {
+        window.DISQUSWIDGETS.getCount({reset: true});
       }
       this.init()
     }
@@ -58,5 +60,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .counter { margin-top: .3em; }
+  .icon-count__value {
+    font-size: 1rem;
+  }
+
+  .icon-count {
+    color: $water;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    height: 3rem;
+    width: 3rem;
+  }
 </style>

@@ -10,8 +10,8 @@
         <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
           <img v-lazy="imgUrl" :alt="imgAlt">
         </figure>
-      </div>
         <vue-disqus-count :url="url" :identifier="id" :shortname="shortname" />
+      </div>
       <div :class="'card-content'+ (hovered ? ' hovered': '')">
           <p class="subtitle is-7">
             {{location}}
