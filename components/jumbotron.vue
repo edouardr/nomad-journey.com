@@ -11,8 +11,8 @@
         <img :src="imgUrl" :alt="imgAlt">
       </div>
       <div class="content content-wrap">
-        <h1 class="title has-text-white is-1 is-spaced is-large">{{title}}</h1>
-        <div class="subtitle has-text-white is-3" v-html="desc"></div>
+        <h1 class="title has-text-white is-2 is-spaced is-large">{{title}}</h1>
+        <div class="subtitle has-text-white is-4" v-html="desc"></div>
       </div>
     </div>
   </div>
