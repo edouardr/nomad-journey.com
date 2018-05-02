@@ -5,7 +5,7 @@ export const cardify = (listItems, resolveListItemUrl, language, params) => {
     })
     .map((listItem) => {
       return {
-        id: listItem.system.id,
+        id: listItem.system.codename,
         img: {
           url: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].url : '',
           alt: listItem.tileThumbnail.assets.length ? listItem.tileThumbnail.assets[0].text : ''

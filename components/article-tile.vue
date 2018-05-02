@@ -6,11 +6,12 @@
         @mouseover="hovered = !hovered"
         @mouseleave="hovered = !hovered">
       <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
-        <div class="card-image">
-          <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
-            <img v-lazy="imgUrl" :alt="imgAlt">
-          </figure>
-        </div>
+      <div class="card-image">
+        <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
+          <img v-lazy="imgUrl" :alt="imgAlt">
+        </figure>
+        <vue-disqus-count :url="url" :identifier="id" :shortname="shortname" />
+      </div>
       <div :class="'card-content'+ (hovered ? ' hovered': '')">
           <p class="subtitle is-7">
             {{location}}
@@ -26,10 +27,14 @@
 </template>
 
 <script>
+import VueDisqusCount from '~/components/vue-disqus-count'
 import { Symbols } from '~/constants'
 import { mapActions } from 'vuex'
 
 export default {
+  components: {
+    VueDisqusCount
+  },
   methods: {
     ...mapActions({
       select: Symbols.ACTIONS.SELECT_ARTICLE
@@ -38,7 +43,8 @@ export default {
   props: ['id', 'imgAlt', 'imgUrl', 'location', 'posted', 'text', 'title', 'url'],
   data () {
     return {
-      hovered: false
+      hovered: false,
+      shortname: process.env.DISQUS_SHORTNAME
     }
   }
 }
