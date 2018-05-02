@@ -1,10 +1,8 @@
 <template>
-  <div class="card"
-    @mouseover="hovered = !hovered"
-    @mouseleave="hovered = !hovered">
+  <div class="card">
     <router-link :to="url" class="card-link"></router-link>
     <div class="card-image">
-      <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
+      <figure class="image is-16by9">
         <img v-lazy="imgUrl" :alt="imgAlt">
       </figure>
     </div>
@@ -17,11 +15,6 @@
 <script>
 export default {
   props: ['id', 'imgAlt', 'imgUrl', 'title', 'url'],
-  data () {
-    return {
-      hovered: false
-    }
-  }
 }
 </script>
 
@@ -39,9 +32,16 @@ export default {
     cursor: pointer;
     color: $water;
 
-    .card-content {
-      border: 2px solid $water;
-      background: transparent;
+    &:hover {
+      .card-image {
+        .image {
+          -webkit-transform:scale(1.25);
+          -moz-transform:scale(1.25);
+          -ms-transform:scale(1.25);
+          -o-transform:scale(1.25);
+          transform:scale(1.25);
+        }
+      }
     }
   }
 
@@ -79,14 +79,6 @@ export default {
       -o-transition: all 1s ease;
       transition: all 1s ease;
 
-      &.hovered {
-        -webkit-transform:scale(1.25);
-        -moz-transform:scale(1.25);
-        -ms-transform:scale(1.25);
-        -o-transform:scale(1.25);
-        transform:scale(1.25);
-      }
-
       img {
         -o-object-fit: cover;
         object-fit: cover;
@@ -121,6 +113,8 @@ export default {
     -ms-flex-align: center;
     align-items: center;
     min-height: calc(100% - 24px);
+    border: 2px solid $water;
+    background: transparent;
     position: absolute;
     top: 10px;
     left: 10px;
