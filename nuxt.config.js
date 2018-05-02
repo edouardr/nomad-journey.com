@@ -6,7 +6,9 @@ module.exports = {
   env: {
     REDISTOGO_URL: process.env.REDISTOGO_URL || 'redis:6379',
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME || 'anomadjourney',
-    MAPS_API_KEY: process.env.MAPS_API_KEY || ''
+    MAPS_API_KEY: process.env.MAPS_API_KEY || '',
+    FB_USERNAME: process.env.FB_USERNAME || 'anomadjourney',
+    INSTA_USERNAME: process.env.MAPS_API_KEY || 'nomad.journey'
   },
   /*
   ** Headers of the page
