@@ -99,7 +99,6 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     z-index: 3;
-    pointer-events: none;
   }
 
   .card-image {
