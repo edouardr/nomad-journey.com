@@ -49,7 +49,7 @@ export default {
     },
     init () {
       const self = this
-      window.disqus_config = function() {
+      window.disqus_config = function () {
         self.setBaseConfig(this)
         console.log(this)
       }

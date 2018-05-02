@@ -1,13 +1,13 @@
 <template>
   <footer class="footer">
     <div class="footer-social has-text-centered">
-      <a class="is-size-1" href="https://facebook.com/anomadjourney" title="Facebook A Nomad Journey" target="_blank">
+      <a class="is-size-1" :href="`https://facebook.com/${fbUsername}`" title="Facebook A Nomad Journey" target="_blank">
         <span class="icon is-medium">
           <font-awesome-icon :icon="['fab', 'facebook-f']" />
         </span>
       </a>
 
-      <a class="is-size-1" href="https://instagram.com/anomadjourney" title="Instagram A Nomad Journey" target="_blank">
+      <a class="is-size-1" :href="`https://instagram.com/${instaUsername}`" title="Instagram A Nomad Journey" target="_blank">
         <span class="icon is-medium">
           <font-awesome-icon :icon="['fab', 'instagram']" />
         </span>
@@ -30,6 +30,12 @@ import LanguageSelector from '~/components/language-selector'
 export default {
   components: {
     LanguageSelector
+  },
+  data () {
+    return {
+      fbUsername: process.env.FB_USERNAME,
+      instaUsername: process.env.INSTA_USERNAME
+    }
   }
 }
 </script>
