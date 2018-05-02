@@ -12,7 +12,7 @@ export default {
   data () {
     return {
       isVisible: false
-    };
+    }
   },
   methods: {
     handleScroll () {
@@ -20,7 +20,7 @@ export default {
         const position = window.pageYOffset | document.body.scrollTop
         if (position > 250) {
           this.$refs.goTop.className = 'goTop isVisible'
-          this.isVisible = true;
+          this.isVisible = true
         } else {
           this.$refs.goTop.className = 'goTop'
           this.isVisible = false
@@ -30,20 +30,20 @@ export default {
     backToTop () {
       if (process.browser) {
         window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+          top: 0,
+          behavior: 'smooth'
+        })
       }
     }
   },
   created () {
     if (process.browser) {
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     }
   },
   destroyed () {
     if (process.browser) {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 }

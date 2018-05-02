@@ -9,7 +9,7 @@ export default {
           { hid: 'og:image', name: 'og:image', content: page.ogImage ? page.ogImage.value[0].url : '' },
           { hid: 'og:description', name: 'og:description', content: page.ogDescription.value }
         ],
-        title: page.metaTitle.value
+        title: `${page.metaTitle.value} | Nomad-Journey`
       }
     }
   }

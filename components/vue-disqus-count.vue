@@ -18,20 +18,12 @@ export default {
     identifier: {
       type: String,
       required: false
-    },
-    url: {
-      type: String,
-      required: false
-    },
-    title: {
-      type: String,
-      required: false
     }
   },
   mounted () {
     if (process.browser) {
       if (window.DISQUSWIDGETS) {
-        window.DISQUSWIDGETS.getCount({reset: true});
+        window.DISQUSWIDGETS.getCount({reset: true})
       }
       this.init()
     }
@@ -39,7 +31,7 @@ export default {
   methods: {
     init () {
       setTimeout(() => {
-        const scriptTagId = 'dsq-count-scr';
+        const scriptTagId = 'dsq-count-scr'
         let scriptTag = document.getElementById(scriptTagId)
         if (scriptTag) {
           return
