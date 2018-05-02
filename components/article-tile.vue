@@ -1,18 +1,13 @@
 <template>
-    <div :class="{
-          card: true,
-          hovered: hovered
-        }"
-        @mouseover="hovered = !hovered"
-        @mouseleave="hovered = !hovered">
+    <div class="card">
       <router-link :to="url" v-on:click.native="select(id)" class="card-link">{{title}}</router-link>
       <div class="card-image">
-        <figure :class="'image is-16by9'+ (hovered ? ' hovered': '')">
+        <figure class="image is-16by9">
           <img v-lazy="imgUrl" :alt="imgAlt">
         </figure>
         <vue-disqus-count :url="url" :identifier="id" :shortname="shortname" />
       </div>
-      <div :class="'card-content'+ (hovered ? ' hovered': '')">
+      <div class="card-content">
           <p class="subtitle is-7">
             {{location}}
           </p>
@@ -43,7 +38,6 @@ export default {
   props: ['id', 'imgAlt', 'imgUrl', 'location', 'posted', 'text', 'title', 'url'],
   data () {
     return {
-      hovered: false,
       shortname: process.env.DISQUS_SHORTNAME
     }
   }
@@ -62,8 +56,24 @@ export default {
     overflow: hidden;
     cursor: pointer;
 
-    &.hovered {
+    &:hover {
       box-shadow: 0 2px 6px 0 hsla(0,0%,0%,.4);
+
+      .card-content {
+        .title {
+          color: $water;
+        }
+      }
+
+      .card-image {
+        .image {
+          -webkit-transform:scale(1.25);
+          -moz-transform:scale(1.25);
+          -ms-transform:scale(1.25);
+          -o-transform:scale(1.25);
+          transform:scale(1.25);
+        }
+      }
     }
   }
 
@@ -75,12 +85,6 @@ export default {
     pointer-events: none;
     margin-top: 4%;
     background: transparent;
-
-    &.hovered {
-      .title {
-        color: $water;
-      }
-    }
   }
 
   .card-link {
@@ -95,6 +99,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     z-index: 3;
+    pointer-events: none;
   }
 
   .card-image {
@@ -108,14 +113,6 @@ export default {
       -ms-transition: all 1s ease;
       -o-transition: all 1s ease;
       transition: all 1s ease;
-
-      &.hovered {
-        -webkit-transform:scale(1.25);
-        -moz-transform:scale(1.25);
-        -ms-transform:scale(1.25);
-        -o-transform:scale(1.25);
-        transform:scale(1.25);
-      }
 
       &:after {
         content: "";
