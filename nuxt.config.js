@@ -27,7 +27,8 @@ module.exports = {
   plugins: [
     '~/plugins/font-awesome',
     '~/plugins/google-maps',
-    '~/plugins/lazy-load'
+    '~/plugins/lazy-load',
+    '~/plugins/newrelic'
   ],
   /*
   ** Global CSS
