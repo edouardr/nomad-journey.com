@@ -18,7 +18,12 @@
         <p class="has-text-white">
           <small>© 2018 A Nomad Journey</small>
         </p>
-        <LanguageSelector />
+        <div class="container content">
+          <router-link :to="`/${language}/legals`" :title="`${legals.page.jumbotronTitle.value}`">
+              {{legals.page.jumbotronTitle.value}}
+          </router-link>
+          <LanguageSelector />
+        </div>
       </div>
     </div>
   </footer>
@@ -26,11 +31,13 @@
 
 <script>
 import LanguageSelector from '~/components/language-selector'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     LanguageSelector
   },
+  computed: mapState(['language', 'legals']),
   data () {
     return {
       fbUsername: process.env.FB_USERNAME,

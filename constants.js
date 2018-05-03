@@ -6,7 +6,8 @@ export const Symbols = {
   CODENAMES: {
     ABOUT_US: 'about_us',
     CURRENT_LOCATION: 'current_location',
-    ITINERARY: 'itinerary'
+    ITINERARY: 'itinerary',
+    LEGALS_PAGE: 'legals'
   },
   DATA: {
     HOME_ARTICLES_LIMIT: 3
@@ -18,6 +19,7 @@ export const Symbols = {
     SET_DESTINATION: 'setDestination',
     SET_PAGE: 'setPage',
     SET_LANGUAGE: 'setLanguage',
+    SET_LEGALS: 'setLegals',
     SET_NAVIGATION: 'setNavigation'
   },
   NAVIGATION: {
