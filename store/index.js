@@ -14,8 +14,7 @@ export const state = () => ({
   currentPage: undefined,
   language: defaultLang,
   legals: {
-    page: undefined,
-    alert: undefined
+    page: undefined
   },
   navigation: [],
   resources: resources
