@@ -15,7 +15,6 @@
 <script>
 import Header from '~/components/header'
 import Jumbotron from '~/components/jumbotron'
-import { Symbols } from '~/constants'
 import metadata from '~/mixins/metadata'
 import { mapState } from 'vuex'
 

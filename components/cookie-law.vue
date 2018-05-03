@@ -20,9 +20,10 @@
       return {
         supportsLocalStorage: true,
         isOpen: true,
+        cookieAccepted: 'cookie:accepted'
       }
     },
-    created () {
+    mounted () {
       if (process.browser) {
         // Check for availability of localStorage
         try {
@@ -33,44 +34,41 @@
           console.error('Local storage is not supported, falling back to cookie use')
           this.supportsLocalStorage = false
         }
-        if (this.getVisited()) {
-          this.isOpen = false
-        }
+
+        this.isOpen = !this.getVisited()
       }
     },
     methods: {
       setVisited () {
         if (process.browser) {
           if (this.supportsLocalStorage) {
-            localStorage.setItem('cookie:accepted', true)
+            localStorage.setItem(this.cookieAccepted, true)
           } else {
-            this.createCookie('cookie:accepted', true)
+            this.createCookie(this.cookieAccepted, true)
           }
         }
       },
       getVisited () {
         if (process.browser) {
           if (this.supportsLocalStorage) {
-            return localStorage.getItem('cookie:accepted')
+            return localStorage.getItem(this.cookieAccepted)
           } else {
-            return this.readCookie('cookie:accepted')
+            return this.readCookie(this.cookieAccepted)
           }
         }
       },
       accept () {
         this.setVisited()
         this.isOpen = false
-        this.$emit('accept')
       },
       createCookie (name, value, days) {
         if (process.browser) {
           var expires
           if (days) {
             var date = new Date()
-            date.setTime(date.getTime()+(days*24*60*60*1000))
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
             expires = `; expires=${date.toGMTString()}`
-          }
-          else {
+          } else {
             expires = ''
           }
           document.cookie = `${name}=${value}${expires}; path=/`
@@ -80,16 +78,17 @@
         if (process.browser) {
           var nameEQ = `${name}=`
           var ca = document.cookie.split(';')
-          for(var i=0;i < ca.length;i++) {
-            var c = ca[i]
+          for (let index = 0; index < ca.length; ++index) {
+            var c = ca[index]
             while (c.charAt(0) === ' ') {
-              c = c.substring(1,c.length)
+              c = c.substring(1, c.length)
             }
             if (c.indexOf(nameEQ) === 0) {
-              return c.substring(nameEQ.length,c.length)
+              return c.substring(nameEQ.length, c.length)
             }
           }
-          return null;
+
+          return null
         }
       }
     }
