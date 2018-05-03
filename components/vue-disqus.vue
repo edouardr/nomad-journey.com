@@ -51,7 +51,6 @@ export default {
       const self = this
       window.disqus_config = function () {
         self.setBaseConfig(this)
-        console.log(this)
       }
       setTimeout(() => {
         let scriptTag = document.createElement('script')
