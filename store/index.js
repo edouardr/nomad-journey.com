@@ -78,7 +78,7 @@ export const actions = {
     const {data} = await axios.get(`api/navigation/${state.language}`)
     commit(Symbols.MUTATIONS.SET_NAVIGATION, data)
 
-    const legalsResponse = await axios.get(`/api/landing-page/${state.language}/${Symbols.CODENAMES.LEGALS_PAGE}`)
+    const legalsResponse = await axios.get(`/api/landing-page/${language}/${Symbols.CODENAMES.LEGALS_PAGE}`)
     commit(Symbols.MUTATIONS.SET_LEGALS, { page: legalsResponse.data })
   }
 }

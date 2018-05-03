@@ -29,11 +29,12 @@ export default {
     }
   },
   mounted () {
-    if (window.DISQUS) {
-      this.reset(window.DISQUS)
-      return
-    }
     if (process.browser) {
+      if (window.DISQUS) {
+        this.reset(window.DISQUS)
+        return
+      }
+
       this.init()
     }
   },

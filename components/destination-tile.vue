@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ['id', 'imgAlt', 'imgUrl', 'title', 'url'],
+  props: ['id', 'imgAlt', 'imgUrl', 'title', 'url']
 }
 </script>
 
