@@ -4,11 +4,11 @@ module.exports = {
     height: '3px'
   },
   env: {
-    REDISTOGO_URL: process.env.REDISTOGO_URL || 'redis:6379',
-    DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME || 'anomadjourney',
-    MAPS_API_KEY: process.env.MAPS_API_KEY || '',
-    FB_USERNAME: process.env.FB_USERNAME || 'anomadjourney',
-    INSTA_USERNAME: process.env.INSTA_USERNAME || 'nomad.journey'
+    REDISTOGO_URL: process.env.REDISTOGO_URL,
+    DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME,
+    MAPS_API_KEY: process.env.MAPS_API_KEY,
+    FB_USERNAME: process.env.FB_USERNAME,
+    INSTA_USERNAME: process.env.INSTA_USERNAME
   },
   /*
   ** Headers of the page
@@ -27,8 +27,7 @@ module.exports = {
   plugins: [
     '~/plugins/font-awesome',
     '~/plugins/google-maps',
-    '~/plugins/lazy-load',
-    '~/plugins/newrelic'
+    '~/plugins/lazy-load'
   ],
   /*
   ** Global CSS
