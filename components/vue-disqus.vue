@@ -43,7 +43,7 @@ export default {
       const self = this
       disqus.reset({
         reload: true,
-        config: () => {
+        config: function () {
           self.setBaseConfig(this)
         }
       })
