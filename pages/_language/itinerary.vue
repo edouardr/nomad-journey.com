@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <ItineraryMap v-if="currentPage.mapId"
       :mapid="currentPage.mapId.value" />
     <IntroText :text="currentPage.bodyText.value" />
@@ -13,7 +12,6 @@
 </template>
 
 <script>
-import Header from '~/components/header'
 import IntroText from '~/components/intro-text'
 import ItineraryMap from '~/components/itinerary-map'
 import KeyFactGroup from '~/components/key-fact-group'
@@ -24,12 +22,12 @@ import { mapState } from 'vuex'
 
 export default {
   components: {
-    Header,
     IntroText,
     ItineraryMap,
     KeyFactGroup
   },
   computed: mapState(['currentPage']),
+  layout: 'header',
   mixins: [metadata],
   async fetch ({ store }) {
     const itineraryResponse = await axios.get(`/api/itinerary/${store.state.language}`)
