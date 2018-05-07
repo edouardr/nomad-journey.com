@@ -4,11 +4,12 @@ module.exports = {
     height: '3px'
   },
   env: {
-    REDISTOGO_URL: process.env.REDISTOGO_URL,
+    CANONICAL_DOMAIN: process.env.CANONICAL_DOMAIN,
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME,
-    MAPS_API_KEY: process.env.MAPS_API_KEY,
     FB_USERNAME: process.env.FB_USERNAME,
-    INSTA_USERNAME: process.env.INSTA_USERNAME
+    INSTA_USERNAME: process.env.INSTA_USERNAME,
+    MAPS_API_KEY: process.env.MAPS_API_KEY,
+    REDISTOGO_URL: process.env.REDISTOGO_URL
   },
   /*
   ** Headers of the page
