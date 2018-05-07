@@ -4,11 +4,12 @@ module.exports = {
     height: '3px'
   },
   env: {
-    REDISTOGO_URL: process.env.REDISTOGO_URL,
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME,
-    MAPS_API_KEY: process.env.MAPS_API_KEY,
     FB_USERNAME: process.env.FB_USERNAME,
-    INSTA_USERNAME: process.env.INSTA_USERNAME
+    HOST: process.env.HOST,
+    INSTA_USERNAME: process.env.INSTA_USERNAME,
+    MAPS_API_KEY: process.env.MAPS_API_KEY,
+    REDISTOGO_URL: process.env.REDISTOGO_URL
   },
   /*
   ** Headers of the page
@@ -49,6 +50,7 @@ module.exports = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-exact-active'
   },
+  serverMiddleware: [ 'ssl' ],
   /*
   ** Add axios globally
   */
