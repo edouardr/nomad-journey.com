@@ -5,7 +5,7 @@
   "author": "edouardr <riviere.edouard@hotmail.fr>",
   "private": true,
   "scripts": {
-    "dev": "backpack dev",
+    "dev": "cross-env REDISTOGO_URL=\"redis\" DISQUS_SHORTNAME=\"anomadjourney\" FB_USERNAME=\"anomadjourney\" INSTA_USERNAME=\"nomad.journey\" && backpack dev",
     "build": "nuxt build && backpack build",
     "heroku-postbuild": "npm run build",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -22,6 +22,7 @@
     "bulma": "^0.7.0",
     "express": "^4.15.3",
     "hiredis": "^0.5.0",
+    "is-https": "^1.0.0",
     "kentico-cloud-delivery-node-sdk": "^1.2.0",
     "moment": "^2.22.1",
     "newrelic": "^4.1.0",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
+    "cross-env": "^5.0.1",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^2.0.0",
