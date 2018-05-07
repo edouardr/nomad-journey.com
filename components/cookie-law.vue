@@ -19,7 +19,7 @@
     data () {
       return {
         supportsLocalStorage: true,
-        isOpen: true,
+        isOpen: false,
         cookieAccepted: 'cookie:accepted'
       }
     },

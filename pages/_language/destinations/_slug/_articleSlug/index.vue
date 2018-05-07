@@ -1,6 +1,5 @@
 <template>
   <article>
-    <Header />
     <ArticleHeader v-if="currentArticle.jumbotronImage"
       :posted="currentArticle.posted.value"
       :location="currentArticle.location.value"
@@ -31,7 +30,6 @@
 import ArticleHeader from '~/components/article-header'
 import BackToTop from '~/components/back-to-top'
 import Breadcrumb from '~/components/breadcrumb'
-import Header from '~/components/header'
 import ImageGallery from '~/components/image-gallery'
 import VueDisqus from '~/components/vue-disqus'
 import { Symbols } from '~/constants'
@@ -45,7 +43,6 @@ export default {
     ArticleHeader,
     BackToTop,
     Breadcrumb,
-    Header,
     ImageGallery,
     VueDisqus
   },
@@ -84,6 +81,7 @@ export default {
       ]
     }
   },
+  layout: 'header',
   mixins: [metadata],
   scrollToTop: true,
   async asyncData ({ store }) {
