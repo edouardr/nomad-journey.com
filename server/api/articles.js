@@ -5,6 +5,10 @@ const router = Router()
 const service = new ArticleService()
 
 router.get('/articles/:lang/:slug', async (req, res, next) => {
+  if (!req.params.slug || req.params.slug === '') {
+    res.send(404)
+  }
+
   const item = await service.get(req.params.lang, req.params.slug)
   res.json(item)
 })
