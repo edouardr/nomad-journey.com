@@ -3,6 +3,7 @@ import express from 'express'
 import 'newrelic'
 import { Nuxt, Builder } from 'nuxt'
 import api from './api'
+import redirectSSL from '../middleware/redirect-ssl'
 
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000
 
 app.set('port', port)
 
+app.use(redirectSSL)
 app.use(bodyParser.json())
 
 // Import API Routes

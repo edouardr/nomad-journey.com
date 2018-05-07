@@ -4,9 +4,9 @@ module.exports = {
     height: '3px'
   },
   env: {
+    CANONICAL_DOMAIN: process.env.CANONICAL_DOMAIN,
     DISQUS_SHORTNAME: process.env.DISQUS_SHORTNAME,
     FB_USERNAME: process.env.FB_USERNAME,
-    HOST: process.env.HOST,
     INSTA_USERNAME: process.env.INSTA_USERNAME,
     MAPS_API_KEY: process.env.MAPS_API_KEY,
     REDISTOGO_URL: process.env.REDISTOGO_URL
@@ -50,7 +50,6 @@ module.exports = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-exact-active'
   },
-  serverMiddleware: [ 'ssl' ],
   /*
   ** Add axios globally
   */
