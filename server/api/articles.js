@@ -5,7 +5,7 @@ const router = Router()
 const service = new ArticleService()
 
 router.get('/articles/:lang/:slug', async (req, res, next) => {
-  if (!req.params.slug || req.params.slug === '') {
+  if (!req.params.slug || req.params.slug === '' || req.params.slug === 'null') {
     res.send(404)
   }
 
