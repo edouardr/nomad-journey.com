@@ -10,8 +10,8 @@ router.get('/destinations/:lang', async (req, res, next) => {
 })
 
 router.get('/destinations/getbyslug/:lang/:slug', async (req, res, next) => {
-  if (!req.params.slug || req.params.slug === '' || req.params.slug === 'null') {
-    res.send(404)
+  if (!req.params.slug || req.params.slug === '' || req.params.slug === 'null' || req.params.slug === 'undefined') {
+    res.sendStatus(404)
   }
 
   const item = await service.getBySlug(req.params.lang, req.params.slug)
@@ -19,7 +19,7 @@ router.get('/destinations/getbyslug/:lang/:slug', async (req, res, next) => {
 })
 
 router.get('/destinations/getbycode/:lang/:codename', async (req, res, next) => {
-  if (!req.params.codename || req.params.codename === '' || req.params.codename === 'null') {
+  if (!req.params.codename || req.params.codename === '' || req.params.codename === 'null' || req.params.codename === 'undefined') {
     res.send(404)
   }
 

@@ -63,6 +63,11 @@ export const actions = {
   },
   [Symbols.ACTIONS.SELECT_ARTICLE]: async ({ commit, state, redirect }, articleId) => {
     let selectedArticle = state.articles.filter((article) => article.system.codename === articleId)[0]
+
+    if (!selectedArticle) {
+      return
+    }
+
     commit(Symbols.MUTATIONS.SET_ARTICLE, selectedArticle)
     commit(Symbols.MUTATIONS.SET_PAGE, selectedArticle)
     let sitemapLocation = selectedArticle.system[ContentTypes.System.fields.sitemapLocations][0]
