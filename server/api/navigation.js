@@ -10,8 +10,8 @@ router.get('/navigation/:lang', async (req, res, next) => {
 })
 
 router.get('/navigation/item/:lang/:codename', async (req, res, next) => {
-  if (!req.params.codename || req.params.codename === '' || req.params.codename === 'null') {
-    res.send(404)
+  if (!req.params.codename || req.params.codename === '' || req.params.codename === 'null' || req.params.codename === 'undefined') {
+    res.sendStatus(404)
   }
 
   const item = await service.getNavItem(req.params.lang, req.params.codename)
