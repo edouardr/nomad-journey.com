@@ -25,5 +25,9 @@ const isLanguageDefineInRoute = (route) => {
 }
 
 const isRouteExluded = (route) => {
-  return route.fullPath.startsWith('api')
+  return route.fullPath.startsWith('api') ||
+    route.fullPath.endsWith('.xml') ||
+    route.fullPath.endsWith('.txt') ||
+    route.fullPath.endsWith('.png') ||
+    route.fullPath.endsWith('.jpg')
 }
