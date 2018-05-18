@@ -40,7 +40,6 @@ export default {
     }
   },
   mixins: [metadata],
-  scrollToTop: true,
   async fetch ({ store, params }) {
     if (store.state.currentDestination && params.slug === store.state.currentDestination.urlSlug.value) {
       store.commit(Symbols.MUTATIONS.SET_PAGE, store.state.currentDestination)
