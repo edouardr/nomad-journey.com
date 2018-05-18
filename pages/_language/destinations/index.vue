@@ -37,7 +37,6 @@ export default {
     }
   },
   mixins: [metadata],
-  scrollToTop: true,
   async asyncData ({ store }) {
     const { data } = await axios.get(`/api/destinations/${store.state.language}`)
 

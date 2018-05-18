@@ -83,7 +83,6 @@ export default {
   },
   layout: 'header',
   mixins: [metadata],
-  scrollToTop: true,
   async asyncData ({ store }) {
     const homeNavItemResponse = await axios.get(`/api/navigation/item/${store.state.language}/${Symbols.NAVIGATION.HOME}`)
     const destinationsNavItemResponse = await axios.get(`/api/navigation/item/${store.state.language}/${Symbols.NAVIGATION.DESTINATIONS}`)
