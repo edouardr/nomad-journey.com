@@ -48,7 +48,10 @@ module.exports = {
   router: {
     middleware: 'lang',
     linkActiveClass: 'is-active',
-    linkExactActiveClass: 'is-exact-active'
+    linkExactActiveClass: 'is-exact-active',
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
   },
   /*
   ** Add axios globally
