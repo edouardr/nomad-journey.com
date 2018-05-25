@@ -1,5 +1,5 @@
 import { CacheService } from './cache-service'
-import { SortOrder } from 'kentico-cloud-delivery-node-sdk'
+import { SortOrder } from 'kentico-cloud-delivery'
 import { deliveryClient } from '../services/kentico-client'
 import { ContentTypes } from '../../content-types'
 
