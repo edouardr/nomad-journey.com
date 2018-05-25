@@ -20,3 +20,10 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 ## Backpack
 
 We use [backpack](https://github.com/palmerhq/backpack) to watch and build the application, so you can use the latest ES6 features (module syntax, async/await, etc.).
+
+# Redis
+Create a redis container
+
+``` bash
+docker run --name nomad-journey-redis -p 6379:6379 -d redis
+```
