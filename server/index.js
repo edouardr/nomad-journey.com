@@ -1,6 +1,6 @@
+import 'newrelic'
 import bodyParser from 'body-parser'
 import express from 'express'
-import 'newrelic'
 import { Nuxt, Builder } from 'nuxt'
 import api from './api'
 import redirectSSL from '../middleware/redirect-ssl'
