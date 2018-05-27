@@ -6,6 +6,7 @@ export const Symbols = {
   CODENAMES: {
     ABOUT_US: 'about_us',
     CURRENT_LOCATION: 'current_location',
+    HOME: 'home',
     ITINERARY: 'itinerary',
     LEGALS_PAGE: 'legals'
   },
