@@ -1,4 +1,4 @@
-import { DeliveryClientConfig, DeliveryNodeClient, TypeResolver } from 'kentico-cloud-delivery-node-sdk'
+import { DeliveryClient, TypeResolver } from 'kentico-cloud-delivery'
 import { ContentTypes } from '../../content-types'
 import { AboutUs, Article, Destination, Itinerary, KeyFact, Location, LandingPage, NavigationItem, Person, QuestionAnswer } from '../models'
 
@@ -18,9 +18,7 @@ const deliveryClientFactory = () => {
     new TypeResolver(ContentTypes.QuestionAnswer.codeName, () => new QuestionAnswer())
   ]
 
-  return new DeliveryNodeClient(
-    new DeliveryClientConfig(projectId, typeResolvers)
-  )
+  return new DeliveryClient({projectId: projectId, typeResolvers: typeResolvers})
 }
 
 export const deliveryClient = deliveryClientFactory()

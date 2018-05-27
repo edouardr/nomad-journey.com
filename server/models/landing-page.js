@@ -1,4 +1,4 @@
-import { ContentItem } from 'kentico-cloud-delivery-node-sdk'
+import { ContentItem } from 'kentico-cloud-delivery'
 import { ContentTypes } from '../../content-types'
 
 export class LandingPage extends ContentItem {
