@@ -6,7 +6,8 @@ import { ContentTypes } from '../../content-types'
 const fields = [
   ContentTypes.NavigationItem.fields.redirectTo,
   ContentTypes.NavigationItem.fields.order,
-  ContentTypes.NavigationItem.fields.title
+  ContentTypes.NavigationItem.fields.title,
+  ContentTypes.SnippetAppearance.fields.sortOrder
 ]
 const cacheService = new CacheService()
 
@@ -17,7 +18,7 @@ export class NavigationService {
       const { items } = await deliveryClient.items()
         .type(ContentTypes.NavigationItem.codeName)
         .elementsParameter(fields)
-        .orderParameter(`elements.${ContentTypes.NavigationItem.fields.order}`, SortOrder.asc)
+        .orderParameter(`elements.${ContentTypes.SnippetAppearance.fields.sortOrder}`, SortOrder.asc)
         .languageParameter(language)
         .getPromise()
 
