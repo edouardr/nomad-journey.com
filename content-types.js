@@ -116,7 +116,7 @@ export const ContentTypes = {
   },
   System: {
     fields: {
-      sitemapLocations: 'sitemapLocations'
+      sitemapLocations: 'sitemap_locations'
     }
   }
 }
