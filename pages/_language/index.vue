@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     resolveListItemUrl (listItem, language, destinations) {
-      const sitemapLocations = listItem.system[ContentTypes.System.fields.sitemapLocations] || listItem.system[ContentTypes.System.parsedFields.sitemapLocations]
+      const sitemapLocations = listItem.system[ContentTypes.System.parsedFields.sitemapLocations] || listItem.system[ContentTypes.System.fields.sitemapLocations]
       const destination = destinations.filter(dest => dest.system.codename === sitemapLocations[0])[0]
       return `/${language}/destinations/${destination.urlSlug.value}/${listItem.urlSlug.value}`
     }
