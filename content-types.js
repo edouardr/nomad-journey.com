@@ -81,6 +81,12 @@ export const ContentTypes = {
       answer: 'answer'
     }
   },
+  SnippetAppearance: {
+    codeName: 'appearance',
+    fields: {
+      sortOrder: 'appearance__sort_order'
+    }
+  },
   SnippetJumbotron: {
     codeName: 'jumbotron',
     fields: {
@@ -110,7 +116,7 @@ export const ContentTypes = {
   },
   System: {
     fields: {
-      sitemapLocations: 'sitemap_locations'
+      sitemapLocations: 'sitemapLocations'
     }
   }
 }
