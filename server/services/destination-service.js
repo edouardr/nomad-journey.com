@@ -1,7 +1,7 @@
 import { CacheService } from './cache-service'
 import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
-import { SortOrder } from 'kentico-cloud-delivery';
+import { SortOrder } from 'kentico-cloud-delivery'
 
 const fields = [
   ContentTypes.Article.fields.location,
