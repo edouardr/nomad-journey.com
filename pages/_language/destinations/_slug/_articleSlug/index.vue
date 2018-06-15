@@ -106,7 +106,8 @@ export default {
     }
 
     if (!store.state.currentDestination) {
-      const destinationCodename = store.state.currentArticle.system[ContentTypes.System.fields.sitemapLocations][0]
+      const sitemapLocations = store.state.currentArticle.system[ContentTypes.System.parsedFields.sitemapLocations] || store.state.currentArticle.system[ContentTypes.System.fields.sitemapLocations]
+      const destinationCodename = sitemapLocations[0]
       const { data } = await axios.get(`/api/destinations/getbycode/${store.state.language}/${destinationCodename}`)
       store.commit(Symbols.MUTATIONS.SET_DESTINATION, data)
       store.commit(Symbols.MUTATIONS.SET_ARTICLES, data.articles)
