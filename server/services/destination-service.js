@@ -1,6 +1,7 @@
 import { CacheService } from './cache-service'
 import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
+import { SortOrder } from 'kentico-cloud-delivery';
 
 const fields = [
   ContentTypes.Article.fields.location,
@@ -15,6 +16,7 @@ const fields = [
   ContentTypes.SnippetListItem.fields.description,
   ContentTypes.SnippetListItem.fields.thumbnail,
   ContentTypes.SnippetListItem.fields.title,
+  ContentTypes.SnippetAppearance.fields.sortOrder,
   ContentTypes.SnippetPageMetaData.fields.description,
   ContentTypes.SnippetPageMetaData.fields.keywords,
   ContentTypes.SnippetPageMetaData.fields.ogDescription,
@@ -32,6 +34,7 @@ export class DestinationService {
         .type(ContentTypes.Destination.codeName)
         .elementsParameter(fields)
         .languageParameter(language)
+        .orderParameter(`elements.${ContentTypes.SnippetAppearance.fields.sortOrder}`, SortOrder.asc)
         .getPromise()
 
       return items
