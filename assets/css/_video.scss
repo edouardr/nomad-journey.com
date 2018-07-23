@@ -1,0 +1,23 @@
+.js-video {
+    height: 0;
+    padding-top: 25px;
+    padding-bottom: 67.5%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+
+    embed, iframe, object, video {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}
+
+@media screen and (min-width: $tablet) {
+    .js-video {
+        padding-bottom: 26.34%;
+        max-width: 50%;
+    }
+}

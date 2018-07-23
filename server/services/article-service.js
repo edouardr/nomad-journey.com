@@ -20,7 +20,8 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogDescription,
   ContentTypes.SnippetPageMetaData.fields.ogImage,
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
-  ContentTypes.SnippetPageMetaData.fields.title
+  ContentTypes.SnippetPageMetaData.fields.title,
+  ContentTypes.YoutubeVideo.fields.id
 ]
 const cacheService = new CacheService()
 
