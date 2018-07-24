@@ -13,7 +13,7 @@ export class YoutubeVideo extends ContentItem {
       richTextResolver: contentItem => {
         return `
           <div class="js-video widescreen">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${contentItem.id}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${contentItem.id.value}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         `
       }

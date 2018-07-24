@@ -35,6 +35,7 @@ export class DestinationService {
         .elementsParameter(fields)
         .languageParameter(language)
         .orderParameter(`elements.${ContentTypes.SnippetAppearance.fields.sortOrder}`, SortOrder.asc)
+        .depthParameter(3)
         .getPromise()
 
       return items
@@ -49,6 +50,7 @@ export class DestinationService {
         .elementsParameter(fields)
         .equalsFilter(`elements.${ContentTypes.Destination.fields.urlSlug}`, slug)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return firstItem
@@ -61,6 +63,7 @@ export class DestinationService {
       const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return item

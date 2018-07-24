@@ -24,6 +24,7 @@ export class LandingPageService {
       const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return item

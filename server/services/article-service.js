@@ -34,7 +34,10 @@ export class ArticleService {
         .elementsParameter(fields)
         .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
+
+      firstItem.bodyText.getHtml()
 
       return firstItem
     })
@@ -46,6 +49,7 @@ export class ArticleService {
       const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return item
