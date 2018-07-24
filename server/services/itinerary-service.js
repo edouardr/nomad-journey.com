@@ -18,7 +18,7 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class ItineraryService {
   get (language, codename) {

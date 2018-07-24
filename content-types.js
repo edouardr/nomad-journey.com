@@ -121,5 +121,11 @@ export const ContentTypes = {
     parsedFields: {
       sitemapLocations: 'sitemapLocations'
     }
+  },
+  YoutubeVideo: {
+    codeName: 'youtube_video',
+    fields: {
+      id: 'id'
+    }
   }
 }

@@ -20,9 +20,10 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogDescription,
   ContentTypes.SnippetPageMetaData.fields.ogImage,
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
-  ContentTypes.SnippetPageMetaData.fields.title
+  ContentTypes.SnippetPageMetaData.fields.title,
+  ContentTypes.YoutubeVideo.fields.id
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class ArticleService {
   async get (language, slug) {
@@ -33,7 +34,10 @@ export class ArticleService {
         .elementsParameter(fields)
         .equalsFilter(`elements.${ContentTypes.Article.fields.urlSlug}`, slug)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
+
+      firstItem.bodyText.getHtml()
 
       return firstItem
     })
@@ -45,6 +49,7 @@ export class ArticleService {
       const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return item

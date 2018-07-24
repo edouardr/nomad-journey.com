@@ -15,7 +15,7 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class LandingPageService {
   get (language, codename) {
@@ -24,6 +24,7 @@ export class LandingPageService {
       const { item } = await deliveryClient.item(codename)
         .elementsParameter(fields)
         .languageParameter(language)
+        .depthParameter(3)
         .getPromise()
 
       return item

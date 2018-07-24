@@ -4,15 +4,26 @@ import { JsonHelper } from '../helpers/json-helper'
 const jsonHelper = new JsonHelper()
 
 export class CacheService {
+  constructor (useCaching) {
+    this.useCaching = useCaching
+  }
+
   async getOrCreate (key, valueFactory) {
-    let cachedValue = await getAsync(key)
-    if (cachedValue) {
-      return JSON.parse(cachedValue)
+    let cachedValue = null
+
+    if (this.useCaching) {
+      cachedValue = await getAsync(key)
+      if (cachedValue) {
+        return JSON.parse(cachedValue)
+      }
     }
 
     cachedValue = await valueFactory()
     let cleanedValue = jsonHelper.removeCircularReferences(cachedValue)
-    redisClient.set(key, cleanedValue)
+
+    if (this.useCaching) {
+      redisClient.set(key, cleanedValue)
+    }
 
     return JSON.parse(cleanedValue)
   }
