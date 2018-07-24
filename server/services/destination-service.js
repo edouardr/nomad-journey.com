@@ -2,6 +2,7 @@ import { CacheService } from './cache-service'
 import { deliveryClient } from './kentico-client'
 import { ContentTypes } from '../../content-types'
 import { SortOrder } from 'kentico-cloud-delivery'
+import { ArticleService } from './article-service'
 
 const fields = [
   ContentTypes.Article.fields.location,
@@ -22,9 +23,11 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogDescription,
   ContentTypes.SnippetPageMetaData.fields.ogImage,
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
-  ContentTypes.SnippetPageMetaData.fields.title
+  ContentTypes.SnippetPageMetaData.fields.title,
+  ContentTypes.YoutubeVideo.fields.id
 ]
 const cacheService = new CacheService(process.env.USE_CACHING)
+const articleService = new ArticleService()
 
 export class DestinationService {
   getAll (language) {
@@ -38,6 +41,11 @@ export class DestinationService {
         .depthParameter(3)
         .getPromise()
 
+      items.forEach(destination => {
+        destination.articles.forEach(article => {
+          articleService.resolveHtml(article)
+        })
+      })
       return items
     })
   }
@@ -53,6 +61,9 @@ export class DestinationService {
         .depthParameter(3)
         .getPromise()
 
+      firstItem.articles.forEach(article => {
+        articleService.resolveHtml(article)
+      })
       return firstItem
     })
   }
@@ -65,6 +76,10 @@ export class DestinationService {
         .languageParameter(language)
         .depthParameter(3)
         .getPromise()
+
+      item.articles.forEach(article => {
+        articleService.resolveHtml(article)
+      })
 
       return item
     })
