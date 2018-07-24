@@ -37,8 +37,7 @@ export class ArticleService {
         .depthParameter(3)
         .getPromise()
 
-      firstItem.bodyText.getHtml()
-
+      this.resolveHtml(firstItem)
       return firstItem
     })
   }
@@ -51,6 +50,8 @@ export class ArticleService {
         .languageParameter(language)
         .depthParameter(3)
         .getPromise()
+
+      this.resolveHtml(item)
 
       return item
     })
@@ -68,7 +69,14 @@ export class ArticleService {
         .limitParameter(limit)
         .getPromise()
 
+      items.forEach(article => {
+        this.resolveHtml(article)
+      })
       return items
     })
+  }
+
+  resolveHtml (article) {
+    article.bodyText.getHtml()
   }
 }
