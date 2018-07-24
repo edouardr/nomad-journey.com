@@ -9,7 +9,8 @@ module.exports = {
     FB_USERNAME: process.env.FB_USERNAME,
     INSTA_USERNAME: process.env.INSTA_USERNAME,
     MAPS_API_KEY: process.env.MAPS_API_KEY,
-    REDISTOGO_URL: process.env.REDISTOGO_URL
+    REDISTOGO_URL: process.env.REDISTOGO_URL,
+    USE_CACHING: process.env.USE_CACHING || true
   },
   /*
   ** Headers of the page
