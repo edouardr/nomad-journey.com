@@ -3,7 +3,7 @@ import { promisify } from 'util'
 import url from 'url'
 
 const cacheClientFactory = () => {
-  if (process.env.USE_CACHING) {
+  if (!process.env.USE_CACHING) {
     return null
   }
 
@@ -20,4 +20,4 @@ const cacheClientFactory = () => {
 }
 
 export const redisClient = cacheClientFactory()
-export const getAsync = promisify(redisClient.get).bind(redisClient)
+export const getAsync = redisClient ? promisify(redisClient.get).bind(redisClient) : null
