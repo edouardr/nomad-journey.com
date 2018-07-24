@@ -9,7 +9,7 @@ const fields = [
   ContentTypes.NavigationItem.fields.title,
   ContentTypes.SnippetAppearance.fields.sortOrder
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class NavigationService {
   getAll (language) {

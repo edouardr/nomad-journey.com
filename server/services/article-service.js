@@ -23,7 +23,7 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.title,
   ContentTypes.YoutubeVideo.fields.id
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class ArticleService {
   async get (language, slug) {

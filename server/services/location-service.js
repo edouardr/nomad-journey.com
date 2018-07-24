@@ -8,7 +8,7 @@ const fields = [
   ContentTypes.Location.fields.longitude,
   ContentTypes.Location.fields.name
 ]
-const cacheService = new CacheService()
+const cacheService = new CacheService(process.env.USE_CACHING)
 
 export class LocationService {
   getCurrentLocation () {
