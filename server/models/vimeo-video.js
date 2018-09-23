@@ -1,19 +1,19 @@
 import { ContentItem } from 'kentico-cloud-delivery'
 import { ContentTypes } from '../../content-types'
 
-export class YoutubeVideo extends ContentItem {
+export class VimeoVideo extends ContentItem {
   constructor () {
     super({
       propertyResolver: fieldName => {
-        if (fieldName === ContentTypes.YoutubeVideo.fields.id) {
+        if (fieldName === ContentTypes.VimeoVideo.fields.id) {
           return 'id'
         }
         return fieldName
       },
       richTextResolver: contentItem => {
         return `
-          <div class="js-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${contentItem.id.value}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div class="js-video vimeo">
+            <iframe src="https://player.vimeo.com/video/${contentItem.id.value}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
           </div>
         `
       }
