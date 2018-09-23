@@ -8,6 +8,7 @@ import { LandingPage } from './landing-page'
 import { NavigationItem } from './navigation-item'
 import { Person } from './person'
 import { QuestionAnswer } from './question-answer'
+import { VimeoVideo } from './vimeo-video'
 import { YoutubeVideo } from './youtube-video'
 
-export { AboutUs, Article, Destination, Itinerary, KeyFact, Location, LandingPage, NavigationItem, Person, QuestionAnswer, YoutubeVideo }
+export { AboutUs, Article, Destination, Itinerary, KeyFact, Location, LandingPage, NavigationItem, Person, QuestionAnswer, VimeoVideo, YoutubeVideo }

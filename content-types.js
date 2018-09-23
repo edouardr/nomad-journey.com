@@ -114,6 +114,12 @@ export const ContentTypes = {
       title: 'page_metadata__meta_title'
     }
   },
+  SnippetVideo: {
+    codeName: 'video',
+    fields: {
+      id: 'video__id'
+    }
+  },
   System: {
     fields: {
       sitemapLocations: 'sitemap_locations'
@@ -122,10 +128,10 @@ export const ContentTypes = {
       sitemapLocations: 'sitemapLocations'
     }
   },
+  VimeoVideo: {
+    codeName: 'vimeo_video'
+  },
   YoutubeVideo: {
-    codeName: 'youtube_video',
-    fields: {
-      id: 'id'
-    }
+    codeName: 'youtube_video'
   }
 }
