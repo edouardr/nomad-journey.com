@@ -5,7 +5,7 @@ export class YoutubeVideo extends ContentItem {
   constructor () {
     super({
       propertyResolver: fieldName => {
-        if (fieldName === ContentTypes.YoutubeVideo.fields.id) {
+        if (fieldName === ContentTypes.SnippetVideo.fields.id) {
           return 'id'
         }
         return fieldName

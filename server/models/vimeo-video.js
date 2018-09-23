@@ -5,7 +5,7 @@ export class VimeoVideo extends ContentItem {
   constructor () {
     super({
       propertyResolver: fieldName => {
-        if (fieldName === ContentTypes.VimeoVideo.fields.id) {
+        if (fieldName === ContentTypes.SnippetVideo.fields.id) {
           return 'id'
         }
         return fieldName
