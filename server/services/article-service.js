@@ -21,7 +21,7 @@ const fields = [
   ContentTypes.SnippetPageMetaData.fields.ogImage,
   ContentTypes.SnippetPageMetaData.fields.ogTitle,
   ContentTypes.SnippetPageMetaData.fields.title,
-  ContentTypes.YoutubeVideo.fields.id
+  ContentTypes.SnippetVideo.fields.id
 ]
 const cacheService = new CacheService(process.env.USE_CACHING)
 

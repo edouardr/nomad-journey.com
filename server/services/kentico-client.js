@@ -16,7 +16,7 @@ const deliveryClientFactory = () => {
     new TypeResolver(ContentTypes.NavigationItem.codeName, () => new NavigationItem()),
     new TypeResolver(ContentTypes.Person.codeName, () => new Person()),
     new TypeResolver(ContentTypes.QuestionAnswer.codeName, () => new QuestionAnswer()),
-    new TypeResolver(ContentTypes.YoutubeVideo.codeName, () => new VimeoVideo()),
+    new TypeResolver(ContentTypes.VimeoVideo.codeName, () => new VimeoVideo()),
     new TypeResolver(ContentTypes.YoutubeVideo.codeName, () => new YoutubeVideo())
   ]
 
