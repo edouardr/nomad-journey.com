@@ -1,14 +1,9 @@
-# dependencies
+# Project dependencies
+.cache
 node_modules
 
-# logs
-npm-debug.log
+# Build directory
+/public
 
-# Nuxt build
-.nuxt
-
-# Nuxt generate
-dist
-
-# Backpack build
-build
+# Local plugins used for development
+/plugins
