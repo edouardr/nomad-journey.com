@@ -8,12 +8,11 @@ module.exports = {
       resolve: `gatsby-source-kentico-cloud`,
       options: {
         deliveryClientConfig: {
-          projectId: `5ac93d1e-567d-01e6-e3b7-ac435f77b907`,
+          projectId: `38f25638-156d-44ce-991f-87e4bfc93a72`,
         },
         languageCodenames: [
-          `default`,
-          `de-DE`,
-          `cs-CZ`,
+          `en`,
+          `fr`,
         ]
       }
     }

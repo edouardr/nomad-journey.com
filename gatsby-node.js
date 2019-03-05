@@ -1,7 +1,6 @@
 const path = require(`path`);
 const kcItemTypeIdentifier = `KenticoCloudItem`;
-const projectReferenceTypeIdentifier = `ProjectReference`;
-const speakingEngagementTypeIdentifier = `SpeakingEngagement`;
+const projectReferenceTypeIdentifier = `Article`;
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
@@ -11,11 +10,7 @@ exports.onCreateNode = ({ node, actions }) => {
     let templateName;
 
     if (node.internal.type === `${kcItemTypeIdentifier}${projectReferenceTypeIdentifier}`) {
-      templateName = `project-reference`;
-      withDetailView = true;
-    }
-    else if (node.internal.type === `${kcItemTypeIdentifier}${speakingEngagementTypeIdentifier}`) {
-      templateName = `speaking-engagement`;
+      templateName = `article`;
       withDetailView = true;
     }
 
@@ -29,7 +24,7 @@ exports.onCreateNode = ({ node, actions }) => {
       createNodeField({
         node,
         name: `slug`,
-        value: node.elements.url_slug.value
+        value: node.elements.slug.value
       });
     }
 
@@ -47,27 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
     {
-      allKenticoCloudItemBlogpostReference {
-        edges {
-          node {
-            fields {
-              language
-            }
-          }
-        }
-      }
-      allKenticoCloudItemProjectReference {
-        edges {
-          node {
-            fields {
-              templateName
-              slug
-              language
-            }
-          }
-        }
-      }
-      allKenticoCloudItemSpeakingEngagement {
+      allKenticoCloudItemArticle {
         edges {
           node {
             fields {
@@ -80,12 +55,12 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
     `).then(result => {
-        const union = new Array(...result.data.allKenticoCloudItemProjectReference.edges, ...result.data.allKenticoCloudItemSpeakingEngagement.edges);
+        const union = new Array(...result.data.allKenticoCloudItemArticle.edges);
 
         union.forEach(({ node }) => {
           if (node.fields !== undefined && node.fields !== null && node.fields.templateName !== undefined && node.fields.templateName !== null) {
             createPage({
-              path: `${node.fields.templateName}/${node.fields.slug}`,
+              path: `${node.fields.language}/${node.fields.slug}`,
               component: path.resolve(`./src/templates/${node.fields.templateName}.js`),
               context: {
                 // Data passed to context is available in page queries as GraphQL variables.
