@@ -24,9 +24,13 @@ const Index = ({data}) => {
 
   return (
     <Layout>
-      <div>
-        {items}
-      </div>
+      <section className="section">
+        <div className="container">
+          <div className="content">
+            {items}
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

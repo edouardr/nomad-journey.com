@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Jan Lenoch <janl@kentico.com>",
   "dependencies": {
+    "bulma": "^0.7.4",
     "gatsby": "^2.0.22",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-source-kentico-cloud": "^2.1.0",
@@ -32,7 +33,9 @@
     "eslint-config-google": "^0.10.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0"
+    "gatsby-plugin-sass": "^2.0.11",
+    "jest": "^23.6.0",
+    "node-sass": "^4.11.0"
   },
   "repository": {
     "type": "git",
