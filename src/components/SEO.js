@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import {
-  graphql
-} from 'gatsby';
+import { graphql } from 'gatsby';
 
-const SEO = ({
-  item
-}) => {
+const SEO = ({item}) => {
   return (
     <Helmet title = { `${item.elements.page_metadata__og_title.value}${item.site.siteMetadata.title}` }
-    meta = {
-      [
+    meta = {[
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
@@ -44,8 +39,10 @@ const SEO = ({
           property: 'og:description',
           content: item.elements.page_metadata__og_description.value
         }
-      ]
-    }
+      ]}
+      link = {[
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]}
     />
   );
 };

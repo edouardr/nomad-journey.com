@@ -16,6 +16,19 @@ module.exports = {
           `fr`,
         ]
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Nomag-Journey`,
+        short_name: `Nomad-Journey`,
+        start_url: `/`,
+        background_color: `#dbdcd1`,
+        theme_color: `#1ad2eb`,
+        display: `standalone`,
+        icon: `src/images/logo-simple-transp.png`, // This path is relative to the root of the site.
+        include_favicon: true, // Include favicon
+      },
+    },
   ]
 };
