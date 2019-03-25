@@ -9,9 +9,12 @@ const SEO = ({
   item
 }) => {
   return (
-    <Helmet title = { `${item.elements.page_metadata__og_title.value} ${item.site.siteMetadata.title}` }
+    <Helmet title = { `${item.elements.page_metadata__og_title.value}${item.site.siteMetadata.title}` }
     meta = {
-      [{
+      [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
           hid: 'description',
           name: 'description',
           content: item.elements.page_metadata__meta_description.value
