@@ -26,7 +26,7 @@ module.exports = {
         background_color: `#dbdcd1`,
         theme_color: `#1ad2eb`,
         display: `standalone`,
-        icon: `src/images/logo-simple-transp.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo-simple-transp-square-260x260.png`, // This path is relative to the root of the site.
         include_favicon: true, // Include favicon
       },
     },
