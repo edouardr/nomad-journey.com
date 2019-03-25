@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
+import '../components/SEO';
 import './article.css';
 
-const ProjectReference = ({data}) => {
-  const item = data.kenticoCloudItemArticle;
+const Article = ({data}) => {
+  const item = { elements: data.kenticoCloudItemArticle.elements, site: data.site };
 
   return (
-    <Layout>
+    <Layout item={item}>
       <article>
         <div className="container is-widescreen">
           <div className="article-header">
@@ -45,14 +46,15 @@ const ProjectReference = ({data}) => {
   );
 };
 
-export default ProjectReference;
+export default Article;
 
 export const query = graphql`
   query articleQuery($slug: String!) {
+    site {
+      ...siteMetadata
+    }
     kenticoCloudItemArticle(fields: { slug: { eq: $slug }}) {
-      system {
-        name
-      }
+      ...articleMetadata
       elements {
         body_text {
           value
@@ -79,6 +81,6 @@ export const query = graphql`
   }
 `;
 
-ProjectReference.propTypes = {
+Article.propTypes = {
   data: PropTypes.object,
 };

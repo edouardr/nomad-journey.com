@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby starter site with Kentico Cloud`,
+    title: ` | Nomad-Journey`,
   },
   plugins: [
     `gatsby-plugin-sass`,

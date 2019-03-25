@@ -1,6 +1,6 @@
 const path = require(`path`);
 const kcItemTypeIdentifier = `KenticoCloudItem`;
-const projectReferenceTypeIdentifier = `Article`;
+const articleTypeIdentifier = `Article`;
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
@@ -9,7 +9,7 @@ exports.onCreateNode = ({ node, actions }) => {
     let withDetailView = false;
     let templateName;
 
-    if (node.internal.type === `${kcItemTypeIdentifier}${projectReferenceTypeIdentifier}`) {
+    if (node.internal.type === `${kcItemTypeIdentifier}${articleTypeIdentifier}`) {
       templateName = `article`;
       withDetailView = true;
     }
@@ -33,6 +33,12 @@ exports.onCreateNode = ({ node, actions }) => {
       name: `language`,
       value: node.system.language
     });
+
+    createNodeField({
+      node,
+      name: `codename`,
+      value: node.system.codename
+    });
   }
 };
 
@@ -46,6 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             fields {
+              codename
               templateName
               slug
               language
@@ -66,7 +73,8 @@ exports.createPages = ({ graphql, actions }) => {
                 // Data passed to context is available in page queries as GraphQL variables.
                 templateName: node.fields.templateName,
                 slug: node.fields.slug,
-                language: node.fields.language
+                language: node.fields.language,
+                codename: node.fields.codename
               },
             });
           }
