@@ -4,6 +4,10 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 const SEO = ({item}) => {
+  if (!item) {
+    return false;
+  }
+
   return (
     <Helmet title = { `${item.elements.page_metadata__og_title.value}${item.site.siteMetadata.title}` }
     meta = {[

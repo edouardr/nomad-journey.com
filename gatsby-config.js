@@ -1,10 +1,12 @@
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://www.nomad-journey.com/`,
     title: ` | Nomad-Journey`,
   },
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-kentico-cloud`,
       options: {
@@ -29,6 +31,6 @@ module.exports = {
         icon: `src/images/logo-simple-transp-square-260x260.png`, // This path is relative to the root of the site.
         include_favicon: true, // Include favicon
       },
-    },
+    }
   ]
 };

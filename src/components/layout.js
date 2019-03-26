@@ -4,11 +4,11 @@ import Header from '../components/header';
 import SEO from './SEO';
 
 const Layout = ({children, item}) => {
-
+  const title = item ? item.elements.page_metadata__og_title.value : 'No title';
   return (
     <div>
       <SEO item={item} />
-      <Header siteTitle={item.elements.page_metadata__og_title.value} />
+      <Header siteTitle={title} />
       <div
         style={{
           margin: `0 auto`,
