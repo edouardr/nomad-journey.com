@@ -5,11 +5,14 @@
   "author": "Jan Lenoch <janl@kentico.com>",
   "dependencies": {
     "bulma": "^0.7.4",
-    "gatsby": "^2.0.22",
+    "gatsby": "^2.3.3",
+    "gatsby-image": "^2.0.35",
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-sitemap": "^2.0.10",
-    "gatsby-source-kentico-cloud": "^2.1.0",
+    "gatsby-source-kentico-cloud": "^3.0.0",
+    "gatsby-transformer-sharp": "^2.1.17",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0"

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import Layout from '../components/layout';
 import '../components/SEO';
 import './article.css';
@@ -25,7 +26,7 @@ const Article = ({data}) => {
             </div>
           </div>
           <figure className="image is-5by3">
-            <img src={item.elements.jumbotron__image.value[0].url} />
+            <Img fixed={item.elements.jumbotron__image.value[0].url} />
           </figure>
         </div>
         <section className="section">
