@@ -1,3 +1,5 @@
+const path = require(`path`);
+
 module.exports = {
   siteMetadata: {
     siteUrl: `https://www.nomad-journey.com/`,
@@ -33,6 +35,13 @@ module.exports = {
         icon: `src/images/logo-simple-transp-square-260x260.png`, // This path is relative to the root of the site.
         include_favicon: true, // Include favicon
       },
-    }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
+      },
+    },
   ]
 };

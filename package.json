@@ -11,6 +11,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-sitemap": "^2.0.10",
+    "gatsby-source-filesystem": "^2.0.28",
     "gatsby-source-kentico-cloud": "^3.0.0",
     "gatsby-transformer-sharp": "^2.1.17",
     "react": "^16.5.1",
