@@ -1,21 +1,21 @@
 {
-  "name": "gatsby-starter-kentico-cloud",
-  "description": "Gatsby starter site with Kentico Cloud",
+  "name": "nomad-journey",
+  "description": "Travel blog",
   "version": "1.0.0",
-  "author": "Jan Lenoch <janl@kentico.com>",
+  "author": "Edouard Riviere <riviere.edouard@gmail.com>",
   "dependencies": {
     "bulma": "^0.7.4",
-    "gatsby": "^2.3.3",
-    "gatsby-image": "^2.0.35",
-    "gatsby-plugin-manifest": "^2.0.24",
-    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby": "^2.3.14",
+    "gatsby-image": "^2.0.37",
+    "gatsby-plugin-manifest": "^2.0.26",
+    "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.32",
-    "gatsby-plugin-sitemap": "^2.0.10",
+    "gatsby-plugin-sitemap": "^2.0.11",
     "gatsby-source-filesystem": "^2.0.28",
-    "gatsby-source-kentico-cloud": "^3.0.0",
+    "gatsby-source-kentico-cloud": "^3.0.1",
     "gatsby-transformer-sharp": "^2.1.17",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0"
   },
   "keywords": [
@@ -35,7 +35,7 @@
     "lint:fix": "eslint src --fix"
   },
   "devDependencies": {
-    "eslint": "^5.7.0",
+    "eslint": "^5.16.0",
     "eslint-config-google": "^0.10.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-react": "^7.11.1",

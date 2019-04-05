@@ -6,8 +6,12 @@ import Layout from '../components/layout';
 import '../components/SEO';
 import './article.css';
 
-const Article = ({data}) => {
-  const item = { elements: data.kenticoCloudItemArticle.elements, site: data.site };
+const Article = ({ data }) => {
+  const item = {
+    elements: data.kenticoCloudItemArticle.elements,
+    fields: data.kenticoCloudItemArticle.fields,
+    site: data.site
+  };
 
   return (
     <Layout item={item}>
@@ -25,13 +29,11 @@ const Article = ({data}) => {
               </p>
             </div>
           </div>
-          <figure className="image is-5by3">
-            <Img fixed={item.elements.jumbotron__image.value[0].url} />
-          </figure>
+          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
         </div>
         <section className="section">
           <div className="container is-light">
-            <div className="content is-medium" dangerouslySetInnerHTML={{__html: item.elements.body_text.value}}></div>
+            <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
           </div>
         </section>
         <section className="section">
@@ -56,6 +58,15 @@ export const query = graphql`
     }
     kenticoCloudItemArticle(fields: { slug: { eq: $slug }}) {
       ...articleMetadata
+      fields {
+        jumbotronImage {
+          childImageSharp {
+            fluid(maxWidth: 1440) {
+              ...GatsbyImageSharpFluid_noBase64
+            }
+          }
+        }
+      }
       elements {
         body_text {
           value
@@ -74,7 +85,7 @@ export const query = graphql`
         }
         jumbotron__image {
           value {
-            url
+            description
           }
         }
       }
