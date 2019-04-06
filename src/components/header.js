@@ -1,59 +1,57 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import './header.css';
 
-const Header = () => {
+const Header = ({ lang }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <StaticQuery
       query={graphql`
-    query {
-      file(relativePath: { eq: "logo-transp.png" }) {
-        childImageSharp {
-          fixed(width: 125) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      allKenticoCloudItemNavigationItem {
-        edges {
-          node {
-            system {
-              language
-            }
-            elements {
-              title {
-                value
-              }
-              redirect_to_url {
-                value
-              }
-              slug {
-                value
-              }
-              appearance__sort_order {
-                value
+        query {
+          file(relativePath: { eq: "logo-transp.png" }) {
+            childImageSharp {
+              fixed(width: 112) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
+          allKenticoCloudItemNavigationItem(sort: { order: ASC, fields: [elements___appearance__sort_order___value] }) {
+            edges {
+              node {
+                system {
+                  language
+                }
+                elements {
+                  title {
+                    value
+                  }
+                  redirect_to_url {
+                    value
+                  }
+                  slug {
+                    value
+                  }
+                }
+              }
+            }
+          }
         }
-      }
-    }
-  `}
+      `}
       render={data => {
         const menuLinks = data.allKenticoCloudItemNavigationItem.edges
-          .filter(edge => edge.node.system.language === 'en')
-          .map(edge => edge.node)
-          .sort((src, cmp) => parseInt(src.elements.appearance__sort_order.value) - parseInt(cmp.elements.appearance__sort_order.value));
+          .filter(edge => edge.node.system.language === lang)
+          .map(edge => edge.node);
 
         return (
-          <header className="navbar is-transparent">
+          <header className="navbar is-spaced">
             <div className="container">
               <div className="navbar-brand">
                 <Link
-                  className="navbar-item brand"
-                  to="/"
+                  className="navbar-item"
+                  to={`/${lang}`}
                 >
                   <Img fixed={data.file.childImageSharp.fixed} />
                 </Link>
@@ -64,10 +62,28 @@ const Header = () => {
                 </span>
               </div>
               <div id="navMenu" className={`navbar-menu ${(isOpen ? 'is-active' : '')}`}>
-                <div className="navbar-end">
+                <div className="navbar-start">
                   {
-                    menuLinks.map(link => <Link key={link.elements.slug.value} className="navbar-item" to={link.elements.redirect_to_url.value}>{link.elements.title.value}</Link>)
+                    menuLinks.map(link => <Link key={link.elements.slug.value} className="navbar-item" to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
                   }
+                </div>
+                <div className="navbar-end">
+                  <div className="navbar-item">
+                    <div className="buttons">
+                      <Link
+                        className="navbar-item button is-primary"
+                        to={`/en`}
+                      >
+                        EN
+                        </Link>
+                      <Link
+                        className="navbar-item button is-light"
+                        to={`/fr`}
+                      >
+                        FR
+                        </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -75,6 +91,10 @@ const Header = () => {
         );
       }} />
   );
+};
+
+Header.propTypes = {
+  lang: PropTypes.string
 };
 
 export default Header;

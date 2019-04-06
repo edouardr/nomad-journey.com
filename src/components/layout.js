@@ -7,7 +7,7 @@ const Layout = ({children, item}) => {
   return (
     <div>
       <SEO item={item} />
-      <Header />
+      <Header lang={item.fields.language}/>
       <div>
         {children}
       </div>
@@ -17,7 +17,7 @@ const Layout = ({children, item}) => {
 
 Layout.propTypes = {
   children: PropTypes.object,
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default Layout;

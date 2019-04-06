@@ -59,6 +59,7 @@ export const query = graphql`
     kenticoCloudItemArticle(fields: { slug: { eq: $slug }}) {
       ...articleMetadata
       fields {
+        language
         jumbotronImage {
           childImageSharp {
             fluid(maxWidth: 1440) {
