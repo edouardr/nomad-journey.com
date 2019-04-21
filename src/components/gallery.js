@@ -1,42 +1,44 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazy-load';
 import './gallery.css';
 
-const getMasonryItemSize = (masonry, item) => {
-  /* Get row-gap and the size of its implicit rows */
-  const rowGap = parseInt(window.getComputedStyle(masonry).getPropertyValue('grid-row-gap')),
-      rowHeight = parseInt(window.getComputedStyle(masonry).getPropertyValue('grid-auto-rows'));
+const setMasonryItemSize = (masonry, item) => {
 
-  /*
-   * Spanning for any brick = S
-   * Grid's row-gap = G
-   * Size of grid's implicitly create row-track = R
-   * Height of item content = H
-   * Net height of the item = H1 = H + G
-   * Net height of the implicit row-track = T = G + R
-   * S = H1 / T
-   */
-  const rowSpan = Math.ceil((item.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+  if (!masonry) {
+    return;
+  }
 
-  return `span ${rowSpan}`;
+  const rowGap = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')),
+    rowHeight = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-auto-rows')),
+    gridImagesAsContent = item.current.querySelector('img.masonry-content');
+
+  const rowSpan = Math.ceil((item.current.querySelector('.masonry-content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+
+  item.current.style.gridRowEnd = 'span ' + rowSpan;
+  if (gridImagesAsContent) {
+    item.current.querySelector('img.masonry-content').style.height = item.current.getBoundingClientRect().height + "px";
+  }
 };
 
 const Gallery = ({ images }) => {
-  const masonry = React.createRef();
+  const masonry = useRef(null);
   return (
-    <div className="masonry-wrapper">
-      <div className="masonry" ref={masonry}>
-      {
-        images.map(image => {
-          let img = React.createRef();
-          return (
-            <div key={image.name} className="masonry-item" style={{gridRowEnd: 'span 33'}}>
-              <img ref={img} src={image.url} className="masonry-content" alt={image.description} />
-            </div>
-          );
-        })
-      }
-    </div>
+    <div className="container">
+      <div className="masonry-wrapper">
+        <div className="masonry" ref={masonry}>
+          {
+            images.map(image => {
+              let item = useRef(null);
+              return (
+                <div key={image.name} className="masonry-item" ref={item}>
+                  <img src={image.url} className="masonry-content" alt={image.description} onLoad={() => setMasonryItemSize(masonry, item)} />
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
     </div>
   );
 };

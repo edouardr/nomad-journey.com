@@ -1,0 +1,54 @@
+@-webkit-keyframes fadeInImg {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeInImg {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeInImg {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInImg {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.img-loading {
+    opacity: 0;
+    width: 100%;
+    height: auto;
+}
+
+.img-loaded {
+    animation: fadeInImg cubic-bezier(0.23, 1, 0.320, 1) 1;
+    position: relative;
+    opacity: 0;
+    animation-delay: 0.1s;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+}
