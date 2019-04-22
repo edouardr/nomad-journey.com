@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
 import './gallery.css';
+import ImageLoader from './imageLoader';
 
 const setMasonryItemSize = (masonry, item) => {
 
@@ -32,7 +33,12 @@ const Gallery = ({ images }) => {
               let item = useRef(null);
               return (
                 <div key={image.name} className="masonry-item" ref={item}>
-                  <img src={image.url} className="masonry-content" alt={image.description} onLoad={() => setMasonryItemSize(masonry, item)} />
+                  <LazyLoad>
+                    <ImageLoader className="masonry-content"
+                      src={image.url}
+                      description={image.description}
+                      onLoad={() => setMasonryItemSize(masonry, item)} />
+                  </LazyLoad>
                 </div>
               );
             })
