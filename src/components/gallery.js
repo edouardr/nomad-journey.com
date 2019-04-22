@@ -29,19 +29,21 @@ const Gallery = ({ images }) => {
       <div className="masonry-wrapper">
         <div className="masonry" ref={masonry}>
           {
-            images.map(image => {
-              let item = useRef(null);
-              return (
-                <div key={image.name} className="masonry-item" ref={item}>
-                  <LazyLoad>
-                    <ImageLoader className="masonry-content"
-                      src={image.url}
-                      description={image.description}
-                      onLoad={() => setMasonryItemSize(masonry, item)} />
-                  </LazyLoad>
-                </div>
-              );
-            })
+            images
+              .sort((a, b) => (a.name > b.name) - (a.name < b.name))
+              .map(image => {
+                let item = useRef(null);
+                return (
+                  <div key={image.name} className="masonry-item" ref={item}>
+                    <LazyLoad>
+                      <ImageLoader className="masonry-content"
+                        src={image.url}
+                        description={image.description}
+                        onLoad={() => setMasonryItemSize(masonry, item)} />
+                    </LazyLoad>
+                  </div>
+                );
+              })
           }
         </div>
       </div>
