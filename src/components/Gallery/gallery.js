@@ -1,23 +1,26 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useWindowEvent } from '../hooks/useWindowEvent';
-import ImageLoader from './imageLoader';
-import './gallery.css';
+import { useWindowEvent } from '../../hooks/useWindowEvent';
+import ImageLoader from '../ImageLoader/imageLoader';
+import styles from './gallery.module.scss';
+
+const imgSelector = `img.${styles.masonryContent}`;
 
 const setMasonryItemSize = (masonry, item) => {
   if (!masonry) {
     return;
   }
-  item.current.querySelector('img.masonry-content').style.height = 'auto';
+
+  item.current.querySelector(imgSelector).style.height = 'auto';
 
   const rowGap = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')),
     rowHeight = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-auto-rows')),
-    gridImagesAsContent = item.current.querySelector('img.masonry-content'),
-    rowSpan = Math.ceil((item.current.querySelector('.masonry-content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+    gridImagesAsContent = item.current.querySelector(imgSelector),
+    rowSpan = Math.ceil((item.current.querySelector(`.${styles.masonryContent}`).getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
 
   item.current.style.gridRowEnd = 'span ' + rowSpan;
   if (gridImagesAsContent) {
-    item.current.querySelector('img.masonry-content').style.height = item.current.getBoundingClientRect().height + 'px';
+    item.current.querySelector(imgSelector).style.height = item.current.getBoundingClientRect().height + 'px';
   }
 };
 
@@ -32,8 +35,8 @@ const Gallery = ({ images }) => {
 
   return (
     <div className="container">
-      <div className="masonry-wrapper">
-        <div className="masonry" ref={masonry}>
+      <div className={styles.masonryWrapper}>
+        <div className={styles.masonry} ref={masonry}>
           {
             images
               .sort((a, b) => compareByName(a, b))
@@ -41,8 +44,8 @@ const Gallery = ({ images }) => {
                 let item = useRef(null);
                 itemsList.push(item);
                 return (
-                  <div key={image.name} className="masonry-item" ref={item}>
-                    <ImageLoader className="masonry-content"
+                  <div key={image.name} className={styles.masonryItem} ref={item}>
+                    <ImageLoader className={styles.masonryContent}
                       src={image.url}
                       description={image.description}
                       onLoad={() => setMasonryItemSize(masonry, item)} />

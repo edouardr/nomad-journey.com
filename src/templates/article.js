@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Layout from '../components/layout';
-import '../components/SEO';
+import Layout from '../components/Layout/layout';
+import '../components/SEO/SEO';
 import './article.css';
-import Gallery from '../components/gallery';
-import Disqus from '../components/disqus';
+import Gallery from '../components/Gallery/gallery';
+import Disqus from '../components/Disqus/disqus';
 
 const Article = ({ data }) => {
   const item = {
