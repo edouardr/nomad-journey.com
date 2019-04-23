@@ -5,6 +5,7 @@ import styles from './footer.module.scss';
 const Footer = () => {
   const fbUsername = process.env.FB_USERNAME;
   const instaUsername = process.env.INSTA_USERNAME;
+  const vimeoUsername = process.env.VIMEO_USERNAME;
   return (
     <footer className={styles.footer}>
       <div className={`${styles.footerSocial} has-text-centered`}>
@@ -20,13 +21,13 @@ const Footer = () => {
           </span>
         </a>
 
-        <a className="is-size-1" href="sitemap.xml" title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
+        <a className="is-size-1" href={`https://vimeo.com/${vimeoUsername}`} title="Vimeo A Nomad Journey" target="_blank" rel="noopener noreferrer">
           <span className="icon is-medium">
             <FaVimeo />
           </span>
         </a>
 
-        <a className="is-size-1" href="sitemap.xml" title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
+        <a className="is-size-1" href="sitemap.xml" title="RSS A Nomad Journey" target="_blank" rel="noopener noreferrer">
           <span className="icon is-medium">
             <FaRss />
           </span>
