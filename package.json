@@ -16,7 +16,8 @@
     "gatsby-transformer-sharp": "^2.1.17",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "react-lazy-load": "^3.0.13"
   },
   "keywords": [
     "gatsby",

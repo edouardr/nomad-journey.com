@@ -5,6 +5,7 @@ import Img from 'gatsby-image';
 import Layout from '../components/layout';
 import '../components/SEO';
 import './article.css';
+import Gallery from '../components/gallery';
 
 const Article = ({ data }) => {
   const item = {
@@ -36,14 +37,7 @@ const Article = ({ data }) => {
             <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
           </div>
         </section>
-        <section className="section">
-          <div className="container">
-          </div>
-        </section>
-        <section className="section">
-          <div className="container">
-          </div>
-        </section>
+        <Gallery images={item.elements.images.value} />
       </article>
     </Layout>
   );
@@ -87,6 +81,15 @@ export const query = graphql`
         jumbotron__image {
           value {
             description
+          }
+        }
+        images {
+          value {
+            description
+            name
+            url
+            width
+            height
           }
         }
       }
