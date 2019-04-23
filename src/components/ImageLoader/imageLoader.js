@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
 import { graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import './imageLoader.css';
+import './imageLoader.module.css';
 
 const ImageLoader = ({ src, className, description, onLoad }) => {
   const loadedClassName = 'img-loaded';

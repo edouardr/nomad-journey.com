@@ -1,24 +1,38 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaRss, FaVimeo } from 'react-icons/fa';
+import styles from './footer.module.scss';
 
 const Footer = () => {
   const fbUsername = process.env.FB_USERNAME;
   const instaUsername = process.env.INSTA_USERNAME;
   return (
-    <footer className="footer">
-      <div className="footer-social has-text-centered">
+    <footer className={styles.footer}>
+      <div className={`${styles.footerSocial} has-text-centered`}>
         <a className="is-size-1" href={`https://facebook.com/${fbUsername}`} title="Facebook A Nomad Journey" target="_blank" rel="noopener noreferrer">
           <span className="icon is-medium">
-            {/* <font-awesome-icon :icon="['fab', 'facebook-f']" /> */}
+            <FaFacebook />
           </span>
         </a>
 
         <a className="is-size-1" href={`https://instagram.com/${instaUsername}`} title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
           <span className="icon is-medium">
-            {/* <font-awesome-icon :icon="['fab', 'instagram']" /> */}
+            <FaInstagram />
+          </span>
+        </a>
+
+        <a className="is-size-1" href="sitemap.xml" title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
+          <span className="icon is-medium">
+            <FaVimeo />
+          </span>
+        </a>
+
+        <a className="is-size-1" href="sitemap.xml" title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
+          <span className="icon is-medium">
+            <FaRss />
           </span>
         </a>
       </div>
-      <div className="footer-legal">
+      <div className={styles.footerLegal}>
         <div className="has-text-centered">
           <p className="has-text-white">
             <small>© 2019 A Nomad Journey</small>
