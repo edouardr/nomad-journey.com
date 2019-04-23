@@ -7,3 +7,6 @@ node_modules
 
 # Local plugins used for development
 /plugins
+
+# enviornment variables config files
+.env.*

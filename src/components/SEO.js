@@ -104,6 +104,7 @@ export const query = graphql `
   }
   fragment siteMetadata on Site {
     siteMetadata {
+      siteUrl
       title
     }
   }
