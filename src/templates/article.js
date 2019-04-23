@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import '../components/SEO';
 import './article.css';
 import Gallery from '../components/gallery';
+import Disqus from '../components/disqus';
 
 const Article = ({ data }) => {
   const item = {
@@ -38,6 +39,11 @@ const Article = ({ data }) => {
           </div>
         </section>
         <Gallery images={item.elements.images.value} />
+        <section className="section">
+          <div className="container">
+            <Disqus article={item} siteUrl={item.site.siteMetadata.siteUrl} />
+          </div>
+        </section>
       </article>
     </Layout>
   );
@@ -54,6 +60,7 @@ export const query = graphql`
       ...articleMetadata
       fields {
         language
+        slug
         jumbotronImage {
           childImageSharp {
             fluid(maxWidth: 1440) {
