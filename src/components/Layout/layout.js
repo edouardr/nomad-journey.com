@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header/header';
 import SEO from '../SEO/SEO';
+import Footer from '../Footer/footer';
 
 const Layout = ({children, item}) => {
   return (
-    <div>
+    <>
       <SEO item={item} />
       <Header lang={item.fields.language}/>
       <div>
         {children}
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

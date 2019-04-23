@@ -1,0 +1,22 @@
+.footer {
+  padding: 0;
+  background-color: transparent;
+
+  a {
+    margin-left: 2rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.footer-social {
+  background: $deeplight;
+  padding: 2.5em 0;
+}
+
+.footer-legal {
+  background: $deep;
+  padding: 2.5em 0;
+}
