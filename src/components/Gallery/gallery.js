@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useWindowEvent } from '../hooks/useWindowEvent';
-import ImageLoader from './imageLoader';
+import { useWindowEvent } from '../../hooks/useWindowEvent';
+import ImageLoader from '../ImageLoader/imageLoader';
 import './gallery.css';
 
 const setMasonryItemSize = (masonry, item) => {

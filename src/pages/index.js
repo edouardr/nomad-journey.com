@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
-import '../components/SEO';
+import Layout from '../components/Layout/layout';
+import '../components/SEO/SEO';
 
 const Index = ({data}) => {
   const home = { elements: data.allKenticoCloudItemLandingPage.edges[0].node.elements, site: data.site };

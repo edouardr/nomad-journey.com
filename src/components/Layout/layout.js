@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/header';
-import SEO from './SEO';
+import Header from '../Header/header';
+import SEO from '../SEO/SEO';
 
 const Layout = ({children, item}) => {
   return (
