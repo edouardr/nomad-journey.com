@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import LazyLoad from 'react-lazy-load';
 import { useWindowEvent } from '../hooks/useWindowEvent';
 import ImageLoader from './imageLoader';
 import './gallery.css';
@@ -43,12 +42,10 @@ const Gallery = ({ images }) => {
                 itemsList.push(item);
                 return (
                   <div key={image.name} className="masonry-item" ref={item}>
-                    <LazyLoad>
-                      <ImageLoader className="masonry-content"
-                        src={image.url}
-                        description={image.description}
-                        onLoad={() => setMasonryItemSize(masonry, item)} />
-                    </LazyLoad>
+                    <ImageLoader className="masonry-content"
+                      src={image.url}
+                      description={image.description}
+                      onLoad={() => setMasonryItemSize(masonry, item)} />
                   </div>
                 );
               })

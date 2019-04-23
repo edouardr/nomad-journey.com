@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazy-load';
+import { graphql, StaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 import './imageLoader.css';
 
 const ImageLoader = ({ src, className, description, onLoad }) => {
@@ -10,19 +13,45 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
 
   const renderDescription = () => (description
     ? (<div className="masonry-item--details" >
-        {description}
-      </div>)
+      {description}
+    </div>)
     : false
   );
 
+  const handleLoad = () => {
+    onLoad();
+    setLoaded(true);
+  };
+
   return (
     <>
-      <img
-        src={src}
-        onLoad={() => {onLoad(); setLoaded(true);}}
-        className={computedClassName}
-        alt={description} />
-        {renderDescription()}
+      <StaticQuery
+        query={graphql`
+          query {
+            file(relativePath: { eq: "logo-simple-grey.png" }) {
+              childImageSharp {
+                fluid(maxWidth: 425) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        `}
+        render={data => (
+            <div className={`img-loader ${loaded ? loadedClassName : loadingClassName}`}>
+              <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
+            </div>
+          )
+        }
+      />
+      <LazyLoad>
+        <img
+          src={src}
+          onLoad={() => handleLoad()}
+          className={computedClassName}
+          alt={description} />
+      </LazyLoad>
+      {renderDescription()}
     </>
   );
 };
