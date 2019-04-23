@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import './header.module.css';
+import './header.module.scss';
 
 const Header = ({ lang }) => {
   const [isOpen, setIsOpen] = useState(false);

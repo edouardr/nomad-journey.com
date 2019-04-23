@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
 import { graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import './imageLoader.module.css';
+import styles from './imageLoader.module.scss';
 
 const ImageLoader = ({ src, className, description, onLoad }) => {
-  const loadedClassName = 'img-loaded';
-  const loadingClassName = 'img-loading';
+  const loadedClassName = styles.imgLoaded;
+  const loadingClassName = styles.loading;
   const [loaded, setLoaded] = useState(false);
   const computedClassName = `${className} ${loaded ? loadedClassName : loadingClassName}`;
 
   const renderDescription = () => (description
-    ? (<div className="masonry-item--details" >
+    ? (<div className={styles.masonryItemDetails} >
       {description}
     </div>)
     : false
@@ -38,7 +38,7 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
           }
         `}
         render={data => (
-            <div className={`img-loader ${loaded ? loadedClassName : loadingClassName}`}>
+            <div className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}>
               <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
             </div>
           )
