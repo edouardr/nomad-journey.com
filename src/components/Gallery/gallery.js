@@ -11,16 +11,21 @@ const setMasonryItemSize = (masonry, item) => {
     return;
   }
 
-  item.current.querySelector(imgSelector).style.height = 'auto';
+  const imgElement = item.current.querySelector(imgSelector);
+  if (!imgElement) {
+    return;
+  }
+
+  imgElement.style.height = 'auto';
 
   const rowGap = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')),
     rowHeight = parseInt(window.getComputedStyle(masonry.current).getPropertyValue('grid-auto-rows')),
-    gridImagesAsContent = item.current.querySelector(imgSelector),
+    gridImagesAsContent = imgElement,
     rowSpan = Math.ceil((item.current.querySelector(`.${styles.masonryContent}`).getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
 
   item.current.style.gridRowEnd = 'span ' + rowSpan;
   if (gridImagesAsContent) {
-    item.current.querySelector(imgSelector).style.height = item.current.getBoundingClientRect().height + 'px';
+    imgElement.style.height = item.current.getBoundingClientRect().height + 'px';
   }
 };
 

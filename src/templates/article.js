@@ -4,9 +4,10 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
-import './article.css';
 import Gallery from '../components/Gallery/gallery';
 import Disqus from '../components/Disqus/disqus';
+import { formatDate } from '../helpers/date-time';
+import './article.scss';
 
 const Article = ({ data }) => {
   const item = {
@@ -26,7 +27,7 @@ const Article = ({ data }) => {
             </div>
             <div className="article-details">
               <p>
-                <span>{item.elements.posted.value}</span>
+                <span>{formatDate(item.elements.posted.value, item.fields.language)}</span>
                 <span className="divider"></span>
               </p>
             </div>
@@ -64,7 +65,7 @@ export const query = graphql`
         jumbotronImage {
           childImageSharp {
             fluid(maxWidth: 1440) {
-              ...GatsbyImageSharpFluid_noBase64
+              ...GatsbyImageSharpFluid_withWebp_noBase64
             }
           }
         }
