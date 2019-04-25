@@ -5,10 +5,10 @@ import Img from 'gatsby-image';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
-const LandingPage = ({ data }) => {
+const AboutUs = ({ data }) => {
   const item = {
-    elements: data.kenticoCloudItemArticle.elements,
-    fields: data.kenticoCloudItemArticle.fields,
+    elements: data.kenticoCloudItemAboutUs.elements,
+    fields: data.kenticoCloudItemAboutUs.fields,
     site: data.site
   };
 
@@ -19,15 +19,19 @@ const LandingPage = ({ data }) => {
   );
 };
 
-export default LandingPage;
+AboutUs.propTypes = {
+  data: PropTypes.object,
+};
+
+export default AboutUs;
 
 export const query = graphql`
-  query aboutUsPageQuery($slug: String!) {
+  query aboutUsQuery($slug: String!) {
     site {
       ...siteMetadata
     }
-    kenticoCloudItemArticle(fields: { codename: { eq: $codename }}) {
-      ...articleMetadata
+    kenticoCloudItemAboutUs(fields: { slug : { eq: $slug }}) {
+      ...aboutUsMetadata
       fields {
         language
         slug
@@ -58,7 +62,3 @@ export const query = graphql`
     }
   }
 `;
-
-LandingPage.propTypes = {
-  data: PropTypes.object,
-};

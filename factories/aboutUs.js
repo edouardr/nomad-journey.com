@@ -6,6 +6,8 @@ const templateName = `aboutUs`;
 exports.createNode = async ({ node, actions, store, cache, createNodeId }) => {
   const { createNodeField } = actions;
 
+  await basePage.createNode({ node, actions, store, cache, createNodeId });
+
   createNodeField({
     node,
     name: `templateName`,
@@ -17,8 +19,6 @@ exports.createNode = async ({ node, actions, store, cache, createNodeId }) => {
     name: `slug`,
     value: node.elements.slug.value
   });
-
-  await basePage.createNode({ node, actions, store, cache, createNodeId });
 };
 
 exports.createPage = (results, createPage) => {

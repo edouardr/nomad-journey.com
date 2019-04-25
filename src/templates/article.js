@@ -50,6 +50,10 @@ const Article = ({ data }) => {
   );
 };
 
+Article.propTypes = {
+  data: PropTypes.object,
+};
+
 export default Article;
 
 export const query = graphql`
@@ -104,7 +108,3 @@ export const query = graphql`
     }
   }
 `;
-
-Article.propTypes = {
-  data: PropTypes.object,
-};

@@ -7,16 +7,32 @@ import '../components/SEO/SEO';
 
 const LandingPage = ({ data }) => {
   const item = {
-    elements: data.kenticoCloudItemArticle.elements,
-    fields: data.kenticoCloudItemArticle.fields,
+    elements: data.kenticoCloudItemLandingPage.elements,
+    fields: data.kenticoCloudItemLandingPage.fields,
     site: data.site
   };
 
   return (
     <Layout item={item}>
-
+      <div className="container is-widescreen">
+        <div className="article-header">
+          <div className="content">
+            <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
+          </div>
+        </div>
+        <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
+      </div>
+      <section className="section">
+        <div className="container is-light">
+          <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
+        </div>
+      </section>
     </Layout>
   );
+};
+
+LandingPage.propTypes = {
+  data: PropTypes.object,
 };
 
 export default LandingPage;
@@ -26,8 +42,8 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    kenticoCloudItemArticle(fields: { slug: { eq: $slug }}) {
-      ...articleMetadata
+    kenticoCloudItemLandingPage(fields: { slug : { eq: $slug }}) {
+      ...landingPageMetadata
       fields {
         language
         slug
@@ -58,7 +74,3 @@ export const query = graphql`
     }
   }
 `;
-
-LandingPage.propTypes = {
-  data: PropTypes.object,
-};

@@ -43,7 +43,7 @@ exports.createPage = (nodes, createPage) => {
   nodes.forEach(({ node }) => {
     if (node.fields !== undefined && node.fields !== null && node.fields.templateName !== undefined && node.fields.templateName !== null) {
       createPage({
-        path: defaultLang === node.fields.language ? node.fields.slug : `${node.fields.language}/${node.fields.slug}`,
+        path: process.env.DEFAULT_LANG === node.fields.language ? node.fields.slug : `${node.fields.language}/${node.fields.slug}`,
         component: path.resolve(`./src/templates/${node.fields.templateName}.js`),
         context: {
           templateName: node.fields.templateName,
