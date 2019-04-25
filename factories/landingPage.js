@@ -55,8 +55,8 @@ exports.match = (node) => node.internal.type === `${kcItemTypeIdentifier}${artic
 
 const resolvePath = (node) => {
   if(node.fields.codename === homeCodename) {
-    return process.env.DEFAULT_LANG === node.fields.language ? '/' : `${node.fields.language}`;
+    return 'en' === node.fields.language ? '/' : `${node.fields.language}`;
   }
 
-  return process.env.DEFAULT_LANG === node.fields.language ? node.fields.slug : `${node.fields.language}/${node.fields.slug}`;
+  return 'en' === node.fields.language ? node.fields.slug : `${node.fields.language}/${node.fields.slug}`;
 }
