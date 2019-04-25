@@ -7,16 +7,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        includePaths: ["src/styles/_variables"],
-      },
-    },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
       resolve: `gatsby-source-kentico-cloud`,
       options: {
         deliveryClientConfig: {
@@ -28,6 +18,8 @@ module.exports = {
         ]
       }
     },
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -48,6 +40,14 @@ module.exports = {
         name: `images`,
         path: path.join(__dirname, `src`, `images`),
       },
-    }
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: ["src/styles/_variables"],
+      },
+    },
   ]
 };

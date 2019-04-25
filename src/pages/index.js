@@ -45,18 +45,6 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemLandingPage(filter: {system: {codename: {eq: "home"}}, fields: {language: {eq: "en"}}}) {
-      edges {
-        node {
-          ...landingPageMetadata
-          elements {
-            body_text {
-              value
-            }
-          }
-        }
-      }
-    }
     allKenticoCloudItemArticle(filter: { fields: { language: { eq: "en" }}}) {
       edges {
         node {

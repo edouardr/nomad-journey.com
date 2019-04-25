@@ -43,12 +43,6 @@ export const query = graphql`
         body_text {
           value
         }
-        location {
-          value
-        }
-        posted {
-          value
-        }
         jumbotron__title {
           value
         }
@@ -58,15 +52,6 @@ export const query = graphql`
         jumbotron__image {
           value {
             description
-          }
-        }
-        images {
-          value {
-            description
-            name
-            url
-            width
-            height
           }
         }
       }
