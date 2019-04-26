@@ -72,8 +72,7 @@ const Header = ({ allEdges, lang }) => {
                   <div className="navbar-item">
                     <div className="buttons">
                       {
-                        allEdges.map(edge => {
-                          return (
+                        allEdges.map(edge => (
                           <Link
                             key={edge.node.id}
                             className={`navbar-item button ${lang === edge.node.system.language ? 'is-primary' : 'is-light'}`}
@@ -81,8 +80,7 @@ const Header = ({ allEdges, lang }) => {
                           >
                             {edge.node.system.language.toUpperCase()}
                           </Link>
-                        );
-                          })
+                        ))
                       }
                     </div>
                   </div>

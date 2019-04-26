@@ -6,13 +6,21 @@ import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 import PersonTile from '../components/PersonTile/personTile';
 
-const AboutUs = ({ data }) => {
-  const item = {
-    elements: data.kenticoCloudItemAboutUs.elements,
-    fields: data.kenticoCloudItemAboutUs.fields,
-    otherLanguages: data.kenticoCloudItemAboutUs.otherLanguages,
-    site: data.site
+const getItemPerLanguage = (language, data) => {
+  const aboutUsEdges = new Array(...data.allKenticoCloudItemAboutUs.edges);
+  const localizedAboutUs = aboutUsEdges.filter(page => page.node.system.language === language)[0];
+
+  return {
+    allEdges: aboutUsEdges,
+    elements: localizedAboutUs.node.elements,
+    fields: localizedAboutUs.node.fields,
+    site: data.site,
+    system: localizedAboutUs.node.system,
   };
+};
+
+const AboutUs = ({ data, pageContext }) => {
+  const item = getItemPerLanguage(pageContext.language, data);
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 
   return (
@@ -56,7 +64,41 @@ AboutUs.propTypes = {
 export default AboutUs;
 
 export const query = graphql`
-  query aboutUsQuery($slug: String!, $language: String!) {
+  fragment aboutUsData on KenticoCloudItemAboutUs {
+    ...aboutUsMetadata
+    system {
+      language
+    }
+    fields {
+      jumbotronImage {
+        childImageSharp {
+          fluid(maxWidth: 1440) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+    }
+    elements {
+      body_text {
+        value
+      }
+      jumbotron__title {
+        value
+      }
+      jumbotron__description {
+        value
+      }
+      jumbotron__image {
+        value {
+          description
+        }
+      }
+      slug {
+        value
+      }
+    }
+  }
+  query aboutUsQuery($codename: String!, $language: String!) {
     site {
       ...siteMetadata
     }
@@ -88,43 +130,10 @@ export const query = graphql`
         }
       }
     }
-    kenticoCloudItemAboutUs(fields: { slug : { eq: $slug }}) {
-      ...aboutUsMetadata
-      fields {
-        language
-        slug
-        jumbotronImage {
-          childImageSharp {
-            fluid(maxWidth: 1440) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
-          }
-        }
-      }
-      elements {
-        body_text {
-          value
-        }
-        jumbotron__title {
-          value
-        }
-        jumbotron__description {
-          value
-        }
-        jumbotron__image {
-          value {
-            description
-          }
-        }
-      }
-      otherLanguages {
-        system {
-          language
-        }
-        elements {
-          slug {
-            value
-          }
+    allKenticoCloudItemAboutUs(filter: {system: {codename: {eq: $codename}}}) {
+      edges {
+        node {
+          ...aboutUsData
         }
       }
     }
