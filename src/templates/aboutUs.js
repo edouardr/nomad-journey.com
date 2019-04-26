@@ -10,6 +10,7 @@ const AboutUs = ({ data }) => {
   const item = {
     elements: data.kenticoCloudItemAboutUs.elements,
     fields: data.kenticoCloudItemAboutUs.fields,
+    otherLanguages: data.kenticoCloudItemAboutUs.otherLanguages,
     site: data.site
   };
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
@@ -113,6 +114,16 @@ export const query = graphql`
         jumbotron__image {
           value {
             description
+          }
+        }
+      }
+      otherLanguages {
+        system {
+          language
+        }
+        elements {
+          slug {
+            value
           }
         }
       }

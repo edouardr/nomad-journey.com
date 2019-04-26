@@ -4,7 +4,7 @@ import { Link, graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import './header.scss';
 
-const Header = ({ lang }) => {
+const Header = ({ allEdges, lang }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -71,18 +71,19 @@ const Header = ({ lang }) => {
                   }
                   <div className="navbar-item">
                     <div className="buttons">
-                      <Link
-                        className="navbar-item button is-primary"
-                        to={`/en`}
-                      >
-                        EN
-                        </Link>
-                      <Link
-                        className="navbar-item button is-light"
-                        to={`/fr`}
-                      >
-                        FR
-                        </Link>
+                      {
+                        allEdges.map(edge => {
+                          return (
+                          <Link
+                            key={edge.node.id}
+                            className={`navbar-item button ${lang === edge.node.system.language ? 'is-primary' : 'is-light'}`}
+                            to={`/${edge.node.system.language}/${edge.node.elements.slug.value}`}
+                          >
+                            {edge.node.system.language.toUpperCase()}
+                          </Link>
+                        );
+                          })
+                      }
                     </div>
                   </div>
                 </div>
@@ -95,6 +96,7 @@ const Header = ({ lang }) => {
 };
 
 Header.propTypes = {
+  allEdges: PropTypes.array,
   lang: PropTypes.string
 };
 

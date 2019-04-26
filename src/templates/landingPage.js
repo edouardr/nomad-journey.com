@@ -9,6 +9,7 @@ const LandingPage = ({ data }) => {
   const item = {
     elements: data.kenticoCloudItemLandingPage.elements,
     fields: data.kenticoCloudItemLandingPage.fields,
+    otherLanguages: data.kenticoCloudItemLandingPage.otherLanguages,
     site: data.site
   };
 
@@ -68,6 +69,16 @@ export const query = graphql`
         jumbotron__image {
           value {
             description
+          }
+        }
+      }
+      otherLanguages {
+        system {
+          language
+        }
+        elements {
+          slug {
+            value
           }
         }
       }

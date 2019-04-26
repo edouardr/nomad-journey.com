@@ -46,10 +46,11 @@ exports.createPage = (nodes, createPage) => {
         path: process.env.DEFAULT_LANG === node.fields.language ? node.fields.slug : `${node.fields.language}/${node.fields.slug}`,
         component: path.resolve(`./src/templates/${node.fields.templateName}.js`),
         context: {
+          codename: node.fields.codename,
+          jumbotronImage: node.fields.jumbotronImage,
+          language: node.fields.language,
           templateName: node.fields.templateName,
           slug: node.fields.slug,
-          language: node.fields.language,
-          codename: node.fields.codename
         },
       });
     }
