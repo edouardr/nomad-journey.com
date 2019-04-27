@@ -5,13 +5,21 @@ import Img from 'gatsby-image';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
-const LandingPage = ({ data }) => {
-  const item = {
-    elements: data.kenticoCloudItemLandingPage.elements,
-    fields: data.kenticoCloudItemLandingPage.fields,
-    otherLanguages: data.kenticoCloudItemLandingPage.otherLanguages,
-    site: data.site
+const getItemPerLanguage = (language, data) => {
+  const landingPages = new Array(...data.allKenticoCloudItemLandingPage.edges);
+  const localizedLandingPage = landingPages.filter(landingPage => landingPage.node.system.language === language)[0];
+
+  return {
+    allEdges: landingPages,
+    elements: localizedLandingPage.node.elements,
+    fields: localizedLandingPage.node.fields,
+    site: data.site,
+    system: localizedLandingPage.node.system,
   };
+};
+
+const LandingPage = ({ data, pageContext }) => {
+  const item = getItemPerLanguage(pageContext.language, data);
 
   return (
     <Layout item={item}>
@@ -34,51 +42,50 @@ const LandingPage = ({ data }) => {
 
 LandingPage.propTypes = {
   data: PropTypes.object,
+  pageContext: PropTypes.object,
 };
 
 export default LandingPage;
 
 export const query = graphql`
-  query landingPageQuery($slug: String!) {
+  query landingPageQuery($codename: String!) {
     site {
       ...siteMetadata
     }
-    kenticoCloudItemLandingPage(fields: { slug : { eq: $slug }}) {
-      ...landingPageMetadata
-      fields {
-        language
-        slug
-        jumbotronImage {
-          childImageSharp {
-            fluid(maxWidth: 1440) {
-              ...GatsbyImageSharpFluid_noBase64
+    allKenticoCloudItemLandingPage(filter: {system: {codename: {eq: $codename}}}) {
+      edges {
+        node {
+          ...landingPageMetadata
+          system {
+            language
+          }
+          fields {
+            jumbotronImage {
+              childImageSharp {
+                fluid(maxWidth: 1440) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
             }
           }
-        }
-      }
-      elements {
-        body_text {
-          value
-        }
-        jumbotron__title {
-          value
-        }
-        jumbotron__description {
-          value
-        }
-        jumbotron__image {
-          value {
-            description
-          }
-        }
-      }
-      otherLanguages {
-        system {
-          language
-        }
-        elements {
-          slug {
-            value
+          elements {
+            body_text {
+              value
+            }
+            jumbotron__title {
+              value
+            }
+            jumbotron__description {
+              value
+            }
+            jumbotron__image {
+              value {
+                description
+              }
+            }
+            slug {
+              value
+            }
           }
         }
       }

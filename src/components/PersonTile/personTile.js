@@ -7,8 +7,7 @@ const PersonTile = ({ person }) => (
   <div className={styles.card}>
     <div className={`${styles.cardImage} ${styles.ri}`}>
       <figure className={`${styles.image} is-16by9`}>
-        <ImageLoader src={person.elements.image.value[0].url}
-          description={person.elements.image.value[0].description} />
+        <ImageLoader src={person.elements.image.value[0].url} />
       </figure>
     </div>
     <div className={styles.cardContent}>
