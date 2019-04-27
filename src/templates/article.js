@@ -4,16 +4,26 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
-import './article.css';
 import Gallery from '../components/Gallery/gallery';
 import Disqus from '../components/Disqus/disqus';
+import { formatDate } from '../helpers/date-time';
+import './article.scss';
 
-const Article = ({ data }) => {
-  const item = {
-    elements: data.kenticoCloudItemArticle.elements,
-    fields: data.kenticoCloudItemArticle.fields,
-    site: data.site
+const getItemPerLanguage = (language, data) => {
+  const articles = new Array(...data.allKenticoCloudItemArticle.edges);
+  const localizedArticles = articles.filter(article => article.node.system.language === language)[0];
+
+  return {
+    allEdges: articles,
+    elements: localizedArticles.node.elements,
+    fields: localizedArticles.node.fields,
+    site: data.site,
+    system: localizedArticles.node.system,
   };
+};
+
+const Article = ({ data, pageContext }) => {
+  const item = getItemPerLanguage(pageContext.language, data);
 
   return (
     <Layout item={item}>
@@ -26,7 +36,7 @@ const Article = ({ data }) => {
             </div>
             <div className="article-details">
               <p>
-                <span>{item.elements.posted.value}</span>
+                <span>{formatDate(item.elements.posted.value, item.system.language)}</span>
                 <span className="divider"></span>
               </p>
             </div>
@@ -49,61 +59,76 @@ const Article = ({ data }) => {
   );
 };
 
+Article.propTypes = {
+  data: PropTypes.object,
+  pageContext: PropTypes.object,
+};
+
 export default Article;
 
 export const query = graphql`
-  query articleQuery($slug: String!) {
-    site {
-      ...siteMetadata
-    }
-    kenticoCloudItemArticle(fields: { slug: { eq: $slug }}) {
-      ...articleMetadata
-      fields {
-        language
-        slug
-        jumbotronImage {
-          childImageSharp {
-            fluid(maxWidth: 1440) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
+  fragment articleData on KenticoCloudItemArticle {
+    ...articleMetadata
+    fields {
+      language
+      slug
+      jumbotronImage {
+        childImageSharp {
+          fluid(maxWidth: 1440) {
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
-      elements {
-        body_text {
-          value
+    }
+    id
+    system {
+      language
+    }
+    elements {
+      body_text {
+        value
+      }
+      location {
+        value
+      }
+      posted {
+        value
+      }
+      jumbotron__title {
+        value
+      }
+      jumbotron__description {
+        value
+      }
+      jumbotron__image {
+        value {
+          description
         }
-        location {
-          value
+      }
+      images {
+        value {
+          description
+          name
+          url
+          width
+          height
         }
-        posted {
-          value
-        }
-        jumbotron__title {
-          value
-        }
-        jumbotron__description {
-          value
-        }
-        jumbotron__image {
-          value {
-            description
-          }
-        }
-        images {
-          value {
-            description
-            name
-            url
-            width
-            height
-          }
+      }
+      slug {
+        value
+      }
+    }
+  }
+  query articleQuery($codename: String!) {
+    site {
+      ...siteMetadata
+    }
+    allKenticoCloudItemArticle(filter: {system: {codename: {eq: $codename}}}) {
+      edges {
+        node {
+          ...articleData
         }
       }
     }
   }
 `;
-
-Article.propTypes = {
-  data: PropTypes.object,
-};

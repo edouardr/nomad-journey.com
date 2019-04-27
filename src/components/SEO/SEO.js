@@ -52,6 +52,31 @@ const SEO = ({item}) => {
 };
 
 export const query = graphql `
+  fragment aboutUsMetadata on KenticoCloudItemAboutUs {
+    elements {
+      page_metadata__meta_description {
+        value
+      }
+      page_metadata__meta_keywords {
+        value
+      }
+      page_metadata__og_description {
+        value
+      }
+      page_metadata__og_image {
+        value {
+          url
+          description
+        }
+      }
+      page_metadata__og_title {
+        value
+      }
+      page_metadata__meta_title {
+        value
+      }
+    }
+  }
   fragment articleMetadata on KenticoCloudItemArticle {
     elements {
       page_metadata__meta_description {

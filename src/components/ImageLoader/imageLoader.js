@@ -19,7 +19,9 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
   );
 
   const handleLoad = () => {
-    onLoad();
+    if(onLoad && {}.toString.call(onLoad) === '[object Function]'){
+      onLoad();
+    }
     setLoaded(true);
   };
 

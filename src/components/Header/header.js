@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import './header.module.scss';
+import './header.scss';
 
-const Header = ({ lang }) => {
+const Header = ({ allEdges, lang }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -13,8 +13,9 @@ const Header = ({ lang }) => {
         query {
           file(relativePath: { eq: "logo-transp.png" }) {
             childImageSharp {
-              fixed(width: 112) {
-                ...GatsbyImageSharpFixed
+              fluid(maxWidth: 280) {
+                ...GatsbyImageSharpFluid_withWebp
+                presentationWidth
               }
             }
           }
@@ -46,14 +47,14 @@ const Header = ({ lang }) => {
           .map(edge => edge.node);
 
         return (
-          <header className="navbar is-spaced">
+          <header className="navbar is-spaced is-mobile">
             <div className="container">
               <div className="navbar-brand">
                 <Link
-                  className="navbar-item"
+                  className="navbar-item brand"
                   to={`/${lang}`}
                 >
-                  <Img fixed={data.file.childImageSharp.fixed} />
+                  <Img fluid={data.file.childImageSharp.fluid} />
                 </Link>
                 <span className={`navbar-burger burger ${(isOpen ? 'is-active' : '')}`} data-target="navMenu" onClick={() => setIsOpen(!isOpen)}>
                   <span></span>
@@ -63,25 +64,24 @@ const Header = ({ lang }) => {
               </div>
               <div id="navMenu" className={`navbar-menu ${(isOpen ? 'is-active' : '')}`}>
                 <div className="navbar-start">
+                </div>
+                <div className="navbar-end">
                   {
                     menuLinks.map(link => <Link key={link.elements.slug.value} className="navbar-item" to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
                   }
-                </div>
-                <div className="navbar-end">
                   <div className="navbar-item">
                     <div className="buttons">
-                      <Link
-                        className="navbar-item button is-primary"
-                        to={`/en`}
-                      >
-                        EN
-                        </Link>
-                      <Link
-                        className="navbar-item button is-light"
-                        to={`/fr`}
-                      >
-                        FR
-                        </Link>
+                      {
+                        allEdges.map(edge => (
+                          <Link
+                            key={edge.node.id}
+                            className={`navbar-item button ${lang === edge.node.system.language ? 'is-primary' : 'is-light'}`}
+                            to={`/${edge.node.system.language}/${edge.node.elements.slug.value}`}
+                          >
+                            {edge.node.system.language.toUpperCase()}
+                          </Link>
+                        ))
+                      }
                     </div>
                   </div>
                 </div>
@@ -94,6 +94,7 @@ const Header = ({ lang }) => {
 };
 
 Header.propTypes = {
+  allEdges: PropTypes.array,
   lang: PropTypes.string
 };
 

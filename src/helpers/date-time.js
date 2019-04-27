@@ -1,6 +1,6 @@
-const formatDate = (time) => {
-    return new Date(time).toLocaleString('en-US', 
-      { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
-};
+export const formatDate = (time, locale) => {
+  const options = { year: 'numeric', month: 'short', day: 'numeric', hour: undefined, minute: undefined, hour12: true, weekday: undefined };
+  const date = new Date(time);
 
-exports.formatDate = formatDate;
+  return date.toLocaleDateString(locale, options);
+};

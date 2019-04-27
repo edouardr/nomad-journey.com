@@ -8,11 +8,11 @@ const Layout = ({children, item}) => {
   return (
     <>
       <SEO item={item} />
-      <Header lang={item.fields.language}/>
+      <Header lang={item.system.language} allEdges={item.allEdges} />
       <div>
         {children}
       </div>
-      <Footer />
+      <Footer lang={item.system.language} />
     </>
   );
 };

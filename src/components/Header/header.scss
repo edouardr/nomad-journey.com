@@ -1,0 +1,32 @@
+.navbar {
+  box-shadow: 0 2px 0 0 rgba(128, 128, 128, .1);
+}
+
+.navbar-burger {
+  height: 5.25rem;
+  width: 4.25rem;
+}
+
+.navbar-item {
+  font-size: 1.5rem;
+
+  &.brand {
+    width: 15rem;
+    &:hover {
+      background-color: inherit;
+    }
+  }
+}
+
+.navbar-menu.is-active {
+  position: absolute;
+  width: 100%;
+  transition: left 0.2s;
+}
+
+@media only screen and (min-width : "992px") {
+  .navbar-burger {
+    height: 5.25rem;
+    width: 4.25rem;
+  }
+}
