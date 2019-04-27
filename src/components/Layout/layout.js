@@ -12,7 +12,7 @@ const Layout = ({children, item}) => {
       <div>
         {children}
       </div>
-      <Footer />
+      <Footer lang={item.system.language} />
     </>
   );
 };

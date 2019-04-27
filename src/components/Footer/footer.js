@@ -1,52 +1,89 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaRss, FaVimeo } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import { Link, graphql, StaticQuery } from 'gatsby';
 import styles from './footer.module.scss';
 
-const Footer = () => {
+const Footer = ({ lang }) => {
   const fbUsername = process.env.FB_USERNAME;
   const instaUsername = process.env.INSTA_USERNAME;
   const vimeoUsername = process.env.VIMEO_USERNAME;
   return (
-    <footer className={styles.footer}>
-      <div className={`${styles.footerSocial} has-text-centered`}>
-        <a className="is-size-1" href={`https://facebook.com/${fbUsername}`} title="Facebook A Nomad Journey" target="_blank" rel="noopener noreferrer">
-          <span className="icon is-medium">
-            <FaFacebook />
-          </span>
-        </a>
+    <StaticQuery
+      query={graphql`
+      query {
+        allKenticoCloudItemLandingPage(filter: {system: {codename: {eq: "legals"}}}) {
+          edges {
+            node {
+              system {
+                language
+              }
+              elements {
+                jumbotron__title {
+                  value
+                }
+                slug {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+      render={data => {
+        const legalLink = data.allKenticoCloudItemLandingPage.edges
+          .filter(edge => edge.node.system.language === lang)
+          .map(edge => edge.node);
 
-        <a className="is-size-1" href={`https://instagram.com/${instaUsername}`} title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
-          <span className="icon is-medium">
-            <FaInstagram />
-          </span>
-        </a>
+        return (
+        <footer className={styles.footer}>
+          <div className={`${styles.footerSocial} has-text-centered`}>
+            <a className="is-size-1" href={`https://facebook.com/${fbUsername}`} title="Facebook A Nomad Journey" target="_blank" rel="noopener noreferrer">
+              <span className="icon is-medium">
+                <FaFacebook />
+              </span>
+            </a>
 
-        <a className="is-size-1" href={`https://vimeo.com/${vimeoUsername}`} title="Vimeo A Nomad Journey" target="_blank" rel="noopener noreferrer">
-          <span className="icon is-medium">
-            <FaVimeo />
-          </span>
-        </a>
+            <a className="is-size-1" href={`https://instagram.com/${instaUsername}`} title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
+              <span className="icon is-medium">
+                <FaInstagram />
+              </span>
+            </a>
 
-        <a className="is-size-1" href="sitemap.xml" title="RSS A Nomad Journey" target="_blank" rel="noopener noreferrer">
-          <span className="icon is-medium">
-            <FaRss />
-          </span>
-        </a>
-      </div>
-      <div className={styles.footerLegal}>
-        <div className="has-text-centered">
-          <p className="has-text-white">
-            <small>© 2019 A Nomad Journey</small>
-          </p>
-          <div className="container content">
-            {/* <link to={`/${language}/legals`} title={`${legals.page.jumbotronTitle.value}`}>
-                {legals.page.jumbotron__yitle.value}
-            </link> */}
+            <a className="is-size-1" href={`https://vimeo.com/${vimeoUsername}`} title="Vimeo A Nomad Journey" target="_blank" rel="noopener noreferrer">
+              <span className="icon is-medium">
+                <FaVimeo />
+              </span>
+            </a>
+
+            <a className="is-size-1" href="sitemap.xml" title="RSS A Nomad Journey" target="_blank" rel="noopener noreferrer">
+              <span className="icon is-medium">
+                <FaRss />
+              </span>
+            </a>
           </div>
-        </div>
-      </div>
-    </footer>
+          <div className={styles.footerLegal}>
+            <div className="has-text-centered">
+              <p className="has-text-white">
+                <small>© 2019 A Nomad Journey</small>
+              </p>
+              <div className="container content">
+                <Link to={`/${lang}/${legalLink[0].elements.slug.value}`} title={`${legalLink[0].elements.jumbotron__title.value}`}>
+                  {legalLink[0].elements.jumbotron__title.value}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }} />
   );
 };
+
+Footer.propTypes = {
+  lang: PropTypes.string
+};
+
 
 export default Footer;
