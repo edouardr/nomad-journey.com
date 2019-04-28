@@ -22,6 +22,7 @@ const Header = ({ allEdges, lang }) => {
           allKenticoCloudItemNavigationItem(sort: { order: ASC, fields: [elements___appearance__sort_order___value] }) {
             edges {
               node {
+                id
                 system {
                   language
                 }
@@ -67,7 +68,7 @@ const Header = ({ allEdges, lang }) => {
                 </div>
                 <div className="navbar-end">
                   {
-                    menuLinks.map(link => <Link key={link.elements.slug.value} className="navbar-item" to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
+                    menuLinks.map(link => <Link key={link.id} className="navbar-item" to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
                   }
                   <div className="navbar-item">
                     <div className="buttons">

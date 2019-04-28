@@ -20,11 +20,10 @@ const getItemPerLanguage = (language, data) => {
 
 const Itinerary = ({ data, pageContext }) => {
   const itinerary = getItemPerLanguage(pageContext.language, data);
-
   return (
     <Layout item={itinerary}>
       <div>
-        <ItineraryMap mapid={itinerary.elements.map_id.value} />
+        <ItineraryMap mapId={itinerary.elements.map_id.value} />
         <section className="section">
           <div className="container">
             <div className="content" dangerouslySetInnerHTML={{ __html: itinerary.elements.body_text.value }}></div>
@@ -56,6 +55,7 @@ export const query = graphql`
       edges {
         node {
           ...itineraryMetadata
+          id
           system {
             language
           }
