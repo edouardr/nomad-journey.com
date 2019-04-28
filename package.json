@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "author": "Edouard Riviere <riviere.edouard@gmail.com>",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-brands-svg-icons": "^5.8.1",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "bulma": "^0.7.4",
     "gatsby": "^2.3.25",
     "gatsby-image": "^2.0.37",
@@ -20,7 +24,6 @@
     "react-disqus-comments": "^1.4.0",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
-    "react-icons": "^3.6.1",
     "react-lazy-load": "^3.0.13"
   },
   "keywords": [

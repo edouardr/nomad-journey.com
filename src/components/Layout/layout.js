@@ -9,9 +9,7 @@ const Layout = ({children, item}) => {
     <>
       <SEO item={item} />
       <Header lang={item.system.language} allEdges={item.allEdges} />
-      <div>
-        {children}
-      </div>
+      {children}
       <Footer lang={item.system.language} />
     </>
   );
