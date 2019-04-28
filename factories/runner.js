@@ -1,10 +1,12 @@
 const articleFactory = require('./article');
 const aboutUsFactory = require( './aboutUs');
+const itineraryFactory = require( './itinerary');
 const landingPageFactory = require( './landingPage');
 
 const factories = [
   articleFactory,
   aboutUsFactory,
+  itineraryFactory,
   landingPageFactory
 ];
 

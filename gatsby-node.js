@@ -1,6 +1,7 @@
 const factoriesManager = require('./factories/runner');
 const articleFactory = require('./factories/article');
 const aboutUsFactory = require('./factories/aboutUs');
+const itineraryFactory = require( './factories/itinerary');
 const landingPageFactory = require('./factories/landingPage');
 
 exports.onCreateNode = async ({ node, actions, store, cache, createNodeId }) => {
@@ -15,6 +16,19 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       allKenticoCloudItemAboutUs {
+        edges {
+          node {
+            fields {
+              codename
+              language
+              templateName
+              slug
+            }
+          }
+        }
+      }
+
+      allKenticoCloudItemItinerary {
         edges {
           node {
             fields {
@@ -60,6 +74,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const aboutUsNodes = new Array(...result.data.allKenticoCloudItemAboutUs.edges);
   aboutUsFactory.createPage(aboutUsNodes, createPage);
+
+  const itineraryPages = new Array(...result.data.allKenticoCloudItemItinerary.edges);
+  itineraryFactory.createPage(itineraryPages, createPage);
 
   const landingPages = new Array(...result.data.allKenticoCloudItemLandingPage.edges);
   landingPageFactory.createPage(landingPages, createPage);
