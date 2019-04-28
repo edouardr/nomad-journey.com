@@ -1,7 +1,8 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaRss, FaVimeo } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
+import '../../utils/fontawesome';
 import styles from './footer.module.scss';
 
 const Footer = ({ lang }) => {
@@ -41,25 +42,25 @@ const Footer = ({ lang }) => {
           <div className={`${styles.footerSocial} has-text-centered`}>
             <a className="is-size-1" href={`https://facebook.com/${fbUsername}`} title="Facebook A Nomad Journey" target="_blank" rel="noopener noreferrer">
               <span className="icon is-medium">
-                <FaFacebook />
+                <FontAwesomeIcon icon={['fab', 'facebook']} />
               </span>
             </a>
 
             <a className="is-size-1" href={`https://instagram.com/${instaUsername}`} title="Instagram A Nomad Journey" target="_blank" rel="noopener noreferrer">
               <span className="icon is-medium">
-                <FaInstagram />
+                <FontAwesomeIcon icon={['fab', 'instagram']} />
               </span>
             </a>
 
             <a className="is-size-1" href={`https://vimeo.com/${vimeoUsername}`} title="Vimeo A Nomad Journey" target="_blank" rel="noopener noreferrer">
               <span className="icon is-medium">
-                <FaVimeo />
+                <FontAwesomeIcon icon={['fab', 'vimeo']} />
               </span>
             </a>
 
             <a className="is-size-1" href="sitemap.xml" title="RSS A Nomad Journey" target="_blank" rel="noopener noreferrer">
               <span className="icon is-medium">
-                <FaRss />
+                <FontAwesomeIcon icon="rss" />
               </span>
             </a>
           </div>

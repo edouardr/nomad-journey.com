@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/layout';
 import ItineraryMap from '../components/ItineraryMap/itineraryMap';
+import KeyFactGroup from '../components/keyFacts/group';
 import '../components/SEO/SEO';
 
 const getItemPerLanguage = (language, data) => {
@@ -31,7 +32,7 @@ const Itinerary = ({ data, pageContext }) => {
         </section>
         <section className="section">
           <div className="container">
-            {/* <KeyFactGroup keyFacts={itinerary.elements.key_facts} /> */}
+            <KeyFactGroup keyFacts={itinerary.elements.key_facts} />
           </div>
         </section>
       </div>
@@ -67,6 +68,7 @@ export const query = graphql`
               value
             }
             key_facts {
+              id
               elements {
                 icon_group {
                   value
