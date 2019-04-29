@@ -7,12 +7,14 @@ import styles from './jumbotron.module.scss';
 const Jumbotron = ({ item }) => (
   <section className={`${styles.hero} is-medium`}>
     <div className={styles.heroHead}>
-      <TransparentHeader lang={item.system.lang} allEdges={item.allEdges} />
+      <TransparentHeader lang={item.system.language} allEdges={item.allEdges} />
     </div>
     <div className={styles.heroBody}>
       <div className={styles.image}>
         <div className={styles.mediaObj}>
-          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
+          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid}
+            alt={item.elements.jumbotron__image.value[0].description}
+            style={{position: 'unset'}} />
         </div>
         <div className={`content ${styles.contentWrap}`}>
           <h1 className="title has-text-white is-2 is-spaced is-large">{item.elements.jumbotron__title.value}</h1>

@@ -10,7 +10,7 @@ const TransparentHeader = ({ allEdges, lang }) => {
   return (
     <StaticQuery
       query={graphql`
-        query {
+        query transparentHeader {
           file(relativePath: { eq: "logo-transp.png" }) {
             childImageSharp {
               fluid(maxWidth: 280) {
@@ -55,7 +55,9 @@ const TransparentHeader = ({ allEdges, lang }) => {
                   className={`${styles.navbarItem} ${styles.brand}`}
                   to={`/${lang}`}
                 >
-                  <Img fluid={data.file.childImageSharp.fluid} />
+                  <Img fluid={data.file.childImageSharp.fluid}
+                    alt="Nomad Journey Logo"
+                    style={{position: 'unset'}} />
                 </Link>
                 <span className={`${styles.navbarBurger} ${styles.burger} ${(isOpen ? styles.isActive : '')}`} data-target="navMenu" onClick={() => setIsOpen(!isOpen)}>
                   <span></span>
