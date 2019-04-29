@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import IntroText from '../components/IntroText.js';
+import Jumbotron from '../components/Jumbotron/jumbotron.js';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
@@ -23,19 +24,8 @@ const LandingPage = ({ data, pageContext }) => {
 
   return (
     <Layout item={item}>
-      <div className="container is-widescreen">
-        <div className="article-header">
-          <div className="content">
-            <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-          </div>
-        </div>
-        <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
-      </div>
-      <section className="section">
-        <div className="container is-light">
-          <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
-        </div>
-      </section>
+      <Jumbotron item={item} />
+      <IntroText html={item.elements.body_text.value} />
     </Layout>
   );
 };

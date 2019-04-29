@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import styles from './header.module.scss';
+import styles from './transparent.module.scss';
 
-const Header = ({ allEdges, lang }) => {
+const TransparentHeader = ({ allEdges, lang }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -48,7 +48,7 @@ const Header = ({ allEdges, lang }) => {
           .map(edge => edge.node);
 
         return (
-          <header className={`${styles.navbar} is-spaced is-mobile`}>
+          <nav className={`${styles.navbar} is-mobile ${(isOpen ? styles.isActive : '')}`}>
             <div className={styles.container}>
               <div className={styles.navbarBrand}>
                 <Link
@@ -88,15 +88,15 @@ const Header = ({ allEdges, lang }) => {
                 </div>
               </div>
             </div>
-          </header>
+          </nav>
         );
       }} />
   );
 };
 
-Header.propTypes = {
+TransparentHeader.propTypes = {
   allEdges: PropTypes.array,
   lang: PropTypes.string
 };
 
-export default Header;
+export default TransparentHeader;

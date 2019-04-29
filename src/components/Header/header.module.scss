@@ -1,3 +1,8 @@
+@import '../../styles/variables';
+@import '~bulma/sass/utilities/mixins';
+@import '~bulma/sass/components/navbar';
+@import '~bulma/sass/elements/container';
+
 .navbar {
   box-shadow: 0 2px 0 0 rgba(128, 128, 128, .1);
 }

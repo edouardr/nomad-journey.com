@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../Header/header';
 import SEO from '../SEO/SEO';
 import Footer from '../Footer/footer';
 
@@ -8,7 +7,6 @@ const Layout = ({children, item}) => {
   return (
     <>
       <SEO item={item} />
-      <Header lang={item.system.language} allEdges={item.allEdges} />
       {children}
       <Footer lang={item.system.language} />
     </>
@@ -16,7 +14,7 @@ const Layout = ({children, item}) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
   item: PropTypes.object,
 };
 

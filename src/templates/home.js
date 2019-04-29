@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import IntroText from '../components/IntroText.js';
+import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
@@ -21,17 +23,12 @@ const getItemPerLanguage = (language, data) => {
 };
 
 const Home = ({ data, pageContext }) => {
-  const home = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data);
 
   return (
-    <Layout item={home}>
-      <section className="section">
-        <div className="container">
-          <div className="content">
-            {home.elements.body_text.value}
-          </div>
-        </div>
-      </section>
+    <Layout item={item}>
+      <Jumbotron item={item} />
+      <IntroText html={item.elements.body_text.value} />
     </Layout>
   );
 };
@@ -52,6 +49,7 @@ export const query = graphql`
       edges {
         node {
           ...landingPageMetadata
+          id
           system {
             language
           }

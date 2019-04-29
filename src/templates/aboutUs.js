@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import IntroText from '../components/IntroText.js';
+import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
-import '../components/SEO/SEO';
 import PersonTile from '../components/PersonTile/personTile';
+import '../components/SEO/SEO';
 
 const getItemPerLanguage = (language, data) => {
   const aboutUsEdges = new Array(...data.allKenticoCloudItemAboutUs.edges);
@@ -25,40 +26,28 @@ const AboutUs = ({ data, pageContext }) => {
 
   return (
     <Layout item={item}>
-      <>
-        <div className="container is-widescreen">
-          <div className="article-header">
-            <div className="content">
-              <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-            </div>
+      <Jumbotron item={item} />
+      <IntroText html={item.elements.body_text.value} />
+      <section className="section">
+        <div className="container">
+          <div className="columns">
+            {
+              persons.map(person => (
+                <div className="column is-half" key={person.node.system.codename}>
+                  <PersonTile person={person.node} />
+                </div>
+              ))
+            }
           </div>
-          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
         </div>
-        <section className="section">
-          <div className="container">
-            <div className="content" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
-          </div>
-        </section>
-        <section className="section">
-          <div className="container">
-            <div className="columns">
-              {
-                persons.map(person => (
-                  <div className="column is-half" key={person.node.system.codename}>
-                    <PersonTile person={person.node} />
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </section>
-      </>
+      </section>
     </Layout>
   );
 };
 
 AboutUs.propTypes = {
   data: PropTypes.object,
+  pageContext: PropTypes.object,
 };
 
 export default AboutUs;
@@ -66,6 +55,7 @@ export default AboutUs;
 export const query = graphql`
   fragment aboutUsData on KenticoCloudItemAboutUs {
     ...aboutUsMetadata
+    id
     system {
       language
     }
