@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql, StaticQuery } from 'gatsby';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Img from 'gatsby-image';
 import styles from './transparent.module.scss';
 
@@ -57,7 +58,7 @@ const TransparentHeader = ({ allEdges, lang }) => {
                 >
                   <Img fluid={data.file.childImageSharp.fluid}
                     alt="Nomad Journey Logo"
-                    style={{position: 'unset'}} />
+                    style={{ position: 'unset' }} />
                 </Link>
                 <span className={`${styles.navbarBurger} ${styles.burger} ${(isOpen ? styles.isActive : '')}`} data-target="navMenu" onClick={() => setIsOpen(!isOpen)}>
                   <span></span>
@@ -72,18 +73,35 @@ const TransparentHeader = ({ allEdges, lang }) => {
                   {
                     menuLinks.map(link => <Link key={link.id} className={styles.navbarItem} to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
                   }
-                  <div className={styles.navbarItem}>
-                    <div className="buttons">
-                      {
-                        allEdges.map(edge => (
+
+                  <div className={`${styles.navbarItem} ${styles.hasDropdown} ${styles.isHoverable}`}>
+                    {
+                      allEdges
+                        .filter(edge => lang === edge.node.system.language)
+                        .map(edge => (
                           <Link
                             key={edge.node.id}
-                            className={`${styles.navbarItem} button ${lang === edge.node.system.language ? 'is-primary' : 'is-light'}`}
+                            className={`${styles.navbarLink} ${styles.isActive}`}
                             to={`/${edge.node.system.language}/${edge.node.elements.slug.value}`}
                           >
+                            <FontAwesomeIcon icon="globe" />&nbsp;
                             {edge.node.system.language.toUpperCase()}
                           </Link>
                         ))
+                    }
+                    <div className={styles.navbarDropdown}>
+                      {
+                        allEdges
+                          .filter(edge => lang !== edge.node.system.language)
+                          .map(edge => (
+                            <Link
+                              key={edge.node.id}
+                              className={styles.navbarItem}
+                              to={`/${edge.node.system.language}/${edge.node.elements.slug.value}`}
+                            >
+                              {edge.node.system.language.toUpperCase()}
+                            </Link>
+                          ))
                       }
                     </div>
                   </div>

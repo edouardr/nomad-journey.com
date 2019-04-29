@@ -50,6 +50,16 @@
     }
   }
 
+  .navbar-dropdown {
+    .navbar-item {
+      color: $deeplight;
+      &:hover {
+        color: $water;
+        background-color: $sand;
+      }
+    }
+  }
+
   .navbar-item {
     font-size: 1.5rem;
     color: white;
