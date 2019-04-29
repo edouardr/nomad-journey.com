@@ -46,6 +46,7 @@ export const query = graphql`
       edges {
         node {
           ...landingPageMetadata
+          id
           system {
             language
           }
