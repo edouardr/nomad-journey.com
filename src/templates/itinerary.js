@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import { getItemPerLanguage } from '../utils/templateHelper';
 import Header from '../components/Header/header';
 import IntroText from '../components/IntroText.js';
 import ItineraryMap from '../components/ItineraryMap/itineraryMap';
@@ -8,21 +9,9 @@ import KeyFactGroup from '../components/keyFacts/group';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
-const getItemPerLanguage = (language, data) => {
-  const itineraryPages = new Array(...data.allKenticoCloudItemItinerary.edges);
-  const localizedItineraries = itineraryPages.filter(edge => edge.node.system.language === language)[0];
-
-  return {
-    allEdges: itineraryPages,
-    elements: localizedItineraries.node.elements,
-    fields: localizedItineraries.node.fields,
-    site: data.site,
-    system: localizedItineraries.node.system,
-  };
-};
-
 const Itinerary = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemItinerary.edges, data.site);
+
   return (
     <Layout item={item}>
       <Header lang={item.system.language} allEdges={item.allEdges} />

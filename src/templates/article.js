@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { getItemPerLanguage } from '../utils/templateHelper';
 import Disqus from '../components/Disqus/disqus';
 import Gallery from '../components/Gallery/gallery';
 import Header from '../components/Header/header';
@@ -10,21 +11,8 @@ import '../components/SEO/SEO';
 import { formatDate } from '../helpers/date-time';
 import styles from './article.module.scss';
 
-const getItemPerLanguage = (language, data) => {
-  const articles = new Array(...data.allKenticoCloudItemArticle.edges);
-  const localizedArticles = articles.filter(article => article.node.system.language === language)[0];
-
-  return {
-    allEdges: articles,
-    elements: localizedArticles.node.elements,
-    fields: localizedArticles.node.fields,
-    site: data.site,
-    system: localizedArticles.node.system,
-  };
-};
-
 const Article = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemArticle.edges, data.site);
 
   return (
     <Layout item={item}>

@@ -1,27 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import { getItemPerLanguage } from '../utils/templateHelper';
 import IntroText from '../components/IntroText.js';
 import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import PersonTile from '../components/PersonTile/personTile';
 import '../components/SEO/SEO';
 
-const getItemPerLanguage = (language, data) => {
-  const aboutUsEdges = new Array(...data.allKenticoCloudItemAboutUs.edges);
-  const localizedAboutUs = aboutUsEdges.filter(page => page.node.system.language === language)[0];
-
-  return {
-    allEdges: aboutUsEdges,
-    elements: localizedAboutUs.node.elements,
-    fields: localizedAboutUs.node.fields,
-    site: data.site,
-    system: localizedAboutUs.node.system,
-  };
-};
-
 const AboutUs = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemAboutUs.edges, data.site);
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 
   return (
