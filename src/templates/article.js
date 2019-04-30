@@ -2,42 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { getItemPerLanguage } from '../utils/templateHelper';
+import Disqus from '../components/Disqus/disqus';
+import Gallery from '../components/Gallery/gallery';
+import Header from '../components/Header/header';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
-import Gallery from '../components/Gallery/gallery';
-import Disqus from '../components/Disqus/disqus';
 import { formatDate } from '../helpers/date-time';
-import './article.scss';
-
-const getItemPerLanguage = (language, data) => {
-  const articles = new Array(...data.allKenticoCloudItemArticle.edges);
-  const localizedArticles = articles.filter(article => article.node.system.language === language)[0];
-
-  return {
-    allEdges: articles,
-    elements: localizedArticles.node.elements,
-    fields: localizedArticles.node.fields,
-    site: data.site,
-    system: localizedArticles.node.system,
-  };
-};
+import styles from './article.module.scss';
 
 const Article = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemArticle.edges, data.site);
 
   return (
     <Layout item={item}>
+      <Header lang={item.system.language} allEdges={item.allEdges} />
       <article>
         <div className="container is-widescreen">
-          <div className="article-header">
+          <div className={styles.articleHeader}>
             <div className="content">
               <p className="subtitle location">{item.elements.location.value}</p>
               <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
             </div>
-            <div className="article-details">
+            <div className={styles.articleDetails}>
               <p>
                 <span>{formatDate(item.elements.posted.value, item.system.language)}</span>
-                <span className="divider"></span>
+                <span className={styles.divider}></span>
               </p>
             </div>
           </div>

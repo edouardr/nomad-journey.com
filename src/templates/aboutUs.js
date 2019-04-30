@@ -1,64 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { getItemPerLanguage } from '../utils/templateHelper';
+import IntroText from '../components/IntroText.js';
+import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
-import '../components/SEO/SEO';
 import PersonTile from '../components/PersonTile/personTile';
-
-const getItemPerLanguage = (language, data) => {
-  const aboutUsEdges = new Array(...data.allKenticoCloudItemAboutUs.edges);
-  const localizedAboutUs = aboutUsEdges.filter(page => page.node.system.language === language)[0];
-
-  return {
-    allEdges: aboutUsEdges,
-    elements: localizedAboutUs.node.elements,
-    fields: localizedAboutUs.node.fields,
-    site: data.site,
-    system: localizedAboutUs.node.system,
-  };
-};
+import '../components/SEO/SEO';
 
 const AboutUs = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemAboutUs.edges, data.site);
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 
   return (
     <Layout item={item}>
-      <>
-        <div className="container is-widescreen">
-          <div className="article-header">
-            <div className="content">
-              <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-            </div>
+      <Jumbotron item={item} />
+      <IntroText html={item.elements.body_text.value} />
+      <section className="section">
+        <div className="container">
+          <div className="columns">
+            {
+              persons.map(person => (
+                <div className="column is-half" key={person.node.system.codename}>
+                  <PersonTile person={person.node} />
+                </div>
+              ))
+            }
           </div>
-          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
         </div>
-        <section className="section">
-          <div className="container">
-            <div className="content" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
-          </div>
-        </section>
-        <section className="section">
-          <div className="container">
-            <div className="columns">
-              {
-                persons.map(person => (
-                  <div className="column is-half" key={person.node.system.codename}>
-                    <PersonTile person={person.node} />
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </section>
-      </>
+      </section>
     </Layout>
   );
 };
 
 AboutUs.propTypes = {
   data: PropTypes.object,
+  pageContext: PropTypes.object,
 };
 
 export default AboutUs;
@@ -66,13 +43,14 @@ export default AboutUs;
 export const query = graphql`
   fragment aboutUsData on KenticoCloudItemAboutUs {
     ...aboutUsMetadata
+    id
     system {
       language
     }
     fields {
       jumbotronImage {
         childImageSharp {
-          fluid(maxWidth: 1440) {
+          fluid(maxWidth: 1440, quality: 100) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }

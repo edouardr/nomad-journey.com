@@ -1,41 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { getItemPerLanguage } from '../utils/templateHelper';
+import IntroText from '../components/IntroText.js';
+import Jumbotron from '../components/Jumbotron/jumbotron.js';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 
-const getItemPerLanguage = (language, data) => {
-  const landingPages = new Array(...data.allKenticoCloudItemLandingPage.edges);
-  const localizedLandingPage = landingPages.filter(landingPage => landingPage.node.system.language === language)[0];
-
-  return {
-    allEdges: landingPages,
-    elements: localizedLandingPage.node.elements,
-    fields: localizedLandingPage.node.fields,
-    site: data.site,
-    system: localizedLandingPage.node.system,
-  };
-};
-
 const LandingPage = ({ data, pageContext }) => {
-  const item = getItemPerLanguage(pageContext.language, data);
+  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemLandingPage.edges, data.site);
 
   return (
     <Layout item={item}>
-      <div className="container is-widescreen">
-        <div className="article-header">
-          <div className="content">
-            <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-          </div>
-        </div>
-        <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
-      </div>
-      <section className="section">
-        <div className="container is-light">
-          <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
-        </div>
-      </section>
+      <Jumbotron item={item} />
+      <IntroText html={item.elements.body_text.value} />
     </Layout>
   );
 };
@@ -56,13 +34,14 @@ export const query = graphql`
       edges {
         node {
           ...landingPageMetadata
+          id
           system {
             language
           }
           fields {
             jumbotronImage {
               childImageSharp {
-                fluid(maxWidth: 1440) {
+                fluid(maxWidth: 1024) {
                   ...GatsbyImageSharpFluid_noBase64
                 }
               }
