@@ -49,7 +49,7 @@ const Header = ({ allEdges, lang }) => {
           .map(edge => edge.node);
 
         return (
-          <header className={`${styles.navbar} is-spaced is-mobile`}>
+          <header className={`${styles.navbar} is-spaced is-mobile ${(isOpen ? styles.isActive : '')}`}>
             <div className={styles.container}>
               <div className={styles.navbarBrand}>
                 <Link
