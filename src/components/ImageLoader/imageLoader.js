@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './imageLoader.module.scss';
 
@@ -19,33 +19,29 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
   );
 
   const handleLoad = () => {
-    if(onLoad && {}.toString.call(onLoad) === '[object Function]'){
+    if (onLoad && {}.toString.call(onLoad) === '[object Function]') {
       onLoad();
     }
     setLoaded(true);
   };
 
+  const data = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "logo-simple-grey.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 425) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <>
-      <StaticQuery
-        query={graphql`
-          query {
-            file(relativePath: { eq: "logo-simple-grey.png" }) {
-              childImageSharp {
-                fluid(maxWidth: 425) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        `}
-        render={data => (
-            <div className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}>
-              <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
-            </div>
-          )
-        }
-      />
+      <div className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}>
+        <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
+      </div>
       <LazyLoad>
         <img
           src={src}
