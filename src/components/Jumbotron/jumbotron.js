@@ -4,10 +4,10 @@ import Img from 'gatsby-image';
 import TransparentHeader from '../Header/transparent';
 import styles from './jumbotron.module.scss';
 
-const Jumbotron = ({ item }) => (
+const Jumbotron = ({ item, allEdges }) => (
   <section className={`${styles.hero} is-medium`}>
     <div className={styles.heroHead}>
-      <TransparentHeader lang={item.system.language} allEdges={item.allEdges} />
+      <TransparentHeader lang={item.system.language} allEdges={allEdges || item.allEdges} />
     </div>
     <div className={styles.heroBody}>
       <div className={styles.image}>
@@ -26,7 +26,8 @@ const Jumbotron = ({ item }) => (
 );
 
 Jumbotron.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  allEdges: PropTypes.array
 };
 
 export default Jumbotron;

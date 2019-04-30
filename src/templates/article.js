@@ -8,7 +8,7 @@ import Gallery from '../components/Gallery/gallery';
 import Header from '../components/Header/header';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
-import { formatDate } from '../helpers/date-time';
+import { formatDate } from '../utils/date-time';
 import styles from './article.module.scss';
 
 const Article = ({ data, pageContext }) => {
