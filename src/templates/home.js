@@ -29,9 +29,7 @@ const Home = ({ data, pageContext }) => {
 
   return (
     <Layout item={item}>
-      <Link to={`${pageContext.language}/${lastArticle.elements.slug.value}`}>
-        <Jumbotron item={lastArticle} allEdges={item.allEdges} />
-      </Link>
+      <Jumbotron item={lastArticle} allEdges={item.allEdges} />
       <ArticleListing language={pageContext.language} />
     </Layout>
   );
