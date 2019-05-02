@@ -1,34 +1,31 @@
 @import '../../styles/mixins';
 
-.article-listing {
-    margin-bottom: 40px;
 
-    /*
+
+/*
     Bottom, read more row
      */
+.read-more {
+    margin-top: 40px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+    }
+}
+
+//992px +
+@media #{$md} {
+
+    /*
+        Bottom, read more row
+         */
     .read-more {
-        margin-top: 40px;
+        margin-top: 0;
         text-align: center;
 
         a {
             display: inline-block;
-        }
-    }
-
-    //992px +
-    @media #{$md} {
-        margin-bottom: 120px;
-
-        /*
-        Bottom, read more row
-         */
-        .read-more {
-            margin-top: 0;
-            text-align: center;
-
-            a {
-                display: inline-block;
-            }
         }
     }
 }

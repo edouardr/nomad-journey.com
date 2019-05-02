@@ -46,7 +46,12 @@ const ArticleListing = ({ language }) => {
   const articles = new Array(...data.allKenticoCloudItemArticle.edges).filter(edge => language === edge.node.system.language).slice(1);
 
   return (
-    <PureListing articles={articles} loadCount={loadCount}/>
+
+    <section className="section has-background-light">
+      <div className={`container`}>
+        <PureListing articles={articles} loadCount={loadCount} />
+      </div>
+    </section>
   );
 };
 

@@ -28,24 +28,22 @@ const PureListing = ({ articles, loadCount = 5 }) => {
   }, []);
 
   return (
-    <section className="section">
-      <div className={`container ${styles.articleListing}`}>
-        {
-          state.list && state.list.map(article => (
-            <ListingItem key={article.node.id} article={article} />
-          ))
-        }
-        {
-          state.position < articles.length && (
-            <div className={styles.readMore}>
-                <button onClick={() => handleClick()} className="button is-primary is-medium is-outlined">
-                    <span className={styles.txt}>View more</span>
-                </button>
-            </div>
-          )
-        }
-      </div>
-    </section>
+    <>
+      {
+        state.list && state.list.map(article => (
+          <ListingItem key={article.node.id} article={article} />
+        ))
+      }
+      {
+        state.position < articles.length && (
+          <div className={styles.readMore}>
+            <button onClick={() => handleClick()} className="button is-primary is-medium is-outlined">
+              <span className={styles.txt}>View more</span>
+            </button>
+          </div>
+        )
+      }
+    </>
   );
 };
 

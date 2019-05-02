@@ -1,12 +1,10 @@
 @import '../../styles/mixins';
 
 .article-tile {
-
-    /*
-    Column / grid structure
-     */
+    background-color: white;
     width: 100%;
     margin-bottom: 20px;
+    padding: 40px 0;
 
     .img-col,
     .txt-col {
@@ -18,20 +16,18 @@
         @include make-md-column-offset(1);
     }
 
-    &:nth-child(even){
+    &:nth-child(even) {
         .img-col {
             @include make-sm-column-push(12);
             @include make-md-column-push(12);
         }
+
         .txt-col {
             @include make-sm-column-pull(8);
             @include make-md-column-pull(10);
         }
     }
 
-    /*
-    Inner element / text styles
-     */
     a {
         @include clearfix();
         display: block;
@@ -41,10 +37,6 @@
 
     img {
         transform: scale(1.01);
-    }
-
-    .img-wrap {
-        margin-bottom: 14px;
     }
 
     .inner-wrap {
@@ -84,7 +76,7 @@
 
     //992px +
     @media #{$md} {
-        margin-bottom: 90px;
+        margin-bottom: 30px;
 
         a:hover {
             img {
@@ -92,11 +84,15 @@
             }
         }
 
+        &:hover {
+            @include globalDropShadow('middle');
+        }
+
         img {
             @include animate-custom(#{'transform'}, 1500ms);
         }
 
-        &:nth-child(even){
+        &:nth-child(even) {
             .txt-col {
                 text-align: right;
             }
@@ -124,11 +120,15 @@
             }
         }
 
+        &:hover {
+            @include globalDropShadow('middle');
+        }
+
         img {
             @include animate-custom(#{'transform'}, 1500ms);
         }
 
-        &:nth-child(even){
+        &:nth-child(even) {
             .txt-col {
                 text-align: right;
             }
