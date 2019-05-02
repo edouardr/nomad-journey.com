@@ -11,7 +11,7 @@ const ListingItem = ({ article }) => {
 
   return (
     <LazyLoad className={`${styles.articleTile} ${visible ? styles.visible : ''}`} onContentVisible={() => setVisible(true)}>
-      <Link to={`${article.node.system.language}/${article.node.elements.slug.value}`}>
+      <Link to={`/${article.node.system.language}/${article.node.elements.slug.value}`}>
         <div className={styles.imgCol}>
           <div className={styles.imgWrap}>
             <div className={styles.innerWrap}>

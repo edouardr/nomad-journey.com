@@ -6,6 +6,7 @@ import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 import ArticleListing from '../components/Article/listing.js';
+import GoogleMaps from '../components/Map/googleMaps.js';
 
 const getItemPerLanguage = (language, data) => {
   const homePages = new Array(...data.allKenticoCloudItemLandingPage.edges).map(edge => {
@@ -31,6 +32,7 @@ const Home = ({ data, pageContext }) => {
     <Layout item={item}>
       <Jumbotron item={lastArticle} allEdges={item.allEdges} />
       <ArticleListing language={pageContext.language} />
+      <GoogleMaps />
     </Layout>
   );
 };
