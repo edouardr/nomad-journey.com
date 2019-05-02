@@ -1,0 +1,145 @@
+@import '../../styles/mixins';
+
+.article-tile {
+    background-color: white;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 40px 0;
+
+    .img-col,
+    .txt-col {
+        @include make-xs-column(22, 0);
+        @include make-xs-column-offset(1);
+        @include make-sm-column(8, 0);
+        @include make-sm-column-offset(2);
+        @include make-md-column(10, 0);
+        @include make-md-column-offset(1);
+    }
+
+    &:nth-child(even) {
+        .img-col {
+            @include make-sm-column-push(12);
+            @include make-md-column-push(12);
+        }
+
+        .txt-col {
+            @include make-sm-column-pull(8);
+            @include make-md-column-pull(10);
+        }
+    }
+
+    a {
+        @include clearfix();
+        display: block;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    img {
+        transform: scale(1.01);
+    }
+
+    .inner-wrap {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .tag {
+        margin-bottom: 7px;
+        color: $deep;
+    }
+
+    .title {
+        color: $deep;
+        margin-bottom: 10px;
+    }
+
+    .publish-details {
+        color: $deep;
+    }
+
+    /*
+    Default, hidden state
+     */
+    @include animate-custom(#{'opacity, transform'}, 1500ms);
+    opacity: 0;
+    transform: translateY(100px);
+
+    /*
+    Visible, revealed state
+     */
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    //992px +
+    @media #{$md} {
+        margin-bottom: 30px;
+
+        a:hover {
+            img {
+                transform: scale(1.2);
+            }
+        }
+
+        &:hover {
+            @include globalDropShadow('middle');
+        }
+
+        img {
+            @include animate-custom(#{'transform'}, 1500ms);
+        }
+
+        &:nth-child(even) {
+            .txt-col {
+                text-align: right;
+            }
+        }
+
+        .txt-col {
+            padding-top: 24px;
+        }
+
+        .tag {
+            margin-bottom: 2px;
+        }
+
+        .title {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media #{$sm} {
+        margin-bottom: 90px;
+
+        a:hover {
+            img {
+                transform: scale(1.2);
+            }
+        }
+
+        &:hover {
+            @include globalDropShadow('middle');
+        }
+
+        img {
+            @include animate-custom(#{'transform'}, 1500ms);
+        }
+
+        &:nth-child(even) {
+            .txt-col {
+                text-align: right;
+            }
+        }
+
+        .tag {
+            margin-bottom: 2px;
+        }
+
+        .title {
+            margin-bottom: 20px;
+        }
+    }
+}

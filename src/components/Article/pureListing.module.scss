@@ -1,0 +1,31 @@
+@import '../../styles/mixins';
+
+
+
+/*
+    Bottom, read more row
+     */
+.read-more {
+    margin-top: 40px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+    }
+}
+
+//992px +
+@media #{$md} {
+
+    /*
+        Bottom, read more row
+         */
+    .read-more {
+        margin-top: 0;
+        text-align: center;
+
+        a {
+            display: inline-block;
+        }
+    }
+}
