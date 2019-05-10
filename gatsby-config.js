@@ -1,8 +1,12 @@
 const path = require(`path`);
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+const siteAddress = new URL(process.env.HOSTNAME);
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.nomad-journey.com/`,
+    siteUrl: siteAddress.href,
     title: ` | Nomad-Journey`,
   },
   plugins: [
@@ -10,12 +14,9 @@ module.exports = {
       resolve: `gatsby-source-kentico-cloud`,
       options: {
         deliveryClientConfig: {
-          projectId: `38f25638-156d-44ce-991f-87e4bfc93a72`,
+          projectId: process.env.KENTICO_PROJECT_ID,
         },
-        languageCodenames: [
-          `en`,
-          `fr`,
-        ]
+        languageCodenames: process.env.KENTICO_LANGUAGES.split(';')
       }
     },
     `gatsby-plugin-react-helmet`,

@@ -7,14 +7,23 @@ import IntroText from '../components/IntroText.js';
 import ItineraryMap from '../components/ItineraryMap/itineraryMap';
 import KeyFactGroup from '../components/keyFacts/group';
 import Layout from '../components/Layout/layout';
+import useCurrentPage from '../hooks/useCurrentPage';
+import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
 
 const Itinerary = ({ data, pageContext }) => {
+  const { definePage } = useCurrentPage();
+  const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemItinerary.edges, data.site);
 
+  React.useEffect(() => {
+    defineLang(pageContext.language);
+    definePage(item);
+  }, []);
+
   return (
-    <Layout item={item}>
-      <Header lang={item.system.language} allEdges={item.allEdges} />
+    <Layout>
+      <Header />
       <div>
         <ItineraryMap mapId={item.elements.map_id.value} />
         <IntroText html={item.elements.body_text.value} />

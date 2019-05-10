@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import SEO from '../SEO/SEO';
 import Footer from '../Footer/footer';
 
-const Layout = ({children, item}) => {
+const Layout = ({children}) => {
   return (
     <>
-      <SEO item={item} />
+      <SEO />
       {children}
-      <Footer lang={item.system.language} />
+      <Footer />
     </>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.array,
-  item: PropTypes.object,
+  children: PropTypes.array
 };
 
 export default Layout;

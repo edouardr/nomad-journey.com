@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
-import IntroText from '../components/IntroText.js';
+import { graphql } from 'gatsby';
 import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 import ArticleListing from '../components/Article/listing.js';
 import GoogleMaps from '../components/Map/googleMaps.js';
+import useLang from '../hooks/useLang';
+import useCurrentPage from '../hooks/useCurrentPage';
 
 const getItemPerLanguage = (language, data) => {
   const homePages = new Array(...data.allKenticoCloudItemLandingPage.edges).map(edge => {
@@ -25,12 +26,19 @@ const getItemPerLanguage = (language, data) => {
 };
 
 const Home = ({ data, pageContext }) => {
+  const { definePage } = useCurrentPage();
+  const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data);
   const lastArticle = new Array(...data.allKenticoCloudItemArticle.edges).filter(edge => pageContext.language === edge.node.system.language)[0].node;
 
+  React.useEffect(() => {
+    defineLang(pageContext.language);
+    definePage(item);
+  }, []);
+
   return (
-    <Layout item={item}>
-      <Jumbotron item={lastArticle} allEdges={item.allEdges} />
+    <Layout>
+      <Jumbotron item={lastArticle} />
       <ArticleListing language={pageContext.language} />
       <GoogleMaps />
     </Layout>

@@ -6,15 +6,24 @@ import IntroText from '../components/IntroText.js';
 import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import PersonTile from '../components/PersonTile/personTile';
+import useCurrentPage from '../hooks/useCurrentPage';
+import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
 
 const AboutUs = ({ data, pageContext }) => {
+  const { definePage } = useCurrentPage();
+  const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemAboutUs.edges, data.site);
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 
+  React.useEffect(() => {
+    defineLang(pageContext.language);
+    definePage(item);
+  }, []);
+
   return (
-    <Layout item={item}>
-      <Jumbotron item={item} />
+    <Layout>
+      <Jumbotron />
       <IntroText html={item.elements.body_text.value} />
       <section className="section">
         <div className="container">

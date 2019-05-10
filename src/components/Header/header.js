@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link, graphql, useStaticQuery } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './header.module.scss';
+import useCurrentPage from '../../hooks/useCurrentPage';
+import useLang from '../../hooks/useLang';
 
-const Header = ({ allEdges, lang }) => {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentPage } = useCurrentPage();
+  const { language } = useLang();
+
   const data = useStaticQuery(graphql`
     query defaultHeader {
       file(relativePath: { eq: "logo-transp.png" }) {
@@ -42,7 +46,7 @@ const Header = ({ allEdges, lang }) => {
   `);
 
   const menuLinks = data.allKenticoCloudItemNavigationItem.edges
-    .filter(edge => edge.node.system.language === lang)
+    .filter(edge => edge.node.system.language === language)
     .map(edge => edge.node);
 
   return (
@@ -51,7 +55,7 @@ const Header = ({ allEdges, lang }) => {
         <div className={styles.navbarBrand}>
           <Link
             className={`${styles.navbarItem} ${styles.brand}`}
-            to={`/${lang}`}
+            to={`/${language}`}
           >
             <Img fluid={data.file.childImageSharp.fluid}
               alt="Nomad Journey Logo"
@@ -71,18 +75,17 @@ const Header = ({ allEdges, lang }) => {
               menuLinks
                 .map(link => (
                   <Link key={link.id} className={styles.navbarItem}
-                    to={`${lang}${link.elements.redirect_to_url.value}`}
+                    to={`${language}${link.elements.redirect_to_url.value}`}
                     partiallyActive={false}
                     activeClassName={styles.isActive}>
                     {link.elements.title.value}
                   </Link>
-                )
-                )
+                ))
             }
             <div className={`${styles.navbarItem} ${styles.hasDropdown} ${styles.isHoverable}`}>
               {
-                allEdges
-                  .filter(edge => lang === edge.node.system.language)
+                currentPage.allEdges
+                  .filter(edge => language === edge.node.system.language)
                   .map(edge => (
                     <Link
                       key={edge.node.id}
@@ -96,8 +99,8 @@ const Header = ({ allEdges, lang }) => {
               }
               <div className={`${styles.navbarDropdown} ${styles.isRight}`}>
                 {
-                  allEdges
-                    .filter(edge => lang !== edge.node.system.language)
+                  currentPage.allEdges
+                    .filter(edge => language !== edge.node.system.language)
                     .map(edge => (
                       <Link
                         key={edge.node.id}
@@ -115,11 +118,6 @@ const Header = ({ allEdges, lang }) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  allEdges: PropTypes.array,
-  lang: PropTypes.string
 };
 
 export default Header;

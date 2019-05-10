@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ReactDisqusComments from "react-disqus-comments";
 import PropTypes from 'prop-types';
+import useCurrentPage from "../../hooks/useCurrentPage";
 
-const Disqus = ({ article, siteUrl }) => {
+const Disqus = ({ siteUrl }) => {
   const [toasts, setToasts] = useState([]);
+  const { currentPage } = useCurrentPage();
 
   const notifyAboutComment = () => {
     toasts.slice();
@@ -18,16 +20,15 @@ const Disqus = ({ article, siteUrl }) => {
   return (
     <ReactDisqusComments
       shortname={process.env.DISQUS_SHORTNAME}
-      identifier={article.fields.codename}
-      title={article.elements.jumbotron__title.value}
-      url={`${siteUrl}${article.fields.language}/${article.fields.slug}`}
+      identifier={currentPage.fields.codename}
+      title={currentPage.elements.jumbotron__title.value}
+      url={`${siteUrl}${currentPage.fields.language}/${currentPage.fields.slug}`}
       onNewComment={notifyAboutComment}
     />
   );
 };
 
 Disqus.propTypes = {
-  article: PropTypes.object,
   siteUrl: PropTypes.string
 };
 

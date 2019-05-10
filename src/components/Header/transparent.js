@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link, graphql, useStaticQuery } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
+import useLang from '../../hooks/useLang';
+import useCurrentPage from '../../hooks/useCurrentPage';
 import styles from './transparent.module.scss';
 
-const TransparentHeader = ({ allEdges, lang }) => {
+const TransparentHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentPage } = useCurrentPage();
+  const { language } = useLang();
   const data = useStaticQuery(graphql`
     query transparentHeader {
       file(relativePath: { eq: "logo-transp.png" }) {
@@ -41,7 +44,7 @@ const TransparentHeader = ({ allEdges, lang }) => {
     }
   `);
   const menuLinks = data.allKenticoCloudItemNavigationItem.edges
-    .filter(edge => edge.node.system.language === lang)
+    .filter(edge => edge.node.system.language === language)
     .map(edge => edge.node);
 
   return (
@@ -50,7 +53,7 @@ const TransparentHeader = ({ allEdges, lang }) => {
         <div className={styles.navbarBrand}>
           <Link
             className={`${styles.navbarItem} ${styles.brand}`}
-            to={`/${lang}`}
+            to={`/${language}`}
           >
             <Img fluid={data.file.childImageSharp.fluid}
               alt="Nomad Journey Logo"
@@ -67,13 +70,13 @@ const TransparentHeader = ({ allEdges, lang }) => {
           </div>
           <div className={styles.navbarEnd}>
             {
-              menuLinks.map(link => <Link key={link.id} className={styles.navbarItem} to={`${lang}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
+              menuLinks.map(link => <Link key={link.id} className={styles.navbarItem} to={`${language}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
             }
 
             <div className={`${styles.navbarItem} ${styles.hasDropdown} ${styles.isHoverable}`}>
               {
-                allEdges
-                  .filter(edge => lang === edge.node.system.language)
+                currentPage.allEdges
+                  .filter(edge => language === edge.node.system.language)
                   .map(edge => (
                     <Link
                       key={edge.node.id}
@@ -87,8 +90,8 @@ const TransparentHeader = ({ allEdges, lang }) => {
               }
               <div className={styles.navbarDropdown}>
                 {
-                  allEdges
-                    .filter(edge => lang !== edge.node.system.language)
+                  currentPage.allEdges
+                    .filter(edge => language !== edge.node.system.language)
                     .map(edge => (
                       <Link
                         key={edge.node.id}
@@ -106,11 +109,6 @@ const TransparentHeader = ({ allEdges, lang }) => {
       </div>
     </nav>
   );
-};
-
-TransparentHeader.propTypes = {
-  allEdges: PropTypes.array,
-  lang: PropTypes.string
 };
 
 export default TransparentHeader;
