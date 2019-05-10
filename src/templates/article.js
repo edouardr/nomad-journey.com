@@ -12,11 +12,17 @@ import { formatDate } from '../utils/date-time';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 import styles from './article.module.scss';
+import ArticleNavigation from '../components/Article/navigation';
 
 const Article = ({ data, pageContext }) => {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
-  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemArticle.edges, data.site);
+  const currentArticle = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.codename === pageContext.codename);
+  const articlesByLanguage = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.language === pageContext.language);
+  const currentIndex = articlesByLanguage.map(edge => edge.node.fields.codename).indexOf(pageContext.codename);
+  const previous = articlesByLanguage[currentIndex+1];
+  const next = articlesByLanguage[currentIndex-1];
+  const item = getItemPerLanguage(pageContext.language, currentArticle, data.site);
 
   React.useEffect(() => {
     defineLang(pageContext.language);
@@ -48,6 +54,7 @@ const Article = ({ data, pageContext }) => {
           </div>
         </section>
         <Gallery images={item.elements.images.value} />
+        <ArticleNavigation previous={next} next={previous} />
         <section className="section">
           <div className="container">
             <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
@@ -69,6 +76,7 @@ export const query = graphql`
   fragment articleData on KenticoCloudItemArticle {
     ...articleMetadata
     fields {
+      codename
       language
       slug
       jumbotronImage {
@@ -118,11 +126,11 @@ export const query = graphql`
       }
     }
   }
-  query articleQuery($codename: String!) {
+  query articleQuery {
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemArticle(filter: {system: {codename: {eq: $codename}}}) {
+    allKenticoCloudItemArticle(sort: { order: DESC, fields: [elements___posted___value] }) {
       edges {
         node {
           ...articleData
