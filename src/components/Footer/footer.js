@@ -2,9 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import useLang from "../../hooks/useLang";
-import '../../utils/fontawesome';
-import styles from './footer.module.scss';
 import MailChimpSubscription from "../Newsletter/mailChimpSubscription";
+import styles from './footer.module.scss';
 
 const Footer = () => {
   const fbUsername = process.env.FB_USERNAME;
