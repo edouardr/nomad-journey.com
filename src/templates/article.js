@@ -9,14 +9,23 @@ import Header from '../components/Header/header';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 import { formatDate } from '../utils/date-time';
+import useCurrentPage from '../hooks/useCurrentPage';
+import useLang from '../hooks/useLang';
 import styles from './article.module.scss';
 
 const Article = ({ data, pageContext }) => {
+  const { definePage } = useCurrentPage();
+  const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemArticle.edges, data.site);
 
+  React.useEffect(() => {
+    defineLang(pageContext.language);
+    definePage(item);
+  }, []);
+
   return (
-    <Layout item={item}>
-      <Header lang={item.system.language} allEdges={item.allEdges} />
+    <Layout>
+      <Header />
       <article>
         <div className="container is-widescreen">
           <div className={styles.articleHeader}>
@@ -41,7 +50,7 @@ const Article = ({ data, pageContext }) => {
         <Gallery images={item.elements.images.value} />
         <section className="section">
           <div className="container">
-            <Disqus article={item} siteUrl={item.site.siteMetadata.siteUrl} />
+            <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
           </div>
         </section>
       </article>

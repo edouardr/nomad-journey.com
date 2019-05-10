@@ -5,14 +5,23 @@ import { getItemPerLanguage } from '../utils/templateHelper';
 import IntroText from '../components/IntroText.js';
 import Jumbotron from '../components/Jumbotron/jumbotron.js';
 import Layout from '../components/Layout/layout';
+import useCurrentPage from '../hooks/useCurrentPage';
+import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
 
 const LandingPage = ({ data, pageContext }) => {
+  const { definePage } = useCurrentPage();
+  const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemLandingPage.edges, data.site);
 
+  React.useEffect(() => {
+    defineLang(pageContext.language);
+    definePage(item);
+  }, []);
+
   return (
-    <Layout item={item}>
-      <Jumbotron item={item} />
+    <Layout>
+      <Jumbotron />
       <IntroText html={item.elements.body_text.value} />
     </Layout>
   );

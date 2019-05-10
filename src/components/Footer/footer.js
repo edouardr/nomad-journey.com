@@ -1,14 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import useLang from "../../hooks/useLang";
 import '../../utils/fontawesome';
 import styles from './footer.module.scss';
 
-const Footer = ({ lang }) => {
+const Footer = () => {
   const fbUsername = process.env.FB_USERNAME;
   const instaUsername = process.env.INSTA_USERNAME;
   const vimeoUsername = process.env.VIMEO_USERNAME;
+  const { language } = useLang();
 
   const data = useStaticQuery(graphql`
     query {
@@ -32,7 +33,7 @@ const Footer = ({ lang }) => {
     }
   `);
   const legalLink = data.allKenticoCloudItemLandingPage.edges
-    .filter(edge => edge.node.system.language === lang)
+    .filter(edge => edge.node.system.language === language)
     .map(edge => edge.node);
 
   return (
@@ -68,7 +69,7 @@ const Footer = ({ lang }) => {
             <small>© 2019 A Nomad Journey</small>
           </p>
           <div className="container content">
-            <Link to={`/${lang}/${legalLink[0].elements.slug.value}`} title={`${legalLink[0].elements.jumbotron__title.value}`}>
+            <Link to={`/${language}/${legalLink[0].elements.slug.value}`} title={`${legalLink[0].elements.jumbotron__title.value}`}>
               {legalLink[0].elements.jumbotron__title.value}
             </Link>
           </div>
@@ -76,10 +77,6 @@ const Footer = ({ lang }) => {
       </div>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  lang: PropTypes.string
 };
 
 export default Footer;
