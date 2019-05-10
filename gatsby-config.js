@@ -50,5 +50,11 @@ module.exports = {
         includePaths: ["src/styles/_variables"],
       },
     },
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: process.env.MAILCHIMP_ENDPOINT, // add your MC list endpoint here; see instructions below
+      },
+    },
   ]
 };

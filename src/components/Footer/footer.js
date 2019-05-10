@@ -4,6 +4,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import useLang from "../../hooks/useLang";
 import '../../utils/fontawesome';
 import styles from './footer.module.scss';
+import MailChimpSubscription from "../Newsletter/mailChimpSubscription";
 
 const Footer = () => {
   const fbUsername = process.env.FB_USERNAME;
@@ -38,6 +39,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
+      <MailChimpSubscription />
       <div className={`${styles.footerSocial} has-text-centered`}>
         <a className="is-size-1" href={`https://facebook.com/${fbUsername}`} title="Facebook A Nomad Journey" target="_blank" rel="noopener noreferrer">
           <span className="icon is-medium">
