@@ -75,7 +75,7 @@ const Header = () => {
               menuLinks
                 .map(link => (
                   <Link key={link.id} className={styles.navbarItem}
-                    to={`${language}${link.elements.redirect_to_url.value}`}
+                    to={`/${language}${link.elements.redirect_to_url.value}`}
                     partiallyActive={false}
                     activeClassName={styles.isActive}>
                     {link.elements.title.value}

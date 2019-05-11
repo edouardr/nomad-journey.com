@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SEO from '../SEO/SEO';
-import Footer from '../Footer/footer';
+import styles from './layout.module.scss';
 
-const Layout = ({children}) => {
-  return (
-    <>
-      <SEO />
+const Layout = ({ children }) => (
+  <div className={styles.layoutWrapper}>
+    <div className={styles.layoutInner}>
       {children}
-      <Footer />
-    </>
-  );
-};
+    </div>
+  </div>
+);
 
 Layout.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

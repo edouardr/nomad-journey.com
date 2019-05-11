@@ -56,5 +56,11 @@ module.exports = {
         endpoint: process.env.MAILCHIMP_ENDPOINT, // add your MC list endpoint here; see instructions below
       },
     },
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/layout`),
+      },
+    },
   ]
 };
