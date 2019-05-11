@@ -1,11 +1,24 @@
 @import '../../styles/variables';
+@import '~bulma/sass/elements/icon';
 
-.transition-portal {
-    position: fixed;
-    background: $water;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: none;
+.link {
+    .txt {
+        display: inline-block;
+        position: relative;
+        margin: 0 30px;
+    }
+
+    .icon {
+        display: block;
+        position: absolute;
+        top: 22px;
+
+        &.right {
+            right: 0px;
+        }
+
+        &.left {
+            left: 0px;
+        }
+    }
 }

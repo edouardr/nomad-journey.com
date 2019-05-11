@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLang from '../../hooks/useLang';
+import styles from './navigation.module.scss';
 
 const ArticleNavigation = ({ previous, next }) => {
 
@@ -11,7 +12,7 @@ const ArticleNavigation = ({ previous, next }) => {
   return (
     <section className="section">
       <div className="container">
-        <div className="columns is-vcentered">
+        <div className="columns is-vcentered is-mobile">
           <div className="column">
             {
               previous &&
@@ -21,10 +22,15 @@ const ArticleNavigation = ({ previous, next }) => {
                 direction="right"
                 duration={1}
                 bg="#1ad2eb"
+                className={styles.link}
               >
-                <FontAwesomeIcon icon="arrow-left" className="is-inline-block"/>&nbsp;
-                <span className="is-block">Article précédent</span>
-                <span className="is-block">{previous.node.elements.jumbotron__title.value}</span>
+                <span className={`${styles.icon} ${styles.left}`}>
+                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                </span>
+                <span className={styles.txt}>
+                  <span className="is-block">Article précédent</span>
+                  <span className="is-block">{previous.node.elements.jumbotron__title.value}</span>
+                </span>
               </AniLink>
             }
           </div>
@@ -37,10 +43,15 @@ const ArticleNavigation = ({ previous, next }) => {
                 direction="left"
                 duration={1}
                 bg="#1ad2eb"
+                className={styles.link}
               >
-                <FontAwesomeIcon icon="arrow-right" className="is-inline-block"/>&nbsp;
-                <span className="is-block">Article suivant</span>
-                <span className="is-block">{next.node.elements.jumbotron__title.value}</span>
+                <span className={`${styles.icon} ${styles.right}`}>
+                  <FontAwesomeIcon icon="arrow-right" />
+                </span>
+                <span className={styles.txt}>
+                  <span className="is-block">Article suivant</span>
+                  <span className="is-block">{next.node.elements.jumbotron__title.value}</span>
+                </span>
               </AniLink>
             }
           </div>

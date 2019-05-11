@@ -55,7 +55,7 @@ const MailChimpSubscription = () => {
     if (!email) {
       return;
     }
-    const { result, msg } = await addToMailchimp(email, listFields);
+    const { result } = await addToMailchimp(email, listFields);
     debugger;
     setResponse(result === MAILCHIMP_SUCCESS_RESPONSE
       ? localizedForm.node.elements.thank_you_message.value
@@ -87,7 +87,7 @@ const MailChimpSubscription = () => {
                     <div className="field-body">
                       <div className="field">
                         <p className="control has-icons-left has-icons-right">
-                          <input className="input is-medium is-flat" type="text" placeholder={localizedForm.node.elements.first_name_label.value} 
+                          <input className="input is-medium is-flat" type="text" placeholder={localizedForm.node.elements.first_name_label.value}
                             onChange={event => setListFields({ FNAME: event.target.value })} />
                           <span className="icon is-small is-left">
                             <FontAwesomeIcon icon="user" />
@@ -96,7 +96,7 @@ const MailChimpSubscription = () => {
                       </div>
                       <div className="field">
                         <p className="control has-icons-left has-icons-right">
-                          <input className="input is-medium is-flat" type="email" placeholder={localizedForm.node.elements.email_label.value} 
+                          <input className="input is-medium is-flat" type="email" placeholder={localizedForm.node.elements.email_label.value}
                             onChange={event => setEmail(event.target.value)} />
                           <span className="icon is-small is-left">
                             <FontAwesomeIcon icon="envelope" />
