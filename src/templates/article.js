@@ -20,8 +20,8 @@ const Article = ({ data, pageContext }) => {
   const currentArticle = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.codename === pageContext.codename);
   const articlesByLanguage = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.language === pageContext.language);
   const currentIndex = articlesByLanguage.map(edge => edge.node.fields.codename).indexOf(pageContext.codename);
-  const previous = articlesByLanguage[currentIndex+1];
-  const next = articlesByLanguage[currentIndex-1];
+  const next = articlesByLanguage[currentIndex + 1];
+  const previous = articlesByLanguage[currentIndex - 1];
   const item = getItemPerLanguage(pageContext.language, currentArticle, data.site);
 
   React.useEffect(() => {
