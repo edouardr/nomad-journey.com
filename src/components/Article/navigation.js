@@ -4,38 +4,18 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLang from '../../hooks/useLang';
 import styles from './navigation.module.scss';
-import { useStaticQuery, graphql } from 'gatsby';
+import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 
 const DICT_NEXT_KEY = 'next-article';
 const DICT_PREVIOUS_KEY = 'previous-article';
 
 const ArticleNavigation = ({ previous, next }) => {
   const { language } = useLang();
-  const data = useStaticQuery(graphql`
-    query {
-      allKenticoCloudItemDictionaryEntry {
-        edges {
-          node {
-            system {
-              language
-            }
-            elements {
-              key {
-                value
-              }
-              value {
-                value
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-  const dict_previous_article = data.allKenticoCloudItemDictionaryEntry.edges
+  const data = useDictionaryQuery();
+  const dict_previous_article = data.edges
     .filter(edge => edge.node.elements.key.value === DICT_PREVIOUS_KEY && edge.node.system.language === language)
     .map(edge => edge.node)[0];
-  const dict_next_article = data.allKenticoCloudItemDictionaryEntry.edges
+  const dict_next_article = data.edges
     .filter(edge => edge.node.elements.key.value === DICT_NEXT_KEY && edge.node.system.language === language)
     .map(edge => edge.node)[0];
 

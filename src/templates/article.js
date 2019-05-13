@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { getItemPerLanguage } from '../utils/templateHelper';
 import Disqus from '../components/Disqus/disqus';
