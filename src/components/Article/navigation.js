@@ -4,10 +4,20 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLang from '../../hooks/useLang';
 import styles from './navigation.module.scss';
+import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+
+const DICT_NEXT_KEY = 'next-article';
+const DICT_PREVIOUS_KEY = 'previous-article';
 
 const ArticleNavigation = ({ previous, next }) => {
-
   const { language } = useLang();
+  const data = useDictionaryQuery();
+  const dict_previous_article = data.edges
+    .filter(edge => edge.node.elements.key.value === DICT_PREVIOUS_KEY && edge.node.system.language === language)
+    .map(edge => edge.node)[0];
+  const dict_next_article = data.edges
+    .filter(edge => edge.node.elements.key.value === DICT_NEXT_KEY && edge.node.system.language === language)
+    .map(edge => edge.node)[0];
 
   return (
     <section className="section">
@@ -28,7 +38,7 @@ const ArticleNavigation = ({ previous, next }) => {
                   <FontAwesomeIcon icon="arrow-left" />&nbsp;
                 </span>
                 <span className={styles.txt}>
-                  <span className="is-block">Article précédent</span>
+                  <span className="is-block">{dict_previous_article.elements.value.value}</span>
                   <span className="is-block">{previous.node.elements.jumbotron__title.value}</span>
                 </span>
               </AniLink>
@@ -49,7 +59,7 @@ const ArticleNavigation = ({ previous, next }) => {
                   <FontAwesomeIcon icon="arrow-right" />
                 </span>
                 <span className={styles.txt}>
-                  <span className="is-block">Article suivant</span>
+                  <span className="is-block">{dict_next_article.elements.value.value}</span>
                   <span className="is-block">{next.node.elements.jumbotron__title.value}</span>
                 </span>
               </AniLink>

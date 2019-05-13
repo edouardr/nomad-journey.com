@@ -38,7 +38,7 @@ const Home = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <Jumbotron item={lastArticle} />
+      <Jumbotron item={lastArticle} showLink={true}/>
       <ArticleListing language={pageContext.language} />
       <GoogleMaps />
     </Layout>
