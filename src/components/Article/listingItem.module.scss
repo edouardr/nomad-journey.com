@@ -1,13 +1,24 @@
+@import '../../styles/variables';
 @import '../../styles/mixins';
 
 .article-tile {
     background-color: white;
     width: 100%;
     margin-bottom: 20px;
-    padding: 40px 0;
+    padding: 0;
+    border: 1px solid $sand;
+    border-radius: 5px;
 
-    .img-col,
+    .img-col {
+        border-radius: 5px;
+        @include make-sm-column(8, 0);
+        @include make-sm-column-offset(2);
+        @include make-md-column(10, 0);
+        @include make-md-column-offset(1);
+    }
+
     .txt-col {
+        padding: 1rem;
         @include make-xs-column(22, 0);
         @include make-xs-column-offset(1);
         @include make-sm-column(8, 0);
@@ -84,10 +95,6 @@
             }
         }
 
-        &:hover {
-            @include globalDropShadow('middle');
-        }
-
         img {
             @include animate-custom(#{'transform'}, 1500ms);
         }
@@ -112,16 +119,15 @@
     }
 
     @media #{$sm} {
+        background-color: transparent;
+        border: none;
         margin-bottom: 90px;
+        padding: 40px 0;
 
         a:hover {
             img {
                 transform: scale(1.2);
             }
-        }
-
-        &:hover {
-            @include globalDropShadow('middle');
         }
 
         img {

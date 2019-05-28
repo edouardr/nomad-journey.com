@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDisqusComments from 'react-disqus-comments';
+import { DiscussionEmbed } from 'disqus-react'
 import PropTypes from 'prop-types';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import styles from './disqus.module.scss';
@@ -11,13 +11,17 @@ const Disqus = ({ siteUrl }) => {
     return null;
   }
 
+  const disqusConfig = {
+    identifier: currentPage.fields.codename,
+    title: currentPage.elements.jumbotron__title.value,
+    url: `${siteUrl}${currentPage.fields.language}/${currentPage.fields.slug}`,
+  };
+
   return (
     <div className={styles.comments}>
-      <ReactDisqusComments
+      <DiscussionEmbed
         shortname={process.env.DISQUS_SHORTNAME}
-        identifier={currentPage.fields.codename}
-        title={currentPage.elements.jumbotron__title.value}
-        url={`${siteUrl}${currentPage.fields.language}/${currentPage.fields.slug}`}
+        config={disqusConfig}
       />
     </div>
   );
