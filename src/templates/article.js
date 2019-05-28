@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import { getItemPerLanguage } from '../utils/templateHelper';
+import ArticleNavigation from '../components/Article/navigation';
+import ArticleHeader from '../components/Article/header';
 import Disqus from '../components/Disqus/disqus';
 import Gallery from '../components/Gallery/gallery';
 import Header from '../components/Header/header';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
-import { formatDate } from '../utils/date-time';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
-import styles from './article.module.scss';
-import ArticleNavigation from '../components/Article/navigation';
 
 const Article = ({ data, pageContext }) => {
   const { definePage } = useCurrentPage();
@@ -33,33 +31,19 @@ const Article = ({ data, pageContext }) => {
     <Layout>
       <Header />
       <article>
-        <div className="container is-widescreen">
-          <div className={styles.articleHeader}>
-            <div className="content">
-              <p className="subtitle location">{item.elements.location.value}</p>
-              <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-            </div>
-            <div className={styles.articleDetails}>
-              <p>
-                <span>{formatDate(item.elements.posted.value, item.system.language)}</span>
-                <span className={styles.divider}></span>
-              </p>
-            </div>
+        <ArticleHeader article={item}/>
+        <div className="columns">
+          <div className="column is-offset-2 is-8">
+            <section className="section ">
+              <div className="content is-large" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
+            </section>
           </div>
-          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
         </div>
-        <section className="section">
-          <div className="container is-light">
-            <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
-          </div>
-        </section>
-        <Gallery images={item.elements.images.value} />
-        <ArticleNavigation previous={next} next={previous} />
-        <section className="section">
-          <div className="container">
-            <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
-          </div>
-        </section>
+        <div className="container">
+          <Gallery images={item.elements.images.value} />
+          <ArticleNavigation previous={next} next={previous} />
+          <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
+        </div>
       </article>
     </Layout>
   );
@@ -110,6 +94,15 @@ export const query = graphql`
       jumbotron__image {
         value {
           description
+        }
+      }
+      list_item__title {
+        value
+      }
+      list_item__thumbnail {
+        value {
+          description
+          url
         }
       }
       images {

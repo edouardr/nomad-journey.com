@@ -10,6 +10,7 @@ import Layout from '../components/Layout/layout';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
+import { isTerminatorless } from '@babel/types';
 
 const Itinerary = ({ data, pageContext }) => {
   const { definePage } = useCurrentPage();
@@ -18,6 +19,20 @@ const Itinerary = ({ data, pageContext }) => {
 
   React.useEffect(() => {
     defineLang(pageContext.language);
+    item.fields.jumbotronImage = {
+      childImageSharp: {
+        fluid: {}
+      }
+    };
+    item.elements.jumbotron__image = {
+      value: [{ description: ''}]
+    };
+    item.elements.jumbotron__title = {
+      value: ''
+    };
+    item.elements.jumbotron__description = {
+      value: ''
+    };
     definePage(item);
   }, []);
 
@@ -53,6 +68,9 @@ export const query = graphql`
       edges {
         node {
           ...itineraryMetadata
+          fields {
+            slug
+          }
           id
           system {
             language

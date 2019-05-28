@@ -70,7 +70,7 @@ const TransparentHeader = () => {
           </div>
           <div className={styles.navbarEnd}>
             {
-              menuLinks.map(link => <Link key={link.id} className={styles.navbarItem} to={`${language}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
+              menuLinks.map(link => <Link key={link.id} className={styles.navbarItem} to={`/${language}${link.elements.redirect_to_url.value}`}>{link.elements.title.value}</Link>)
             }
 
             <div className={`${styles.navbarItem} ${styles.hasDropdown} ${styles.isHoverable}`}>

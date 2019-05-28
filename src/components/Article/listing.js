@@ -14,6 +14,7 @@ const ArticleListing = ({ language }) => {
             id
             system {
               language
+              codename
             }
             elements {
               list_item__description {
@@ -47,7 +48,7 @@ const ArticleListing = ({ language }) => {
 
   return (
 
-    <section className="section has-background-light">
+    <section className="section">
       <div className={`container`}>
         <PureListing articles={articles} loadCount={loadCount} />
       </div>

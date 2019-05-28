@@ -7,7 +7,7 @@ import styles from './imageLoader.module.scss';
 
 const ImageLoader = ({ src, className, description, onLoad }) => {
   const loadedClassName = styles.imgLoaded;
-  const loadingClassName = styles.loading;
+  const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
   const computedClassName = `${className} ${loaded ? loadedClassName : loadingClassName}`;
 
