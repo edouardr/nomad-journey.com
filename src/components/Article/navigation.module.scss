@@ -1,24 +1,40 @@
 @import '../../styles/variables';
-@import '~bulma/sass/elements/icon';
 
-.link {
-    .txt {
-        display: inline-block;
-        position: relative;
-        margin: 0 30px;
-    }
+.article-nav {
+  border-top: 2px solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding: 1.5rem;
 
-    .icon {
-        display: block;
-        position: absolute;
-        top: 22px;
+  a {
+    margin-top: 1.5rem;
+  }
 
+  .arrow {
+    -webkit-transition: all 250ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 250ms cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition-delay: 0ms;
+    transition-delay: 0ms;
+  }
+
+  .txt {
+    width: 10rem;
+    padding: 0 10px;
+  }
+
+  .link {
+    &:hover {
+      .arrow {
         &.right {
-            right: 0px;
+          transform: translateX(-0.5rem);
         }
 
         &.left {
-            left: 0px;
+          transform: translateX(0.5rem);
         }
+      }
     }
+  }
+
 }

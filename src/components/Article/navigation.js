@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLang from '../../hooks/useLang';
 import styles from './navigation.module.scss';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DICT_NEXT_KEY = 'next-article';
 const DICT_PREVIOUS_KEY = 'previous-article';
@@ -20,54 +20,68 @@ const ArticleNavigation = ({ previous, next }) => {
     .map(edge => edge.node)[0];
 
   return (
-    <section className="section">
-      <div className="container">
-        <div className="columns is-vcentered is-mobile">
-          <div className="column">
-            {
-              previous &&
-              <AniLink
-                to={`/${language}/${previous.node.elements.slug.value}`}
-                cover
-                direction="right"
-                duration={1}
-                bg="#1ad2eb"
-                className={styles.link}
-              >
-                <span className={`${styles.icon} ${styles.left}`}>
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
-                </span>
-                <span className={styles.txt}>
-                  <span className="is-block">{dict_previous_article.elements.value.value}</span>
-                  <span className="is-block">{previous.node.elements.jumbotron__title.value}</span>
-                </span>
-              </AniLink>
-            }
-          </div>
-          <div className="column has-text-right">
-            {
-              next &&
-              <AniLink
-                to={`/${language}/${next.node.elements.slug.value}`}
-                cover
-                direction="left"
-                duration={1}
-                bg="#1ad2eb"
-                className={styles.link}
-              >
-                <span className={`${styles.icon} ${styles.right}`}>
-                  <FontAwesomeIcon icon="arrow-right" />
-                </span>
-                <span className={styles.txt}>
-                  <span className="is-block">{dict_next_article.elements.value.value}</span>
-                  <span className="is-block">{next.node.elements.jumbotron__title.value}</span>
-                </span>
-              </AniLink>
-            }
-          </div>
-        </div>
+    <nav className={styles.articleNav}>
+      <div>
+        {
+          previous &&
+          <AniLink
+            cover
+            direction="right"
+            duration={1}
+            bg="#1ad2eb"
+            className={styles.link}
+            to={`/${language}/${previous.node.elements.slug.value}`}>
+            <div className="columns is-mobile is-gapless is-vcentered">
+              <div className="column">
+                <FontAwesomeIcon className={`${styles.arrow} ${styles.right}`} icon="arrow-left" />
+              </div>
+              <div className="column is-narrow">
+                <div className={styles.txt}>
+                  <div className="columns is-narrow is-multiline is-gapless">
+                    <div className="column is-12">
+                      <span className="is-size-7">{dict_previous_article.elements.value.value}</span>
+                    </div>
+                    <div className="column is-12">
+                      <span className="is-size-6">{previous.node.elements.list_item__title.value}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AniLink>
+        }
       </div>
-    </section>
+      <div>
+        {
+          next &&
+          <AniLink
+            cover
+            direction="left"
+            duration={1}
+            bg="#1ad2eb"
+            className={styles.link}
+            to={`/${language}/${next.node.elements.slug.value}`}>
+            <div className="columns is-vcentered is-mobile is-gapless">
+              <div className="column is-narrow">
+                <div className={styles.txt}>
+                  <div className="columns is-multiline is-gapless">
+                    <div className="column is-12 is-narrow has-text-right">
+                      <span className="is-size-7">{dict_next_article.elements.value.value}</span>
+                    </div>
+                    <div className="column is-12 is-narrow has-text-right">
+                      <span className="is-size-6">{next.node.elements.list_item__title.value}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="column is-narrow is-2">
+                <FontAwesomeIcon className={`${styles.arrow} ${styles.left}`} icon="arrow-right" />
+              </div>
+            </div>
+          </AniLink>
+        }
+      </div>
+    </nav>
   );
 };
 

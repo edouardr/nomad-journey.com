@@ -39,26 +39,24 @@ const Gallery = ({ images }) => {
   });
 
   return (
-    <div className="container">
-      <div className={styles.masonryWrapper}>
-        <div className={styles.masonry} ref={masonry}>
-          {
-            images
-              .sort((a, b) => compareByName(a, b))
-              .map(image => {
-                let item = useRef(null);
-                itemsList.push(item);
-                return (
-                  <div key={image.name} className={styles.masonryItem} ref={item}>
-                    <ImageLoader className={styles.masonryContent}
-                      src={image.url}
-                      description={image.description}
-                      onLoad={() => setMasonryItemSize(masonry, item)} />
-                  </div>
-                );
-              })
-          }
-        </div>
+    <div className={styles.masonryWrapper}>
+      <div className={styles.masonry} ref={masonry}>
+        {
+          images
+            .sort((a, b) => compareByName(a, b))
+            .map(image => {
+              let item = useRef(null);
+              itemsList.push(item);
+              return (
+                <div key={image.name} className={styles.masonryItem} ref={item}>
+                  <ImageLoader className={styles.masonryContent}
+                    src={image.url}
+                    description={image.description}
+                    onLoad={() => setMasonryItemSize(masonry, item)} />
+                </div>
+              );
+            })
+        }
       </div>
     </div>
   );

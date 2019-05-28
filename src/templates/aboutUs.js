@@ -59,7 +59,7 @@ export const query = graphql`
     fields {
       jumbotronImage {
         childImageSharp {
-          fluid(maxWidth: 1440, quality: 100) {
+          fluid(maxWidth: 1440) {
             ...GatsbyImageSharpFluid_noBase64
           }
         }

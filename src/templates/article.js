@@ -33,33 +33,39 @@ const Article = ({ data, pageContext }) => {
     <Layout>
       <Header />
       <article>
-        <div className="container is-widescreen">
-          <div className={styles.articleHeader}>
-            <div className="content">
-              <p className="subtitle location">{item.elements.location.value}</p>
-              <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
-            </div>
-            <div className={styles.articleDetails}>
-              <p>
-                <span>{formatDate(item.elements.posted.value, item.system.language)}</span>
-                <span className={styles.divider}></span>
-              </p>
+        <div className="columns">
+          <div className="column is-offset-2 is-8">
+            <div className={styles.articleHeader}>
+              <div className="content">
+                <p className="subtitle location">{item.elements.location.value}</p>
+                <h1 className="title is-spaced">{item.elements.jumbotron__title.value}</h1>
+              </div>
+              <div className={styles.articleDetails}>
+                <p>
+                  <span>{formatDate(item.elements.posted.value, item.system.language)}</span>
+                  <span className={styles.divider}></span>
+                </p>
+              </div>
             </div>
           </div>
-          <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
         </div>
-        <section className="section">
-          <div className="container is-light">
-            <div className="content is-medium" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
+        <div className="columns">
+          <div className="column is-offset-2 is-8">
+            <Img fluid={item.fields.jumbotronImage.childImageSharp.fluid} alt={item.elements.jumbotron__image.value[0].description} />
           </div>
-        </section>
-        <Gallery images={item.elements.images.value} />
-        <ArticleNavigation previous={next} next={previous} />
-        <section className="section">
-          <div className="container">
-            <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
+        </div>
+        <div className="columns">
+          <div className="column is-offset-2 is-8">
+            <section className="section ">
+              <div className="content is-large" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
+            </section>
           </div>
-        </section>
+        </div>
+        <div className="container">
+          <Gallery images={item.elements.images.value} />
+          <ArticleNavigation previous={next} next={previous} />
+          <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
+        </div>
       </article>
     </Layout>
   );
@@ -110,6 +116,15 @@ export const query = graphql`
       jumbotron__image {
         value {
           description
+        }
+      }
+      list_item__title {
+        value
+      }
+      list_item__thumbnail {
+        value {
+          description
+          url
         }
       }
       images {
