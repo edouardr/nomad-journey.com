@@ -4,20 +4,21 @@ import { graphql, useStaticQuery } from 'gatsby';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { Bounce, Spinner, BounceDelayed } from '../UI';
 import useLang from '../../hooks/useLang';
-import styles from './formSubscription.module.scss';
 
 const MAILCHIMP_SUCCESS_RESPONSE = 'success';
 
-const SubLayout = ({ children }) => (
-  <section className="section is-medium">
-    <div className="container">
-      {children}
-    </div>
-  </section>
-);
+const SubLayout = React.memo(function SubLayout({ children }) {
 
+  return (
+    <section className="section is-medium">
+      <div className="container">
+        {children}
+      </div>
+    </section>
+  );
+});
 
-const MailChimpSubscription = () => {
+const MailChimpSubscription = React.memo(function MailChimpSubscription() {
   const { language } = useLang();
   const data = useStaticQuery(graphql`
     query {
@@ -75,6 +76,14 @@ const MailChimpSubscription = () => {
     setSubmitting(false);
   };
 
+  const handleFirstNameChange = event => {
+    setListFields({ FNAME: event.target.value, LANG: language });
+  };
+
+  const handleEmailChange = event => {
+    setEmail(event.target.value)
+  };
+
   if (!submitted && submitting) {
     return (
       <SubLayout>
@@ -106,7 +115,7 @@ const MailChimpSubscription = () => {
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
                       <input className="input is-medium is-flat" type="text" placeholder={localizedForm.node.elements.first_name_label.value}
-                        onChange={event => setListFields({ FNAME: event.target.value, LANG: language })} />
+                        onChange={handleFirstNameChange} />
                       <span className="icon is-small is-left">
                         <FontAwesomeIcon icon="user" />
                       </span>
@@ -115,7 +124,7 @@ const MailChimpSubscription = () => {
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
                       <input className="input is-medium is-flat" type="email" placeholder={localizedForm.node.elements.email_label.value}
-                        onChange={event => setEmail(event.target.value)} />
+                        onChange={handleEmailChange} />
                       <span className="icon is-small is-left">
                         <FontAwesomeIcon icon="envelope" />
                       </span>
@@ -131,6 +140,6 @@ const MailChimpSubscription = () => {
         </div>
       </SubLayout>
     );
-};
+});
 
 export default MailChimpSubscription;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { DiscussionEmbed } from 'disqus-react'
+import { DiscussionEmbed } from 'disqus-react';
 import PropTypes from 'prop-types';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import styles from './disqus.module.scss';
 
-const Disqus = ({ siteUrl }) => {
+const Disqus = React.memo(function Disqus({ siteUrl }) {
   const { currentPage } = useCurrentPage();
 
   if (!process.env.DISQUS_SHORTNAME) {
@@ -25,10 +25,10 @@ const Disqus = ({ siteUrl }) => {
       />
     </div>
   );
-};
+});
 
 Disqus.propTypes = {
-  siteUrl: PropTypes.string
+  siteUrl: PropTypes.string,
 };
 
 export default Disqus;

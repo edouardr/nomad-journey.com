@@ -9,10 +9,14 @@ import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
 
-const LandingPage = ({ data, pageContext }) => {
+const LandingPage = React.memo(function LandingPage({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
-  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemLandingPage.edges, data.site);
+  const item = getItemPerLanguage(
+    pageContext.language,
+    data.allKenticoCloudItemLandingPage.edges,
+    data.site
+  );
 
   React.useEffect(() => {
     defineLang(pageContext.language);
@@ -25,7 +29,7 @@ const LandingPage = ({ data, pageContext }) => {
       <IntroText html={item.elements.body_text.value} />
     </Layout>
   );
-};
+});
 
 LandingPage.propTypes = {
   data: PropTypes.object,
@@ -39,7 +43,9 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemLandingPage(filter: {system: {codename: {eq: $codename}}}) {
+    allKenticoCloudItemLandingPage(
+      filter: { system: { codename: { eq: $codename } } }
+    ) {
       edges {
         node {
           ...landingPageMetadata
