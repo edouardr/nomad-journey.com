@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from "gatsby";
-import PureListing from "./pureListing";
+import { useStaticQuery, graphql } from 'gatsby';
+import PureListing from './pureListing';
 
 const loadCount = 3;
 
-const ArticleListing = ({ language }) => {
+const ArticleListing = React.memo(function ArticleListing({ language }) {
   const data = useStaticQuery(graphql`
     query {
-      allKenticoCloudItemArticle (sort: { order: DESC, fields: [elements___posted___value] }){
+      allKenticoCloudItemArticle(
+        sort: { order: DESC, fields: [elements___posted___value] }
+      ) {
         edges {
           node {
             id
@@ -44,20 +46,21 @@ const ArticleListing = ({ language }) => {
       }
     }
   `);
-  const articles = new Array(...data.allKenticoCloudItemArticle.edges).filter(edge => language === edge.node.system.language).slice(1);
+  const articles = new Array(...data.allKenticoCloudItemArticle.edges)
+    .filter(edge => language === edge.node.system.language)
+    .slice(1);
 
   return (
-
     <section className="section">
       <div className={`container`}>
         <PureListing articles={articles} loadCount={loadCount} />
       </div>
     </section>
   );
-};
+});
 
 ArticleListing.propTypes = {
-  language: PropTypes.string
+  language: PropTypes.string,
 };
 
 export default ArticleListing;

@@ -10,11 +10,15 @@ import useLang from '../hooks/useLang';
 import useCurrentPage from '../hooks/useCurrentPage';
 
 const getItemPerLanguage = (language, data) => {
-  const homePages = new Array(...data.allKenticoCloudItemLandingPage.edges).map(edge => {
-    edge.node.elements.slug.value = '';
-    return edge;
-  });
-  const localizedHomePages = homePages.filter(homePage => homePage.node.system.language === language)[0];
+  const homePages = new Array(...data.allKenticoCloudItemLandingPage.edges).map(
+    edge => {
+      edge.node.elements.slug.value = '';
+      return edge;
+    }
+  );
+  const localizedHomePages = homePages.filter(
+    homePage => homePage.node.system.language === language
+  )[0];
 
   return {
     allEdges: homePages,
@@ -25,11 +29,13 @@ const getItemPerLanguage = (language, data) => {
   };
 };
 
-const Home = ({ data, pageContext }) => {
+const Home = React.memo(function Home({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data);
-  const lastArticle = new Array(...data.allKenticoCloudItemArticle.edges).filter(edge => pageContext.language === edge.node.system.language)[0].node;
+  const lastArticle = new Array(
+    ...data.allKenticoCloudItemArticle.edges
+  ).filter(edge => pageContext.language === edge.node.system.language)[0].node;
 
   React.useEffect(() => {
     defineLang(pageContext.language);
@@ -38,12 +44,12 @@ const Home = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <Jumbotron item={lastArticle} showLink={true}/>
+      <Jumbotron item={lastArticle} showLink={true} />
       <ArticleListing language={pageContext.language} />
       <GoogleMaps />
     </Layout>
   );
-};
+});
 
 Home.propTypes = {
   data: PropTypes.object,
@@ -58,7 +64,10 @@ export const query = graphql`
       ...siteMetadata
     }
 
-    allKenticoCloudItemArticle(limit: 2, sort: {order: DESC, fields: [elements___posted___value]}) {
+    allKenticoCloudItemArticle(
+      limit: 2
+      sort: { order: DESC, fields: [elements___posted___value] }
+    ) {
       edges {
         node {
           id
@@ -94,7 +103,9 @@ export const query = graphql`
       }
     }
 
-    allKenticoCloudItemLandingPage(filter: {system: {codename: {eq: "home"}}}) {
+    allKenticoCloudItemLandingPage(
+      filter: { system: { codename: { eq: "home" } } }
+    ) {
       edges {
         node {
           ...landingPageMetadata

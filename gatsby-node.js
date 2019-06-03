@@ -1,8 +1,8 @@
-const factoriesManager = require('./factories/runner');
-const articleFactory = require('./factories/article');
-const aboutUsFactory = require('./factories/aboutUs');
-const itineraryFactory = require( './factories/itinerary');
-const landingPageFactory = require('./factories/landingPage');
+const factoriesManager = require('./src/factories/runner');
+const articleFactory = require('./src/factories/article');
+const aboutUsFactory = require('./src/factories/aboutUs');
+const itineraryFactory = require( './src/factories/itinerary');
+const landingPageFactory = require('./src/factories/landingPage');
 
 exports.onCreateNode = async ({ node, actions, store, cache, createNodeId }) => {
   if (node.internal.type.match(/KenticoCloudItem/)) {

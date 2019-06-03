@@ -3,56 +3,56 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import useCurrentPage from '../../hooks/useCurrentPage';
 
-const SEO = () => {
+const SEO = React.memo(function SEO() {
   const { currentPage } = useCurrentPage();
   if (!currentPage) {
     return false;
   }
 
   return (
-    <Helmet title = { `${currentPage.elements.page_metadata__og_title.value}${currentPage.site.siteMetadata.title}` }
-    meta = {[
+    <Helmet
+      title={`${currentPage.elements.page_metadata__og_title.value}${currentPage.site.siteMetadata.title}`}
+      meta={[
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           hid: 'description',
           name: 'description',
-          content: currentPage.elements.page_metadata__meta_description.value
+          content: currentPage.elements.page_metadata__meta_description.value,
         },
         {
           hid: 'keywords',
           name: 'keywords',
-          content: currentPage.elements.page_metadata__meta_keywords.value
+          content: currentPage.elements.page_metadata__meta_keywords.value,
         },
         {
           hid: 'og:title',
           property: 'og:title',
-          content: currentPage.elements.page_metadata__og_title.value
+          content: currentPage.elements.page_metadata__og_title.value,
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: currentPage.elements.page_metadata__og_image.value[0].url
+          content: currentPage.elements.page_metadata__og_image.value[0].url,
         },
         {
           hid: 'og:image:alt',
           property: 'og:image:alt',
-          content: currentPage.elements.page_metadata__og_image.value[0].description
+          content:
+            currentPage.elements.page_metadata__og_image.value[0].description,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: currentPage.elements.page_metadata__og_description.value
-        }
+          content: currentPage.elements.page_metadata__og_description.value,
+        },
       ]}
-      link = {[
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ]}
+      link={[{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]}
     />
   );
-};
+});
 
-export const query = graphql `
+export const query = graphql`
   fragment itineraryMetadata on KenticoCloudItemItinerary {
     elements {
       page_metadata__meta_description {

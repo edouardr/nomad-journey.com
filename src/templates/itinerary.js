@@ -10,28 +10,31 @@ import Layout from '../components/Layout/layout';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
-import { isTerminatorless } from '@babel/types';
 
-const Itinerary = ({ data, pageContext }) => {
+const Itinerary = React.memo(function Itinerary({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
-  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemItinerary.edges, data.site);
+  const item = getItemPerLanguage(
+    pageContext.language,
+    data.allKenticoCloudItemItinerary.edges,
+    data.site
+  );
 
   React.useEffect(() => {
     defineLang(pageContext.language);
     item.fields.jumbotronImage = {
       childImageSharp: {
-        fluid: {}
-      }
+        fluid: {},
+      },
     };
     item.elements.jumbotron__image = {
-      value: [{ description: ''}]
+      value: [{ description: '' }],
     };
     item.elements.jumbotron__title = {
-      value: ''
+      value: '',
     };
     item.elements.jumbotron__description = {
-      value: ''
+      value: '',
     };
     definePage(item);
   }, []);
@@ -50,7 +53,7 @@ const Itinerary = ({ data, pageContext }) => {
       </div>
     </Layout>
   );
-};
+});
 
 Itinerary.propTypes = {
   data: PropTypes.object,
@@ -64,7 +67,9 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemItinerary(filter: {system: {codename: {eq: $codename}}}) {
+    allKenticoCloudItemItinerary(
+      filter: { system: { codename: { eq: $codename } } }
+    ) {
       edges {
         node {
           ...itineraryMetadata

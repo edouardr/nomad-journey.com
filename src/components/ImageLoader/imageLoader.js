@@ -5,18 +5,25 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './imageLoader.module.scss';
 
-const ImageLoader = ({ src, className, description, onLoad }) => {
+const ImageLoader = React.memo(function ImageLoader({
+  src,
+  className,
+  description,
+  onLoad,
+}) {
   const loadedClassName = styles.imgLoaded;
   const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
-  const computedClassName = `${className} ${loaded ? loadedClassName : loadingClassName}`;
+  const computedClassName = `${className} ${
+    loaded ? loadedClassName : loadingClassName
+    }`;
 
-  const renderDescription = () => (description
-    ? (<div className={styles.masonryItemDetails} >
-      {description}
-    </div>)
-    : false
-  );
+  const renderDescription = () =>
+    description ? (
+      <div className={styles.masonryItemDetails}>{description}</div>
+    ) : (
+        false
+      );
 
   const handleLoad = () => {
     if (onLoad && {}.toString.call(onLoad) === '[object Function]') {
@@ -39,7 +46,9 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
 
   return (
     <>
-      <div className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}>
+      <div
+        className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}
+      >
         <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
       </div>
       <LazyLoad>
@@ -47,12 +56,13 @@ const ImageLoader = ({ src, className, description, onLoad }) => {
           src={src}
           onLoad={() => handleLoad()}
           className={computedClassName}
-          alt={description} />
+          alt={description}
+        />
       </LazyLoad>
       {renderDescription()}
     </>
   );
-};
+});
 
 ImageLoader.propTypes = {
   description: PropTypes.string,

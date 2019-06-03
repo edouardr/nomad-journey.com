@@ -10,10 +10,14 @@ import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 import '../components/SEO/SEO';
 
-const AboutUs = ({ data, pageContext }) => {
+const AboutUs = React.memo(function AboutUs({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
-  const item = getItemPerLanguage(pageContext.language, data.allKenticoCloudItemAboutUs.edges, data.site);
+  const item = getItemPerLanguage(
+    pageContext.language,
+    data.allKenticoCloudItemAboutUs.edges,
+    data.site
+  );
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 
   React.useEffect(() => {
@@ -28,19 +32,17 @@ const AboutUs = ({ data, pageContext }) => {
       <section className="section">
         <div className="container">
           <div className="columns">
-            {
-              persons.map(person => (
-                <div className="column is-half" key={person.node.system.codename}>
-                  <PersonTile person={person.node} />
-                </div>
-              ))
-            }
+            {persons.map(person => (
+              <div className="column is-half" key={person.node.system.codename}>
+                <PersonTile person={person.node} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
     </Layout>
   );
-};
+});
 
 AboutUs.propTypes = {
   data: PropTypes.object,
@@ -89,7 +91,9 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemPerson(filter: { system : { language: { eq: $language }}}) {
+    allKenticoCloudItemPerson(
+      filter: { system: { language: { eq: $language } } }
+    ) {
       edges {
         node {
           system {
@@ -117,7 +121,9 @@ export const query = graphql`
         }
       }
     }
-    allKenticoCloudItemAboutUs(filter: {system: {codename: {eq: $codename}}}) {
+    allKenticoCloudItemAboutUs(
+      filter: { system: { codename: { eq: $codename } } }
+    ) {
       edges {
         node {
           ...aboutUsData

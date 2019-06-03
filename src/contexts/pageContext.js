@@ -5,57 +5,61 @@ const initialState = {
   allEdges: [],
   elements: {
     jumbotron__description: {
-      value: ''
+      value: '',
     },
     jumbotron__image: {
-      value: [{
-        url: '',
-        description: ''
-      }]
+      value: [
+        {
+          url: '',
+          description: '',
+        },
+      ],
     },
     jumbotron__title: {
-      value: ''
+      value: '',
     },
     page_metadata__og_title: {
-      value: ''
+      value: '',
     },
     page_metadata__meta_description: {
-      value: ''
+      value: '',
     },
     page_metadata__meta_keywords: {
-      value: ''
+      value: '',
     },
     page_metadata__og_image: {
-      value: [{
-        url: '',
-        description: ''
-      }]
+      value: [
+        {
+          url: '',
+          description: '',
+        },
+      ],
     },
     page_metadata__og_description: {
-      value: ''
+      value: '',
     },
     slug: {
-      value: ''
-    }
+      value: '',
+    },
   },
   fields: {
     jumbotronImage: {
       childImageSharp: {
-        fluid: {}
-      }
+        fluid: {},
+      },
     },
     language: '',
-    slug: ''
+    slug: '',
   },
   site: {
     siteMetadata: {
       title: '',
-      siteUrl: ''
-    }
+      siteUrl: '',
+    },
   },
   system: {
-    language: ''
-  }
+    language: '',
+  },
 };
 
 const reducer = (state, action) => {
@@ -67,13 +71,13 @@ const reducer = (state, action) => {
   }
 };
 
-const PageProvider = (props) => {
+const PageProvider = props => {
   const [currentPage, dispatch] = React.useReducer(reducer, initialState);
 
   const value = React.useMemo(() => {
     return {
       currentPage,
-      dispatch
+      dispatch,
     };
   }, [currentPage]);
 

@@ -2,13 +2,13 @@ import React from 'react';
 
 const LangContext = React.createContext();
 
-const LangProvider = (props) => {
+const LangProvider = props => {
   const [language, setLang] = React.useState(process.env.DEFAULT_LANG);
 
   const value = React.useMemo(() => {
     return {
       language,
-      setLang
+      setLang,
     };
   }, [language]);
 

@@ -12,15 +12,25 @@ import '../components/SEO/SEO';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
 
-const Article = ({ data, pageContext }) => {
+const Article = React.memo(function Article({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
-  const currentArticle = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.codename === pageContext.codename);
-  const articlesByLanguage = data.allKenticoCloudItemArticle.edges.filter(edge => edge.node.fields.language === pageContext.language);
-  const currentIndex = articlesByLanguage.map(edge => edge.node.fields.codename).indexOf(pageContext.codename);
+  const currentArticle = data.allKenticoCloudItemArticle.edges.filter(
+    edge => edge.node.fields.codename === pageContext.codename
+  );
+  const articlesByLanguage = data.allKenticoCloudItemArticle.edges.filter(
+    edge => edge.node.fields.language === pageContext.language
+  );
+  const currentIndex = articlesByLanguage
+    .map(edge => edge.node.fields.codename)
+    .indexOf(pageContext.codename);
   const next = articlesByLanguage[currentIndex + 1];
   const previous = articlesByLanguage[currentIndex - 1];
-  const item = getItemPerLanguage(pageContext.language, currentArticle, data.site);
+  const item = getItemPerLanguage(
+    pageContext.language,
+    currentArticle,
+    data.site
+  );
 
   React.useEffect(() => {
     defineLang(pageContext.language);
@@ -31,11 +41,16 @@ const Article = ({ data, pageContext }) => {
     <Layout>
       <Header />
       <article>
-        <ArticleHeader article={item}/>
+        <ArticleHeader article={item} />
         <div className="columns">
           <div className="column is-offset-2 is-8">
             <section className="section ">
-              <div className="content is-large" dangerouslySetInnerHTML={{ __html: item.elements.body_text.value }}></div>
+              <div
+                className="content is-large"
+                dangerouslySetInnerHTML={{
+                  __html: item.elements.body_text.value,
+                }}
+              />
             </section>
           </div>
         </div>
@@ -47,7 +62,7 @@ const Article = ({ data, pageContext }) => {
       </article>
     </Layout>
   );
-};
+});
 
 Article.propTypes = {
   data: PropTypes.object,
@@ -123,7 +138,9 @@ export const query = graphql`
     site {
       ...siteMetadata
     }
-    allKenticoCloudItemArticle(sort: { order: DESC, fields: [elements___posted___value] }) {
+    allKenticoCloudItemArticle(
+      sort: { order: DESC, fields: [elements___posted___value] }
+    ) {
       edges {
         node {
           ...articleData
