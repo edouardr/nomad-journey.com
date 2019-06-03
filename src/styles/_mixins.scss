@@ -22,6 +22,10 @@
         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.5)
     }
 
+    @else if $depth=="bottom" {
+        box-shadow: rgba(46, 41, 51, 0.08) 0px 4px 8px, rgba(71, 63, 79, 0.16) 0px 8px 16px;
+    }
+
     @else {
         box-shadow: 0 15px 100px -30px rgba(0, 0, 0, 0.75);
     }
