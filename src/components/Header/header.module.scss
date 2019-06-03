@@ -5,7 +5,6 @@
 
 .navbar {
   box-shadow: 0 2px 0 0 rgba(128, 128, 128, .1);
-  min-height: 5.25rem;
 
   .navbar-burger {
     height: 5.25rem;
@@ -15,6 +14,7 @@
   .navbar-dropdown {
     .navbar-item {
       color: $deeplight;
+
       &:hover {
         color: $water;
         background-color: $sand;
@@ -23,7 +23,8 @@
   }
 
   .navbar-item {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
 
     &.brand {
       width: 15rem;
@@ -32,19 +33,73 @@
         background-color: inherit;
       }
     }
+
+    img {
+      max-height: unset;
+    }
   }
 
   &.is-active {
-    position: absolute;
-    width: 100%;
-    transition: left 0.2s;
+    .navbar-menu {
+      position: absolute;
+      width: 100%;
+      transition: left 0.2s;
+    }
   }
 
 }
 
-@media only screen and (min-width : "992px") {
-  .navbar-burger {
-    height: 5.25rem;
-    width: 4.25rem;
+@include until($navbar-breakpoint) {
+  .navbar {
+    .navbar-item {
+      &.has-dropdown {
+        .navbar-link {
+          &::after {
+            content: none;
+          }
+        }
+      }
+    }
   }
+}
+
+@include from($navbar-breakpoint) {
+  .navbar-item {
+    &.has-dropdown {
+      .navbar-link {
+        &::after {
+          border-color: inherit;
+        }
+      }
+
+      &:hover,
+      &.is-active {
+        .navbar-link {
+          color: $water;
+          background-color: transparent;
+
+          &::after {
+            border-color: $water;
+          }
+        }
+      }
+    }
+
+    .navbar-dropdown {
+      a {
+        &.navbar-item {
+          &:hover {
+            background-color: inherit;
+            color: $water;
+          }
+        }
+      }
+    }
+
+    .navbar-burger {
+      height: 5.25rem;
+      width: 4.25rem;
+    }
+  }
+
 }

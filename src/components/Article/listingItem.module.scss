@@ -119,6 +119,24 @@
     }
 
     @media #{$sm} {
+        width: 80%;
+        @include globalDropShadow('bottom');
+        margin-bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3rem;
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+
+        &:hover {
+            @include globalDropShadow('closest');
+            cursor: pointer;
+        }
+
         background-color: transparent;
         border: none;
         margin-bottom: 90px;

@@ -5,33 +5,18 @@
 
 .navbar {
   background-image: linear-gradient(to bottom,
-    rgba(128, 128, 128, 1) 0%,
-    rgba(128, 128, 128, 0) 100%);
+      rgba(128, 128, 128, 1) 0%,
+      rgba(128, 128, 128, 0) 100%);
   box-shadow: none;
   background-color: transparent;
-  min-height: 5.25rem;
 
   .navbar-burger {
     color: white;
   }
 
-  .navbar-brand {
-    .navbar-item {
-      img {
-        max-height: 2.5rem;
-      }
-    }
-  }
-
   &.is-active {
     background-image: none;
     background-color: white;
-
-    .navbar-brand {
-      img {
-        filter: none;
-      }
-    }
 
     .navbar-burger {
       color: #4a4a4a;
@@ -42,11 +27,10 @@
 
       &.is-active {
         color: $water;
-        font-weight: normal;
       }
 
-      &:hover {
-        background-color: #fafafa;
+      img {
+        filter: unset;
       }
     }
   }
@@ -54,19 +38,17 @@
   .navbar-dropdown {
     .navbar-item {
       color: $deeplight;
-      &:hover {
-        color: $water;
-        background-color: $sand;
-      }
     }
   }
 
   .navbar-item {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
     color: white;
 
     img {
       filter: brightness(0) invert(1);
+      max-height: unset;
     }
 
     &:hover {
@@ -85,8 +67,48 @@
   }
 }
 
-@media only screen and (min-width : "992px") {
+@include until($navbar-breakpoint) {
   .navbar {
+    .navbar-item {
+      &.has-dropdown {
+        .navbar-link {
+          &::after {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include from($navbar-breakpoint) {
+  .navbar {
+    .navbar-item {
+      &.has-dropdown {
+        color: white;
+
+        .navbar-link {
+          color: white;
+
+          &::after {
+            border-color: white;
+          }
+        }
+
+        &:hover,
+        &.is-active {
+          .navbar-link {
+            color: $water;
+            background-color: transparent;
+
+            &::after {
+              border-color: $water;
+            }
+          }
+        }
+      }
+    }
+
     .navbar-brand {
       .navbar-item {
         img {
@@ -98,6 +120,17 @@
     .navbar-burger {
       height: 5.25rem;
       width: 4.25rem;
+    }
+  }
+
+  .navbar-dropdown {
+    a {
+      &.navbar-item {
+        &:hover {
+          background-color: inherit;
+          color: $water;
+        }
+      }
     }
   }
 }
