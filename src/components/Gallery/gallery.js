@@ -37,8 +37,12 @@ const setMasonryItemSize = (masonry, item) => {
 
   item.current.style.gridRowEnd = 'span ' + rowSpan;
   if (gridImagesAsContent) {
+    const width = parseInt(item.current.getAttribute('data-orig-width'));
+    const height = parseInt(item.current.getAttribute('data-orig-height'));
+    const heightAspectRatio = (item.current.clientWidth * height) / width;
+
     imgElement.style.height =
-      item.current.getBoundingClientRect().height + 'px';
+      (heightAspectRatio || item.current.clientHeight) + 'px';
   }
 };
 
@@ -60,12 +64,20 @@ const Gallery = React.memo(function Gallery({ images }) {
           .map(image => {
             let item = useRef(null);
             itemsList.push(item);
+
             return (
-              <div key={image.name} className={styles.masonryItem} ref={item}>
+              <div
+                key={image.name}
+                data-orig-height={image.height}
+                data-orig-width={image.width}
+                className={styles.masonryItem}
+                ref={item}
+              >
                 <ImageLoader
                   className={styles.masonryContent}
                   src={image.url}
                   description={image.description}
+                  alt={image.name}
                   onLoad={() => setMasonryItemSize(masonry, item)}
                 />
               </div>

@@ -46,6 +46,7 @@ const ListingItem = React.memo(function ListingItem({ article }) {
             <div className={styles.innerWrap}>
               <ImageLoader
                 src={article.node.elements.list_item__thumbnail.value[0].url}
+                alt={article.node.elements.list_item__thumbnail.value[0].name}
               />
             </div>
           </div>
