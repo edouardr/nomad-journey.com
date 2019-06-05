@@ -7,19 +7,24 @@ const index = algoliaApp.initIndex(process.env.INDEX_NAME);
 
 const isValidSignature = (req, secret) => {
   const givenSignature = req.headers['x-kc-signature'];
-  const computedSignature = crypto.createHmac('sha256', secret)
+  const computedSignature = crypto
+    .createHmac('sha256', secret)
     .update(req.body)
     .digest();
-  return crypto.timingSafeEqual(Buffer.from(givenSignature, 'base64'), computedSignature);
+  return crypto.timingSafeEqual(
+    Buffer.from(givenSignature, 'base64'),
+    computedSignature
+  );
 };
 
 exports.updateIndex = (request, response) => {
-  if(!isValidSignature(request, process.env.SIGNATURE)){
+  if (!isValidSignature(request, process.env.SIGNATURE)) {
     response.status(403);
     return;
   }
 
-  index.addObject(request.body)
+  index
+    .addObject(request.body)
     .then(newAlgoliaObject => {
       response.status(200).json(newAlgoliaObject);
     })
