@@ -7,7 +7,7 @@ const siteAddress = new URL(process.env.HOSTNAME);
 module.exports = {
   siteMetadata: {
     siteUrl: siteAddress.href,
-    title: ` | Nomad-Journey`,
+    title: ` Nomad-Journey`,
   },
   plugins: [
     {

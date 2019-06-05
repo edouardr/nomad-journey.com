@@ -6,6 +6,7 @@ import Img from 'gatsby-image';
 import styles from './imageLoader.module.scss';
 
 const ImageLoader = React.memo(function ImageLoader({
+  alt,
   src,
   className,
   description,
@@ -14,9 +15,7 @@ const ImageLoader = React.memo(function ImageLoader({
   const loadedClassName = styles.imgLoaded;
   const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
-  const computedClassName = `${className} ${
-    loaded ? loadedClassName : loadingClassName
-    }`;
+  const computedClassName = `${className || ''} ${loaded ? loadedClassName : loadingClassName}`;
 
   const renderDescription = () =>
     description ? (
@@ -56,7 +55,7 @@ const ImageLoader = React.memo(function ImageLoader({
           src={src}
           onLoad={() => handleLoad()}
           className={computedClassName}
-          alt={description}
+          alt={description || alt}
         />
       </LazyLoad>
       {renderDescription()}
@@ -65,6 +64,7 @@ const ImageLoader = React.memo(function ImageLoader({
 });
 
 ImageLoader.propTypes = {
+  alt: PropTypes.string,
   description: PropTypes.string,
   className: PropTypes.string,
   onLoad: PropTypes.func,

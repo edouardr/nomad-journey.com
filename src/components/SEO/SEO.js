@@ -2,16 +2,22 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import useCurrentPage from '../../hooks/useCurrentPage';
+import useLang from '../../hooks/useLang';
 
 const SEO = React.memo(function SEO() {
   const { currentPage } = useCurrentPage();
+  const { language } = useLang();
   if (!currentPage) {
     return false;
   }
 
   return (
     <Helmet
-      title={`${currentPage.elements.page_metadata__og_title.value}${currentPage.site.siteMetadata.title}`}
+      htmlAttributes={{
+        lang: language,
+      }}
+      title={`${currentPage.elements.page_metadata__og_title.value}`}
+      titleTemplate={`%s | ${currentPage.site.siteMetadata.title}`}
       meta={[
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -48,7 +54,9 @@ const SEO = React.memo(function SEO() {
         },
       ]}
       link={[{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]}
-    />
+    >
+      <html lang="en" />
+    </Helmet>
   );
 });
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../utils/fontawesome';
 import styles from './item.module.scss';
 
 const KeyFact = React.memo(function KeyFact({ keyFact }) {

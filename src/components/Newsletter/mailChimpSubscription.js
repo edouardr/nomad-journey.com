@@ -114,7 +114,10 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
                 <div className="field-body">
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input className="input is-medium is-flat" type="text" placeholder={localizedForm.node.elements.first_name_label.value}
+                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="firstname">
+                        Firstname
+                      </label>
+                      <input className="input is-medium is-flat" type="text" name="firstname" placeholder={localizedForm.node.elements.first_name_label.value}
                         onChange={handleFirstNameChange} />
                       <span className="icon is-small is-left">
                         <FontAwesomeIcon icon="user" />
@@ -123,7 +126,10 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
                   </div>
                   <div className="field">
                     <p className="control has-icons-left has-icons-right">
-                      <input className="input is-medium is-flat" type="email" placeholder={localizedForm.node.elements.email_label.value}
+                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="email">
+                        Email
+                      </label>
+                      <input className="input is-medium is-flat" type="email" name="email" placeholder={localizedForm.node.elements.email_label.value}
                         onChange={handleEmailChange} />
                       <span className="icon is-small is-left">
                         <FontAwesomeIcon icon="envelope" />

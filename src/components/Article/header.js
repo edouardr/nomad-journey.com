@@ -62,7 +62,10 @@ const ArticleHeader = React.memo(function ArticleHeader({ article }) {
         <div className="column is-offset-2 is-8">
           <Img
             fluid={article.fields.jumbotronImage.childImageSharp.fluid}
-            alt={article.elements.jumbotron__image.value[0].description}
+            alt={
+              article.elements.jumbotron__image.value[0].description ||
+              article.elements.jumbotron__image.value[0].name
+            }
           />
         </div>
       </div>

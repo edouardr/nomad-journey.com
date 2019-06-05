@@ -108,6 +108,7 @@ export const query = graphql`
       }
       jumbotron__image {
         value {
+          name
           description
         }
       }

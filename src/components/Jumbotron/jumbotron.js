@@ -36,7 +36,10 @@ const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
           <div className={styles.mediaObj}>
             <Img
               fluid={item.fields.jumbotronImage.childImageSharp.fluid}
-              alt={item.elements.jumbotron__image.value[0].description}
+              alt={
+                item.elements.jumbotron__image.value[0].description ||
+                item.elements.jumbotron__image.value[0].name
+              }
               style={imgStyle}
             />
           </div>
