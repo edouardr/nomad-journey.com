@@ -1,6 +1,8 @@
 export const getItemPerLanguage = (language, edges, site) => {
   const items = new Array(...edges);
-  const localizedItem = items.filter(page => page.node.system.language === language)[0];
+  const localizedItem = items.filter(
+    page => page.node.system.language === language
+  )[0];
 
   return {
     allEdges: items,

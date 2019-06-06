@@ -8,10 +8,12 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "algoliasearch": "^3.33.0",
     "bulma": "^0.7.4",
     "disqus-react": "^1.0.5",
     "gatsby": "^2.3.25",
     "gatsby-image": "^2.0.37",
+    "gatsby-plugin-algolia": "^0.3.0",
     "gatsby-plugin-mailchimp": "^5.1.0",
     "gatsby-plugin-manifest": "^2.0.26",
     "gatsby-plugin-offline": "^2.0.25",
@@ -28,6 +30,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
+    "react-instantsearch-dom": "^5.7.0",
     "react-lazy-load": "^3.0.13"
   },
   "keywords": [
