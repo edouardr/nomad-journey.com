@@ -6,10 +6,11 @@ import {
   connectStateResults,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
-import { Root, HitsWrapper, PoweredBy } from './styles';
+import PoweredBy from './poweredBy';
 import Input from './input';
 import * as hitComps from './hitComps';
 import useClickOutside from '../../hooks/useClickOutside';
+import styles from './index.module.scss';
 
 const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) =>
@@ -21,7 +22,7 @@ const Stats = connectStateResults(
     res && res.nbHits > 0 && `${res.nbHits} result${res.nbHits > 1 ? `s` : ``}`
 );
 
-const Search = React.useMemo(function ({ indices, collapse, hitsAsGrid }) {
+const Search = ({ indices }) => {
   const ref = createRef();
   const [query, setQuery] = useState(``);
   const [focus, setFocus] = useState(false);
@@ -34,17 +35,33 @@ const Search = React.useMemo(function ({ indices, collapse, hitsAsGrid }) {
     setQuery(query);
   };
 
-  useClickOutside(ref, () => setFocus(false));
+  const onFocus = () => {
+    setFocus(true);
+  };
+
+  const removeFocus = () => {
+    setFocus(false);
+  };
+
+  useClickOutside(ref, removeFocus);
+
+  const Root = {
+    Root: 'div',
+    props: {
+      ref: ref,
+      className: styles.root,
+    },
+  };
 
   return (
     <InstantSearch
       searchClient={searchClient}
       indexName={indices[0].name}
       onSearchStateChange={onSearchStateChange}
-      root={{ Root, props: { ref } }}
+      root={Root}
     >
-      <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-      <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
+      <Input onFocus={onFocus} />
+      <div className={`${styles.hitsWrapper} ${query.length > 0 && focus ? styles.focused : ''}`}>
         {indices.map(({ name, title, hitComp }) => (
           <Index key={name} indexName={name}>
             <header>
@@ -52,14 +69,14 @@ const Search = React.useMemo(function ({ indices, collapse, hitsAsGrid }) {
               <Stats />
             </header>
             <Results>
-              <Hits hitComponent={hitComps[hitComp](() => setFocus(false))} />
+              <Hits hitComponent={hitComps[hitComp](removeFocus)} />
             </Results>
           </Index>
         ))}
         <PoweredBy />
-      </HitsWrapper>
+      </div>
     </InstantSearch>
   );
-});
+};
 
 export default Search;

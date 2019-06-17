@@ -88,8 +88,7 @@ const Header = React.memo(function Header() {
           id="navMenu"
           className={`${styles.navbarMenu} ${isOpen ? styles.isActive : ''}`}
         >
-          <div className={styles.navbarStart} />
-          <div className={styles.navbarEnd}>
+          <div className={styles.navbarStart}>
             {menuLinks.map(link => (
               <Link
                 key={link.id}
@@ -101,6 +100,11 @@ const Header = React.memo(function Header() {
                 {link.elements.title.value}
               </Link>
             ))}
+          </div>
+          <div className={styles.navbarEnd}>
+            <div className={`${styles.navbarItem}`}>
+              <Search collapse={true} indices={searchIndices} />
+            </div>
             <div
               className={`${styles.navbarItem} ${styles.hasDropdown} ${styles.isHoverable}`}
             >
@@ -131,9 +135,6 @@ const Header = React.memo(function Header() {
                     </Link>
                   ))}
               </div>
-            </div>
-            <div className={`${styles.navbarItem}`}>
-              <Search collapse={true} indices={searchIndices} />
             </div>
           </div>
         </div>

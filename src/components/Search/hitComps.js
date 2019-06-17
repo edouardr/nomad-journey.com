@@ -1,8 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Highlight, Snippet } from 'react-instantsearch-dom';
 import { Link } from 'gatsby';
-import { Calendar } from 'styled-icons/octicons/Calendar';
-import { Tags } from 'styled-icons/fa-solid/Tags';
 import { formatDate } from '../../utils/date-time';
 
 export const ArticleHit = clickHandler => ({ hit }) => (
@@ -13,9 +11,9 @@ export const ArticleHit = clickHandler => ({ hit }) => (
       </h4>
     </Link>
     <div>
-      <Calendar size="1em" /> {formatDate(hit.posted)}
+      <FontAwesomeIcon icon="calendar" /> {formatDate(hit.posted)}
       &emsp;
     </div>
-    <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+    <Snippet attribute="content" hit={hit} tagName="mark" />
   </div>
 );

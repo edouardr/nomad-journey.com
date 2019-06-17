@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { getItemPerLanguage } from '../utils/templateHelper';
+import Header from '../components/Header/header';
 import IntroText from '../components/IntroText.js';
 import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
@@ -27,6 +28,7 @@ const AboutUs = React.memo(function AboutUs({ data, pageContext }) {
 
   return (
     <Layout>
+      <Header />
       <Jumbotron />
       <IntroText html={item.elements.body_text.value} />
       <section className="section">

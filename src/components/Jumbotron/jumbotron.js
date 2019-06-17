@@ -27,10 +27,6 @@ const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
 
   return (
     <section className={`${styles.hero} is-medium`}>
-      <div className={styles.heroHead}>
-        <TransparentHeader lang={language} allEdges={item.allEdges} />
-      </div>
-
       <div className={styles.heroBody}>
         <div className={styles.image}>
           <div className={styles.mediaObj}>

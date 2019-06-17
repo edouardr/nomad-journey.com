@@ -21,7 +21,6 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.32",
     "gatsby-plugin-sitemap": "^2.0.11",
-    "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-plugin-transition-link": "^1.12.3",
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-source-kentico-cloud": "^3.1.0",
@@ -32,9 +31,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "react-instantsearch-dom": "^5.7.0",
-    "react-lazy-load": "^3.0.13",
-    "styled-components": "^4.3.0",
-    "styled-icons": "^8.1.0"
+    "react-lazy-load": "^3.0.13"
   },
   "keywords": [
     "gatsby",
@@ -47,11 +44,10 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop ",
+    "develop": "gatsby develop",
     "test": "jest"
   },
   "devDependencies": {
-    "@types/react-instantsearch-dom": "^5.2.5",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-node": "^9.1.0",

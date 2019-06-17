@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const useClickOutside = (ref, handler, events) => {
   if (!events) {
@@ -6,7 +6,7 @@ const useClickOutside = (ref, handler, events) => {
   }
   const detectClickOutside = event =>
     !ref.current.contains(event.target) && handler();
-  useEffect(() => {
+  React.useEffect(() => {
     for (const event of events) {
       document.addEventListener(event, detectClickOutside);
     }
@@ -15,7 +15,7 @@ const useClickOutside = (ref, handler, events) => {
         document.removeEventListener(event, detectClickOutside);
       }
     };
-  });
+  }, [ref, handler, events]);
 };
 
 export default useClickOutside;

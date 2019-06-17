@@ -7,6 +7,7 @@ const articleQuery = `{
         id
         system {
           language
+          codename
         }
         elements {
           page_metadata__meta_description {
@@ -45,6 +46,7 @@ const articleQuery = `{
 const mapArticle = article => {
   return {
     objectID: article.node.id,
+    codename: article.node.system.codename,
     metaTitle: article.node.elements.page_metadata__meta_title.value,
     description: article.node.elements.page_metadata__meta_description.value,
     keywords: article.node.elements.page_metadata__meta_keywords.value.split(
@@ -63,7 +65,7 @@ const mapArticle = article => {
   };
 };
 
-const settings = { attributesToSnippet: [`excerpt:20`] };
+const settings = { attributesToSnippet: [`content:20`] };
 
 const queries = [
   {
