@@ -5,6 +5,11 @@ import Img from 'gatsby-image';
 import styles from './header.module.scss';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import useLang from '../../hooks/useLang';
+import Search from '../Search';
+
+const searchIndices = [
+  { name: `articles_desc_posted`, title: `Article`, hitComp: `ArticleHit` },
+];
 
 const Header = React.memo(function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -126,6 +131,9 @@ const Header = React.memo(function Header() {
                     </Link>
                   ))}
               </div>
+            </div>
+            <div className={`${styles.navbarItem}`}>
+              <Search collapse={true} indices={searchIndices} />
             </div>
           </div>
         </div>

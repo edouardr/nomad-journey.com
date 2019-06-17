@@ -72,5 +72,6 @@ module.exports = {
         layout: require.resolve(`./src/layout`),
       },
     },
+    `gatsby-plugin-styled-components`,
   ],
 };
