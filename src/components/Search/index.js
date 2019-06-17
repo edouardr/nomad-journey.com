@@ -62,10 +62,9 @@ const Search = ({ indices }) => {
     >
       <Input onFocus={onFocus} />
       <div className={`${styles.hitsWrapper} ${query.length > 0 && focus ? styles.focused : ''}`}>
-        {indices.map(({ name, title, hitComp }) => (
+        {indices.map(({ name, hitComp }) => (
           <Index key={name} indexName={name}>
             <header>
-              <h3>{title}</h3>
               <Stats />
             </header>
             <Results>
