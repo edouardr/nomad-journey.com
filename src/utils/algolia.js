@@ -1,7 +1,9 @@
 const INDEX_NAME = `articles`;
-
-const articleQuery = `{
-  allKenticoCloudItemArticle {
+const languages = ['en', 'fr'];
+const getQuery = lang => `{
+  allKenticoCloudItemArticle (
+    filter: { system: { language: { eq: "${lang}" }}}
+  ) {
     edges {
       node {
         id
@@ -67,17 +69,15 @@ const mapArticle = article => {
 
 const settings = { attributesToSnippet: [`content:20`] };
 
-const queries = [
-  {
-    query: articleQuery,
-    transformer: ({ data }) => {
-      const articles = new Array(...data.allKenticoCloudItemArticle.edges);
+const queries = languages.map(language => ({
+  query: getQuery(language),
+  transformer: ({ data }) => {
+    const articles = new Array(...data.allKenticoCloudItemArticle.edges);
 
-      return articles.map(mapArticle);
-    },
-    indexName: INDEX_NAME,
-    settings,
+    return articles.map(mapArticle);
   },
-];
+  indexName: `${INDEX_NAME}_${language}`,
+  settings,
+}));
 
 module.exports = queries;

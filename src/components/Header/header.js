@@ -7,15 +7,13 @@ import useCurrentPage from '../../hooks/useCurrentPage';
 import useLang from '../../hooks/useLang';
 import Search from '../Search';
 
-const searchIndices = [
-  { name: `articles_desc_posted`, title: `Article`, hitComp: `ArticleHit` },
-];
-
 const Header = React.memo(function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { currentPage } = useCurrentPage();
   const { language } = useLang();
-
+  const searchIndices = [
+    { name: `articles_${language}`, title: `Article`, hitComp: `ArticleHit` },
+  ];
   const data = useStaticQuery(graphql`
     query defaultHeader {
       file(relativePath: { eq: "logo-transp.png" }) {
