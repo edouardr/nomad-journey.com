@@ -1,5 +1,6 @@
 const path = require(`path`);
-require("dotenv").config({
+const queries = require('./src/utils/algolia');
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 const siteAddress = new URL(process.env.HOSTNAME);
@@ -16,8 +17,17 @@ module.exports = {
         deliveryClientConfig: {
           projectId: process.env.KENTICO_PROJECT_ID,
         },
-        languageCodenames: process.env.KENTICO_LANGUAGES.split(';')
-      }
+        languageCodenames: process.env.KENTICO_LANGUAGES.split(';'),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000,
+      },
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
@@ -47,7 +57,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        includePaths: ["src/styles/_variables"],
+        includePaths: ['src/styles/_variables'],
       },
     },
     {
@@ -62,5 +72,5 @@ module.exports = {
         layout: require.resolve(`./src/layout`),
       },
     },
-  ]
+  ],
 };

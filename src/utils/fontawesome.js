@@ -4,6 +4,7 @@ import {
   faFacebook,
   faInstagram,
   faVimeo,
+  faAlgolia,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faRss,
@@ -15,10 +16,14 @@ import {
   faArrowRight,
   faArrowLeft,
   faCommentAlt,
+  faSearch,
+  faCalendar,
+  faMapMarkedAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   fab,
+  faAlgolia,
   fas,
   faFacebook,
   faInstagram,
@@ -30,5 +35,8 @@ library.add(
   faUser,
   faArrowRight,
   faArrowLeft,
-  faCommentAlt
+  faCommentAlt,
+  faSearch,
+  faCalendar,
+  faMapMarkedAlt
 );

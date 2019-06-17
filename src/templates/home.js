@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import Header from '../components/Header/header';
 import Jumbotron from '../components/Jumbotron/jumbotron';
 import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
@@ -44,6 +45,7 @@ const Home = React.memo(function Home({ data, pageContext }) {
 
   return (
     <Layout>
+      <Header />
       <Jumbotron item={lastArticle} showLink={true} />
       <ArticleListing language={pageContext.language} />
       <GoogleMaps />
