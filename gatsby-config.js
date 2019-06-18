@@ -1,5 +1,6 @@
 const path = require(`path`);
 const queries = require('./src/utils/algolia');
+const feedOptions = require('./src/utils/feed');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -71,6 +72,10 @@ module.exports = {
       options: {
         layout: require.resolve(`./src/layout`),
       },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: feedOptions,
     },
   ],
 };

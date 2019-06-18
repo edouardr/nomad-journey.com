@@ -80,7 +80,7 @@ const Footer = React.memo(function Footer() {
 
         <a
           className="is-size-1"
-          href="sitemap.xml"
+          href="/rss.xml"
           title="RSS A Nomad Journey"
           target="_blank"
           rel="noopener noreferrer"
