@@ -10,5 +10,6 @@ node_modules
 
 # enviornment variables config files
 .env.*
+!.env.sample
 
 \.vscode/settings\.json
