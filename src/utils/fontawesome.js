@@ -19,6 +19,7 @@ import {
   faSearch,
   faCalendar,
   faMapMarkedAlt,
+  faAngleUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -38,5 +39,6 @@ library.add(
   faCommentAlt,
   faSearch,
   faCalendar,
-  faMapMarkedAlt
+  faMapMarkedAlt,
+  faAngleUp
 );

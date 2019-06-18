@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useWindowEvent } from '../../hooks/useWindowEvent';
+import useWindowEvent from '../../hooks/useWindowEvent';
 import ImageLoader from '../ImageLoader/imageLoader';
 import styles from './gallery.module.scss';
 

@@ -11,6 +11,7 @@ import Layout from '../components/Layout/layout';
 import '../components/SEO/SEO';
 import useCurrentPage from '../hooks/useCurrentPage';
 import useLang from '../hooks/useLang';
+import BackToTop from '../components/Article/backToTop';
 
 const Article = React.memo(function Article({ data, pageContext }) {
   const { definePage } = useCurrentPage();
@@ -59,6 +60,7 @@ const Article = React.memo(function Article({ data, pageContext }) {
           <ArticleNavigation previous={next} next={previous} />
           <Disqus siteUrl={item.site.siteMetadata.siteUrl} />
         </div>
+        <BackToTop />
       </article>
     </Layout>
   );
