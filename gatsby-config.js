@@ -77,5 +77,12 @@ module.exports = {
       resolve: `gatsby-plugin-feed`,
       options: feedOptions,
     },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: process.env.GTM_CODE,
+        includeInDevelopment: false,
+      },
+    },
   ],
 };
