@@ -1,0 +1,25 @@
+.article-header {
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+}
+
+.article-details span {
+    display: inline-block;
+}
+
+.divider {
+    height: 1px;
+    width: 14px;
+    position: relative;
+    top: -6px;
+    background: #e1e1e1;
+    margin-left: 7px;
+    margin-right: 5px;
+}
+
+.location {
+    text-decoration: underline;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    display: inline-block;
+    padding-bottom: 4px;
+}
