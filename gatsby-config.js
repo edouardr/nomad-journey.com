@@ -4,11 +4,10 @@ const feedOptions = require('./src/utils/feed');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-const siteAddress = new URL(process.env.HOSTNAME);
 
 module.exports = {
   siteMetadata: {
-    siteUrl: siteAddress.href,
+    siteUrl: new URL(process.env.HOSTNAME).href,
     title: ` Nomad-Journey`,
   },
   plugins: [
