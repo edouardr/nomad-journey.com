@@ -7,7 +7,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: new URL(process.env.HOSTNAME).href,
+    siteUrl: new URL(process.env.GATSBY_HOSTNAME).href,
     title: ` Nomad-Journey`,
   },
   plugins: [
