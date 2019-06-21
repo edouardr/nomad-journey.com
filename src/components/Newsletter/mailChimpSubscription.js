@@ -103,47 +103,49 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
     )
     : (
       <SubLayout>
-        <div className="columns is-vcentered">
-          <div className="cloumn">
-            <p className="title is-size-4">Newsletter</p>
-            <p className="subtitle has-text-grey-light">{localizedForm.node.elements.description.value}</p>
-          </div>
-          <div className="column">
-            <form onSubmit={handleSubmit}>
-              <div className="field is-horizontal">
-                <div className="field-body">
-                  <div className="field">
-                    <p className="control has-icons-left has-icons-right">
-                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="firstname">
-                        Firstname
-                      </label>
-                      <input className="input is-medium is-flat" type="text" name="firstname" placeholder={localizedForm.node.elements.first_name_label.value}
-                        onChange={handleFirstNameChange} />
-                      <span className="icon is-small is-left">
-                        <FontAwesomeIcon icon="user" />
-                      </span>
-                    </p>
-                  </div>
-                  <div className="field">
-                    <p className="control has-icons-left has-icons-right">
-                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="email">
-                        Email
-                      </label>
-                      <input className="input is-medium is-flat" type="email" name="email" placeholder={localizedForm.node.elements.email_label.value}
-                        onChange={handleEmailChange} />
-                      <span className="icon is-small is-left">
-                        <FontAwesomeIcon icon="envelope" />
-                      </span>
-                    </p>
-                  </div>
-                  <div className="control">
-                    <button type="submit" className="button is-primary is-medium">{localizedForm.node.elements.button_label.value}</button>
+        {localizedForm && (
+          <div className="columns is-vcentered">
+            <div className="cloumn">
+              <p className="title is-size-4">Newsletter</p>
+              <p className="subtitle has-text-grey-light">{localizedForm.node.elements.description.value}</p>
+            </div>
+            <div className="column">
+              <form onSubmit={handleSubmit}>
+                <div className="field is-horizontal">
+                  <div className="field-body">
+                    <div className="field">
+                      <p className="control has-icons-left has-icons-right">
+                        <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="firstname">
+                          Firstname
+                        </label>
+                        <input className="input is-medium is-flat" type="text" name="firstname" placeholder={localizedForm.node.elements.first_name_label.value}
+                          onChange={handleFirstNameChange} />
+                        <span className="icon is-small is-left">
+                          <FontAwesomeIcon icon="user" />
+                        </span>
+                      </p>
+                    </div>
+                    <div className="field">
+                      <p className="control has-icons-left has-icons-right">
+                        <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="email">
+                          Email
+                        </label>
+                        <input className="input is-medium is-flat" type="email" name="email" placeholder={localizedForm.node.elements.email_label.value}
+                          onChange={handleEmailChange} />
+                        <span className="icon is-small is-left">
+                          <FontAwesomeIcon icon="envelope" />
+                        </span>
+                      </p>
+                    </div>
+                    <div className="control">
+                      <button type="submit" className="button is-primary is-medium">{localizedForm.node.elements.button_label.value}</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
       </SubLayout>
     );
 });
