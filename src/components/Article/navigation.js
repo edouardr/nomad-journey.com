@@ -5,6 +5,7 @@ import useLang from '../../hooks/useLang';
 import styles from './navigation.module.scss';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getDictionaryValue } from '../../utils/dictionary';
 
 const DICT_NEXT_KEY = 'next-article';
 const DICT_PREVIOUS_KEY = 'previous-article';
@@ -15,20 +16,16 @@ const ArticleNavigation = React.memo(function ArticleNavigation({
 }) {
   const { language } = useLang();
   const data = useDictionaryQuery();
-  const dict_previous_article = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_PREVIOUS_KEY &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
-  const dict_next_article = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_NEXT_KEY &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const dict_previous_article = getDictionaryValue({
+    key: DICT_PREVIOUS_KEY,
+    lang: language,
+    data: data,
+  });
+  const dict_next_article = getDictionaryValue({
+    key: DICT_NEXT_KEY,
+    lang: language,
+    data,
+  });
 
   return (
     <nav className={styles.articleNav}>
@@ -53,9 +50,7 @@ const ArticleNavigation = React.memo(function ArticleNavigation({
                 <div className={styles.txt}>
                   <div className="columns is-narrow is-multiline is-gapless">
                     <div className="column is-12">
-                      <span className="is-size-7">
-                        {dict_previous_article.elements.value.value}
-                      </span>
+                      <span className="is-size-7">{dict_previous_article}</span>
                     </div>
                     <div className="column is-12">
                       <span className="is-size-6">
@@ -84,9 +79,7 @@ const ArticleNavigation = React.memo(function ArticleNavigation({
                 <div className={styles.txt}>
                   <div className="columns is-multiline is-gapless">
                     <div className="column is-12 is-narrow has-text-right">
-                      <span className="is-size-7">
-                        {dict_next_article.elements.value.value}
-                      </span>
+                      <span className="is-size-7">{dict_next_article}</span>
                     </div>
                     <div className="column is-12 is-narrow has-text-right">
                       <span className="is-size-6">

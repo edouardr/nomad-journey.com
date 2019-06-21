@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
-import TransparentHeader from '../Header/transparent';
 import useLang from '../../hooks/useLang';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+import { getDictionaryValue } from '../../utils/dictionary';
 import styles from './jumbotron.module.scss';
 
 const DICT_READ_MORE = 'read-more';
@@ -13,14 +13,12 @@ const DICT_READ_MORE = 'read-more';
 const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
   const { currentPage } = useCurrentPage();
   const { language } = useLang();
-  const dictionary = useDictionaryQuery();
-  const dict_read_more = dictionary.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_READ_MORE &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const data = useDictionaryQuery();
+  const dict_read_more = getDictionaryValue({
+    key: DICT_READ_MORE,
+    lang: language,
+    data: data,
+  });
   item = item || currentPage;
 
   const imgStyle = { position: 'unset' };
@@ -54,7 +52,7 @@ const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
                 to={`/${language}/${item.elements.slug.value}`}
                 className="button is-primary"
               >
-                {dict_read_more.elements.value.value}
+                {dict_read_more}
               </Link>
             )}
           </div>

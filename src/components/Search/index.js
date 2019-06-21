@@ -13,6 +13,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import styles from './index.module.scss';
 import useLang from '../../hooks/useLang';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+import { getDictionaryValue } from '../../utils/dictionary';
 
 const DICT_SEARCH_NO_RESULTS = `search-no-results`;
 const DICT_SEARCH_RESULT = `search-result`;
@@ -21,35 +22,31 @@ const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) => {
     const { language } = useLang();
     const data = useDictionaryQuery();
-    const dic_search_no_results = data.edges
-      .filter(
-        edge =>
-          edge.node.elements.key.value === DICT_SEARCH_NO_RESULTS &&
-          edge.node.system.language === language
-      )
-      .map(edge => edge.node)[0];
+    const dic_search_no_results = getDictionaryValue({
+      key: DICT_SEARCH_NO_RESULTS,
+      lang: language,
+      data: data,
+    });
 
     return res && res.nbHits > 0
       ? children
-      : `${dic_search_no_results.elements.value.value}'${state.query}'`;
+      : `${dic_search_no_results}'${state.query}'`;
   }
 );
 
 const Stats = connectStateResults(({ searchResults: res }) => {
   const { language } = useLang();
   const data = useDictionaryQuery();
-  const dic_search_result = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_SEARCH_RESULT &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const dic_search_result = getDictionaryValue({
+    key: DICT_SEARCH_RESULT,
+    lang: language,
+    data: data,
+  });
 
   return (
     res &&
     res.nbHits > 0 &&
-    `${res.nbHits} ${dic_search_result.elements.value.value}${res.nbHits > 1 ? `s` : ``}`
+    `${res.nbHits} ${dic_search_result}${res.nbHits > 1 ? `s` : ``}`
   );
 });
 
