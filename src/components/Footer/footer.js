@@ -96,12 +96,14 @@ const Footer = React.memo(function Footer() {
             <small>© 2019 A Nomad Journey</small>
           </p>
           <div className="container content">
-            <Link
-              to={`/${language}/${legalLink[0].elements.slug.value}`}
-              title={`${legalLink[0].elements.jumbotron__title.value}`}
-            >
-              {legalLink[0].elements.jumbotron__title.value}
-            </Link>
+            {legalLink.length > 0 && (
+              <Link
+                to={`/${language}/${legalLink[0].elements.slug.value}`}
+                title={`${legalLink[0].elements.jumbotron__title.value}`}
+              >
+                {legalLink[0].elements.jumbotron__title.value}
+              </Link>
+            )}
           </div>
         </div>
       </div>
