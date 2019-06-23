@@ -60,7 +60,7 @@ const ListingItem = React.memo(function ListingItem({ article }) {
               - {article.node.elements.location.value} -&nbsp;
               <span>
                 <CommentCount
-                  shortname={process.env.DISQUS_SHORTNAME}
+                  shortname={process.env.GATSBY_DISQUS_SHORTNAME}
                   config={countConfig}
                 />
                 &nbsp;{dict_comments}

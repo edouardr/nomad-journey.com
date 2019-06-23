@@ -47,7 +47,7 @@ const ArticleHeader = React.memo(function ArticleHeader({ article }) {
                 <span className={styles.divider} />
                 <a href="#disqus_thread">
                   <CommentCount
-                    shortname={process.env.DISQUS_SHORTNAME}
+                    shortname={process.env.GATSBY_DISQUS_SHORTNAME}
                     config={countConfig}
                   />
                   &nbsp;{dict_comments}

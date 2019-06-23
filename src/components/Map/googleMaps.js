@@ -21,7 +21,7 @@ const GoogleMaps = React.memo(function GoogleMaps() {
   `);
 
   const mapConfig = {
-    bootstrapURLKeys: { key: process.env.MAPS_API_KEY },
+    bootstrapURLKeys: { key: process.env.GATSBY_MAPS_API_KEY },
     center: [
       data.kenticoCloudItemLocation.elements.latitude.number,
       data.kenticoCloudItemLocation.elements.longitude.number,

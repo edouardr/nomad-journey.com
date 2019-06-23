@@ -7,7 +7,7 @@ import styles from './disqus.module.scss';
 const Disqus = React.memo(function Disqus({ siteUrl }) {
   const { currentPage } = useCurrentPage();
 
-  if (!process.env.DISQUS_SHORTNAME) {
+  if (!process.env.GATSBY_DISQUS_SHORTNAME) {
     return null;
   }
 
@@ -20,7 +20,7 @@ const Disqus = React.memo(function Disqus({ siteUrl }) {
   return (
     <div className={styles.comments}>
       <DiscussionEmbed
-        shortname={process.env.DISQUS_SHORTNAME}
+        shortname={process.env.GATSBY_DISQUS_SHORTNAME}
         config={disqusConfig}
       />
     </div>

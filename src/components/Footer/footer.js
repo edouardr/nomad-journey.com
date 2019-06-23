@@ -6,9 +6,9 @@ import MailChimpSubscription from '../Newsletter/mailChimpSubscription';
 import styles from './footer.module.scss';
 
 const Footer = React.memo(function Footer() {
-  const fbUsername = process.env.FB_USERNAME;
-  const instaUsername = process.env.INSTA_USERNAME;
-  const vimeoUsername = process.env.VIMEO_USERNAME;
+  const fbUsername = process.env.GATSBY_FB_USERNAME;
+  const instaUsername = process.env.GATSBY_INSTA_USERNAME;
+  const vimeoUsername = process.env.GATSBY_VIMEO_USERNAME;
   const { language } = useLang();
 
   const data = useStaticQuery(graphql`

@@ -15,16 +15,16 @@ module.exports = {
       resolve: `gatsby-source-kentico-cloud`,
       options: {
         deliveryClientConfig: {
-          projectId: process.env.KENTICO_PROJECT_ID,
+          projectId: process.env.GATSBY_KENTICO_PROJECT_ID,
         },
-        languageCodenames: process.env.KENTICO_LANGUAGES.split(';'),
+        languageCodenames: process.env.GATSBY_KENTICO_LANGUAGES.split(';'),
       },
     },
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
         queries,
         chunkSize: 10000,
       },
@@ -63,7 +63,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
-        endpoint: process.env.MAILCHIMP_ENDPOINT, // add your MC list endpoint here; see instructions below
+        endpoint: process.env.GATSBY_MAILCHIMP_ENDPOINT, // add your MC list endpoint here; see instructions below
       },
     },
     {
@@ -79,7 +79,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        id: process.env.GTM_CODE,
+        id: process.env.GATSBY_GTM_CODE,
         includeInDevelopment: false,
       },
     },
