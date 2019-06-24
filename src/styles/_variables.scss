@@ -1,0 +1,42 @@
+@import 'colours';
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/functions';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+
+$primary: $water;
+$primary-invert-invert: findColorInvert($water);
+$dark: $deep;
+$dark-invert: findColorInvert($deep);
+$background: $deeplight;
+$background-invert: findColorInvert($deeplight);
+$link: $water;
+$link-invert: findColorInvert($water);
+$link-hover: $waterdark;
+$link-hover-invert: findColorInvert($waterdark);
+$link-active: $water;
+
+$family-primary: "Montserrat",
+-apple-system,
+"Segoe UI",
+"Roboto",
+"Oxygen",
+"Ubuntu",
+"Cantarell",
+"Fira Sans",
+"Droid Sans",
+"Helvetica Neue",
+"Helvetica",
+"Arial",
+sans-serif !default;
+
+$defaultAnimationTime: 250ms;
+$defaultEase: cubic-bezier(0.19, 1, 0.22, 1); //Ease out Expo
+$md: "only screen and (min-width : "$desktop")";
+$sm: "only screen and (min-width : "$tablet")";
+$grid-columns: 24;
+$navbar-height: 5.25rem;
+
+@import '~bulma/sass/utilities/derived-variables';
+
+$footer-background-color: $deep;
+$navbar-item-active-color: $water;

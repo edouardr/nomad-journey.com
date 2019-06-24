@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+@import '~bulma/sass/utilities/mixins';
+@import '~bulma/sass/components/navbar';
+@import '~bulma/sass/elements/container';
+
+.navbar {
+  box-shadow: 0 2px 0 0 rgba(128, 128, 128, .1);
+
+  .navbar-burger {
+    height: 5.25rem;
+    width: 4.25rem;
+  }
+
+  .navbar-dropdown {
+    .navbar-item {
+      color: $deeplight;
+
+      &:hover {
+        color: $water;
+      }
+    }
+  }
+  a {
+    &.navbar-item {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .navbar-item {
+    font-size: 1rem;
+    font-weight: 600;
+
+    &.brand {
+      width: 15rem;
+
+      &:hover {
+        background-color: inherit;
+      }
+    }
+
+    img {
+      max-height: unset;
+    }
+  }
+
+  &.is-active {
+    .navbar-menu {
+      position: absolute;
+      width: 100%;
+      transition: left 0.2s;
+    }
+  }
+
+}
+
+@include until($navbar-breakpoint) {
+  .navbar {
+    .navbar-item {
+      &.has-dropdown {
+        .navbar-link {
+          &::after {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include from($navbar-breakpoint) {
+  .navbar-item {
+    &.has-dropdown {
+      .navbar-link {
+        &::after {
+          border-color: inherit;
+        }
+      }
+
+      &:hover,
+      &.is-active {
+        .navbar-link {
+          color: $water;
+          background-color: transparent;
+
+          &::after {
+            border-color: $water;
+          }
+        }
+      }
+    }
+
+    .navbar-dropdown {
+      a {
+        &.navbar-item {
+          &:hover {
+            background-color: inherit;
+            color: $water;
+          }
+        }
+      }
+    }
+
+    .navbar-burger {
+      height: 5.25rem;
+      width: 4.25rem;
+    }
+  }
+
+}

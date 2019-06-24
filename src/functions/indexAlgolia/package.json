@@ -1,0 +1,20 @@
+{
+  "name": "indexalgolia",
+  "version": "1.0.0",
+  "description": "algolia indexing AWS lambda function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "algolia",
+    "AWS",
+    "index",
+    "lambda"
+  ],
+  "author": "Edouard R.",
+  "license": "MIT",
+  "dependencies": {
+    "algoliasearch": "^3.33.0"
+  }
+}

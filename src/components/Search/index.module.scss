@@ -1,0 +1,74 @@
+@import '../../styles/variables';
+
+.root {
+    position: relative;
+    display: grid;
+    grid-gap: 1em;
+}
+
+
+.hits-wrapper {
+    display: none;
+    max-height: 80vh;
+    overflow: scroll;
+    z-index: 2;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5em);
+    width: 80vw;
+    max-width: 30em;
+    box-shadow: 0 0 5px 0;
+    padding: 0.7em 1em 0.4em;
+    background: white;
+
+    &.focused {
+        display: grid;
+    }
+
+    >*+* {
+        padding-top: 1em !important;
+        border-top: 2px solid $deep;
+    }
+
+    li+li {
+        margin-top: 0.7em;
+        padding-top: 0.7em;
+        border-top: 1px solid $sand;
+    }
+
+    * {
+        margin-top: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    mark {
+        color: $water;
+        background: $deep;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.3em;
+
+        h3 {
+            color: white;
+
+            background: $deeplight;
+            padding: 0.1em 0.4em;
+        }
+    }
+
+    h3 {
+        margin: 0 0 0.5em;
+    }
+
+    h4 {
+        margin-bottom: 0.3em;
+    }
+}

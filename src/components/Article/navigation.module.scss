@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+
+.article-nav {
+  border-top: 2px solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding: 1.5rem;
+
+  a {
+    margin-top: 1.5rem;
+  }
+
+  .arrow {
+    -webkit-transition: all 250ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 250ms cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition-delay: 0ms;
+    transition-delay: 0ms;
+  }
+
+  .txt {
+    width: 10rem;
+    padding: 0 10px;
+  }
+
+  .link {
+    &:hover {
+      .arrow {
+        &.right {
+          transform: translateX(-0.5rem);
+        }
+
+        &.left {
+          transform: translateX(0.5rem);
+        }
+      }
+    }
+  }
+
+}

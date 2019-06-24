@@ -1,14 +1,15 @@
-# dependencies
+# Project dependencies
+.cache
 node_modules
 
-# logs
-npm-debug.log
+# Build directory
+/public
 
-# Nuxt build
-.nuxt
+# Local plugins used for development
+/plugins
 
-# Nuxt generate
-dist
+# enviornment variables config files
+.env.*
+!.env.sample
 
-# Backpack build
-build
+\.vscode/settings\.json
