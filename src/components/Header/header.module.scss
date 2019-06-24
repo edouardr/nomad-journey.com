@@ -17,11 +17,16 @@
 
       &:hover {
         color: $water;
-        background-color: $sand;
       }
     }
   }
-
+  a {
+    &.navbar-item {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
   .navbar-item {
     font-size: 1rem;
     font-weight: 600;
