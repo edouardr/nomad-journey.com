@@ -4,11 +4,9 @@ import ListingItem from './listingItem';
 import styles from './pureListing.module.scss';
 
 const startPosition = 0;
+const DEFAULT_LOAD_COUNT = 5;
 
-const PureListing = React.memo(function PureListing({
-  articles,
-  loadCount = 5,
-}) {
+const PureListing = ({ articles, loadCount = DEFAULT_LOAD_COUNT }) => {
   const initialState = {
     list: [],
     position: 0,
@@ -54,11 +52,11 @@ const PureListing = React.memo(function PureListing({
       )}
     </>
   );
-});
+};
 
 PureListing.propTypes = {
   articles: PropTypes.array,
   loadCount: PropTypes.number,
 };
 
-export default PureListing;
+export default React.memo(PureListing);

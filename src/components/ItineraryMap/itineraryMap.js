@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './itineraryMap.module.scss';
 
-const ItineraryMap = React.memo(function ItineraryMap({ mapId }) {
+const ItineraryMap = ({ mapId }) => {
   return (
     <section className="hero is-large">
       <div className={styles.mapContainer}>
@@ -15,7 +15,7 @@ const ItineraryMap = React.memo(function ItineraryMap({ mapId }) {
       </div>
     </section>
   );
-});
+};
 
 ItineraryMap.propTypes = {
   mapId: PropTypes.string,

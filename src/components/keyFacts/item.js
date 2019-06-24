@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './item.module.scss';
 
-const KeyFact = React.memo(function KeyFact({ keyFact }) {
+const KeyFact = ({ keyFact }) => {
   return (
     <div className="has-text-centered features">
       <span className={`${styles.icon} is-size-1`}>
@@ -20,7 +20,7 @@ const KeyFact = React.memo(function KeyFact({ keyFact }) {
       <p className="subtitle">{keyFact.elements.title.value}</p>
     </div>
   );
-});
+};
 
 KeyFact.propTypes = {
   keyFact: PropTypes.object,

@@ -7,18 +7,15 @@ import useLang from '../../hooks/useLang';
 
 const MAILCHIMP_SUCCESS_RESPONSE = 'success';
 
-const SubLayout = React.memo(function SubLayout({ children }) {
+const SubLayout = ({ children }) => (
+  <section className="section is-medium">
+    <div className="container">
+      {children}
+    </div>
+  </section>
+);
 
-  return (
-    <section className="section is-medium">
-      <div className="container">
-        {children}
-      </div>
-    </section>
-  );
-});
-
-const MailChimpSubscription = React.memo(function MailChimpSubscription() {
+const MailChimpSubscription = () => {
   const { language } = useLang();
   const data = useStaticQuery(graphql`
     query {
@@ -62,6 +59,17 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
     LANG: language
   });
 
+  if (!submitted && submitting) {
+    return (
+      <SubLayout>
+        <Spinner>
+          <Bounce />
+          <BounceDelayed />
+        </Spinner>
+      </SubLayout>
+    );
+  }
+
   const handleSubmit = async (event) => {
     setSubmitting(true);
     event.preventDefault();
@@ -84,21 +92,12 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
     setEmail(event.target.value)
   };
 
-  if (!submitted && submitting) {
-    return (
-      <SubLayout>
-        <Spinner>
-          <Bounce />
-          <BounceDelayed />
-        </Spinner>
-      </SubLayout>
-    );
-  }
+  const html = { __html: response };
 
   return submitted
     ? (
       <SubLayout>
-        <div className="is-size-3 has-text-centered" dangerouslySetInnerHTML={{ __html: response }}></div>
+        <div className="is-size-3 has-text-centered" dangerouslySetInnerHTML={html}></div>
       </SubLayout>
     )
     : (
@@ -146,6 +145,6 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
         </div>
       </SubLayout>
     );
-});
+};
 
-export default MailChimpSubscription;
+export default React.memo(MailChimpSubscription);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const IntroText = React.memo(function IntroText({ html }) {
+const IntroText = ({ html }) => {
   return (
     <section className="section has-background-light">
       <div className="container is-light">
@@ -12,7 +12,7 @@ const IntroText = React.memo(function IntroText({ html }) {
       </div>
     </section>
   );
-});
+};
 
 IntroText.propTypes = {
   html: PropTypes.string,

@@ -30,4 +30,4 @@ const BackToTop = () => {
   );
 };
 
-export default BackToTop;
+export default React.memo(BackToTop);

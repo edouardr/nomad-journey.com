@@ -5,10 +5,10 @@ import useLang from '../../hooks/useLang';
 import MailChimpSubscription from '../Newsletter/mailChimpSubscription';
 import styles from './footer.module.scss';
 
-const Footer = React.memo(function Footer() {
-  const fbUsername = process.env.FB_USERNAME;
-  const instaUsername = process.env.INSTA_USERNAME;
-  const vimeoUsername = process.env.VIMEO_USERNAME;
+const Footer = () => {
+  const fbUsername = process.env.GATSBY_FB_USERNAME;
+  const instaUsername = process.env.GATSBY_INSTA_USERNAME;
+  const vimeoUsername = process.env.GATSBY_VIMEO_USERNAME;
   const { language } = useLang();
 
   const data = useStaticQuery(graphql`
@@ -96,17 +96,19 @@ const Footer = React.memo(function Footer() {
             <small>© 2019 A Nomad Journey</small>
           </p>
           <div className="container content">
-            <Link
-              to={`/${language}/${legalLink[0].elements.slug.value}`}
-              title={`${legalLink[0].elements.jumbotron__title.value}`}
-            >
-              {legalLink[0].elements.jumbotron__title.value}
-            </Link>
+            {legalLink.length > 0 && (
+              <Link
+                to={`/${language}/${legalLink[0].elements.slug.value}`}
+                title={`${legalLink[0].elements.jumbotron__title.value}`}
+              >
+                {legalLink[0].elements.jumbotron__title.value}
+              </Link>
+            )}
           </div>
         </div>
       </div>
     </footer>
   );
-});
+};
 
 export default Footer;

@@ -7,7 +7,7 @@ import useCurrentPage from '../../hooks/useCurrentPage';
 import useLang from '../../hooks/useLang';
 import Search from '../Search';
 
-const Header = React.memo(function Header() {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentPage } = useCurrentPage();
   const { language } = useLang();
@@ -86,7 +86,8 @@ const Header = React.memo(function Header() {
           id="navMenu"
           className={`${styles.navbarMenu} ${isOpen ? styles.isActive : ''}`}
         >
-          <div className={styles.navbarStart}>
+          <div className={styles.navbarStart}></div>
+          <div className={styles.navbarEnd}>
             {menuLinks.map(link => (
               <Link
                 key={link.id}
@@ -98,8 +99,6 @@ const Header = React.memo(function Header() {
                 {link.elements.title.value}
               </Link>
             ))}
-          </div>
-          <div className={styles.navbarEnd}>
             <div className={`${styles.navbarItem}`}>
               <Search collapse={true} indices={searchIndices} />
             </div>
@@ -112,9 +111,7 @@ const Header = React.memo(function Header() {
                   <Link
                     key={edge.node.id}
                     className={`${styles.navbarLink}`}
-                    to={`/${edge.node.system.language}/${
-                      edge.node.elements.slug.value
-                      }`}
+                    to={`/${edge.node.system.language}/${edge.node.elements.slug.value}`}
                   >
                     <FontAwesomeIcon icon="globe" />
                     &nbsp;{edge.node.system.language.toUpperCase()}
@@ -139,6 +136,6 @@ const Header = React.memo(function Header() {
       </div>
     </header>
   );
-});
+};
 
-export default Header;
+export default React.memo(Header);

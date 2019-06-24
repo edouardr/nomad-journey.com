@@ -19,8 +19,8 @@ const setMasonryItemSize = (masonry, item) => {
   imgElement.style.height = 'auto';
 
   const rowGap = parseInt(
-    window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')
-  ),
+      window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')
+    ),
     rowHeight = parseInt(
       window
         .getComputedStyle(masonry.current)
@@ -32,7 +32,7 @@ const setMasonryItemSize = (masonry, item) => {
         .querySelector(`.${styles.masonryContent}`)
         .getBoundingClientRect().height +
         rowGap) /
-      (rowHeight + rowGap)
+        (rowHeight + rowGap)
     );
 
   item.current.style.gridRowEnd = 'span ' + rowSpan;
@@ -49,7 +49,7 @@ const setMasonryItemSize = (masonry, item) => {
 const compareByName = (src, cmp) =>
   (src.name > cmp.name) - (src.name < cmp.name);
 
-const Gallery = React.memo(function Gallery({ images }) {
+const Gallery = ({ images }) => {
   const masonry = useRef(null);
   let itemsList = new Array();
   useWindowEvent('resize', () => {
@@ -86,7 +86,7 @@ const Gallery = React.memo(function Gallery({ images }) {
       </div>
     </div>
   );
-});
+};
 
 Gallery.propTypes = {
   images: PropTypes.array,

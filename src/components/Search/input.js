@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 import { connectSearchBox } from 'react-instantsearch-dom';
 import useLang from '../../hooks/useLang';
-import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+import { getDictionaryValue } from '../../utils/dictionary';
 
 const DICT_SEARCH = `search`;
 
@@ -17,13 +18,11 @@ export default connectSearchBox(({ refine, onFocus }) => {
 
   const { language } = useLang();
   const data = useDictionaryQuery();
-  const dic_search = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_SEARCH &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const dic_search = getDictionaryValue({
+    key: DICT_SEARCH,
+    lang: language,
+    data: data,
+  });
 
   return (
     <form>
@@ -35,14 +34,14 @@ export default connectSearchBox(({ refine, onFocus }) => {
                 className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd"
                 htmlFor="email"
               >
-                {dic_search.elements.value.value}
+                {dic_search}
               </label>
               <input
                 className="input is-medium is-flat"
                 type="text"
                 name="search"
-                placeholder={dic_search.elements.value.value}
-                aria-label={dic_search.elements.value.value}
+                placeholder={dic_search}
+                aria-label={dic_search}
                 onChange={handleSearch}
                 onFocus={onFocus}
               />

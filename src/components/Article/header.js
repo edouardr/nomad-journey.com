@@ -5,20 +5,19 @@ import { CommentCount } from 'disqus-react';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 import useLang from '../../hooks/useLang';
 import { formatDate } from '../../utils/date-time';
+import { getDictionaryValue } from '../../utils/dictionary';
 import styles from './header.module.scss';
 
 const DICT_COMMENTS = 'comments';
 
-const ArticleHeader = React.memo(function ArticleHeader({ article }) {
+const ArticleHeader = ({ article }) => {
   const { language } = useLang();
   const data = useDictionaryQuery();
-  const dict_comments = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_COMMENTS &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const dict_comments = getDictionaryValue({
+    key: DICT_COMMENTS,
+    lang: language,
+    data: data,
+  });
   const countConfig = {
     url: `${article.site.siteMetadata.siteUrl}${article.fields.language}/${article.fields.slug}`,
     identifier: article.fields.codename,
@@ -48,10 +47,10 @@ const ArticleHeader = React.memo(function ArticleHeader({ article }) {
                 <span className={styles.divider} />
                 <a href="#disqus_thread">
                   <CommentCount
-                    shortname={process.env.DISQUS_SHORTNAME}
+                    shortname={process.env.GATSBY_DISQUS_SHORTNAME}
                     config={countConfig}
                   />
-                  &nbsp;{dict_comments.elements.value.value}
+                  &nbsp;{dict_comments}
                 </a>
               </p>
             </div>
@@ -71,7 +70,7 @@ const ArticleHeader = React.memo(function ArticleHeader({ article }) {
       </div>
     </>
   );
-});
+};
 
 ArticleHeader.propTypes = {
   article: PropTypes.object,

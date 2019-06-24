@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Marker from './marker';
 import styles from './googleMaps.module.scss';
 
-const GoogleMaps = React.memo(function GoogleMaps() {
+const GoogleMaps = () => {
   const data = useStaticQuery(graphql`
     query {
       kenticoCloudItemLocation {
@@ -21,7 +21,7 @@ const GoogleMaps = React.memo(function GoogleMaps() {
   `);
 
   const mapConfig = {
-    bootstrapURLKeys: { key: process.env.MAPS_API_KEY },
+    bootstrapURLKeys: { key: process.env.GATSBY_MAPS_API_KEY },
     center: [
       data.kenticoCloudItemLocation.elements.latitude.number,
       data.kenticoCloudItemLocation.elements.longitude.number,
@@ -39,6 +39,6 @@ const GoogleMaps = React.memo(function GoogleMaps() {
       </GoogleMapReact>
     </div>
   );
-});
+};
 
 export default GoogleMaps;

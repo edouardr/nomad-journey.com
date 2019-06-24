@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 import { CommentCount } from 'disqus-react';
 import ImageLoader from '../ImageLoader/imageLoader';
 import { formatDate } from '../../utils/date-time';
+import { getDictionaryValue } from '../../utils/dictionary';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 import useLang from '../../hooks/useLang';
 import useSiteMetadata from '../../hooks/useSiteMetadata';
@@ -12,17 +13,15 @@ import styles from './listingItem.module.scss';
 
 const DICT_COMMENTS = 'comments';
 
-const ListingItem = React.memo(function ListingItem({ article }) {
+const ListingItem = ({ article }) => {
   const { siteMetadata } = useSiteMetadata();
   const { language } = useLang();
   const data = useDictionaryQuery();
-  const dict_comments = data.edges
-    .filter(
-      edge =>
-        edge.node.elements.key.value === DICT_COMMENTS &&
-        edge.node.system.language === language
-    )
-    .map(edge => edge.node)[0];
+  const dict_comments = getDictionaryValue({
+    key: DICT_COMMENTS,
+    lang: language,
+    data: data,
+  });
   const [visible, setVisible] = useState(false);
   const countConfig = {
     url: `${siteMetadata.siteUrl}${article.node.system.language}/${article.node.elements.slug.value}`,
@@ -61,10 +60,10 @@ const ListingItem = React.memo(function ListingItem({ article }) {
               - {article.node.elements.location.value} -&nbsp;
               <span>
                 <CommentCount
-                  shortname={process.env.DISQUS_SHORTNAME}
+                  shortname={process.env.GATSBY_DISQUS_SHORTNAME}
                   config={countConfig}
                 />
-                &nbsp;{dict_comments.elements.value.value}
+                &nbsp;{dict_comments}
               </span>
             </p>
             <p className="title">
@@ -80,10 +79,10 @@ const ListingItem = React.memo(function ListingItem({ article }) {
       </Link>
     </LazyLoad>
   );
-});
+};
 
 ListingItem.propTypes = {
   article: PropTypes.object,
 };
 
-export default ListingItem;
+export default React.memo(ListingItem);
