@@ -22,9 +22,13 @@ const BackToTop = () => {
 
   return (
     <button
+      role="button"
+      aria-label="back to top"
+      tabIndex="-1"
       className={`${styles.goTop} ${isVisible ? styles.isVisible : ''}`}
       onClick={handleClick}
     >
+      Back To Top
       <FontAwesomeIcon icon="angle-up" size="2x" color="white" />
     </button>
   );
