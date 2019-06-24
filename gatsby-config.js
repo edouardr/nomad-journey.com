@@ -5,9 +5,11 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const hostname = new URL(process.env.GATSBY_HOSTNAME);
+
 module.exports = {
   siteMetadata: {
-    siteUrl: new URL(process.env.GATSBY_HOSTNAME).href,
+    siteUrl: hostname.href,
     title: ` Nomad-Journey`,
   },
   plugins: [
@@ -81,6 +83,14 @@ module.exports = {
       options: {
         id: process.env.GATSBY_GTM_CODE,
         includeInDevelopment: false,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: hostname.href,
+        sitemap: `${hostname.href}sitemap.xml`,
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
   ],
