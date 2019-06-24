@@ -5,7 +5,7 @@ import useLang from '../../hooks/useLang';
 import MailChimpSubscription from '../Newsletter/mailChimpSubscription';
 import styles from './footer.module.scss';
 
-const Footer = React.memo(function Footer() {
+const Footer = () => {
   const fbUsername = process.env.GATSBY_FB_USERNAME;
   const instaUsername = process.env.GATSBY_INSTA_USERNAME;
   const vimeoUsername = process.env.GATSBY_VIMEO_USERNAME;
@@ -109,6 +109,6 @@ const Footer = React.memo(function Footer() {
       </div>
     </footer>
   );
-});
+};
 
 export default Footer;

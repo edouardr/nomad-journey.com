@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import useLang from '../../hooks/useLang';
 
-const SEO = React.memo(function SEO() {
+const SEO = () => {
   const { currentPage } = useCurrentPage();
   const { language } = useLang();
   if (!currentPage) {
@@ -58,7 +58,7 @@ const SEO = React.memo(function SEO() {
       <html lang="en" />
     </Helmet>
   );
-});
+};
 
 export const query = graphql`
   fragment itineraryMetadata on KenticoCloudItemItinerary {

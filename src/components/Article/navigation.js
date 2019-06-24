@@ -10,10 +10,7 @@ import { getDictionaryValue } from '../../utils/dictionary';
 const DICT_NEXT_KEY = 'next-article';
 const DICT_PREVIOUS_KEY = 'previous-article';
 
-const ArticleNavigation = React.memo(function ArticleNavigation({
-  previous,
-  next,
-}) {
+const ArticleNavigation = ({ previous, next }) => {
   const { language } = useLang();
   const data = useDictionaryQuery();
   const dict_previous_article = getDictionaryValue({
@@ -101,7 +98,7 @@ const ArticleNavigation = React.memo(function ArticleNavigation({
       </div>
     </nav>
   );
-});
+};
 
 ArticleNavigation.propTypes = {
   previous: PropTypes.object,

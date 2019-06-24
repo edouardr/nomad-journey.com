@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useCurrentPage from '../../hooks/useCurrentPage';
 import styles from './disqus.module.scss';
 
-const Disqus = React.memo(function Disqus({ siteUrl }) {
+const Disqus = ({ siteUrl }) => {
   const { currentPage } = useCurrentPage();
 
   if (!process.env.GATSBY_DISQUS_SHORTNAME) {
@@ -25,7 +25,7 @@ const Disqus = React.memo(function Disqus({ siteUrl }) {
       />
     </div>
   );
-});
+};
 
 Disqus.propTypes = {
   siteUrl: PropTypes.string,

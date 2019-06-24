@@ -5,7 +5,7 @@ import PureListing from './pureListing';
 
 const loadCount = 3;
 
-const ArticleListing = React.memo(function ArticleListing({ language }) {
+const ArticleListing = ({ language }) => {
   const data = useStaticQuery(graphql`
     query {
       allKenticoCloudItemArticle(
@@ -57,7 +57,7 @@ const ArticleListing = React.memo(function ArticleListing({ language }) {
       </div>
     </section>
   );
-});
+};
 
 ArticleListing.propTypes = {
   language: PropTypes.string,

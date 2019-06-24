@@ -10,7 +10,7 @@ import styles from './jumbotron.module.scss';
 
 const DICT_READ_MORE = 'read-more';
 
-const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
+const Jumbotron = ({ item, showLink = false }) => {
   const { currentPage } = useCurrentPage();
   const { language } = useLang();
   const data = useDictionaryQuery();
@@ -60,7 +60,7 @@ const Jumbotron = React.memo(function Jumbotron({ item, showLink = false }) {
       </div>
     </section>
   );
-});
+};
 
 Jumbotron.propTypes = {
   item: PropTypes.object,

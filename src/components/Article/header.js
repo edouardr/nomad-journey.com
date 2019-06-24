@@ -10,7 +10,7 @@ import styles from './header.module.scss';
 
 const DICT_COMMENTS = 'comments';
 
-const ArticleHeader = React.memo(function ArticleHeader({ article }) {
+const ArticleHeader = ({ article }) => {
   const { language } = useLang();
   const data = useDictionaryQuery();
   const dict_comments = getDictionaryValue({
@@ -70,7 +70,7 @@ const ArticleHeader = React.memo(function ArticleHeader({ article }) {
       </div>
     </>
   );
-});
+};
 
 ArticleHeader.propTypes = {
   article: PropTypes.object,

@@ -13,7 +13,7 @@ import styles from './listingItem.module.scss';
 
 const DICT_COMMENTS = 'comments';
 
-const ListingItem = React.memo(function ListingItem({ article }) {
+const ListingItem = ({ article }) => {
   const { siteMetadata } = useSiteMetadata();
   const { language } = useLang();
   const data = useDictionaryQuery();
@@ -79,10 +79,10 @@ const ListingItem = React.memo(function ListingItem({ article }) {
       </Link>
     </LazyLoad>
   );
-});
+};
 
 ListingItem.propTypes = {
   article: PropTypes.object,
 };
 
-export default ListingItem;
+export default React.memo(ListingItem);

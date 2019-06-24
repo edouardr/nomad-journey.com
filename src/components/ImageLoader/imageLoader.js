@@ -5,13 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './imageLoader.module.scss';
 
-const ImageLoader = React.memo(function ImageLoader({
-  alt,
-  src,
-  className,
-  description,
-  onLoad,
-}) {
+const ImageLoader = ({ alt, src, className, description, onLoad }) => {
   const loadedClassName = styles.imgLoaded;
   const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
@@ -21,8 +15,8 @@ const ImageLoader = React.memo(function ImageLoader({
     description ? (
       <div className={styles.masonryItemDetails}>{description}</div>
     ) : (
-        false
-      );
+      false
+    );
 
   const handleLoad = () => {
     if (onLoad && {}.toString.call(onLoad) === '[object Function]') {
@@ -61,7 +55,7 @@ const ImageLoader = React.memo(function ImageLoader({
       {renderDescription()}
     </>
   );
-});
+};
 
 ImageLoader.propTypes = {
   alt: PropTypes.string,
@@ -71,4 +65,4 @@ ImageLoader.propTypes = {
   src: PropTypes.string,
 };
 
-export default ImageLoader;
+export default React.memo(ImageLoader);

@@ -7,18 +7,15 @@ import useLang from '../../hooks/useLang';
 
 const MAILCHIMP_SUCCESS_RESPONSE = 'success';
 
-const SubLayout = React.memo(function SubLayout({ children }) {
+const SubLayout = ({ children }) => (
+  <section className="section is-medium">
+    <div className="container">
+      {children}
+    </div>
+  </section>
+);
 
-  return (
-    <section className="section is-medium">
-      <div className="container">
-        {children}
-      </div>
-    </section>
-  );
-});
-
-const MailChimpSubscription = React.memo(function MailChimpSubscription() {
+const MailChimpSubscription = () => {
   const { language } = useLang();
   const data = useStaticQuery(graphql`
     query {
@@ -62,6 +59,17 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
     LANG: language
   });
 
+  if (!submitted && submitting) {
+    return (
+      <SubLayout>
+        <Spinner>
+          <Bounce />
+          <BounceDelayed />
+        </Spinner>
+      </SubLayout>
+    );
+  }
+
   const handleSubmit = async (event) => {
     setSubmitting(true);
     event.preventDefault();
@@ -84,70 +92,59 @@ const MailChimpSubscription = React.memo(function MailChimpSubscription() {
     setEmail(event.target.value)
   };
 
-  if (!submitted && submitting) {
-    return (
-      <SubLayout>
-        <Spinner>
-          <Bounce />
-          <BounceDelayed />
-        </Spinner>
-      </SubLayout>
-    );
-  }
+  const html = { __html: response };
 
   return submitted
     ? (
       <SubLayout>
-        <div className="is-size-3 has-text-centered" dangerouslySetInnerHTML={{ __html: response }}></div>
+        <div className="is-size-3 has-text-centered" dangerouslySetInnerHTML={html}></div>
       </SubLayout>
     )
     : (
       <SubLayout>
-        {localizedForm && (
-          <div className="columns is-vcentered">
-            <div className="cloumn">
-              <p className="title is-size-4">Newsletter</p>
-              <p className="subtitle has-text-grey-light">{localizedForm.node.elements.description.value}</p>
-            </div>
-            <div className="column">
-              <form onSubmit={handleSubmit}>
-                <div className="field is-horizontal">
-                  <div className="field-body">
-                    <div className="field">
-                      <p className="control has-icons-left has-icons-right">
-                        <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="firstname">
-                          Firstname
-                        </label>
-                        <input className="input is-medium is-flat" type="text" name="firstname" placeholder={localizedForm.node.elements.first_name_label.value}
-                          onChange={handleFirstNameChange} />
-                        <span className="icon is-small is-left">
-                          <FontAwesomeIcon icon="user" />
-                        </span>
-                      </p>
-                    </div>
-                    <div className="field">
-                      <p className="control has-icons-left has-icons-right">
-                        <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="email">
-                          Email
-                        </label>
-                        <input className="input is-medium is-flat" type="email" name="email" placeholder={localizedForm.node.elements.email_label.value}
-                          onChange={handleEmailChange} />
-                        <span className="icon is-small is-left">
-                          <FontAwesomeIcon icon="envelope" />
-                        </span>
-                      </p>
-                    </div>
-                    <div className="control">
-                      <button type="submit" className="button is-primary is-medium">{localizedForm.node.elements.button_label.value}</button>
-                    </div>
+        <div className="columns is-vcentered">
+          <div className="cloumn">
+            <p className="title is-size-4">Newsletter</p>
+            <p className="subtitle has-text-grey-light">{localizedForm.node.elements.description.value}</p>
+          </div>
+          <div className="column">
+            <form onSubmit={handleSubmit}>
+              <div className="field is-horizontal">
+                <div className="field-body">
+                  <div className="field">
+                    <p className="control has-icons-left has-icons-right">
+                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="firstname">
+                        Firstname
+                      </label>
+                      <input className="input is-medium is-flat" type="text" name="firstname" placeholder={localizedForm.node.elements.first_name_label.value}
+                        onChange={handleFirstNameChange} />
+                      <span className="icon is-small is-left">
+                        <FontAwesomeIcon icon="user" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="field">
+                    <p className="control has-icons-left has-icons-right">
+                      <label className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd" htmlFor="email">
+                        Email
+                      </label>
+                      <input className="input is-medium is-flat" type="email" name="email" placeholder={localizedForm.node.elements.email_label.value}
+                        onChange={handleEmailChange} />
+                      <span className="icon is-small is-left">
+                        <FontAwesomeIcon icon="envelope" />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="control">
+                    <button type="submit" className="button is-primary is-medium">{localizedForm.node.elements.button_label.value}</button>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
-        )}
+        </div>
       </SubLayout>
     );
-});
+};
 
-export default MailChimpSubscription;
+export default React.memo(MailChimpSubscription);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import KeyFact from './item';
 import styles from './group.module.scss';
 
-const KeyFactGroup = React.memo(function KeyFactGroup({ keyFacts }) {
+const KeyFactGroup = ({ keyFacts }) => {
   return (
     <div className="columns is-multiline">
       {keyFacts.map(keyFact => (
@@ -16,7 +16,7 @@ const KeyFactGroup = React.memo(function KeyFactGroup({ keyFacts }) {
       ))}
     </div>
   );
-});
+};
 
 KeyFactGroup.propTypes = {
   keyFacts: PropTypes.array,

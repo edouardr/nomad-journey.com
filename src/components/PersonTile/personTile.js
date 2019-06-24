@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImageLoader from '../ImageLoader/imageLoader';
 import styles from './personTile.module.scss';
 
-const PersonTile = React.memo(function PersonTile({ person }) {
+const PersonTile = ({ person }) => {
   return (
     <div className={styles.card}>
       <div className={`${styles.cardImage} ${styles.ri}`}>
@@ -25,7 +25,7 @@ const PersonTile = React.memo(function PersonTile({ person }) {
       </div>
     </div>
   );
-});
+};
 
 PersonTile.propTypes = {
   person: PropTypes.object,
