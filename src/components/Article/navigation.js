@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import useLang from '../../hooks/useLang';
 import styles from './navigation.module.scss';
 import useDictionaryQuery from '../../hooks/useDictionaryQuery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDictionaryValue } from '../../utils/dictionary';
+import { Link } from 'gatsby';
 
 const DICT_NEXT_KEY = 'next-article';
 const DICT_PREVIOUS_KEY = 'previous-article';
@@ -28,11 +28,7 @@ const ArticleNavigation = ({ previous, next }) => {
     <nav className={styles.articleNav}>
       <div>
         {previous && (
-          <AniLink
-            cover
-            direction="right"
-            duration={1}
-            bg="#1ad2eb"
+          <Link
             className={styles.link}
             to={`/${language}/${previous.node.elements.slug.value}`}
           >
@@ -58,16 +54,12 @@ const ArticleNavigation = ({ previous, next }) => {
                 </div>
               </div>
             </div>
-          </AniLink>
+          </Link>
         )}
       </div>
       <div>
         {next && (
-          <AniLink
-            cover
-            direction="left"
-            duration={1}
-            bg="#1ad2eb"
+          <Link
             className={styles.link}
             to={`/${language}/${next.node.elements.slug.value}`}
           >
@@ -93,7 +85,7 @@ const ArticleNavigation = ({ previous, next }) => {
                 />
               </div>
             </div>
-          </AniLink>
+          </Link>
         )}
       </div>
     </nav>
