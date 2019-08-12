@@ -79,6 +79,7 @@ export const query = graphql`
           id
           system {
             language
+            codename
           }
           elements {
             map_id {

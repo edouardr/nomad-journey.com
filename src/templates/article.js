@@ -36,10 +36,10 @@ const Article = React.memo(function Article({ data, pageContext }) {
   React.useEffect(() => {
     defineLang(pageContext.language);
     definePage(item);
-  }, []);
+  }, [item, pageContext.language]);
 
   return (
-    <Layout>
+    <Layout codename={pageContext.codename} language={pageContext.language}>
       <Header />
       <article>
         <ArticleHeader article={item} />
@@ -91,6 +91,7 @@ export const query = graphql`
     id
     system {
       language
+      codename
     }
     elements {
       body_text {

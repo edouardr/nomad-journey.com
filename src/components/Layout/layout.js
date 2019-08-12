@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import styles from './layout.module.scss';
 import SEO from '../SEO/SEO';
 import Footer from '../Footer/footer';
+import useCurrentPage from '../../hooks/useCurrentPage';
 
-const Layout = ({ children }) => {
+const Layout = ({ codename, children }) => {
+  const { currentPage } = useCurrentPage();
   return (
     <>
-      <SEO />
+      <SEO
+        codename={codename}
+      />
       <div className={styles.layoutWrapper}>
         <div className={styles.layoutInner}>{children}</div>
       </div>
@@ -18,6 +22,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  codename: PropTypes.string,
 };
 
 export default Layout;

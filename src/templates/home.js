@@ -75,6 +75,7 @@ export const query = graphql`
           id
           system {
             language
+            codename
           }
           fields {
             jumbotronImage {

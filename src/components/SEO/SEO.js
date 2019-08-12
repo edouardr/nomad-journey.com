@@ -1,62 +1,81 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
-import useCurrentPage from '../../hooks/useCurrentPage';
-import useLang from '../../hooks/useLang';
+import { Helmet } from 'react-helmet';
+import { graphql, useStaticQuery } from 'gatsby';
 
-const SEO = () => {
-  const { currentPage } = useCurrentPage();
-  const { language } = useLang();
+const SEO = ({ codename, language }) => {
+  const { site, allKenticoCloudItemArticle } = useStaticQuery(graphql`
+    query {
+      site {
+        ...siteMetadata
+      }
+      allKenticoCloudItemArticle {
+        edges {
+          node {
+            system {
+              codename
+            }
+            ...articleMetadata
+          }
+        }
+      }
+    }
+  `);
+
+  const currentPage = allKenticoCloudItemArticle.edges
+    .filter(edge => edge.node.system.codename === codename)
+    .map(edge => edge.node)[0];
+
   if (!currentPage) {
     return false;
   }
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang: language,
-      }}
-      title={`${currentPage.elements.page_metadata__og_title.value}`}
-      titleTemplate={`%s | ${currentPage.site.siteMetadata.title}`}
-      meta={[
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          hid: 'description',
-          name: 'description',
-          content: currentPage.elements.page_metadata__meta_description.value,
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: currentPage.elements.page_metadata__meta_keywords.value,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: currentPage.elements.page_metadata__og_title.value,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: currentPage.elements.page_metadata__og_image.value[0].url,
-        },
-        {
-          hid: 'og:image:alt',
-          property: 'og:image:alt',
-          content:
-            currentPage.elements.page_metadata__og_image.value[0].description,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: currentPage.elements.page_metadata__og_description.value,
-        },
-      ]}
-      link={[{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]}
-    >
-      <html lang="en" />
-    </Helmet>
+    <React.Fragment>
+      <Helmet
+        defer={false}
+        title={currentPage.elements.page_metadata__og_title.value}
+        titleTemplate={`%s | ${site.siteMetadata.title}`}
+      >
+        <html lang={language} />
+        <meta charSet="utf-8" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
+        />
+        <meta
+          name="description"
+          content={currentPage.elements.page_metadata__meta_description.value}
+        />
+        <meta
+          name="keywords"
+          content={currentPage.elements.page_metadata__meta_keywords.value}
+        />
+        <meta
+          name="image"
+          content={currentPage.elements.page_metadata__og_image.value[0].url}
+        />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content={currentPage.elements.page_metadata__og_title.value}
+        />
+        <meta
+          property="og:description"
+          content={currentPage.elements.page_metadata__og_description.value}
+        />
+        <meta
+          property="og:image"
+          content={currentPage.elements.page_metadata__og_image.value[0].url}
+        />
+        <meta
+          property="og:image:alt"
+          content={
+            currentPage.elements.page_metadata__og_image.value[0].description
+          }
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      </Helmet>
+    </React.Fragment>
   );
 };
 
