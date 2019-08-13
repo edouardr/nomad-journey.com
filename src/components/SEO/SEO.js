@@ -28,6 +28,7 @@ const SEO = ({ codename, language }) => {
   if (!currentPage) {
     return false;
   }
+  const url = `${site.siteUrl}/${currentPage.elements.slug.value}`;
 
   return (
     <React.Fragment>
@@ -35,13 +36,10 @@ const SEO = ({ codename, language }) => {
         defer={false}
         title={currentPage.elements.page_metadata__og_title.value}
         titleTemplate={`%s | ${site.siteMetadata.title}`}
+        htmlAttributes={{ lang: language }}
       >
-        <html lang={language} />
+        <link rel="canonical" href={url} />
         <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
-        />
         <meta
           name="description"
           content={currentPage.elements.page_metadata__meta_description.value}
@@ -54,6 +52,7 @@ const SEO = ({ codename, language }) => {
           name="image"
           content={currentPage.elements.page_metadata__og_image.value[0].url}
         />
+        <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
@@ -103,6 +102,9 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      slug {
+        value
+      }
     }
   }
   fragment aboutUsMetadata on KenticoCloudItemAboutUs {
@@ -126,6 +128,9 @@ export const query = graphql`
         value
       }
       page_metadata__meta_title {
+        value
+      }
+      slug {
         value
       }
     }
@@ -153,6 +158,9 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      slug {
+        value
+      }
     }
   }
   fragment landingPageMetadata on KenticoCloudItemLandingPage {
@@ -176,6 +184,9 @@ export const query = graphql`
         value
       }
       page_metadata__meta_title {
+        value
+      }
+      slug {
         value
       }
     }
