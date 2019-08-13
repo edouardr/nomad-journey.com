@@ -14,7 +14,10 @@ const SEO = ({ codename, language, template }) => {
     return false;
   }
 
-  const url = `${site.siteUrl}/${pageSEO.elements.slug.value}`;
+  const url =
+    template === 'home'
+      ? `${site.siteUrl}/${language}`
+      : `${site.siteUrl}/${language}/${pageSEO.elements.slug.value}`;
 
   return (
     <React.Fragment>
