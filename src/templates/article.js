@@ -39,7 +39,11 @@ const Article = React.memo(function Article({ data, pageContext }) {
   }, [item, pageContext.language]);
 
   return (
-    <Layout codename={pageContext.codename} language={pageContext.language}>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <article>
         <ArticleHeader article={item} />

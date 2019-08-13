@@ -40,7 +40,11 @@ const Itinerary = React.memo(function Itinerary({ data, pageContext }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <div>
         <ItineraryMap mapId={item.elements.map_id.value} />

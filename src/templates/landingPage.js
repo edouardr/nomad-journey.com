@@ -25,7 +25,11 @@ const LandingPage = React.memo(function LandingPage({ data, pageContext }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <Jumbotron />
       <IntroText html={item.elements.body_text.value} />

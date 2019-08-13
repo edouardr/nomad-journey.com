@@ -1,40 +1,26 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
+import usePageSEO from '../../hooks/usePageSEO';
 
-const SEO = ({ codename, language }) => {
-  const { site, allKenticoCloudItemArticle } = useStaticQuery(graphql`
-    query {
-      site {
-        ...siteMetadata
-      }
-      allKenticoCloudItemArticle {
-        edges {
-          node {
-            system {
-              codename
-            }
-            ...articleMetadata
-          }
-        }
-      }
-    }
-  `);
+const SEO = ({ codename, language, template }) => {
+  const { site, pageSEO } = usePageSEO({
+    codename,
+    template,
+    language,
+  });
 
-  const currentPage = allKenticoCloudItemArticle.edges
-    .filter(edge => edge.node.system.codename === codename)
-    .map(edge => edge.node)[0];
-
-  if (!currentPage) {
+  if (!pageSEO) {
     return false;
   }
-  const url = `${site.siteUrl}/${currentPage.elements.slug.value}`;
+
+  const url = `${site.siteUrl}/${pageSEO.elements.slug.value}`;
 
   return (
     <React.Fragment>
       <Helmet
         defer={false}
-        title={currentPage.elements.page_metadata__og_title.value}
+        title={pageSEO.elements.page_metadata__og_title.value}
         titleTemplate={`%s | ${site.siteMetadata.title}`}
         htmlAttributes={{ lang: language }}
       >
@@ -42,34 +28,34 @@ const SEO = ({ codename, language }) => {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content={currentPage.elements.page_metadata__meta_description.value}
+          content={pageSEO.elements.page_metadata__meta_description.value}
         />
         <meta
           name="keywords"
-          content={currentPage.elements.page_metadata__meta_keywords.value}
+          content={pageSEO.elements.page_metadata__meta_keywords.value}
         />
         <meta
           name="image"
-          content={currentPage.elements.page_metadata__og_image.value[0].url}
+          content={pageSEO.elements.page_metadata__og_image.value[0].url}
         />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content={currentPage.elements.page_metadata__og_title.value}
+          content={pageSEO.elements.page_metadata__og_title.value}
         />
         <meta
           property="og:description"
-          content={currentPage.elements.page_metadata__og_description.value}
+          content={pageSEO.elements.page_metadata__og_description.value}
         />
         <meta
           property="og:image"
-          content={currentPage.elements.page_metadata__og_image.value[0].url}
+          content={pageSEO.elements.page_metadata__og_image.value[0].url}
         />
         <meta
           property="og:image:alt"
           content={
-            currentPage.elements.page_metadata__og_image.value[0].description
+            pageSEO.elements.page_metadata__og_image.value[0].description
           }
         />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

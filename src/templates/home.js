@@ -44,7 +44,11 @@ const Home = React.memo(function Home({ data, pageContext }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <Jumbotron item={lastArticle} showLink={true} />
       <ArticleListing language={pageContext.language} />
