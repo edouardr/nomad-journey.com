@@ -44,7 +44,11 @@ const Home = React.memo(function Home({ data, pageContext }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <Jumbotron item={lastArticle} showLink={true} />
       <ArticleListing language={pageContext.language} />
@@ -75,12 +79,13 @@ export const query = graphql`
           id
           system {
             language
+            codename
           }
           fields {
             jumbotronImage {
               childImageSharp {
                 fluid(maxWidth: 1440) {
-                  ...GatsbyImageSharpFluid_noBase64
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
                 }
               }
             }

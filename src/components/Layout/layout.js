@@ -4,10 +4,10 @@ import styles from './layout.module.scss';
 import SEO from '../SEO/SEO';
 import Footer from '../Footer/footer';
 
-const Layout = ({ children }) => {
+const Layout = ({ codename, language, template, children }) => {
   return (
     <>
-      <SEO />
+      <SEO codename={codename} language={language} template={template} />
       <div className={styles.layoutWrapper}>
         <div className={styles.layoutInner}>{children}</div>
       </div>
@@ -18,6 +18,9 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  codename: PropTypes.string,
+  language: PropTypes.string,
+  template: PropTypes.string,
 };
 
 export default Layout;
