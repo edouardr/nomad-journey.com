@@ -59,6 +59,7 @@ const initialState = {
   },
   system: {
     language: '',
+    codename: '',
   },
 };
 
