@@ -1,7 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import { formatDate } from '../../utils/date-time';
 import usePageSEO from '../../hooks/usePageSEO';
+import SchemaOrg from './SchemaOrg';
 
 const SEO = ({ codename, language, template }) => {
   const { site, pageSEO } = usePageSEO({
@@ -14,10 +16,11 @@ const SEO = ({ codename, language, template }) => {
     return false;
   }
 
+  const isBlogPost = template === 'article';
   const url =
     template === 'home'
-      ? `${site.siteUrl}/${language}`
-      : `${site.siteUrl}/${language}/${pageSEO.elements.slug.value}`;
+      ? `${site.siteMetadata.siteUrl}${language}`
+      : `${site.siteMetadata.siteUrl}${language}/${pageSEO.elements.slug.value}`;
 
   return (
     <React.Fragment>
@@ -42,7 +45,7 @@ const SEO = ({ codename, language, template }) => {
           content={pageSEO.elements.page_metadata__og_image.value[0].url}
         />
         <meta property="og:url" content={url} />
-        <meta property="og:type" content="article" />
+        {isBlogPost && <meta property="og:type" content="article" />}
         <meta
           property="og:title"
           content={pageSEO.elements.page_metadata__og_title.value}
@@ -63,6 +66,22 @@ const SEO = ({ codename, language, template }) => {
         />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Helmet>
+      <SchemaOrg
+        isBlogPost={isBlogPost}
+        url={url}
+        title={pageSEO.elements.page_metadata__og_title.value}
+        image={pageSEO.elements.page_metadata__og_image.value[0].url}
+        description={pageSEO.elements.page_metadata__meta_description.value}
+        datePublished={
+          isBlogPost
+            ? formatDate(pageSEO.elements.posted.value, language)
+            : null
+        }
+        siteUrl={site.siteMetadata.siteUrl}
+        author={site.siteMetadata.author}
+        organization={site.siteMetadata.organization}
+        defaultTitle={site.siteMetadata.title}
+      />
     </React.Fragment>
   );
 };
@@ -147,6 +166,9 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      posted {
+        value
+      }
       slug {
         value
       }
@@ -184,6 +206,14 @@ export const query = graphql`
     siteMetadata {
       siteUrl
       title
+      author {
+        name
+      }
+      organization {
+        name
+        url
+        logo
+      }
     }
   }
 `;
