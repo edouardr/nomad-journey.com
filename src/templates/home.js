@@ -85,7 +85,7 @@ export const query = graphql`
             jumbotronImage {
               childImageSharp {
                 fluid(maxWidth: 1440) {
-                  ...GatsbyImageSharpFluid_noBase64
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
                 }
               }
             }

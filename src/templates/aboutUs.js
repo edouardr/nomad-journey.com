@@ -69,7 +69,7 @@ export const query = graphql`
       jumbotronImage {
         childImageSharp {
           fluid(maxWidth: 1440) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
@@ -104,6 +104,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           system {
             codename
           }

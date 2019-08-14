@@ -36,7 +36,7 @@ const Article = React.memo(function Article({ data, pageContext }) {
   React.useEffect(() => {
     defineLang(pageContext.language);
     definePage(item);
-  }, [item, pageContext.language]);
+  }, []);
 
   return (
     <Layout
