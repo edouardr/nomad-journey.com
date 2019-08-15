@@ -11,6 +11,14 @@ module.exports = {
   siteMetadata: {
     siteUrl: hostname.href,
     title: ` Nomad-Journey`,
+    author: {
+      name: 'Edouard Riviere',
+    },
+    organization: {
+      name: 'Nomad Journey',
+      url: hostname.href,
+      logo: `${hostname.href}/icons/icon-512x512.png`,
+    },
   },
   plugins: [
     {

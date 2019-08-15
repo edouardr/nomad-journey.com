@@ -1,62 +1,88 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import useCurrentPage from '../../hooks/useCurrentPage';
-import useLang from '../../hooks/useLang';
+import { formatDate } from '../../utils/date-time';
+import usePageSEO from '../../hooks/usePageSEO';
+import SchemaOrg from './SchemaOrg';
 
-const SEO = () => {
-  const { currentPage } = useCurrentPage();
-  const { language } = useLang();
-  if (!currentPage) {
+const SEO = ({ codename, language, template }) => {
+  const { site, pageSEO } = usePageSEO({
+    codename,
+    template,
+    language,
+  });
+
+  if (!pageSEO) {
     return false;
   }
 
+  const isBlogPost = template === 'article';
+  const url =
+    template === 'home'
+      ? `${site.siteMetadata.siteUrl}/${language}`
+      : `${site.siteMetadata.siteUrl}/${language}/${pageSEO.elements.slug.value}`;
+
   return (
-    <Helmet
-      htmlAttributes={{
-        lang: language,
-      }}
-      title={`${currentPage.elements.page_metadata__og_title.value}`}
-      titleTemplate={`%s | ${currentPage.site.siteMetadata.title}`}
-      meta={[
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          hid: 'description',
-          name: 'description',
-          content: currentPage.elements.page_metadata__meta_description.value,
-        },
-        {
-          hid: 'keywords',
-          name: 'keywords',
-          content: currentPage.elements.page_metadata__meta_keywords.value,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: currentPage.elements.page_metadata__og_title.value,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: currentPage.elements.page_metadata__og_image.value[0].url,
-        },
-        {
-          hid: 'og:image:alt',
-          property: 'og:image:alt',
-          content:
-            currentPage.elements.page_metadata__og_image.value[0].description,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: currentPage.elements.page_metadata__og_description.value,
-        },
-      ]}
-      link={[{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]}
-    >
-      <html lang="en" />
-    </Helmet>
+    <React.Fragment>
+      <Helmet
+        defer={false}
+        title={pageSEO.elements.page_metadata__og_title.value}
+        titleTemplate={`%s | ${site.siteMetadata.title}`}
+        htmlAttributes={{ lang: language }}
+      >
+        <link rel="canonical" href={url} />
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content={pageSEO.elements.page_metadata__meta_description.value}
+        />
+        <meta
+          name="keywords"
+          content={pageSEO.elements.page_metadata__meta_keywords.value}
+        />
+        <meta
+          name="image"
+          content={pageSEO.elements.page_metadata__og_image.value[0].url}
+        />
+        <meta property="og:url" content={url} />
+        {isBlogPost && <meta property="og:type" content="article" />}
+        <meta
+          property="og:title"
+          content={pageSEO.elements.page_metadata__og_title.value}
+        />
+        <meta
+          property="og:description"
+          content={pageSEO.elements.page_metadata__og_description.value}
+        />
+        <meta
+          property="og:image"
+          content={pageSEO.elements.page_metadata__og_image.value[0].url}
+        />
+        <meta
+          property="og:image:alt"
+          content={
+            pageSEO.elements.page_metadata__og_image.value[0].description
+          }
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      </Helmet>
+      <SchemaOrg
+        isBlogPost={isBlogPost}
+        url={url}
+        title={pageSEO.elements.page_metadata__og_title.value}
+        image={pageSEO.elements.page_metadata__og_image.value[0].url}
+        description={pageSEO.elements.page_metadata__meta_description.value}
+        datePublished={
+          isBlogPost
+            ? formatDate(pageSEO.elements.posted.value, language)
+            : null
+        }
+        siteUrl={site.siteMetadata.siteUrl}
+        author={site.siteMetadata.author}
+        organization={site.siteMetadata.organization}
+        defaultTitle={site.siteMetadata.title}
+      />
+    </React.Fragment>
   );
 };
 
@@ -84,6 +110,9 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      slug {
+        value
+      }
     }
   }
   fragment aboutUsMetadata on KenticoCloudItemAboutUs {
@@ -107,6 +136,9 @@ export const query = graphql`
         value
       }
       page_metadata__meta_title {
+        value
+      }
+      slug {
         value
       }
     }
@@ -134,6 +166,12 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      posted {
+        value
+      }
+      slug {
+        value
+      }
     }
   }
   fragment landingPageMetadata on KenticoCloudItemLandingPage {
@@ -159,12 +197,23 @@ export const query = graphql`
       page_metadata__meta_title {
         value
       }
+      slug {
+        value
+      }
     }
   }
   fragment siteMetadata on Site {
     siteMetadata {
       siteUrl
       title
+      author {
+        name
+      }
+      organization {
+        name
+        url
+        logo
+      }
     }
   }
 `;

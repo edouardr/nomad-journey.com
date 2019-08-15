@@ -27,7 +27,11 @@ const AboutUs = React.memo(function AboutUs({ data, pageContext }) {
   }, []);
 
   return (
-    <Layout>
+    <Layout
+      codename={pageContext.codename}
+      language={pageContext.language}
+      template={pageContext.templateName}
+    >
       <Header />
       <Jumbotron />
       <IntroText html={item.elements.body_text.value} />
@@ -59,12 +63,13 @@ export const query = graphql`
     id
     system {
       language
+      codename
     }
     fields {
       jumbotronImage {
         childImageSharp {
           fluid(maxWidth: 1440) {
-            ...GatsbyImageSharpFluid_noBase64
+            ...GatsbyImageSharpFluid_withWebp_noBase64
           }
         }
       }
@@ -99,6 +104,7 @@ export const query = graphql`
     ) {
       edges {
         node {
+          id
           system {
             codename
           }
