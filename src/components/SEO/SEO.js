@@ -19,8 +19,8 @@ const SEO = ({ codename, language, template }) => {
   const isBlogPost = template === 'article';
   const url =
     template === 'home'
-      ? `${site.siteMetadata.siteUrl}${language}`
-      : `${site.siteMetadata.siteUrl}${language}/${pageSEO.elements.slug.value}`;
+      ? `${site.siteMetadata.siteUrl}/${language}/`
+      : `${site.siteMetadata.siteUrl}/${language}/${pageSEO.elements.slug.value}/`;
 
   return (
     <React.Fragment>

@@ -30,21 +30,12 @@ module.exports = {
         languageCodenames: process.env.GATSBY_KENTICO_LANGUAGES.split(';'),
       },
     },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
-        queries,
-        chunkSize: 10000,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Nomag-Journey`,
+        name: `Nomad-Journey`,
         short_name: `Nomad-Journey`,
         start_url: `/`,
         background_color: `#dbdcd1`,
