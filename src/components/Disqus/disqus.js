@@ -14,7 +14,7 @@ const Disqus = ({ siteUrl }) => {
   const disqusConfig = {
     identifier: currentPage.fields.codename,
     title: currentPage.elements.jumbotron__title.value,
-    url: `${siteUrl}${currentPage.fields.language}/${currentPage.fields.slug}`,
+    url: `${siteUrl}/${currentPage.fields.language}/${currentPage.fields.slug}`,
   };
 
   return (
