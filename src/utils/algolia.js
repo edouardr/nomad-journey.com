@@ -1,8 +1,10 @@
+import { lastBuildDate } from '../../version';
+
 const INDEX_NAME = `articles`;
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
   allKenticoCloudItemArticle (
-    filter: { system: { language: { eq: "${lang}" }}}
+    filter: { system: { language: { eq: "${lang}", lastModified: {gte: "${lastBuildDate}"}}}
   ) {
     edges {
       node {
