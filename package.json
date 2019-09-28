@@ -52,6 +52,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.1.0",
     "eslint-plugin-node": "^9.2.0",
