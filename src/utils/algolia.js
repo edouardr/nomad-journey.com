@@ -1,4 +1,4 @@
-import { lastBuildDate } from '../../version';
+const { lastBuildDate } = require('../../version');
 
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
