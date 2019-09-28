@@ -1,9 +1,9 @@
-const { lastBuildDate } = require('../../version');
-const indexName = process.env.NODE_ENV === 'development' ? 'rel_articles' : 'articles';
+const indexName =
+  process.env.NODE_ENV === 'development' ? 'rel_articles' : 'articles';
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
   allKenticoCloudItemArticle (
-    filter: { system: { language: { eq: "${lang}" }, lastModified: { gte: "${lastBuildDate}" }}}
+    filter: { system: { language: { eq: "${lang}" }}}
   ) {
     edges {
       node {
