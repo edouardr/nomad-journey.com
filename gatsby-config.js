@@ -1,10 +1,9 @@
-const path = require(`path`);
-const queries = require('./src/utils/algolia');
-const feedOptions = require('./src/utils/feed');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-
+const path = require(`path`);
+const feedOptions = require('./src/utils/feed');
+const queries = require('./src/utils/algolia');
 const hostname = new URL(process.env.GATSBY_HOSTNAME);
 
 module.exports = {
