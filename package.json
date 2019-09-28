@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Edouard Riviere <riviere.edouard@gmail.com>",
   "dependencies": {
+    "@babel/core": "^7.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
@@ -52,7 +53,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.1.0",
     "eslint-plugin-node": "^9.2.0",
