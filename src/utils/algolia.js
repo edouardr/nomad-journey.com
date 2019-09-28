@@ -1,4 +1,5 @@
-const INDEX_NAME = `articles`;
+const indexName =
+  process.env.NODE_ENV === 'development' ? 'rel_articles' : 'articles';
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
   allKenticoCloudItemArticle (
@@ -76,7 +77,7 @@ const queries = languages.map(language => ({
 
     return articles.map(mapArticle);
   },
-  indexName: `${INDEX_NAME}_${language}`,
+  indexName: `${indexName}_${language}`,
   settings,
 }));
 
