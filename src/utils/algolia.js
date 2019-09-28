@@ -1,6 +1,5 @@
 import { lastBuildDate } from '../../version';
 
-const INDEX_NAME = `articles`;
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
   allKenticoCloudItemArticle (
@@ -78,7 +77,7 @@ const queries = languages.map(language => ({
 
     return articles.map(mapArticle);
   },
-  indexName: `${INDEX_NAME}_${language}`,
+  indexName: `${process.env.GATSBY_ALGOLIA_INDEX_NAME}_${language}`,
   settings,
 }));
 
