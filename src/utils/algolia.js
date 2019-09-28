@@ -1,9 +1,9 @@
-const { lastBuildDate } = require('../../version');
-
+const indexName =
+  process.env.NODE_ENV === 'development' ? 'rel_articles' : 'articles';
 const languages = ['en', 'fr'];
 const getQuery = lang => `{
   allKenticoCloudItemArticle (
-    filter: { system: { language: { eq: "${lang}", lastModified: {gte: "${lastBuildDate}"}}}
+    filter: { system: { language: { eq: "${lang}" }}}
   ) {
     edges {
       node {
@@ -77,7 +77,7 @@ const queries = languages.map(language => ({
 
     return articles.map(mapArticle);
   },
-  indexName: `${process.env.GATSBY_ALGOLIA_INDEX_NAME}_${language}`,
+  indexName: `${indexName}_${language}`,
   settings,
 }));
 
