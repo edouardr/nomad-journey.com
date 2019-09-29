@@ -11,7 +11,6 @@ export const wrapRootElement = ({ element }) => (
   </PageProvider>
 );
 
-
 export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   const headComponents = getHeadComponents()
   headComponents.push([
