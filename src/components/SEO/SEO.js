@@ -30,22 +30,6 @@ const SEO = ({ codename, language, template }) => {
         titleTemplate={`%s | ${site.siteMetadata.title}`}
         htmlAttributes={{ lang: language }}
       >
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://maps.gstatic.com"
-        />
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://disqus.com"
-        />
-        <link
-          rel="preconnect dns-prefetch"
-          href="https://anomadjourney.disqus.com"
-        />
         <link rel="canonical" href={url} />
         <meta charSet="utf-8" />
         <meta
