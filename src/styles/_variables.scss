@@ -5,6 +5,7 @@
 
 $primary: $water;
 $primary-invert-invert: findColorInvert($water);
+$light: $waterdark;
 $dark: $deep;
 $dark-invert: findColorInvert($deep);
 $background: $deeplight;
@@ -13,7 +14,7 @@ $link: $water;
 $link-invert: findColorInvert($water);
 $link-hover: $waterdark;
 $link-hover-invert: findColorInvert($waterdark);
-$link-active: $water;
+$link-active: $waterdark;
 
 $family-primary: "Montserrat",
 -apple-system,

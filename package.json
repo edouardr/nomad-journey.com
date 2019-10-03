@@ -1,7 +1,7 @@
 {
   "name": "nomad-journey",
   "description": "Travel blog",
-  "version": "2.1.8",
+  "version": "2.1.10",
   "author": "Edouard Riviere <riviere.edouard@gmail.com>",
   "dependencies": {
     "@babel/core": "^7.6.2",
