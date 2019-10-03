@@ -50,7 +50,7 @@ const Jumbotron = ({ item, showLink = false }) => {
             {showLink && (
               <Link
                 to={`/${language}/${item.elements.slug.value}`}
-                className="button is-primary"
+                className="button is-light has-text-white"
               >
                 {dict_read_more}
               </Link>
