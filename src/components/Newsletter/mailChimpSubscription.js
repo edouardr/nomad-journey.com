@@ -105,7 +105,7 @@ const MailChimpSubscription = () => {
         <div className="columns is-vcentered">
           <div className="cloumn">
             <p className="title is-size-4">Newsletter</p>
-            <p className="subtitle has-text-grey-light">{localizedForm.node.elements.description.value}</p>
+            <p className="subtitle">{localizedForm.node.elements.description.value}</p>
           </div>
           <div className="column">
             <form onSubmit={handleSubmit}>
@@ -146,7 +146,7 @@ const MailChimpSubscription = () => {
                     </p>
                   </div>
                   <div className="control">
-                    <button type="submit" className="button is-primary is-medium">{localizedForm.node.elements.button_label.value}</button>
+                    <button type="submit" className="button is-light is-medium has-text-white">{localizedForm.node.elements.button_label.value}</button>
                   </div>
                 </div>
               </div>

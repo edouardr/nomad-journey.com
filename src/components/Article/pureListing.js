@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ListingItem from './listingItem';
+import useLang from '../../hooks/useLang';
+import useDictionaryQuery from '../../hooks/useDictionaryQuery';
+import { getDictionaryValue } from '../../utils/dictionary';
 import styles from './pureListing.module.scss';
 
 const startPosition = 0;
 const DEFAULT_LOAD_COUNT = 5;
+const DICT_VIEW_MORE = 'view-more';
 
 const PureListing = ({ articles, loadCount = DEFAULT_LOAD_COUNT }) => {
   const initialState = {
@@ -12,7 +16,14 @@ const PureListing = ({ articles, loadCount = DEFAULT_LOAD_COUNT }) => {
     position: 0,
   };
 
+  const { language } = useLang();
   const [state, setState] = useState(initialState);
+  const data = useDictionaryQuery();
+  const dict_view_more = getDictionaryValue({
+    key: DICT_VIEW_MORE,
+    lang: language,
+    data: data,
+  });
 
   const loadMore = () => {
     const end =
@@ -44,9 +55,9 @@ const PureListing = ({ articles, loadCount = DEFAULT_LOAD_COUNT }) => {
         <div className={styles.readMore}>
           <button
             onClick={handleClick}
-            className="button is-primary is-medium is-outlined"
+            className={`${styles.readMoreBtn} button is-light is-medium has-text-white`}
           >
-            <span className={styles.txt}>View more</span>
+            <span>{dict_view_more}</span>
           </button>
         </div>
       )}
