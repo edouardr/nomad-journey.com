@@ -40,5 +40,5 @@ library.add(
   faSearch,
   faCalendar,
   faMapMarkedAlt,
-  faAngleUp
+  faAngleUp,
 );

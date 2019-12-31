@@ -1,5 +1,5 @@
 const path = require(`path`);
-const basePage = require( './basePage');
+const basePage = require('./basePage');
 const kcItemTypeIdentifier = `KenticoCloudItem`;
 const articleTypeIdentifier = `Itinerary`;
 const templateName = `itinerary`;
@@ -10,34 +10,41 @@ exports.createNode = async ({ node, actions, store, cache, createNodeId }) => {
   createNodeField({
     node,
     name: `language`,
-    value: node.system.language
+    value: node.system.language,
   });
 
   createNodeField({
     node,
     name: `codename`,
-    value: node.system.codename
+    value: node.system.codename,
   });
 
   createNodeField({
     node,
     name: `templateName`,
-    value: templateName
+    value: templateName,
   });
 
   createNodeField({
     node,
     name: `slug`,
-    value: node.elements.slug.value
+    value: node.elements.slug.value,
   });
 };
 
 exports.createPage = (results, createPage) => {
   results.forEach(({ node }) => {
-    if (node.fields !== undefined && node.fields !== null && node.fields.templateName !== undefined && node.fields.templateName !== null) {
+    if (
+      node.fields !== undefined &&
+      node.fields !== null &&
+      node.fields.templateName !== undefined &&
+      node.fields.templateName !== null
+    ) {
       createPage({
         path: `${node.fields.language}/${node.fields.slug}`,
-        component: path.resolve(`./src/templates/${node.fields.templateName}.js`),
+        component: path.resolve(
+          `./src/templates/${node.fields.templateName}.js`,
+        ),
         context: {
           codename: node.fields.codename,
           language: node.fields.language,
@@ -49,5 +56,5 @@ exports.createPage = (results, createPage) => {
   });
 };
 
-
-exports.match = (node) => node.internal.type === `${kcItemTypeIdentifier}${articleTypeIdentifier}`;
+exports.match = node =>
+  node.internal.type === `${kcItemTypeIdentifier}${articleTypeIdentifier}`;

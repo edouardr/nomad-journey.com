@@ -16,7 +16,7 @@ const LandingPage = React.memo(function LandingPage({ data, pageContext }) {
   const item = getItemPerLanguage(
     pageContext.language,
     data.allKenticoCloudItemLandingPage.edges,
-    data.site
+    data.site,
   );
 
   React.useEffect(() => {

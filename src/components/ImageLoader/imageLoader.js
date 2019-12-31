@@ -9,7 +9,9 @@ const ImageLoader = ({ alt, src, className, description, onLoad }) => {
   const loadedClassName = styles.imgLoaded;
   const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
-  const computedClassName = `${className || ''} ${loaded ? loadedClassName : loadingClassName}`;
+  const computedClassName = `${className || ''} ${
+    loaded ? loadedClassName : loadingClassName
+  }`;
 
   const renderDescription = () =>
     description ? (
@@ -40,7 +42,9 @@ const ImageLoader = ({ alt, src, className, description, onLoad }) => {
   return (
     <>
       <div
-        className={`${styles.imgLoader} ${loaded ? loadedClassName : loadingClassName}`}
+        className={`${styles.imgLoader} ${
+          loaded ? loadedClassName : loadingClassName
+        }`}
       >
         <Img fluid={data.file.childImageSharp.fluid} alt="Image loader" />
       </div>

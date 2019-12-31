@@ -19,12 +19,12 @@ const setMasonryItemSize = (masonry, item) => {
   imgElement.style.height = 'auto';
 
   const rowGap = parseInt(
-      window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap')
+      window.getComputedStyle(masonry.current).getPropertyValue('grid-row-gap'),
     ),
     rowHeight = parseInt(
       window
         .getComputedStyle(masonry.current)
-        .getPropertyValue('grid-auto-rows')
+        .getPropertyValue('grid-auto-rows'),
     ),
     gridImagesAsContent = imgElement,
     rowSpan = Math.ceil(
@@ -32,7 +32,7 @@ const setMasonryItemSize = (masonry, item) => {
         .querySelector(`.${styles.masonryContent}`)
         .getBoundingClientRect().height +
         rowGap) /
-        (rowHeight + rowGap)
+        (rowHeight + rowGap),
     );
 
   item.current.style.gridRowEnd = 'span ' + rowSpan;

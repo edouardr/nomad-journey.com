@@ -1,4 +1,4 @@
-const basePage = require( './basePage');
+const basePage = require('./basePage');
 const kcItemTypeIdentifier = `KenticoCloudItem`;
 const articleTypeIdentifier = `Article`;
 const templateName = `article`;
@@ -11,18 +11,19 @@ exports.createNode = async ({ node, actions, store, cache, createNodeId }) => {
   createNodeField({
     node,
     name: `templateName`,
-    value: templateName
+    value: templateName,
   });
 
   createNodeField({
     node,
     name: `slug`,
-    value: node.elements.slug.value
+    value: node.elements.slug.value,
   });
 };
 
 exports.createPage = (results, createPage) => {
-  basePage.createPage(results, createPage)
+  basePage.createPage(results, createPage);
 };
 
-exports.match = (node) => node.internal.type === `${kcItemTypeIdentifier}${articleTypeIdentifier}`;
+exports.match = node =>
+  node.internal.type === `${kcItemTypeIdentifier}${articleTypeIdentifier}`;

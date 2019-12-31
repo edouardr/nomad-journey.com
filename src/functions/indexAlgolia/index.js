@@ -13,7 +13,7 @@ const isValidSignature = (req, secret) => {
     .digest();
   return crypto.timingSafeEqual(
     Buffer.from(givenSignature, 'base64'),
-    computedSignature
+    computedSignature,
   );
 };
 

@@ -31,7 +31,7 @@ const Results = connectStateResults(
     return res && res.nbHits > 0
       ? children
       : `${dic_search_no_results}'${state.query}'`;
-  }
+  },
 );
 
 const Stats = connectStateResults(({ searchResults: res }) => {
@@ -56,7 +56,7 @@ const Search = ({ indices }) => {
   const [focus, setFocus] = useState(false);
   const searchClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID,
-    process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    process.env.GATSBY_ALGOLIA_SEARCH_KEY,
   );
 
   const onSearchStateChange = ({ query }) => {
@@ -89,7 +89,11 @@ const Search = ({ indices }) => {
       root={Root}
     >
       <Input onFocus={onFocus} />
-      <div className={`${styles.hitsWrapper} ${query.length > 0 && focus ? styles.focused : ''}`}>
+      <div
+        className={`${styles.hitsWrapper} ${
+          query.length > 0 && focus ? styles.focused : ''
+        }`}
+      >
         {indices.map(({ name, hitComp }) => (
           <Index key={name} indexName={name}>
             <header>
