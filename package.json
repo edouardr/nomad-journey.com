@@ -1,7 +1,7 @@
 {
   "name": "nomad-journey",
   "description": "Travel blog",
-  "version": "2.1.10",
+  "version": "2.2.0",
   "author": "Edouard Riviere <riviere.edouard@gmail.com>",
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -56,12 +56,13 @@
     "prettier": "^1.19.1"
   },
   "keywords": [
-    "gatsby",
-    "Gatsby",
-    "kentico-cloud",
-    "Kentico Cloud",
-    "starter",
-    "Starter"
+    "travel",
+    "blog",
+    "world",
+    "trip",
+    "digital",
+    "nomad",
+    "journey"
   ],
   "license": "MIT",
   "scripts": {
