@@ -17,7 +17,7 @@ const Itinerary = React.memo(function Itinerary({ data, pageContext }) {
   const item = getItemPerLanguage(
     pageContext.language,
     data.allKenticoCloudItemItinerary.edges,
-    data.site
+    data.site,
   );
 
   React.useEffect(() => {

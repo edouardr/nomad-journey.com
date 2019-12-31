@@ -6,7 +6,7 @@ const useWindowEvent = (event, callback, dependencies) => {
       window.addEventListener(event, callback);
       return () => window.removeEventListener(event, callback);
     },
-    dependencies ? [event, callback, ...dependencies] : [event, callback]
+    dependencies ? [event, callback, ...dependencies] : [event, callback],
   );
 };
 

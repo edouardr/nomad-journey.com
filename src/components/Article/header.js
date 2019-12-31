@@ -41,7 +41,7 @@ const ArticleHeader = ({ article }) => {
                 <span>
                   {formatDate(
                     article.elements.posted.value,
-                    article.system.language
+                    article.system.language,
                   )}
                 </span>
                 <span className={styles.divider} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { formatDate } from '../../utils/date-time';
@@ -84,6 +85,12 @@ const SEO = ({ codename, language, template }) => {
       />
     </React.Fragment>
   );
+};
+
+SEO.propTypes = {
+  codename: PropTypes.string,
+  language: PropTypes.string,
+  template: PropTypes.string,
 };
 
 export const query = graphql`

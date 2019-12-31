@@ -27,7 +27,7 @@ const GoogleMaps = () => {
       data.kenticoCloudItemLocation.elements.latitude.number,
       data.kenticoCloudItemLocation.elements.longitude.number,
     ],
-    zoom: 7
+    zoom: 7,
   };
 
   return (

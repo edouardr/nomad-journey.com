@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './poweredBy.module.scss';
 
-export default () => (
+const PoweredBy = () => (
   <span className={styles.sponsor}>
     Powered by{` `}
     <a href="https://algolia.com">
@@ -10,3 +10,5 @@ export default () => (
     </a>
   </span>
 );
+
+export default PoweredBy;
