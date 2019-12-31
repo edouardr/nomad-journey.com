@@ -27,18 +27,18 @@ Link: https://www.nomad-journey.com
 
 - Node >= v10.16.0
 
+#### Env vars
+
+Make a copies of `.env.sample` named `.env.development`. Then set the correct
+values for each variable
+
 #### Install
 
 To set up you environment, run the following command:
 
 ```
-$ npm i
+$ npm run setup
 ```
-
-#### Env vars
-
-Make a copies of `.env.sample` named `.env.development`. Then set the correct
-values for each variable
 
 ### Development
 
