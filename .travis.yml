@@ -5,7 +5,7 @@ cache:
     - ~/.npm
 notifications:
   email: false
-node_js: '10'
+node_js: '12'
 install: echo "install happens as part of setup"
 branches:
   only:
@@ -14,9 +14,7 @@ addons:
   sonarcloud:
     organization: 'edouardr-github'
     token:
-      secure: 'jFmpXeYu+r5Ttt+CItvRi6VW3TB7IjurvTucGozyHHNa7LuWLGtV1ZOQ0gPS3cMomujcyYLmt57OECPb9nYrVjJoIGydIUz6nuBEtFLOoEPs068jlF2Jxbnd/IPTfnpfaSOt2syv/8GFPmL5V+D2MpQbvkhaUlvzUm7mdTQir5yNBKxx3N6AdtQDxZr5opRkn2hV1bISvgMRM9HCBjkuFbFKIXB16HkB//3uOsOodEcgNKoWrNjRVsRaj5r4gulLDeggouZBBUg0jTtfJgMbLl3Se2tACOeJjxNBt1vy0BIkwh0uHKpJg3NOcvftnjarbvz+yKQN+aMI9tHRhMGOU42PKBul9NKQHsMdCvjiRlaOY2XRS/U3V8kBDJq5knWY2vSDNpjdmb48/pUiXA6945S4Pr6WcwsKAS9kk876zAKxasEFzwvW3tU75jKVmOntR3X6sFxm1RyLPZ8XgJllaY7GkamgFcw2HH1gfPiYEcY4bwytSdH3xPi36khutL0xbPwc6pdpJCslPOCDrYMOKsgpzm39xPqIUNj56M0fV0prziGbTDPmrT81xhADgZ/CcSXRIpvybcM/v/SjqfRXxZezl1PrdTa5do3SdJJ3tJS3jPxF4WXVwqBQf6gAsP+pkNYyZQje9x5pf2Xd9Qnv1HVQIwCeKIKMEG/6xKOm9LY='
+      secure: 'bYujx95gSmStP3G95BLOwE+uNtxnhLfnIgtvFeZroLtnGUXM8Q3ajZ7Q8DKYpGhyDaCv8DvBoQLOrnvw3AGf2f7Grca0pKdZ5dTfnwv0EVQPs3Ovevr6rST+BBubnn+b/EwUmy2R1TaHM+az18ajMskChmQvZRNlpOAPtKZ793DxF5YlUvmVyQccqhk0BS1TJjHaJgupQca8iCB8Az+uHuXR6Tcurq0+QUnRX0s6vOTgoLVCAoEhHNgMD3lFB12Lk1m0KhQZQ747H67JgR7ZKB9Ce21afUcQXCR33+c2znQJtHMdpvZli76kmV5mApXbm+xgYm+WCPdAiIculNrpfbRmZKTKWHtNPXxrF3CmlUspkLa/bVfehmLp27kVf3VazPR0glXnPvgLR/DYoqcBW7sxsUPDt70iifYdv6cgDWp9UqMuhdJuzSEUSqOeeaTxZmTSxnmyeKCb8mtShmIHgkmzEy7Zx+8Nxi4xBSHUpNi9CMbMiIsa+FqF8WZF+OQ5sWSDMMe8rTu0E+I+3XWJAahT0D1Y5EIvQ+UXBetYuzNuW4oSNRNEvf/5GGKifaOFWr2PxKg0zSCFMsphquGKmCbQqsTgnTq7PEVWaxagAh+gP17wQumf9/3+e9HuGk3FOPxURyoRT9Nxjf13khkuQnvgbb/BxFP05G52ZhJnFrg='
 script:
-  - npm install
-  - npm run test
-  - npm run build
+  - npm run setup
   - sonar-scanner
