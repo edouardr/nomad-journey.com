@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 const path = require(`path`);
 const feedOptions = require('./src/utils/feed');
+// eslint-disable-next-line no-unused-vars
 const queries = require('./src/utils/algolia');
 const hostname = new URL(process.env.GATSBY_HOSTNAME);
 
@@ -27,15 +28,6 @@ module.exports = {
           projectId: process.env.GATSBY_KENTICO_PROJECT_ID,
         },
         languageCodenames: process.env.GATSBY_KENTICO_LANGUAGES.split(';'),
-      },
-    },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
-        queries,
-        chunkSize: 10000,
       },
     },
     `gatsby-plugin-react-helmet`,
