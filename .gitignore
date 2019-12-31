@@ -2,11 +2,14 @@
 .cache
 node_modules
 
+# Coverage directory used by tools like istanbul
+coverage
+
 # Build directory
-/public
+public
 
 # Local plugins used for development
-/plugins
+plugins
 
 # enviornment variables config files
 .env.*

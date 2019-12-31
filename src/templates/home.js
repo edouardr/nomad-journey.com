@@ -15,10 +15,10 @@ const getItemPerLanguage = (language, data) => {
     edge => {
       edge.node.elements.slug.value = '';
       return edge;
-    }
+    },
   );
   const localizedHomePages = homePages.filter(
-    homePage => homePage.node.system.language === language
+    homePage => homePage.node.system.language === language,
   )[0];
 
   return {
@@ -35,7 +35,7 @@ const Home = React.memo(function Home({ data, pageContext }) {
   const { defineLang } = useLang();
   const item = getItemPerLanguage(pageContext.language, data);
   const lastArticle = new Array(
-    ...data.allKenticoCloudItemArticle.edges
+    ...data.allKenticoCloudItemArticle.edges,
   ).filter(edge => pageContext.language === edge.node.system.language)[0].node;
 
   React.useEffect(() => {

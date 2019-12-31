@@ -76,7 +76,7 @@ const usePageSEO = ({ codename, language, template }) => {
     .filter(
       edge =>
         edge.node.system.codename === codename &&
-        edge.node.system.language === language
+        edge.node.system.language === language,
     )
     .map(edge => edge.node)[0];
 

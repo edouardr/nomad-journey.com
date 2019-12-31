@@ -1,4 +1,4 @@
-exports.handler = function (event, context, callback) {
+exports.handler = function(event, context, callback) {
   callback(null, {
     principalId: 'x-api-key',
     usageIdentifierKey: event.queryStringParameters['x-api-key'],

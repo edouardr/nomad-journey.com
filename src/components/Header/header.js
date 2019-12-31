@@ -62,7 +62,9 @@ const Header = () => {
 
   return (
     <header
-      className={`${styles.navbar} is-spaced is-mobile ${isOpen ? styles.isActive : ''}`}
+      className={`${styles.navbar} is-spaced is-mobile ${
+        isOpen ? styles.isActive : ''
+      }`}
     >
       <div className={styles.container}>
         <div className={styles.navbarBrand}>
@@ -73,7 +75,9 @@ const Header = () => {
             />
           </Link>
           <span
-            className={`${styles.navbarBurger} ${styles.burger} ${isOpen ? styles.isActive : ''}`}
+            className={`${styles.navbarBurger} ${styles.burger} ${
+              isOpen ? styles.isActive : ''
+            }`}
             data-target="navMenu"
             onClick={handleClick}
           >

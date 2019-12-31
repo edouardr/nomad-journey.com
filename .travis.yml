@@ -1,0 +1,20 @@
+dist: trusty
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
+node_js: '10'
+install: echo "install happens as part of setup"
+branches:
+  only:
+    - master
+addons:
+  sonarcloud:
+    organization: 'edouardr-github'
+    token:
+      secure: 'jFmpXeYu+r5Ttt+CItvRi6VW3TB7IjurvTucGozyHHNa7LuWLGtV1ZOQ0gPS3cMomujcyYLmt57OECPb9nYrVjJoIGydIUz6nuBEtFLOoEPs068jlF2Jxbnd/IPTfnpfaSOt2syv/8GFPmL5V+D2MpQbvkhaUlvzUm7mdTQir5yNBKxx3N6AdtQDxZr5opRkn2hV1bISvgMRM9HCBjkuFbFKIXB16HkB//3uOsOodEcgNKoWrNjRVsRaj5r4gulLDeggouZBBUg0jTtfJgMbLl3Se2tACOeJjxNBt1vy0BIkwh0uHKpJg3NOcvftnjarbvz+yKQN+aMI9tHRhMGOU42PKBul9NKQHsMdCvjiRlaOY2XRS/U3V8kBDJq5knWY2vSDNpjdmb48/pUiXA6945S4Pr6WcwsKAS9kk876zAKxasEFzwvW3tU75jKVmOntR3X6sFxm1RyLPZ8XgJllaY7GkamgFcw2HH1gfPiYEcY4bwytSdH3xPi36khutL0xbPwc6pdpJCslPOCDrYMOKsgpzm39xPqIUNj56M0fV0prziGbTDPmrT81xhADgZ/CcSXRIpvybcM/v/SjqfRXxZezl1PrdTa5do3SdJJ3tJS3jPxF4WXVwqBQf6gAsP+pkNYyZQje9x5pf2Xd9Qnv1HVQIwCeKIKMEG/6xKOm9LY='
+script:
+  - npm run setup
+  - sonar-scanner

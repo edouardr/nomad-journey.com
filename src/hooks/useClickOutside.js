@@ -5,7 +5,7 @@ const useClickOutside = (ref, handler, events) => {
     events = [`mousedown`, `touchstart`];
   }
   const detectClickOutside = event =>
-    !ref.current.contains(event.target) && handler();
+    ref.current && !ref.current.contains(event.target) && handler();
   React.useEffect(() => {
     for (const event of events) {
       document.addEventListener(event, detectClickOutside);

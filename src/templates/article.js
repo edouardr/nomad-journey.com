@@ -17,10 +17,10 @@ const Article = React.memo(function Article({ data, pageContext }) {
   const { definePage } = useCurrentPage();
   const { defineLang } = useLang();
   const currentArticle = data.allKenticoCloudItemArticle.edges.filter(
-    edge => edge.node.fields.codename === pageContext.codename
+    edge => edge.node.fields.codename === pageContext.codename,
   );
   const articlesByLanguage = data.allKenticoCloudItemArticle.edges.filter(
-    edge => edge.node.fields.language === pageContext.language
+    edge => edge.node.fields.language === pageContext.language,
   );
   const currentIndex = articlesByLanguage
     .map(edge => edge.node.fields.codename)
@@ -30,7 +30,7 @@ const Article = React.memo(function Article({ data, pageContext }) {
   const item = getItemPerLanguage(
     pageContext.language,
     currentArticle,
-    data.site
+    data.site,
   );
 
   React.useEffect(() => {

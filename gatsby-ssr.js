@@ -11,28 +11,35 @@ export const wrapRootElement = ({ element }) => (
   </PageProvider>
 );
 
-export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
-  const headComponents = getHeadComponents()
+export const onPreRenderHTML = ({
+  getHeadComponents,
+  replaceHeadComponents,
+}) => {
+  const headComponents = getHeadComponents();
   headComponents.push([
     <link
+      key="gstatic"
       rel="preconnect dns-prefetch"
       href="https://maps.gstatic.com"
     />,
     <link
+      key="googleapis"
       rel="preconnect dns-prefetch"
       href="https://fonts.googleapis.com"
     />,
     <link
+      key="disqus"
       rel="preconnect dns-prefetch"
       href="https://disqus.com"
     />,
     <link
+      key="anomadjourney"
       rel="preconnect dns-prefetch"
       href="https://anomadjourney.disqus.com"
-    />
-  ])
-  replaceHeadComponents(headComponents)
-}
+    />,
+  ]);
+  replaceHeadComponents(headComponents);
+};
 
 wrapRootElement.propTypes = {
   element: PropTypes.object,

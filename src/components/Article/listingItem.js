@@ -55,7 +55,7 @@ const ListingItem = ({ article }) => {
             <p className={styles.tag}>
               {formatDate(
                 article.node.elements.posted.value,
-                article.node.system.language
+                article.node.system.language,
               )}
               - {article.node.elements.location.value} -&nbsp;
               <span>

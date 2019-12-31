@@ -1,44 +1,44 @@
 @import '../../styles/variables';
 
 .card {
-    background-color: transparent;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    width: 100%;
-    position: relative;
-    text-align: left;
-    padding-bottom: 5px;
-    overflow: hidden;
-    color: $water;
-
-    .card-content {
-      border: 2px solid $water;
-      background: transparent;
-      padding-top: 58%;
-      margin-top: calc(-55% + 2px);
-    }
-  }
-
-  .card-image {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-
-    .ri {
-      width: 100%;
-      overflow: hidden;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  padding-bottom: 5px;
+  overflow: hidden;
+  color: $water;
 
   .card-content {
-    position: relative;
-    padding: 10px;
-    margin: 0 5px;
-    transition: border-color .5s;
-    z-index: 2;
-    pointer-events: none;
+    border: 2px solid $water;
+    background: transparent;
+    padding-top: 58%;
+    margin-top: calc(-55% + 2px);
   }
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  .ri {
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.card-content {
+  position: relative;
+  padding: 10px;
+  margin: 0 5px;
+  transition: border-color 0.5s;
+  z-index: 2;
+  pointer-events: none;
+}

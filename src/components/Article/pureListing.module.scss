@@ -1,22 +1,22 @@
 @import '../../styles/mixins';
 
 .read-more {
-    margin-top: 40px;
-    text-align: center;
+  margin-top: 40px;
+  text-align: center;
 
-    a {
-        display: inline-block;
-    }
+  a {
+    display: inline-block;
+  }
 }
 
 //992px +
 @media #{$md} {
-    .read-more {
-        margin-top: 0;
-        text-align: center;
+  .read-more {
+    margin-top: 0;
+    text-align: center;
 
-        a {
-            display: inline-block;
-        }
+    a {
+      display: inline-block;
     }
+  }
 }

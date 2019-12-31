@@ -17,7 +17,7 @@ const AboutUs = React.memo(function AboutUs({ data, pageContext }) {
   const item = getItemPerLanguage(
     pageContext.language,
     data.allKenticoCloudItemAboutUs.edges,
-    data.site
+    data.site,
   );
   const persons = new Array(...data.allKenticoCloudItemPerson.edges);
 

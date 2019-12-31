@@ -53,7 +53,7 @@ const mapArticle = article => {
     metaTitle: article.node.elements.page_metadata__meta_title.value,
     description: article.node.elements.page_metadata__meta_description.value,
     keywords: article.node.elements.page_metadata__meta_keywords.value.split(
-      ', '
+      ', ',
     ),
     location: article.node.elements.location.value,
     title: article.node.elements.jumbotron__title.value,
@@ -63,7 +63,7 @@ const mapArticle = article => {
     slug: `/${article.node.system.language}/${article.node.elements.slug.value}`,
     posted: article.node.elements.posted.value,
     posted_timestamp: Math.round(
-      new Date(article.node.elements.posted.value).getTime() / 1000
+      new Date(article.node.elements.posted.value).getTime() / 1000,
     ),
   };
 };
