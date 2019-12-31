@@ -17,10 +17,23 @@ export const onPreRenderHTML = ({
 }) => {
   const headComponents = getHeadComponents();
   headComponents.push([
-    <link rel="preconnect dns-prefetch" href="https://maps.gstatic.com" />,
-    <link rel="preconnect dns-prefetch" href="https://fonts.googleapis.com" />,
-    <link rel="preconnect dns-prefetch" href="https://disqus.com" />,
     <link
+      key="gstatic"
+      rel="preconnect dns-prefetch"
+      href="https://maps.gstatic.com"
+    />,
+    <link
+      key="googleapis"
+      rel="preconnect dns-prefetch"
+      href="https://fonts.googleapis.com"
+    />,
+    <link
+      key="disqus"
+      rel="preconnect dns-prefetch"
+      href="https://disqus.com"
+    />,
+    <link
+      key="anomadjourney"
       rel="preconnect dns-prefetch"
       href="https://anomadjourney.disqus.com"
     />,

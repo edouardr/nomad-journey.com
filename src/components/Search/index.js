@@ -1,4 +1,5 @@
 import React, { useState, createRef } from 'react';
+import PropTypes from 'prop-types';
 import {
   InstantSearch,
   Index,
@@ -108,6 +109,10 @@ const Search = ({ indices }) => {
       </div>
     </InstantSearch>
   );
+};
+
+Search.propTypes = {
+  indices: PropTypes.array,
 };
 
 export default Search;

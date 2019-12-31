@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { graphql, useStaticQuery } from 'gatsby';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
@@ -177,6 +178,10 @@ const MailChimpSubscription = () => {
       </div>
     </SubLayout>
   );
+};
+
+SubLayout.propTypes = {
+  children: PropTypes.node,
 };
 
 export default React.memo(MailChimpSubscription);

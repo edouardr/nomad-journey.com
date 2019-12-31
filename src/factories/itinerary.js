@@ -1,10 +1,9 @@
 const path = require(`path`);
-const basePage = require('./basePage');
 const kcItemTypeIdentifier = `KenticoCloudItem`;
 const articleTypeIdentifier = `Itinerary`;
 const templateName = `itinerary`;
 
-exports.createNode = async ({ node, actions, store, cache, createNodeId }) => {
+exports.createNode = async ({ node, actions }) => {
   const { createNodeField } = actions;
 
   createNodeField({

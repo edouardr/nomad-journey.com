@@ -1,5 +1,3 @@
-'use strict';
-
 const crypto = require('crypto');
 const algolia = require('algoliasearch');
 const algoliaApp = algolia(process.env.APP_ID, process.env.ADMIN_API_KEY);
