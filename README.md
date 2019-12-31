@@ -82,10 +82,10 @@ deploying to PROD `master` is the PROD website
 <!-- prettier-ignore-start -->
 [build-badge]: https://travis-ci.org/edouardr/nomad-journey.com.svg?branch=master
 [build]: https://travis-ci.org/edouardr/nomad-journey.com
-[coverage-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_npmad-journey.com&metric=coverage
-[coverage]: https://sonarcloud.io/dashboard?id=edouardr_npmad-journey.com
-[maintainability-rating-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_npmad-journey.com&metric=sqale_rating
-[maintainability-rating]: https://sonarcloud.io/dashboard?id=edouardr_npmad-journey.com
-[reliability-rating-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_npmad-journey.com&metric=reliability_rating
-[reliability-rating]: https://sonarcloud.io/dashboard?id=edouardr_npmad-journey.com
+[coverage-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_nomad-journey.com&metric=coverage
+[coverage]: https://sonarcloud.io/dashboard?id=edouardr_nomad-journey.com
+[maintainability-rating-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_nomad-journey.com&metric=sqale_rating
+[maintainability-rating]: https://sonarcloud.io/dashboard?id=edouardr_nomad-journey.com
+[reliability-rating-badge]: https://sonarcloud.io/api/project_badges/measure?project=edouardr_nomad-journey.com&metric=reliability_rating
+[reliability-rating]: https://sonarcloud.io/dashboard?id=edouardr_nomad-journey.com
 <!-- prettier-ignore-end -->
