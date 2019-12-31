@@ -6,7 +6,7 @@ cache:
 notifications:
   email: false
 node_js: '10'
-install: install happens as part of setup
+install: echo "install happens as part of setup"
 branches:
   only:
     - master
