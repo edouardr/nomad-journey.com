@@ -82,11 +82,5 @@
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/eriviere/a-nomad-journey"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      ".cache/"
-    ]
   }
 }
