@@ -9,9 +9,6 @@ const ImageLoader = ({ alt, src, className, description, onLoad }) => {
   const loadedClassName = styles.imgLoaded;
   const loadingClassName = styles.imgLoading;
   const [loaded, setLoaded] = useState(false);
-  const computedClassName = `${className || ''} ${
-    loaded ? loadedClassName : loadingClassName
-  }`;
 
   const renderDescription = () =>
     description ? (
@@ -52,8 +49,11 @@ const ImageLoader = ({ alt, src, className, description, onLoad }) => {
         <img
           src={src}
           onLoad={() => handleLoad()}
-          className={computedClassName}
+          className={`${className || ''} ${
+            loaded ? loadedClassName : loadingClassName
+          }`}
           alt={description || alt}
+          loading="lazy"
         />
       </LazyLoad>
       {renderDescription()}
