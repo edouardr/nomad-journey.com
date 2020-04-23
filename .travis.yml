@@ -3,6 +3,8 @@ if:
   pull_request AND branch = develop)
 dist: trusty
 language: node_js
+before_cache:
+  - pip install --user awscli
 cache:
   directories:
     - '~/.npm'
@@ -11,10 +13,6 @@ notifications:
 node_js: '12'
 before_install:
   - npm install -g @lhci/cli@0.3.x awss3-deploy
-install: echo "install happens as part of setup"
-branches:
-  only:
-    - master
 addons:
   sonarcloud:
     organization: 'edouardr-github'
