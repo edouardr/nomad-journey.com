@@ -1,3 +1,6 @@
+if:
+  (type = push AND (branch = master OR branch =~ /^release\/.*$/)) OR (type =
+  pull_request AND branch = develop)
 dist: trusty
 language: node_js
 cache:
@@ -6,15 +9,34 @@ cache:
 notifications:
   email: false
 node_js: '12'
+before_install:
+  - npm install -g @lhci/cli@0.3.x awss3-deploy
 install: echo "install happens as part of setup"
 branches:
   only:
     - master
-script:
-  - npm run setup
-  - sonar-scanner
 addons:
   sonarcloud:
     organization: 'edouardr-github'
     token:
       secure: rx5vlnJ7RtG7cXxT0E3LtP6Cpb5p0JWsZlUTnvE5jbOwPM9NlaEhjlOvHU1QTiLzY03tGFe8U06gNDvbgYcpClof6mjXcPazbmxEfzIDA6wTqpYC9WoMImuVod5UbrPlpJAo8DesruGwjgB1nts08NZMCqqIlsGF35ZYedI5HbtkxjJkIqIPO0gKbAPOwPhJKrfRU0KYGun6DzmrkYSOq28lQfJLrAUo40SZBahakmj9fKxCNPh3PdJdRwujnVn60je2FrOagqoNB46JP0K0VuoPEUIlhWiSKS+UHoewF660ixAHraE7DQ/apeOVQnn9VIwnCvlMI85NHNZjAUcALHLY2tIZly+zs2XT3/uRsFGOeIV5p+3nqOwNsfYEMRfGDU2cHKJb0S15Id7KiQooNhOPu5z8lYfmKP8Pz9l8T81jogjZYPMSzhnW8q6BNiN3G6kcQ1TWNnNMrB+wBpL9P5msxaqMawV262VqrX0POhDPtvqCHqzxzg5Sj629FSqKuE3aee6D0n7Z+5ej3uIQQujEc07xM3CDDwmsMkFxkA4ZgF5E0771kz0EzRqr6aepjevh3+XbLEQWu811EVzsdj815l6kr2Y50Gzk/fofLhzdgzw/0u1puXqABEBW7Xrp77AEhgMEqRJhWGreFtwSMRIgMpDU7Xw4W9Y84cGVmSU=
+  chrome: stable
+script:
+  - npm run setup
+  - sonar-scanner
+after_success:
+  - lhci autorun
+before_deploy:
+  - export BUCKET=$AWS_BUCKET LOCAL_DIR=$AWS_LOCAL_DIR
+    UPLOAD_DIR=$AWS_UPLOAD_DIR
+  - |
+    if [[ $TRAVIS_BRANCH =~ ^release\/.*$ ]]; then
+      export UPLOAD_DIR=$AWS_UPLOAD_DIR_REL
+    fi
+deploy:
+  provider: script
+  script: awss3-deploy
+  edge: true
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
