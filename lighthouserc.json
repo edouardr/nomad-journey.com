@@ -1,0 +1,33 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./public",
+      "numberOfRuns": 2
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "first-contentful-paint": [
+          "warn",
+          {
+            "maxNumericValue": 2500,
+            "aggregationMethod": "optimistic"
+          }
+        ],
+        "interactive": [
+          "warn",
+          {
+            "maxNumericValue": 5000,
+            "aggregationMethod": "optimistic"
+          }
+        ],
+        "redirects-http": "off",
+        "uses-long-cache-ttl": "off",
+        "uses-http2": "off"
+      }
+    },
+    "upload": {
+      "serverBaseUrl": "http://lhci.edouardr.fr"
+    }
+  }
+}
