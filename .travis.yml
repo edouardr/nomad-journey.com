@@ -25,7 +25,8 @@ script:
 after_success:
   - lhci autorun
 before_deploy:
-  - UPLOAD_DIR=$AWS_UPLOAD_DIR
+  - export BUCKET=$AWS_BUCKET LOCAL_DIR=$AWS_LOCAL_DIR
+    UPLOAD_DIR=$AWS_UPLOAD_DIR
   - |
     if [[ $TRAVIS_BRANCH =~ ^release\/.*$ ]]; then
       export UPLOAD_DIR=$AWS_UPLOAD_DIR_REL
