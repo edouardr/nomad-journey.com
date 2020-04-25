@@ -3,6 +3,8 @@ if:
   pull_request AND branch = develop)
 dist: trusty
 language: node_js
+before_cache:
+  - pip install --user awscli
 cache:
   directories:
     - '~/.npm'
@@ -10,11 +12,7 @@ notifications:
   email: false
 node_js: '12'
 before_install:
-  - npm install -g @lhci/cli@0.3.x awss3-deploy
-install: echo "install happens as part of setup"
-branches:
-  only:
-    - master
+  - npm install -g @lhci/cli@0.3.x
 addons:
   sonarcloud:
     organization: 'edouardr-github'
@@ -34,9 +32,18 @@ before_deploy:
       export UPLOAD_DIR=$AWS_UPLOAD_DIR_REL
     fi
 deploy:
-  provider: script
-  script: awss3-deploy
-  edge: true
-  on:
-    all_branches: true
-    condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
+  - provider: script
+    script: bash build/archive.sh
+    edge: true
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
+  - provider: s3
+    local_dir: $AWS_LOCAL_DIR
+    upload_dir: $UPLOAD_DIR
+    bucket: $AWS_BUCKET
+    region: $AWS_REGION
+    edge: true # opt in to dpl v2
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
