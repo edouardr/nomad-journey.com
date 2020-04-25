@@ -2,7 +2,13 @@
   "ci": {
     "collect": {
       "staticDistDir": "./public",
-      "numberOfRuns": 2
+      "numberOfRuns": 1,
+      "url": [
+        "/en/index.html",
+        "/en/about-us/index.html",
+        "/en/initnerary/index.html",
+        "/en/yangon/index.html"
+      ]
     },
     "assert": {
       "preset": "lighthouse:recommended",
