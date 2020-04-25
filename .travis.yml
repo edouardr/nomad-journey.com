@@ -12,7 +12,7 @@ notifications:
   email: false
 node_js: '12'
 before_install:
-  - npm install -g @lhci/cli@0.3.12
+  - npm install -g @lhci/cli@0.3.x
 addons:
   sonarcloud:
     organization: 'edouardr-github'
