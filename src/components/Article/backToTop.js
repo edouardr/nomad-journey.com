@@ -31,7 +31,7 @@ const BackToTop = () => {
       <span className="is-hidden-touch is-hidden-desktop is-hidden-widescreen is-hidden-fullhd">
         Back To Top
       </span>
-      <FontAwesomeIcon icon="angle-up" size="2x" color="white" />
+      <FontAwesomeIcon prefix="fa" icon="angle-up" size="2x" color="white" />
     </button>
   );
 };
