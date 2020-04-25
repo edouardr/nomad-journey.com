@@ -16,3 +16,5 @@ plugins
 !.env.sample
 
 \.vscode/settings\.json
+
+.lighthouseci

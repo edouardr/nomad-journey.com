@@ -2,7 +2,13 @@
   "ci": {
     "collect": {
       "staticDistDir": "./public",
-      "numberOfRuns": 2
+      "numberOfRuns": 1,
+      "url": [
+        "/en/index.html",
+        "/en/about-us/index.html",
+        "/en/itinerary/index.html",
+        "/en/bye-bye-sydney/index.html"
+      ]
     },
     "assert": {
       "preset": "lighthouse:recommended",
