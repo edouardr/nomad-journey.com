@@ -33,9 +33,6 @@ before_deploy:
     fi
 deploy:
   provider: s3
-  access_key_id: <encrypted access_key_id>
-  secret_access_key: <encrypted secret_access_key>
-  bucket: <bucket>
   edge: true # opt in to dpl v2
   on:
     all_branches: true
