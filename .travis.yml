@@ -12,7 +12,7 @@ notifications:
   email: false
 node_js: '12'
 before_install:
-  - npm install -g @lhci/cli@0.3.x awss3-deploy
+  - npm install -g @lhci/cli@0.3.12
 addons:
   sonarcloud:
     organization: 'edouardr-github'
