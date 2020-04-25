@@ -33,7 +33,7 @@ before_deploy:
     fi
 deploy:
   - provider: script
-    script: bash build/archive.sh
+    script: bash build/archive.sh -p
     edge: true
     on:
       all_branches: true
