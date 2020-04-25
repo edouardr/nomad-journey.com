@@ -25,16 +25,18 @@ script:
 after_success:
   - lhci autorun
 before_deploy:
-  - export BUCKET=$AWS_BUCKET LOCAL_DIR=$AWS_LOCAL_DIR
-    UPLOAD_DIR=$AWS_UPLOAD_DIR
+  - export S3_BUCKET=$AWS_BUCKET S3_LOCAL_DIR=$AWS_LOCAL_DIR
+    S3_UPLOAD_DIR=$AWS_UPLOAD_DIR
   - |
     if [[ $TRAVIS_BRANCH =~ ^release\/.*$ ]]; then
-      export UPLOAD_DIR=$AWS_UPLOAD_DIR_REL
+      export S3_UPLOAD_DIR=$AWS_UPLOAD_DIR_REL
     fi
 deploy:
-  provider: script
-  script: awss3-deploy
-  edge: true
+  provider: s3
+  access_key_id: <encrypted access_key_id>
+  secret_access_key: <encrypted secret_access_key>
+  bucket: <bucket>
+  edge: true # opt in to dpl v2
   on:
     all_branches: true
     condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
