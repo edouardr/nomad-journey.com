@@ -33,6 +33,7 @@ before_deploy:
     fi
 deploy:
   provider: s3
+  bucket: $AWS_BUCKET
   edge: true # opt in to dpl v2
   on:
     all_branches: true
