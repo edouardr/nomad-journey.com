@@ -33,17 +33,11 @@ before_deploy:
     fi
 deploy:
   - provider: script
-    script: bash build/archive.sh -p
-    edge: true
-    on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^master$
-  - provider: script
     script: bash build/archive.sh
     edge: true
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^(release\/.*)$
+      condition: $TRAVIS_BRANCH =~ ^(master|release\/.*)$
   - provider: s3
     local_dir: $AWS_LOCAL_DIR
     upload_dir: $UPLOAD_DIR

@@ -2,8 +2,7 @@
   "ci": {
     "collect": {
       "staticDistDir": "./public",
-      "numberOfRuns": 2,
-      "url": ["http://localhost:PORT/en", "http://localhost:PORT/en/about-us"]
+      "numberOfRuns": 2
     },
     "assert": {
       "preset": "lighthouse:recommended",

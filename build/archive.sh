@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-LATEST_TAG="$(git describe --abbrev=0 --tags)"
+set -euo pipfail
+
+LATEST_TAG="WIP" #$(git describe --abbrev=0 --tags)"
 NOW="$(date --utc --iso-8601=seconds)"
 IS_PROD=0
 TARGET="s3://$BUCKET/archive/$UPLOAD_DIR/$NOW"
