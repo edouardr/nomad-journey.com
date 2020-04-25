@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipfail
+set -euo pipefail
 
 LATEST_TAG="WIP" #$(git describe --abbrev=0 --tags)"
 NOW="$(date --utc --iso-8601=seconds)"
