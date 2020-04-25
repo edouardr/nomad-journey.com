@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const IntroText = ({ html }) => {
   return (
-    <section className="section has-background-light">
+    <section className="section has-background-white-ter">
       <div className="container is-light">
         <div
           className="content is-medium"
